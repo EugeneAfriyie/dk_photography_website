@@ -330,6 +330,7 @@ const Home = () => {
             Your number 1 for capturing life’s moments.
           </motion.p>
           <div className="flex flex-col md:flex-row justify-center items-center gap-8">
+
             <motion.div
               className="bg-gray-800 p-6 rounded-xl shadow-md w-full md:w-1/3"
               initial={{ opacity: 0, y: 50 }}
@@ -340,7 +341,7 @@ const Home = () => {
               <div className="flex justify-center mb-4  h-40">
                 {/* <PhotoIcon className="w-12 h-12 text-amber-400" /> */}
                 <img 
-                  src="/src/assets/Photo_Equiment/image.png" 
+                  src="/src/assets/Photo_Equiment/EQ_image-2.png" 
                   alt="" 
                   className="w-full h-full object-cover rounded-sm"
                   />
@@ -355,6 +356,7 @@ const Home = () => {
                 </button>
               </Link>
             </motion.div>
+
             <motion.div
               className="bg-gray-800 p-6 rounded-xl shadow-md w-full md:w-1/3"
               initial={{ opacity: 0, y: 50 }}
@@ -362,8 +364,12 @@ const Home = () => {
               transition={{ duration: 0.6, delay: 0.6 }}
               viewport={{ once: true }}
             >
-              <div className="flex justify-center mb-4">
-                <Package className="w-12 h-12 text-amber-400" />
+              <div className="flex justify-center h-40 mb-4">
+                {/* <Package className="w-12 h-12 text-amber-400" /> */}
+                <img 
+                   src="/src/assets/Photo_Equiment/EQ_image_1.png"
+                   className='w-full h-full object-cover rounded-sm' 
+                   alt="" />
               </div>
               <h3 className="text-xl font-semibold mb-2 text-amber-300">Custom Packages</h3>
               <p className="text-gray-400 mb-4">
@@ -798,4 +804,4 @@ const Home = () => {
   );
 };
 
-export default Home;"{e"
+export default Home;
