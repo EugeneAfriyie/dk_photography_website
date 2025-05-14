@@ -4,15 +4,50 @@ import { Menu, X, Camera, Info, Calendar, Camera as ShootIcon, Edit, Download, I
 import { AnimatePresence, motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import Carousel from './Components/Carousel';
-import { heroData, services, testimonials } from './data';
+import { heroData, testimonials } from './data';
 
 const Home = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [selectedPackage, setSelectedPackage] = useState(null);
-  const [openFaqIndex, setOpenFaqIndex] = useState(null); // State to track which FAQ is open
+  const [openFaqIndex, setOpenFaqIndex] = useState(null);
   const [isFocused, setIsFocused] = useState(false);
 
-  // Define packages with added "sessionLocation" field
+  // Updated services array with Graduation Photography
+  const services = [
+    {
+      title: 'Wedding Photography',
+      description: 'Elegant and emotional captures of your big day. Every vow, every smile, preserved forever.',
+      icon: 'https://img.icons8.com/ios/100/ffd700/wedding-dress.png',
+    },
+    {
+      title: 'Portrait Sessions',
+      description: 'Professional headshots or creative portraits—tailored to highlight your best self.',
+      // icon: 'https://img.icons8.com/ios-filled/100/ffd700/portrait.png',
+      icon: 'https://img.icons8.com/ios-filled/100/ffd700/portrait.png',
+    },
+    {
+      title: 'Event Coverage',
+      description: 'From corporate galas to birthday parties, we capture your event’s best angles and candid energy.',
+      icon: 'https://img.icons8.com/ios-filled/100/ffd700/event-accepted.png',
+    },
+    {
+      title: 'Children Photography',
+      description: 'Capture the wonder and joy of childhood with our fun and creative photography sessions.',
+      icon: 'https://img.icons8.com/ios-filled/100/ffd700/children.png',
+    },
+    {
+      title: 'Family Photography',
+      description: 'Celebrate your family\'s unique bond with our warm and heartfelt photography sessions.',
+      icon: 'https://img.icons8.com/ios-filled/100/ffd700/family--v1.png',
+    },
+    {
+      title: 'Graduation Photography',
+      description: 'Commemorate your academic milestone with professional graduation photos, capturing caps, gowns, and proud moments.',
+      icon: 'https://img.icons8.com/ios-filled/100/ffd700/graduation-cap.png',
+    },
+  ];
+
+  // Updated packages array with Graduation Photography packages
   const packages = [
     {
       title: 'Wedding Bliss Package',
@@ -24,7 +59,7 @@ const Home = () => {
       extras: 'Custom Album',
       sessionLocation: 'Outdoor or Venue',
       description: 'Capture your special day with our Wedding Photography and Event Coverage. Includes 8 hours of coverage, two photographers, and a custom album.',
-      servicesIncluded: [services[0], services[2]], // Wedding Photography, Event Coverage
+      servicesIncluded: [services[0], services[2]],
       isPopular: false,
     },
     {
@@ -37,7 +72,7 @@ const Home = () => {
       extras: 'Bonus Family Shoot',
       sessionLocation: 'Studio',
       description: 'Get stunning portraits with our Portrait Sessions and a bonus family shoot. Includes 2 hours of studio time and professional editing.',
-      servicesIncluded: [services[1]], // Portrait Sessions
+      servicesIncluded: [services[1]],
       isPopular: true,
     },
     {
@@ -50,7 +85,7 @@ const Home = () => {
       extras: 'Digital Gallery',
       sessionLocation: 'Outdoor or Indoor',
       description: 'Cherish your family bond with Children Photography and Family Photography. Includes 3 hours of outdoor or indoor sessions and a digital gallery.',
-      servicesIncluded: [services[3], services[4]], // Children Photography, Family Photography
+      servicesIncluded: [services[3], services[4]],
       isPopular: false,
     },
     {
@@ -63,7 +98,7 @@ const Home = () => {
       extras: 'Digital Album',
       sessionLocation: 'Client’s Choice',
       description: 'Combine Wedding Photography and Portrait Sessions for a special rate. Includes 6 hours of coverage, one photographer, and a digital album.',
-      servicesIncluded: [services[0], services[1]], // Wedding Photography, Portrait Sessions
+      servicesIncluded: [services[0], services[1]],
       isPopular: false,
     },
     {
@@ -76,7 +111,7 @@ const Home = () => {
       extras: 'Shared Online Gallery',
       sessionLocation: 'Outdoor or Venue',
       description: 'Bundle Family Photography and Event Coverage for a memorable package. Includes 5 hours of coverage and a shared online gallery.',
-      servicesIncluded: [services[4], services[2]], // Family Photography, Event Coverage
+      servicesIncluded: [services[4], services[2]],
       isPopular: false,
     },
     {
@@ -89,7 +124,7 @@ const Home = () => {
       extras: 'Premium Album, Drone Footage',
       sessionLocation: 'Outdoor or Venue',
       description: 'Luxury Wedding Photography and Event Coverage with 12 hours, two photographers, a premium album, and drone footage.',
-      servicesIncluded: [services[0], services[2]], // Wedding Photography, Event Coverage
+      servicesIncluded: [services[0], services[2]],
       isPopular: false,
     },
     {
@@ -102,12 +137,37 @@ const Home = () => {
       extras: 'Hardcover Book, Video Highlights',
       sessionLocation: 'Studio or Outdoor',
       description: 'Elite Children Photography and Family Photography with 6 hours, studio access, a hardcover book, and video highlights.',
-      servicesIncluded: [services[3], services[4]], // Children Photography, Family Photography
+      servicesIncluded: [services[3], services[4]],
       isPopular: false,
+    },
+    {
+      title: 'Graduation Celebration Package',
+      price: '$600',
+      coverageHours: '1.5 Hours',
+      photographers: '1 Photographer',
+      editedPhotos: '30 Photos',
+      deliveryTime: '2 Weeks',
+      extras: 'Digital Frame',
+      sessionLocation: 'Campus or Outdoor',
+      description: 'Capture your graduation day with professional photos featuring caps, gowns, and milestone moments.',
+      servicesIncluded: [services[5]], // Graduation Photography
+      isPopular: false,
+    },
+    {
+      title: 'Premium Graduation Package',
+      price: '$1,000',
+      coverageHours: '3 Hours',
+      photographers: '1 Photographer',
+      editedPhotos: '75 Photos',
+      deliveryTime: '3 Weeks',
+      extras: 'Custom Photo Book, Group Shots',
+      sessionLocation: 'Campus or Venue',
+      description: 'A comprehensive graduation package with extended coverage, a custom photo book, and group shots.',
+      servicesIncluded: [services[5]], // Graduation Photography
+      isPopular: true,
     },
   ];
 
-  // Define steps for the "Our Process" section
   const processSteps = [
     {
       title: 'Book Your Session',
@@ -136,11 +196,10 @@ const Home = () => {
     },
   ];
 
-  // Define FAQs
   const faqs = [
     {
       question: 'What types of photography do you offer?',
-      answer: 'We specialize in Wedding Photography, Portrait Sessions, Event Coverage, Children Photography, and Family Photography. Check out our Services section for more details.',
+      answer: 'We specialize in Wedding Photography, Portrait Sessions, Event Coverage, Children Photography, Family Photography, and Graduation Photography. Check out our Services section for more details.',
     },
     {
       question: 'How long does it take to receive my photos?',
@@ -160,7 +219,6 @@ const Home = () => {
     },
   ];
 
-  // Toggle FAQ accordion
   const toggleFaq = (index) => {
     setOpenFaqIndex(openFaqIndex === index ? null : index);
   };
@@ -172,35 +230,32 @@ const Home = () => {
         <nav className="flex justify-between items-center px-6 py-4 max-w-7xl mx-auto">
           <div className="text-2xl font-bold text-amber-500">SnapShot Studio</div>
 
-          {/* Desktop Menu with Links */}
           <ul className="hidden md:flex gap-6 text-sm">
-            <li className="hover:text-amber-400 cursor-pointer">
-              <Link to="/" className="hover:text-amber-400">Home</Link>
+            <li>
+              <Link to="/" className="hover:text-amber-400 transition-colors duration-300">Home</Link>
             </li>
-            <li className="hover:text-amber-400 cursor-pointer">
-              <Link to="/about" className="hover:text-amber-400">About</Link>
+            <li>
+              <Link to="/about" className="hover:text-amber-400 transition-colors duration-300">About</Link>
             </li>
-            <li className="hover:text-amber-400 cursor-pointer">
-              <Link to="/gallery" className="hover:text-amber-400">Gallery</Link>
+            <li>
+              <Link to="/gallery" className="hover:text-amber-400 transition-colors duration-300">Gallery</Link>
             </li>
-            <li className="hover:text-amber-400 cursor-pointer">
-              <Link to="/services" className="hover:text-amber-400">Services</Link>
+            <li>
+              <Link to="/services" className="hover:text-amber-400 transition-colors duration-300">Services</Link>
             </li>
-            <li className="hover:text-amber-400 cursor-pointer">
-              <Link to="/contact" className="hover:text-amber-400">Contact</Link>
+            <li>
+              <Link to="/contact" className="hover:text-amber-400 transition-colors duration-300">Contact</Link>
             </li>
           </ul>
 
-          {/* Book Now Button (Desktop) */}
           <div className="hidden md:block">
             <Link to="/contact">
-              <button className="bg-amber-500 px-4 py-1 rounded text-sm hover:bg-amber-600">
+              <button className="bg-amber-500 px-4 py-1 rounded text-sm hover:bg-amber-600 transition-colors duration-300">
                 Book Now
               </button>
             </Link>
           </div>
 
-          {/* Mobile Menu Icon */}
           <div className="md:hidden">
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
@@ -215,7 +270,6 @@ const Home = () => {
           </div>
         </nav>
 
-        {/* Mobile Menu */}
         <AnimatePresence>
           {mobileMenuOpen && (
             <motion.div
@@ -226,39 +280,24 @@ const Home = () => {
               className="md:hidden fixed top-0 right-0 h-full w-3/4 bg-black border-l border-gray-800 z-50"
             >
               <ul className="flex flex-col items-center gap-6 py-16 text-base">
-                <li
-                  className="hover:text-amber-400 cursor-pointer"
-                  onClick={() => setMobileMenuOpen(false)}
-                >
-                  <Link to="/" onClick={() => setMobileMenuOpen(false)}>Home</Link>
+                <li>
+                  <Link to="/" onClick={() => setMobileMenuOpen(false)} className="hover:text-amber-400 transition-colors duration-300">Home</Link>
                 </li>
-                <li
-                  className="hover:text-amber-400 cursor-pointer"
-                  onClick={() => setMobileMenuOpen(false)}
-                >
-                  <Link to="/about" onClick={() => setMobileMenuOpen(false)}>About</Link>
+                <li>
+                  <Link to="/about" onClick={() => setMobileMenuOpen(false)} className="hover:text-amber-400 transition-colors duration-300">About</Link>
                 </li>
-                <li
-                  className="hover:text-amber-400 cursor-pointer"
-                  onClick={() => setMobileMenuOpen(false)}
-                >
-                  <Link to="/gallery" onClick={() => setMobileMenuOpen(false)}>Gallery</Link>
+                <li>
+                  <Link to="/gallery" onClick={() => setMobileMenuOpen(false)} className="hover:text-amber-400 transition-colors duration-300">Gallery</Link>
                 </li>
-                <li
-                  className="hover:text-amber-400 cursor-pointer"
-                  onClick={() => setMobileMenuOpen(false)}
-                >
-                  <Link to="/services" onClick={() => setMobileMenuOpen(false)}>Services</Link>
+                <li>
+                  <Link to="/services" onClick={() => setMobileMenuOpen(false)} className="hover:text-amber-400 transition-colors duration-300">Services</Link>
                 </li>
-                <li
-                  className="hover:text-amber-400 cursor-pointer"
-                  onClick={() => setMobileMenuOpen(false)}
-                >
-                  <Link to="/contact" onClick={() => setMobileMenuOpen(false)}>Contact</Link>
+                <li>
+                  <Link to="/contact" onClick={() => setMobileMenuOpen(false)} className="hover:text-amber-400 transition-colors duration-300">Contact</Link>
                 </li>
                 <li>
                   <Link to="/contact" onClick={() => setMobileMenuOpen(false)}>
-                    <button className="bg-amber-500 px-6 py-2 rounded text-sm hover:bg-amber-600">
+                    <button className="bg-amber-500 px-6 py-2 rounded text-sm hover:bg-amber-600 transition-colors duration-300">
                       Book Now
                     </button>
                   </Link>
@@ -300,7 +339,7 @@ const Home = () => {
               {description}
             </motion.p>
             <Link to="/gallery">
-              <button className="bg-amber-500 px-6 py-2 rounded hover:bg-amber-600">
+              <button className="bg-amber-500 px-6 py-2 rounded hover:bg-amber-600 transition-colors duration-300">
                 View Gallery
               </button>
             </Link>
@@ -330,7 +369,6 @@ const Home = () => {
             Your number 1 for capturing life’s moments.
           </motion.p>
           <div className="flex flex-col md:flex-row justify-center items-center gap-8">
-
             <motion.div
               className="bg-gray-800 p-6 rounded-xl shadow-md w-full md:w-1/3"
               initial={{ opacity: 0, y: 50 }}
@@ -338,20 +376,19 @@ const Home = () => {
               transition={{ duration: 0.6, delay: 0.4 }}
               viewport={{ once: true }}
             >
-              <div className="flex justify-center mb-4  h-40">
-                {/* <PhotoIcon className="w-12 h-12 text-amber-400" /> */}
-                <img 
-                  src="/src/assets/Photo_Equiment/EQ_image-2.png" 
-                  alt="" 
+              <div className="flex justify-center mb-4 h-40">
+                <img
+                  src="/src/assets/Photo_Equiment/EQ_image-2.png"
+                  alt="Photography Tools"
                   className="w-full h-full object-cover rounded-sm"
-                  />
+                />
               </div>
               <h3 className="text-xl font-semibold mb-2 text-amber-300">Photography Tools</h3>
               <p className="text-gray-400 mb-4">
                 Unlock next-gen equipment and editing software. Integrated with the latest technology to enhance your photo quality.
               </p>
               <Link to="/contact">
-                <button className="bg-purple-600 px-6 py-2 rounded hover:bg-purple-700 text-sm">
+                <button className="bg-purple-600 px-6 py-2 rounded hover:bg-purple-700 transition-colors duration-300 text-sm">
                   Get Started Now
                 </button>
               </Link>
@@ -365,18 +402,18 @@ const Home = () => {
               viewport={{ once: true }}
             >
               <div className="flex justify-center h-40 mb-4">
-                {/* <Package className="w-12 h-12 text-amber-400" /> */}
-                <img 
-                   src="/src/assets/Photo_Equiment/EQ_image_1.png"
-                   className='w-full h-full object-cover rounded-sm' 
-                   alt="" />
+                <img
+                  src="/src/assets/Photo_Equiment/EQ_image_1.png"
+                  className="w-full h-full object-cover rounded-sm"
+                  alt="Custom Packages"
+                />
               </div>
               <h3 className="text-xl font-semibold mb-2 text-amber-300">Custom Packages</h3>
               <p className="text-gray-400 mb-4">
                 Build your photography journey with a tailored plan. Test your vision and we’ll adjust based on your needs.
               </p>
               <Link to="/contact">
-                <button className="bg-purple-600 px-6 py-2 rounded hover:bg-purple-700 text-sm">
+                <button className="bg-purple-600 px-6 py-2 rounded hover:bg-purple-700 transition-colors duration-300 text-sm">
                   Get Started Now
                 </button>
               </Link>
@@ -398,11 +435,11 @@ const Home = () => {
             Our Photography Services
           </motion.h2>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 justify-center items-center">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
             {services.map((service, i) => (
               <motion.div
                 key={service.title}
-                className="bg-gray-800 p-8 rounded-xl shadow-md hover:shadow-lg transition"
+                className="bg-gray-800 p-8 rounded-xl shadow-md hover:shadow-lg transition-all duration-300"
                 initial={{ opacity: 0, y: 50 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ delay: i * 0.2, duration: 0.6 }}
@@ -414,9 +451,7 @@ const Home = () => {
                   className="w-16 mx-auto mb-4"
                   loading="lazy"
                 />
-                <h3 className="text-xl font-semibold mb-2 text-amber-300">
-                  {service.title}
-                </h3>
+                <h3 className="text-xl font-semibold mb-2 text-amber-300">{service.title}</h3>
                 <p className="text-gray-400">{service.description}</p>
               </motion.div>
             ))}
@@ -426,7 +461,6 @@ const Home = () => {
 
       {/* Our Vision Section */}
       <section className="min-h-[60vh] flex flex-col justify-center items-center text-center px-4 bg-black relative overflow-hidden">
-        {/* Subtle Background Overlay (Photographic Theme) */}
         <div
           className="absolute inset-0 bg-cover bg-center opacity-20"
           style={{
@@ -436,7 +470,6 @@ const Home = () => {
           onError={(e) => (e.target.style.backgroundImage = "url('/fallback-lens.jpg')")}
         ></div>
 
-        {/* Circular Camera Lens with Glow and Hover Effect */}
         <motion.div
           className="relative w-64 h-64 md:w-80 md:h-80 rounded-full flex items-center justify-center"
           initial={{ scale: 0.8, opacity: 0 }}
@@ -445,18 +478,14 @@ const Home = () => {
           transition={{ duration: 1, ease: 'easeOut' }}
           viewport={{ once: true }}
         >
-          {/* Outer Glow */}
           <div className="absolute inset-0 rounded-full bg-gradient-to-r from-amber-500/30 to-amber-700/30 blur-2xl"></div>
-          {/* Inner Circle (Lens) */}
           <div className="relative w-full h-full rounded-full bg-black/80 border-4 border-amber-500 flex items-center justify-center">
-            {/* Aperture Blades Effect */}
             <div className="absolute w-3/4 h-3/4 rounded-full bg-gradient-to-br from-gray-800 to-gray-900 flex items-center justify-center">
               <div className="w-1/2 h-1/2 rounded-full bg-amber-500/20"></div>
             </div>
           </div>
         </motion.div>
 
-        {/* Centered Text with Link */}
         <motion.div
           className="relative z-10 mt-8 text-center"
           initial={{ opacity: 0, y: 20 }}
@@ -471,7 +500,7 @@ const Home = () => {
             Seeing the World Through a Photographer’s Eye
           </p>
           <Link to="/about" aria-label="Learn more about our vision">
-            <button className="bg-amber-500 px-6 py-2 rounded hover:bg-amber-600 text-sm md:text-base">
+            <button className="bg-amber-500 px-6 py-2 rounded hover:bg-amber-600 transition-colors duration-300 text-sm md:text-base">
               Learn More
             </button>
           </Link>
@@ -491,7 +520,7 @@ const Home = () => {
             Our Photography Packages
           </motion.h2>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 justify-center items-center">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
             {packages.map((packageItem, i) => (
               <motion.div
                 key={packageItem.title}
@@ -509,7 +538,7 @@ const Home = () => {
                 <Info
                   className="absolute top-2 right-2 w-5 h-5 text-gray-400 cursor-pointer hover:text-amber-400 transition-colors duration-300"
                   onClick={(e) => {
-                    e.stopPropagation(); // Prevent card click from interfering
+                    e.stopPropagation();
                     setSelectedPackage(packageItem);
                   }}
                   aria-label={`More information about ${packageItem.title}`}
@@ -517,7 +546,7 @@ const Home = () => {
                 <Camera className="w-8 h-8 mx-auto mb-2 text-gray-300 group-hover:text-amber-400 transition-colors duration-300" />
                 <p className="text-3xl font-bold text-white mb-2">{packageItem.price}</p>
                 <p className="text-gray-300 text-sm mb-4">{packageItem.title}</p>
-                <button className="w-full bg-black text-white py-2 rounded mb-2 hover:bg-gray-800 transition">
+                <button className="w-full bg-black text-white py-2 rounded mb-2 hover:bg-gray-800 transition-colors duration-300">
                   Enroll Now
                 </button>
                 <div className="text-xs text-gray-400 mt-4 space-y-1">
@@ -533,7 +562,6 @@ const Home = () => {
           </div>
         </div>
 
-        {/* Popup for Package Details */}
         <AnimatePresence>
           {selectedPackage && (
             <motion.div
@@ -549,10 +577,10 @@ const Home = () => {
                 animate={{ scale: 1, opacity: 1 }}
                 exit={{ scale: 0.7, opacity: 0 }}
                 transition={{ duration: 0.3, ease: 'easeInOut' }}
-                onClick={(e) => e.stopPropagation()} // Prevent closing when clicking inside
+                onClick={(e) => e.stopPropagation()}
               >
                 <button
-                  className="absolute top-2 right-2 text-gray-400 hover:text-white"
+                  className="absolute top-2 right-2 text-gray-400 hover:text-white transition-colors duration-300"
                   onClick={() => setSelectedPackage(null)}
                 >
                   ✕
@@ -569,7 +597,7 @@ const Home = () => {
                   ))}
                 </div>
                 <Link to="/contact">
-                  <button className="bg-amber-500 px-6 py-2 rounded hover:bg-amber-600 text-sm">
+                  <button className="bg-amber-500 px-6 py-2 rounded hover:bg-amber-600 transition-colors duration-300 text-sm">
                     Book Now
                   </button>
                 </Link>
@@ -620,7 +648,7 @@ const Home = () => {
       </section>
 
       {/* Testimonials Section */}
-      <section className="relative bg-bg-customDark  text-white py-20 px-4 text-center">
+      <section className="bg-gray-900 text-white py-20 px-4 text-center">
         <h2 className="text-4xl font-bold mb-6 text-amber-400">
           What Our Clients Say
         </h2>
@@ -645,9 +673,7 @@ const Home = () => {
                   {[...Array(5)].map((_, i) => (
                     <span
                       key={i}
-                      className={`text-xl ${
-                        i < rating ? 'text-amber-400' : 'text-gray-600'
-                      }`}
+                      className={`text-xl ${i < rating ? 'text-amber-400' : 'text-gray-600'}`}
                     >
                       ★
                     </span>
@@ -665,7 +691,6 @@ const Home = () => {
 
       {/* FAQ Section */}
       <section className="bg-black text-white py-20 px-4 relative overflow-hidden">
-        {/* Subtle Background Overlay */}
         <div
           className="absolute inset-0 bg-cover bg-center opacity-20"
           style={{
@@ -733,73 +758,83 @@ const Home = () => {
       </section>
 
       {/* Footer */}
-            <footer class="bg-blac text-white py-10 px-6 md:px-20">
-  <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-10">
-    {/* <!-- Logo & Socials --> */}
-    <div>
-      <div class="flex items-center space-x-2 mb-4">
-        <span class="text-2xl font-bold">↻</span>
-        <span class="text-lg font-semibold">Alpha Trader Firm</span>
-      </div>
-      <div class="flex space-x-4 text-xl">
-        <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
-        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-        <a href="#" aria-label="Telegram"><i class="fab fa-telegram"></i></a>
-        <a href="#" aria-label="Twitter"><i class="fab fa-x-twitter"></i></a>
-      </div>
-    </div>
+      <footer className="bg-black text-white py-10 px-6 md:px-20">
+        <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-10">
+          {/* Logo & Socials */}
+          <div>
+            <div className="flex items-center space-x-2 mb-4">
+              <span className="text-2xl font-bold">📸</span>
+              <span className="text-lg font-semibold">SnapShot Studio</span>
+            </div>
+            <div className="flex space-x-4 text-xl">
+              <a href="#" aria-label="YouTube" className="hover:text-amber-400 transition-colors duration-300">
+                <i className="fab fa-youtube"></i>
+              </a>
+              <a href="#" aria-label="Instagram" className="hover:text-amber-400 transition-colors duration-300">
+                <i className="fab fa-instagram"></i>
+              </a>
+              <a href="#" aria-label="Telegram" className="hover:text-amber-400 transition-colors duration-300">
+                <i className="fab fa-telegram"></i>
+              </a>
+              <a href="#" aria-label="Twitter" className="hover:text-amber-400 transition-colors duration-300">
+                <i className="fab fa-x-twitter"></i>
+              </a>
+            </div>
+          </div>
 
-    {/* <!-- Quick Links --> */}
-    <div>
-      <h3 class="font-semibold mb-4">Quick links</h3>
-      <ul class="space-y-2">
-        <li><a href="#" class="hover:underline">Evaluation</a></li>
-        <li><a href="#" class="hover:underline">Pricing</a></li>
-        <li><a href="#" class="hover:underline">Testimonials</a></li>
-        <li><a href="#" class="hover:underline">Rule/FAQs</a></li>
-      </ul>
-    </div>
+          {/* Quick Links */}
+          <div>
+            <h3 className="font-semibold mb-4">Quick Links</h3>
+            <ul className="space-y-2">
+              <li><Link to="/services" className="hover:underline hover:text-amber-400 transition-colors duration-300">Services</Link></li>
+              <li><Link to="/gallery" className="hover:underline hover:text-amber-400 transition-colors duration-300">Gallery</Link></li>
+              <li><Link to="/testimonials" className="hover:underline hover:text-amber-400 transition-colors duration-300">Testimonials</Link></li>
+              <li><Link to="/faqs" className="hover:underline hover:text-amber-400 transition-colors duration-300">FAQs</Link></li>
+            </ul>
+          </div>
 
-    {/* <!-- Legal --> */}
-    <div>
-      <h3 class="font-semibold mb-4">Legal</h3>
-      <ul class="space-y-2">
-        <li><a href="#" class="hover:underline">Terms & Conditions</a></li>
-        <li><a href="#" class="hover:underline">Privacy Policy</a></li>
-        <li><a href="#" class="hover:underline">Legal Disclosure</a></li>
-        <li><a href="#" class="hover:underline">Rule/FAQs</a></li>
-      </ul>
-    </div>
+          {/* Legal */}
+          <div>
+            <h3 className="font-semibold mb-4">Legal</h3>
+            <ul className="space-y-2">
+              <li><Link to="/terms" className="hover:underline hover:text-amber-400 transition-colors duration-300">Terms & Conditions</Link></li>
+              <li><Link to="/privacy" className="hover:underline hover:text-amber-400 transition-colors duration-300">Privacy Policy</Link></li>
+              <li><Link to="/disclosure" className="hover:underline hover:text-amber-400 transition-colors duration-300">Legal Disclosure</Link></li>
+              <li><Link to="/faqs" className="hover:underline hover:text-amber-400 transition-colors duration-300">FAQs</Link></li>
+            </ul>
+          </div>
 
-    {/* <!-- Newsletter --> */}
-    <div>
-      <h3 class="font-semibold mb-4">Subscribe to our newsletter</h3>
-      <p class="mb-4 text-sm">Subscribe to our newsletter and get 50% OFF on your first purchase!</p>
-      <div class="flex">
-<input
-      type="email"
-      placeholder="Enter your email"
-      onClick={() => setIsFocused(true)}
-      onBlur={(e) => {
-        if (!e.target.value) setIsFocused(false);
-      }}
-      className={`w-full p-2 bg-[rgb(43_43_43_/_0.28)] text-white rounded-md outline-none 
-        placeholder-white transition-opacity duration-300 
-        ${isFocused ? "placeholder-opacity-0" : "placeholder-opacity-100"}`}
-    />        <button class="bg-white text-black px-4 rounded-r-md">Subscribe</button>
-      </div>
-    </div>
-  </div>
+          {/* Newsletter */}
+          <div>
+            <h3 className="font-semibold mb-4">Subscribe to Our Newsletter</h3>
+            <p className="mb-4 text-sm">Subscribe to our newsletter and get updates on new packages and offers!</p>
+            <div className="flex">
+              <input
+                type="email"
+                placeholder="Enter your email"
+                onClick={() => setIsFocused(true)}
+                onBlur={(e) => {
+                  if (!e.target.value) setIsFocused(false);
+                }}
+                className={`w-full p-2 bg-gray-700 text-white rounded-l-md outline-none placeholder-white transition-opacity duration-300 ${
+                  isFocused ? "placeholder-opacity-0" : "placeholder-opacity-100"
+                }`}
+              />
+              <button className="bg-white text-black px-4 rounded-r-md hover:bg-gray-200 transition-colors duration-300">
+                Subscribe
+              </button>
+            </div>
+          </div>
+        </div>
 
-  {/* <!-- Disclaimer --> */}
-  <div class="text-xs text-gray-400 mt-10 max-w-7xl mx-auto">
-    <p class="mb-4">
-      <strong>Disclaimer:</strong> Alpha Trader Firm LLC provides access to simulated trading environments strictly for educational and evaluative purposes. No live trading occurs, and no real funds are invested, traded, or managed. All activities are demo-based using virtual balances with no cash value. Participation in our challenges does not constitute a financial service or investment opportunity. We do not offer financial advice or facilitate real-market trading. Payments are for platform access only and are non-refundable. Use of our services is subject to our Terms & Conditions and Privacy Policy.
-    </p>
-    <p class="text-center mt-4">© 2025 DKSHOTIT STUDIO AND PHOTOGRAPHY, All Rights Reserved.</p>
-  </div>
-</footer>
-
+        {/* Disclaimer */}
+        <div className="text-xs text-gray-400 mt-10 max-w-7xl mx-auto">
+          <p className="mb-4">
+            <strong>Disclaimer:</strong> SnapShot Studio provides professional photography services for personal and event use. All bookings are subject to availability and our Terms & Conditions. Packages and pricing may vary based on location and specific requirements. For more details, please contact us directly.
+          </p>
+          <p className="text-center mt-4">© 2025 SNAPSHOT STUDIO AND PHOTOGRAPHY, All Rights Reserved.</p>
+        </div>
+      </footer>
     </div>
   );
 };
