@@ -17,33 +17,43 @@ const Home = () => {
     {
       title: 'Wedding Photography',
       description: 'Elegant and emotional captures of your big day. Every vow, every smile, preserved forever.',
-      icon: 'https://img.icons8.com/ios/100/ffd700/wedding-dress.png',
+      // icon: 'https://img.icons8.com/ios/100/ffd700/wedding-dress.png',
+      icon: '/src/assets/Services_img/img-1.jpg',
+
     },
     {
       title: 'Portrait Sessions',
       description: 'Professional headshots or creative portraits—tailored to highlight your best self.',
       // icon: 'https://img.icons8.com/ios-filled/100/ffd700/portrait.png',
-      icon: 'https://img.icons8.com/ios-filled/100/ffd700/portrait.png',
+      icon: '/src/assets/Services_img/img-1.jpg',
     },
     {
       title: 'Event Coverage',
       description: 'From corporate galas to birthday parties, we capture your event’s best angles and candid energy.',
-      icon: 'https://img.icons8.com/ios-filled/100/ffd700/event-accepted.png',
+      // icon: 'https://img.icons8.com/ios-filled/100/ffd700/event-accepted.png',
+      icon: '/src/assets/Services_img/img-1.jpg',
+
     },
     {
       title: 'Children Photography',
       description: 'Capture the wonder and joy of childhood with our fun and creative photography sessions.',
-      icon: 'https://img.icons8.com/ios-filled/100/ffd700/children.png',
+      // icon: 'https://img.icons8.com/ios-filled/100/ffd700/children.png',
+      icon: '/src/assets/Services_img/img-1.jpg',
+
     },
     {
       title: 'Family Photography',
       description: 'Celebrate your family\'s unique bond with our warm and heartfelt photography sessions.',
-      icon: 'https://img.icons8.com/ios-filled/100/ffd700/family--v1.png',
+      // icon: 'https://img.icons8.com/ios-filled/100/ffd700/family--v1.png',
+      icon: '/src/assets/Services_img/img-1.jpg',
+
     },
     {
       title: 'Graduation Photography',
       description: 'Commemorate your academic milestone with professional graduation photos, capturing caps, gowns, and proud moments.',
-      icon: 'https://img.icons8.com/ios-filled/100/ffd700/graduation-cap.png',
+      // icon: 'https://img.icons8.com/ios-filled/100/ffd700/graduation-cap.png',
+      icon: '/src/assets/Services_img/img-1.jpg',
+
     },
   ];
 
@@ -224,7 +234,7 @@ const Home = () => {
   };
 
   return (
-    <div className="text-white bg-black">
+    <div className="text-white bg-black  m-auto">
       {/* Navbar */}
       <header className="fixed top-0 w-full z-50 bg-black/70 backdrop-blur-md border-b border-gray-800">
         <nav className="flex justify-between items-center px-6 py-4 max-w-7xl mx-auto">
@@ -445,12 +455,14 @@ const Home = () => {
                 transition={{ delay: i * 0.2, duration: 0.6 }}
                 viewport={{ once: true }}
               >
-                <img
+              <div className=' w-full h-40 bg-red-800 overflow-hidden'>
+                  <img
                   src={service.icon}
                   alt={service.title}
-                  className="w-16 mx-auto mb-4"
+                  className="w-full  object-cover mx-auto mb-4"
                   loading="lazy"
                 />
+              </div>
                 <h3 className="text-xl font-semibold mb-2 text-amber-300">{service.title}</h3>
                 <p className="text-gray-400">{service.description}</p>
               </motion.div>
@@ -536,18 +548,28 @@ const Home = () => {
                   </span>
                 )}
                 <Info
-                  className="absolute top-2 right-2 w-5 h-5 text-gray-400 cursor-pointer hover:text-amber-400 transition-colors duration-300"
+                  className="absolute bottom-2 right-2 w-5 h-5 text-gray-400 cursor-pointer hover:text-amber-400 transition-colors duration-300"
                   onClick={(e) => {
                     e.stopPropagation();
                     setSelectedPackage(packageItem);
                   }}
                   aria-label={`More information about ${packageItem.title}`}
                 />
-                <Camera className="w-8 h-8 mx-auto mb-2 text-gray-300 group-hover:text-amber-400 transition-colors duration-300" />
+                {/* <Camera className="w-8 h-8 mx-auto mb-2 text-gray-300 group-hover:text-amber-400 transition-colors duration-300" /> */}
+
+                <div className=' w-full h-40 bg-red-800 overflow-hidden mb-4'>
+                  <img
+                  src='/src/assets/Services_img/img-1.jpg'
+                  alt=''
+                  className="w-full  object-cover mx-auto mb-4"
+                  loading="lazy"
+                />
+              </div>
+
                 <p className="text-3xl font-bold text-white mb-2">{packageItem.price}</p>
                 <p className="text-gray-300 text-sm mb-4">{packageItem.title}</p>
                 <button className="w-full bg-black text-white py-2 rounded mb-2 hover:bg-gray-800 transition-colors duration-300">
-                  Enroll Now
+                  Book Now
                 </button>
                 <div className="text-xs text-gray-400 mt-4 space-y-1">
                   <p>Coverage: {packageItem.coverageHours}</p>
@@ -608,7 +630,7 @@ const Home = () => {
       </section>
 
       {/* Our Process Section */}
-      <section className="bg-gray-900 text-white py-20 px-4">
+      <section className="bg-gray-600/30 text-white py-20 px-4 mb-20">
         <div className="max-w-6xl mx-auto text-center">
           <motion.h2
             className="text-4xl font-bold mb-6 text-amber-400"
@@ -648,7 +670,7 @@ const Home = () => {
       </section>
 
       {/* Testimonials Section */}
-      <section className="bg-gray-900 text-white py-20 px-4 text-center">
+      <section className="bg-gray-600/20 text-white py-20 px-4 text-center xl:w-[90%] m-auto">
         <h2 className="text-4xl font-bold mb-6 text-amber-400">
           What Our Clients Say
         </h2>
@@ -662,7 +684,7 @@ const Home = () => {
             interval={7000}
             autoPlay={true}
             renderItem={({ quote, author, image, rating }, index) => (
-              <div className="bg-gray-800 p-8 rounded-xl shadow-md flex flex-col items-center">
+              <div className="bg-gray-800/50 p-8 rounded-xl shadow-md flex flex-col items-center">
                 <img
                   src={image}
                   alt={author}
@@ -690,7 +712,7 @@ const Home = () => {
       </section>
 
       {/* FAQ Section */}
-      <section className="bg-black text-white py-20 px-4 relative overflow-hidden">
+      <section className="bg-gray-600/20 text-white py-10 sm:py-20 px-4 relative overflow-hidden xl:w-[90%] m-auto mt-40">
         <div
           className="absolute inset-0 bg-cover bg-center opacity-20"
           style={{
@@ -702,7 +724,7 @@ const Home = () => {
 
         <div className="max-w-4xl mx-auto text-center relative z-10">
           <motion.h2
-            className="text-4xl font-bold mb-6 text-amber-400"
+            className="text-6xl font-bold mb-6 text-amber-400 sm:w-[70%] w-full m-auto"
             initial={{ opacity: 0, y: 50 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
@@ -710,6 +732,7 @@ const Home = () => {
           >
             Frequently Asked Questions
           </motion.h2>
+
           <motion.p
             className="text-gray-300 mb-12 max-w-2xl mx-auto"
             initial={{ opacity: 0, y: 20 }}
@@ -719,7 +742,8 @@ const Home = () => {
           >
             Find answers to common questions about our photography services.
           </motion.p>
-          <div className="bg-gray-800 p-8 rounded-xl shadow-md w-full max-w-lg mx-auto">
+
+          <div className=" sm:p-8  shadow-md w-full  mx-auto rounded-lg ">
             {faqs.map((faq, index) => (
               <motion.div
                 key={index}
@@ -727,7 +751,7 @@ const Home = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.4 + index * 0.2 }}
                 viewport={{ once: true }}
-                className="border-b border-gray-700 last:border-b-0"
+                className="bg-gray-800/30 mt-2 first:mt-0 p-4 w-[100%]   rounded-2xl "
               >
                 <button
                   onClick={() => toggleFaq(index)}
