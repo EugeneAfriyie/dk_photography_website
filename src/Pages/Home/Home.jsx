@@ -669,6 +669,25 @@ const Home = () => {
         </div>
       </section>
 
+      <section className="w-full">
+       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 h-[500px] w-[80%] m-auto">
+
+         <div className='bg-gray-500/20  gap-1 px-4'>
+           <div className="bg-[url('/src/assets/Process_/bg-high-1.png')] bg-cover bg-center bg-rd-500  w-64 relative">
+           <img src="/src/assets/Process_bg/bg-2.png" className='w-64 top-20 absolute rotateY-150 rotateY-150' alt="" />
+           </div>
+
+        </div>
+        <div className="bg-[url('/your-image.jpg')] bg-cover bg-center bg-red-500 w-full">
+        </div>
+
+        <div className='bg-red-500'>
+
+        </div>
+       </div>
+       
+      </section>
+
       {/* Testimonials Section */}
       <section className="bg-gray-600/20 text-white py-20 px-4 text-center xl:w-[90%] m-auto">
         <h2 className="text-4xl font-bold mb-6 text-amber-400">
