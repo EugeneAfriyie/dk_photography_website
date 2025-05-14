@@ -337,8 +337,13 @@ const Home = () => {
               transition={{ duration: 0.6, delay: 0.4 }}
               viewport={{ once: true }}
             >
-              <div className="flex justify-center mb-4">
-                <PhotoIcon className="w-12 h-12 text-amber-400" />
+              <div className="flex justify-center mb-4  h-40">
+                {/* <PhotoIcon className="w-12 h-12 text-amber-400" /> */}
+                <img 
+                  src="/src/assets/Photo_Equiment/image.png" 
+                  alt="" 
+                  className="w-full h-full object-cover rounded-sm"
+                  />
               </div>
               <h3 className="text-xl font-semibold mb-2 text-amber-300">Photography Tools</h3>
               <p className="text-gray-400 mb-4">
