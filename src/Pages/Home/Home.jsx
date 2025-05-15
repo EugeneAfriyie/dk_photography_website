@@ -693,7 +693,7 @@ const Home = () => {
             <p className=' text-[1.2rem] lg:text-[1.2rem] font-semibold mt-4 lg:mt-20'>100% Profit target</p>
             <p className='lg:text-sm text-[.7rem] text-gray-400 lg:mt-2 mt-1'>The evaluation process starts with the first challenge. You must pass all requirements of this stage to become eligible and move on to the verification stage and become an Alpha funded trader!</p>
 
-               <div className="top-10 left-20 absolute hidden lg:block bg-ambr-50/10 w-72 h-32 ">
+               <div className="xl:top-10 lg:top-0 left-20 absolute hidden lg:block bg-ambr-50/10 w-72 h-32 ">
                <img src="/src/assets/Process_bg/bg-high-1.png" className=' w-full h-full ' alt="" />
             </div>
         </div>
@@ -708,7 +708,7 @@ const Home = () => {
             <p className=' text-[1.2rem] lg:text-[1.2rem] font-semibold mt-4 lg:mt-20'>100% Profit target</p>
             <p className='lg:text-sm text-[.7rem] text-gray-400 lg:mt-2 mt-1'>The evaluation process starts with the first challenge. You must pass all requirements of this stage to become eligible and move on to the verification stage and become an Alpha funded trader!</p>
 
-            <div className="top-10 -left-20 absolute hidden lg:block bg-ambr-50/10 w-72 h-32 ">
+            <div className="xl:top-10 lg:top-0 -left-20 absolute hidden lg:block bg-ambr-50/10 w-72 h-32 ">
                <img src="/src/assets/Process_bg/bg-2.png" className=' w-full h-full ' alt="" />
             </div>
         </div>
