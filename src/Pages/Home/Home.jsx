@@ -693,12 +693,14 @@ const Home = () => {
             <p className=' text-[1.2rem] lg:text-[1.2rem] font-semibold mt-4 lg:mt-20'>100% Profit target</p>
             <p className='lg:text-sm text-[.7rem] text-gray-400 lg:mt-2 mt-1'>The evaluation process starts with the first challenge. You must pass all requirements of this stage to become eligible and move on to the verification stage and become an Alpha funded trader!</p>
 
-             <img src="/src/assets/bg-high-1.png" className=' top-10 left-10 absolute hidden ' alt="" />
+               <div className="top-10 left-20 absolute hidden lg:block bg-ambr-50/10 w-72 h-32 ">
+               <img src="/src/assets/Process_bg/bg-high-1.png" className=' w-full h-full ' alt="" />
+            </div>
         </div>
 
     
 
-        <div id='no2' className="flex items-start justify-center flex-col text-white relative lg:p-8 order-3 lg:order-3 w-[300px]">
+        <div id='no2' className="flex items-start justify-center flex-col text-white relative lg:p-8 order-3 lg:order-3 w-[300px] bg-ambr-50/10">
             <div className=" flex items-center justify-center gap-2 ">
                 <p className=' p-0.5 px-2 text-[.6rem] lg:text-sm text-gray-300/70 rounded-xl bg-gray-500/20'>02</p>
                 <h3 className='font-bold text-[1.3rem] lg:text-4xl'>Booking</h3>
@@ -706,7 +708,9 @@ const Home = () => {
             <p className=' text-[1.2rem] lg:text-[1.2rem] font-semibold mt-4 lg:mt-20'>100% Profit target</p>
             <p className='lg:text-sm text-[.7rem] text-gray-400 lg:mt-2 mt-1'>The evaluation process starts with the first challenge. You must pass all requirements of this stage to become eligible and move on to the verification stage and become an Alpha funded trader!</p>
 
-             <img src="/src/assets/bg-high-1.png" className=' top-10 left-10 absolute hidden ' alt="" />
+            <div className="top-10 -left-20 absolute hidden lg:block bg-ambr-50/10 w-72 h-32 ">
+               <img src="/src/assets/Process_bg/bg-2.png" className=' w-full h-full ' alt="" />
+            </div>
         </div>
 
       </div>
