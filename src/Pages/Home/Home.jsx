@@ -685,7 +685,7 @@ const Home = () => {
 
 
         
-        <div id='no1' className="xs:hidden flex items-start justify-center flex-col text-white relative lg:p-8 order-2 lg:order-1 w-[300px] ">
+        <div id='no1' className="xs:hidden flex items-start justify-center flex-col text-white relative lg:p-8 order-2 lg:order-1 w-[300px] sm-size ">
             <div className=" flex items-center justify-center gap-2 ">
                 <p className=' p-0.5 px-2 text-[.6rem] lg:text-sm text-gray-300/70 rounded-xl bg-gray-500/20'>01</p>
                 <h3 className='font-bold text-[1.3rem] lg:text-4xl'>Booking</h3>
@@ -700,7 +700,7 @@ const Home = () => {
 
     
 
-        <div id='no2' className="flex items-start justify-center flex-col text-white relative lg:p-8 order-3 lg:order-3 w-[300px] bg-ambr-50/10">
+        <div id='no2' className="flex items-start justify-center flex-col text-white relative lg:p-8 order-3 lg:order-3 w-[300px] bg-ambr-50/10 sm-size">
             <div className=" flex items-center justify-center gap-2 ">
                 <p className=' p-0.5 px-2 text-[.6rem] lg:text-sm text-gray-300/70 rounded-xl bg-gray-500/20'>02</p>
                 <h3 className='font-bold text-[1.3rem] lg:text-4xl'>Booking</h3>
@@ -720,7 +720,7 @@ const Home = () => {
 
         <img src="/src/assets/Process_bg/final.png" className='hidden lg:block' alt="" />
 
-         <div className="flex lg:items-center  justify-center flex-col text-white lg:text-center lg:w-[30rem] sm:m-auto w-[300px]  ">
+         <div className="flex lg:items-center  justify-center flex-col text-white lg:text-center lg:w-[30rem] sm:m-auto w-[300px] sm-size ">
             <div className=" flex items-center justify-cente gap-2 ">
                 <p className=' p-0.5 px-2 text-[.6rem] lg:text-sm text-gray-300/70 rounded-xl bg-gray-500/20'>03</p>
                 <h3 className='font-bold text-[1.3rem] lg:text-4xl'>Booking</h3>
@@ -730,7 +730,7 @@ const Home = () => {
         </div>
       </div>
 
-      <img src="/src/assets/Process_bg/small-screen-ng.png" className='absolute top-72 right-10 sm:right-40 lg:hidden' alt="" />
+      <img src="/src/assets/Process_bg/small-screen-ng.png" className='absolute top-72 right-10 sm:right-40 lg:hidden sm-pos' alt="" />
         </div>
        
       </section>

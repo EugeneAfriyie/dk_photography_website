@@ -6,8 +6,21 @@ body{
     background-color: black;
     color: #e6111100;
     border: 1px solid red;
+    min-width: 320px;
 }
 
 .rotateY-150 {
   /* transform: rotate(180deg); */
+}
+
+
+@media (max-width: 380px) {
+  .sm-size{
+    width: 250px;
+  }
+
+  .sm-pos{
+    top:22rem;
+    right: 1.5rem;
+  }
 }
