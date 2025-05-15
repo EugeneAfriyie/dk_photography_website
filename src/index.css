@@ -7,6 +7,8 @@ body{
     color: #e6111100;
     border: 1px solid red;
     min-width: 320px;
+    margin: auto;
+    max-width: 1800px;
 }
 
 .rotateY-150 {

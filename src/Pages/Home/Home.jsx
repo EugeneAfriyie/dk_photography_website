@@ -234,11 +234,14 @@ const Home = () => {
   };
 
   return (
-    <div className="text-white bg-black  m-auto">
+    <div className="text-white bg-black m-auto w-full">
       {/* Navbar */}
-      <header className="fixed top-0 w-full z-50 bg-black/70 backdrop-blur-md border-b border-gray-800">
+      <header className="fixed top-5 left-1/2 transform -translate-x-1/2 w-[70%] z-50 bg-black/70 backdrop-blur-md border-b border-gray-800">
+
         <nav className="flex justify-between items-center px-6 py-4 max-w-7xl mx-auto">
-          <div className="text-2xl font-bold text-amber-500">DKSHOTIT Studio</div>
+          <div className="text-2xl font-bold text-amber-500">
+            <img src="/src/assets/logo-1.jpg" className='h-10' alt="" />
+          </div>
 
           <ul className="hidden md:flex gap-6 text-sm">
             <li>
@@ -463,7 +466,7 @@ const Home = () => {
                   loading="lazy"
                 />
               </div>
-                <h3 className="text-xl font-semibold mb-2 text-amber-300">{service.title}</h3>
+                <h3 className="text-xl font-semibold m-2 text-amber-300">{service.title}</h3>
                 <p className="text-gray-400">{service.description}</p>
               </motion.div>
             ))}
