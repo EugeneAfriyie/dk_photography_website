@@ -694,9 +694,14 @@ const Home = () => {
             <div id='center-circle' className="flex items-center justify-center order-1 lg:order-2 relative">
               <div className="border-20 border-gray-600 bg-gray-800/50  font-semibold text-white rounded-full w-[300px] h-[300px] xl:w-[460px] xl:h-[460px]  flex items-center justify-center flex-col">
                 <p className='text-lg w-[60%] mb-4 text-white  text-center'>Ready to take your next step towards success?</p>
-                <button className="bg-amber-500 px-4 py-1 rounded text-lg  hover:bg-amber-600 transition-colors duration-300">
+                <motion.button
+                initial={{scale:0}}
+                animate={{scale:[1,1,1.1,1.2]}}
+                transition={{ repeat: Infinity, duration: .5, ease: 'easeOut' }}
+
+                className="bg-amber-500 px-4 py-1 rounded text-lg  hover:bg-amber-600 transition-colors duration-300">
                   Book Now
-                </button>          
+                </motion.button>          
               </div>
           </div>
 
@@ -707,7 +712,11 @@ const Home = () => {
                 <p className=' p-0.5 px-2 text-[.6rem] lg:text-sm text-gray-300/70 rounded-xl bg-gray-500/20'>01</p>
                 <h3 className='font-bold text-[1.3rem] lg:text-4xl'>Booking</h3>
             </div>
-            <p className=' text-[1.2rem] lg:text-[1.2rem] font-semibold mt-4 lg:mt-20'>100% Profit target</p>
+            <motion.p
+            initial={{opacity:-100}}
+            whileInView={{x:0}}
+            transition={{duration:.2}}
+             className=' text-[1.2rem] lg:text-[1.2rem] font-semibold mt-4 lg:mt-20'>100% Profit target</motion.p>
             <p className='lg:text-sm text-[.7rem] text-gray-400 lg:mt-2 mt-1'>The evaluation process starts with the first challenge. You must pass all requirements of this stage to become eligible and move on to the verification stage and become an Alpha funded trader!</p>
 
                <div className="xl:top-10 lg:top-0 left-20 absolute hidden lg:block bg-ambr-50/10 w-72 h-32 ">
