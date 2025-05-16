@@ -243,11 +243,18 @@ const Home = () => {
 
           <header className="shadow-2xl shadow-gray-600  fixed top-5 left-1/2 transform -translate-x-1/2 w-full sm:w-[70%] z-500 bg-black/70 backdrop-blur-md rounded-full">
         <nav className="flex justify-between items-center px-6 py-4 max-w-7xl mx-auto">
-         <div className="w-25 md:w-10 h-10 overflow-hidden flex items-center justify-center">
-  <img src="/src/assets/lo1.png" className="hidden lg:block object-cover object- w-full h-full" alt="" />
-  <img src="/src/assets/LOGO21.PNG" className='lg:hidden  object-cover object- w-full h-full' alt="" />
-  
-</div>
+
+        <div className="flex items-center gap-2">
+           <div className="w-10 h-10 overflow-hidden flex items-center justify-center">
+          <img src="/src/assets/lo1.png" className=" object-cover object- w-full h-full" alt="" />
+          {/* <img src="/src/assets/LOGO21.PNG" className='lg:hidden  object-cover object- w-full h-full' alt="" /> */}
+        </div>
+        <p className='text-[.6rem] lg:flex md:hidden font-semibold flex flex-col hover:text-amber-400 transition-colors duration-300'>
+            <span>DKSHOTIT STUDIO &</span>
+            <span>PHOTOGRAPHY</span>
+          </p>
+
+        </div>
 
 
           <ul className="hidden md:flex gap-6 text-sm">
@@ -282,9 +289,9 @@ const Home = () => {
               aria-label="Toggle mobile menu"
             >
               {mobileMenuOpen ? (
-                <X className="w-8 h-8 text-amber-500" />
+                <X className="w-8 h-8 p-1 rounded-md bg-amber-500" />
               ) : (
-                <Menu className="w-8 h-8 text-amber-500" />
+                <Menu className="w-8 h-8 p-1  rounded-md bg-amber-500" />
               )}
             </button>
           </div>
@@ -374,7 +381,7 @@ const Home = () => {
             className="text-4xl md:text-5xl font-bold mb-4"
             initial={{ opacity: 0, y: 50 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
+            transition={{ duration: 0.2 }}
             viewport={{ once: true }}
           >
             Become a Timeless Memory Keeper
@@ -383,7 +390,7 @@ const Home = () => {
             className="text-gray-400 mb-12 max-w-2xl mx-auto"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
+            transition={{ duration: 0.2, delay: 0.2 }}
             viewport={{ once: true }}
           >
             Your number 1 for capturing life’s moments.
@@ -393,7 +400,7 @@ const Home = () => {
               className="bg-gray-800 p-6 rounded-xl shadow-md w-full md:w-1/3"
               initial={{ opacity: 0, y: 50 }}
               whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.4 }}
+              transition={{ duration: 0.6, delay: 0.2 }}
               viewport={{ once: true }}
             >
               <div className="flex justify-center mb-4 h-40">
@@ -418,7 +425,7 @@ const Home = () => {
               className="bg-gray-800 p-6 rounded-xl shadow-md w-full md:w-1/3"
               initial={{ opacity: 0, y: 50 }}
               whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.6 }}
+              transition={{ duration: 0.6, delay: 0.2 }}
               viewport={{ once: true }}
             >
               <div className="flex justify-center h-40 mb-4">
@@ -449,7 +456,7 @@ const Home = () => {
             className="text-4xl font-bold mb-10 text-amber-400"
             initial={{ opacity: 0, y: 50 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
+            transition={{ duration: 0.2 }}
             viewport={{ once: true }}
           >
             Our Photography Services
@@ -462,7 +469,7 @@ const Home = () => {
                 className="bg-gray-800 p-8 rounded-xl shadow-md hover:shadow-lg transition-all duration-300"
                 initial={{ opacity: 0, y: 50 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                transition={{ delay: i * 0.2, duration: 0.6 }}
+                transition={{ delay: i * 0.2, duration: 0.2 }}
                 viewport={{ once: true }}
               >
               <div className=' w-full h-40 bg-red-800 overflow-hidden'>
