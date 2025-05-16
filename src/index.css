@@ -3,16 +3,12 @@
 
 
 body{
-    background-color: black;
+    /* background-color: black; */
     color: #e6111100;
-    border: 1px solid red;
+    /* border: 1px solid red; */
     min-width: 320px;
     margin: auto;
     max-width: 1800px;
-}
-
-.rotateY-150 {
-  /* transform: rotate(180deg); */
 }
 
 .header_shadow{

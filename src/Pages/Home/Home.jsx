@@ -469,17 +469,20 @@ const Home = () => {
                 className="bg-gray-800 p-8 rounded-xl shadow-md hover:shadow-lg transition-all duration-300"
                 initial={{ opacity: 0, y: 50 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                transition={{ delay: i * 0.2, duration: 0.2 }}
+                transition={{ delay: i * 0.2, duration: 0.1, ease: 'easeInOut',type: 'spring' }}
                 viewport={{ once: true }}
+                whileHover={{ scale: 1.05 }}
               >
-              <div className=' w-full h-40 bg-red-800 overflow-hidden'>
-                  <img
+              <motion.div className=' w-full h-40 bg-red-800 overflow-hidden'>
+                  <motion.img
+                  initial={{ scale: 1 }}
+                  whileHover={{ scale: 1.05 }}
                   src={service.icon}
                   alt={service.title}
                   className="w-full  object-cover mx-auto mb-4"
                   loading="lazy"
                 />
-              </div>
+              </motion.div>
                 <h3 className="text-xl font-semibold m-2 text-amber-300">{service.title}</h3>
                 <p className="text-gray-400">{service.description}</p>
               </motion.div>
@@ -556,8 +559,9 @@ const Home = () => {
                 className="relative bg-gradient-to-br from-blue-500/20 to-gray-500/20 p-6 rounded-xl shadow-md group transition-all duration-300 cursor-pointer"
                 initial={{ opacity: 0, y: 50 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                transition={{ delay: i * 0.2, duration: 0.6 }}
+                transition={{ delay: i * 0.2, duration: 0.1, ease: 'easeInOut',type: 'spring' }}
                 viewport={{ once: true }}
+                whileHover={{ scale: 1.05 }}
               >
                 {packageItem.isPopular && (
                   <span className="absolute top-2 right-12 bg-amber-500 text-white text-xs px-2 py-1 rounded-full shadow-lg shadow-amber-500/50">
@@ -686,80 +690,107 @@ const Home = () => {
         </div>
       </section>
 
-      <section className="w-full">
-        <div className="bg-gradient-to-b from-white0 to-gray-500/20 h-full py-10 relative pl-4">
-        
-      <div className="grid lg:grid-cols-[30%_40%_30%] gap-10 sm:p-4 sm:justify-center w-full sm:w-[50%] lg:w-[85%] m-auto  ">
-
-            <div id='center-circle' className="flex items-center justify-center order-1 lg:order-2 relative">
-              <div className="border-20 border-gray-600 bg-gray-800/50  font-semibold text-white rounded-full w-[300px] h-[300px] xl:w-[460px] xl:h-[460px]  flex items-center justify-center flex-col">
-                <p className='text-lg w-[60%] mb-4 text-white  text-center'>Ready to take your next step towards success?</p>
-                <motion.button
-                initial={{scale:0}}
-                animate={{scale:[1,1,1.1,1.2]}}
-                transition={{ repeat: Infinity, duration: .5, ease: 'easeOut' }}
-
-                className="bg-amber-500 px-4 py-1 rounded text-lg  hover:bg-amber-600 transition-colors duration-300">
-                  Book Now
-                </motion.button>          
-              </div>
-          </div>
-
-
-        
-        <div id='no1' className="xs:hidden flex items-start justify-center flex-col text-white relative lg:p-8 order-2 lg:order-1 w-[300px] sm-size ">
-            <div className=" flex items-center justify-center gap-2 ">
-                <p className=' p-0.5 px-2 text-[.6rem] lg:text-sm text-gray-300/70 rounded-xl bg-gray-500/20'>01</p>
-                <h3 className='font-bold text-[1.3rem] lg:text-4xl'>Booking</h3>
-            </div>
-            <motion.p
-            initial={{opacity:-100}}
-            whileInView={{x:0}}
-            transition={{duration:.2}}
-             className=' text-[1.2rem] lg:text-[1.2rem] font-semibold mt-4 lg:mt-20'>100% Profit target</motion.p>
-            <p className='lg:text-sm text-[.7rem] text-gray-400 lg:mt-2 mt-1'>The evaluation process starts with the first challenge. You must pass all requirements of this stage to become eligible and move on to the verification stage and become an Alpha funded trader!</p>
-
-               <div className="xl:top-10 lg:top-0 left-20 absolute hidden lg:block bg-ambr-50/10 w-72 h-32 ">
-               <img src="/src/assets/Process_bg/bg-high-1.png" className=' w-full h-full ' alt="" />
-            </div>
-        </div>
-
-    
-
-        <div id='no2' className="flex items-start justify-center flex-col text-white relative lg:p-8 order-3 lg:order-3 w-[300px] bg-ambr-50/10 sm-size">
-            <div className=" flex items-center justify-center gap-2 ">
-                <p className=' p-0.5 px-2 text-[.6rem] lg:text-sm text-gray-300/70 rounded-xl bg-gray-500/20'>02</p>
-                <h3 className='font-bold text-[1.3rem] lg:text-4xl'>Booking</h3>
-            </div>
-            <p className=' text-[1.2rem] lg:text-[1.2rem] font-semibold mt-4 lg:mt-20'>100% Profit target</p>
-            <p className='lg:text-sm text-[.7rem] text-gray-400 lg:mt-2 mt-1'>The evaluation process starts with the first challenge. You must pass all requirements of this stage to become eligible and move on to the verification stage and become an Alpha funded trader!</p>
-
-            <div className="xl:top-10 lg:top-0 -left-20 absolute hidden lg:block bg-ambr-50/10 w-72 h-32 ">
-               <img src="/src/assets/Process_bg/bg-2.png" className=' w-full h-full ' alt="" />
-            </div>
-        </div>
-
-      </div>
-
-
-      <div className=" flex flex-col mt-4 sm:justify-center sm:items-center  lg:w-[80%] m-auto relative ">
-
-        <img src="/src/assets/Process_bg/final.png" className='hidden lg:block' alt="" />
-
-         <div className="flex lg:items-center  justify-center flex-col text-white lg:text-center lg:w-[30rem] sm:m-auto w-[300px] sm-size ">
-            <div className=" flex items-center justify-cente gap-2 ">
-                <p className=' p-0.5 px-2 text-[.6rem] lg:text-sm text-gray-300/70 rounded-xl bg-gray-500/20'>03</p>
-                <h3 className='font-bold text-[1.3rem] lg:text-4xl'>Booking</h3>
-            </div>
-            <p className='text-[1.2rem] lg:text-[1.2rem] font-semibold mt-4 lg:mt-20'>90:10 Simulated Performance Reward Structuret</p>
-            <p className='lg:text-sm text-[.7rem] text-gray-400 lg:mt-2 mt-1'>T90:10 Simulated Performance Reward Structure</p>
+      
+<section className="w-full">
+  <div className="bg-gradient-to-b from-white/0 to-gray-500/20 h-full py-10 relative pl-4">
+    <div className="grid lg:grid-cols-[30%_40%_30%] gap-10 sm:p-4 sm:justify-center w-full sm:w-[50%] lg:w-[85%] m-auto">
+      {/* Central Circle */}
+      <div id='center-circle' className="flex items-center justify-center order-1 lg:order-2 relative">
+        <div 
+          className="font-semibold text-white rounded-full w-[300px] h-[300px] xl:w-[460px] xl:h-[460px] flex items-center justify-center flex-col bg-cover bg-center relative overflow-hidden"
+          style={{ 
+            backgroundImage: `url('/src/assets/Process_bg/camera-bg.png')`,
+          }}
+        >
+          {/* Dark overlay for text readability */}
+          <div className="absolute inset-0 bg-black/50"></div>
+          <p className='relative text-lg w-[60%] mb-4 text-white text-center'>Ready to capture your moments?</p>
+          <motion.button
+            animate={{ 
+              scale: [1, 1.1, 1], 
+              opacity: [1, 0.9, 1],
+            }}
+            transition={{ 
+              repeat: Infinity, 
+              duration: 1.5, 
+              ease: 'easeInOut',
+            }}
+            className="relative bg-amber-500 px-4 py-1 rounded text-lg hover:bg-amber-600 transition-colors duration-300"
+          >
+            Book Now
+          </motion.button>
         </div>
       </div>
 
-      <img src="/src/assets/Process_bg/small-screen-ng.png" className='absolute top-72 right-10 sm:right-40 lg:hidden sm-pos' alt="" />
+      {/* Step 1: Book Your Session */}
+      <div id='no1' className="xs:hidden flex items-start justify-center flex-col text-white relative lg:p-8 order-2 lg:order-1 w-[300px] sm-size">
+        <div className="flex items-center justify-center gap-2">
+          <p className='p-0.5 px-2 text-[.6rem] lg:text-sm text-gray-300/70 rounded-xl bg-gray-500/20'>01</p>
+          <h3 className='font-bold text-[1.3rem] lg:text-4xl'>Book Your Session</h3>
         </div>
-       
-      </section>
+        <motion.p
+          initial={{ opacity: 0, x: -100 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.2 }}
+          className='text-[1.2rem] lg:text-[1.2rem] font-semibold mt-4 lg:mt-20'
+        >
+          Start Your Journey
+        </motion.p>
+        <p className='lg:text-sm text-[.7rem] text-gray-400 lg:mt-2 mt-1'>
+          Choose your package and reach out via our contact page to secure your booking with ease.
+        </p>
+        <div className="xl:top-10 lg:top-0 left-20 absolute hidden lg:block bg-amber-500/10 w-72 h-32">
+          <img src="/src/assets/Process_bg/bg-high-1.png" className='w-full h-full' alt="Book Your Session" />
+        </div>
+      </div>
+
+      {/* Step 2: Schedule the Shoot */}
+      <div id='no2' className="flex items-start justify-center flex-col text-white relative lg:p-8 order-3 lg:order-3 w-[300px] bg-ambe-500/10 sm-size">
+        <div className="flex items-center justify-center gap-2">
+          <p className='p-0.5 px-2 text-[.6rem] lg:text-sm text-gray-300/70 rounded-xl bg-gray-500/20'>02</p>
+          <h3 className='font-bold text-[1.3rem] lg:text-4xl'>Schedule the Shoot</h3>
+        </div>
+        <motion.p
+          initial={{ opacity: 0, x: -100 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.2 }}
+          className='text-[1.2rem] lg:text-[1.2rem] font-semibold mt-4 lg:mt-20'
+        >
+          Plan Your Moment
+        </motion.p>
+        <p className='lg:text-sm text-[.7rem] text-gray-400 lg:mt-2 mt-1'>
+          We’ll coordinate with you to set a date, time, and location that perfectly suits your needs.
+        </p>
+        <div className="xl:top-10 lg:top-0 -left-20 absolute hidden lg:block bg-mber-500/10 w-72 h-32">
+          <img src="/src/assets/Process_bg/bg-2.png" className='w-full h-full' alt="Schedule the Shoot" />
+        </div>
+      </div>
+    </div>
+
+    {/* Step 3: Photo Shoot Day */}
+    <div className="flex flex-col mt-4 sm:justify-center sm:items-center lg:w-[80%] m-auto relative">
+      <img src="/src/assets/Process_bg/step-3.jpg" className='hidden lg:block' alt="Photo Shoot Day" />
+      <div className="flex lg:items-center justify-center flex-col text-white lg:text-center lg:w-[30rem] sm:m-auto w-[300px] sm-size">
+        <div className="flex items-center justify-center gap-2">
+          <p className='p-0.5 px-2 text-[.6rem] lg:text-sm text-gray-300/70 rounded-xl bg-gray-500/20'>03</p>
+          <h3 className='font-bold text-[1.3rem] lg:text-4xl'>Photo Shoot Day</h3>
+        </div>
+        <motion.p
+          initial={{ opacity: 0, x: -100 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.2 }}
+          className='text-[1.2rem] lg:text-[1.2rem] font-semibold mt-4 lg:mt-20'
+        >
+          Capture the Magic
+        </motion.p>
+        <p className='lg:text-sm text-[.7rem] text-gray-400 lg:mt-2 mt-1'>
+          Our professional photographers will capture your moments with care and creativity.
+        </p>
+      </div>
+      <img src="/src/assets/Process_bg/final.png" className='absolute top-72 right-10 sm:right-40 lg:hidden sm-pos' alt="Photo Shoot Day" />
+    </div>
+  </div>
+</section>
 
       {/* Testimonials Section */}
       <section className="bg-gray-600/20 text-white py-20 px-4 text-center xl:w-[90%] m-auto">
