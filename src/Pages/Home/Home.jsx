@@ -5,6 +5,7 @@ import { AnimatePresence, motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import Carousel from './Components/Carousel';
 import { heroData, testimonials } from './data';
+import BookingPrompt from './Components/BookingPrompt';
 
 const Home = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -336,43 +337,8 @@ const Home = () => {
       </header>
 
       {/* Hero Section (Carousel) */}
-      <Carousel
-        items={heroData}
-        interval={5000}
-        autoPlay={true}
-        renderItem={({ image, title, description }, index) => (
-          <section
-            className="h-screen flex flex-col justify-center items-center text-center px-4 pt-20 bg-cover bg-center transition-all duration-1000 ease-in-out relative"
-            style={{ backgroundImage: `url(${image})` }}
-          >
-            <motion.h1
-              key={`title-${index}`}
-              initial={{ opacity: 0, x: 10 }}
-              animate={{ opacity: 1, x: 0 }}
-              exit={{ opacity: 0, x: -10 }}
-              transition={{ duration: 0.5 }}
-              className="text-4xl md:text-6xl font-bold mb-4"
-            >
-              {title}
-            </motion.h1>
-            <motion.p
-              key={`desc-${index}`}
-              initial={{ opacity: 0, x: 10 }}
-              animate={{ opacity: 1, x: 0 }}
-              exit={{ opacity: 0, x: -10 }}
-              transition={{ duration: 0.5 }}
-              className="text-lg text-gray-300 mb-6 max-w-md"
-            >
-              {description}
-            </motion.p>
-            <Link to="/gallery">
-              <button className="bg-amber-500 px-6 py-2 rounded hover:bg-amber-600 transition-colors duration-300">
-                View Gallery
-              </button>
-            </Link>
-          </section>
-        )}
-      />
+      
+      <Carousel items={heroData} />
 
       {/* Introductory Section */}
       <section className="bg-black text-white py-20 px-4">
@@ -826,6 +792,10 @@ const Home = () => {
         </div>
       </section>
 
+      <section>
+        <BookingPrompt />
+      </section>
+
       {/* FAQ Section */}
       <section className="bg-gray-600/20 text-white py-10 sm:py-20 px-4 relative overflow-hidden xl:w-[90%] m-auto mt-40">
         <div
@@ -974,6 +944,8 @@ const Home = () => {
           <p className="text-center mt-4">© 2025 SNAPSHOT STUDIO AND PHOTOGRAPHY, All Rights Reserved.</p>
         </div>
       </footer>
+
+      
     </div>
   );
 };

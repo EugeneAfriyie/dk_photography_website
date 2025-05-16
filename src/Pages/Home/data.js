@@ -1,25 +1,49 @@
 // data.js
 export const heroData = [
   {
-    image:
-      'https://images.unsplash.com/photo-1505852679233-d9fd70aff56d?w=500&auto=format&fit=crop&q=60',
-    title: 'Capturing Moments That Matter',
-    description:
-      'SnapShot Studio specializes in weddings, portraits, and event photography.',
+    type: 'image',
+    image: 'https://images.unsplash.com/photo-1519741497674-4113f6d8b600?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80',
+    alt: 'Wedding photography'
   },
   {
-    image:
-      'https://images.unsplash.com/file-1715652217532-464736461acbimage?w=416&dpr=2&auto=format&fit=crop&q=60',
-    title: 'Every Shot Tells a Story',
-    description: 'Turning your special moments into timeless memories.',
+    type: 'imageWithText',
+    image: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80',
+    text: 'Capture Your Moments',
+    subText: 'Professional photography for every occasion.',
+    alt: 'Portrait session',
+    overlay: {
+      background: 'rgba(0,0,0,0.6)',
+      textPosition: 'center',
+      textColor: 'text-white',
+      fontSize: 'text-3xl sm:text-5xl'
+    }
   },
   {
-    image:
-      'https://images.unsplash.com/photo-1542640244-7e672d6cef4e?w=500&auto=format&fit=crop&q=60',
-    title: 'Photography That Speaks Volumes',
-    description: 'Creative, candid, and classic — just like you.',
+    type: 'text',
+    text: 'Book Now for Exclusive Offers!',
+    subText: 'Limited slots available. Secure yours today.',
+    background: 'linear-gradient(to bottom, rgba(255,255,255,0), rgba(107,114,128,0.2))'
   },
+  {
+    type: 'image',
+    image: 'https://images.unsplash.com/photo-1506748686214-e9df14d4d9d0?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80',
+    alt: 'Event photography'
+  },
+  {
+    type: 'imageWithText',
+    image: 'https://images.pexels.com/photos/2253879/pexels-photo-2253879.jpeg?auto=compress&cs=tinysrgb&w=1920',
+    text: 'Timeless Memories',
+    subText: 'Let us preserve your special moments forever.',
+    alt: 'Family photography',
+    overlay: {
+      background: 'rgba(255,191,0,0.4)',
+      textPosition: 'bottom-right',
+      textColor: 'text-white',
+      fontSize: 'text-2xl sm:text-4xl'
+    }
+  }
 ];
+
 
 export const services = [
   {

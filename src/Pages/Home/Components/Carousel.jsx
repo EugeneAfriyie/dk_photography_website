@@ -1,120 +1,125 @@
-// Carousel.jsx
-import React, { useState, useEffect, useRef } from 'react';
-import { AnimatePresence, motion } from 'framer-motion';
+import { motion } from 'framer-motion';
+import { useState, useEffect } from 'react';
 
-const Carousel = ({ items, interval, renderItem, autoPlay = true }) => {
-  const [current, setCurrent] = useState(0);
-  const [paused, setPaused] = useState(false);
-  const touchStartX = useRef(null);
-  const touchEndX = useRef(null);
+const Carousel = ({ items }) => {
+  const [currentIndex, setCurrentIndex] = useState(0);
 
-  // Auto-cycle slides
   useEffect(() => {
-    if (!autoPlay || paused) return;
-    const timer = setInterval(() => {
-      setCurrent((prev) => (prev + 1) % items.length);
-    }, interval);
-    return () => clearInterval(timer);
-  }, [autoPlay, paused, items, interval]);
+    const interval = setInterval(() => {
+      setCurrentIndex((prev) => (prev + 1) % items.length);
+    }, 5000);
+    return () => clearInterval(interval);
+  }, [items.length]);
 
-  // Preload images
-  useEffect(() => {
-    items.forEach((item) => {
-      if (item.image) {
-        const img = new Image();
-        img.src = item.image;
-      }
-    });
-  }, [items]);
+  const goToSlide = (index) => setCurrentIndex(index);
+  const goToPrev = () => setCurrentIndex((prev) => (prev - 1 + items.length) % items.length);
+  const goToNext = () => setCurrentIndex((prev) => (prev + 1) % items.length);
 
-  // Navigation functions
-  const next = () => setCurrent((prev) => (prev + 1) % items.length);
-  const prev = () => setCurrent((prev - 1 + items.length) % items.length);
-
-  // Touch gesture handling
-  const handleTouchStart = (e) => {
-    touchStartX.current = e.changedTouches[0].screenX;
-  };
-
-  const handleTouchEnd = (e) => {
-    touchEndX.current = e.changedTouches[0].screenX;
-    const distance = touchStartX.current - touchEndX.current;
-    const threshold = 50;
-    if (distance > threshold) {
-      window.navigator.vibrate?.(50);
-      next();
-    } else if (distance < -threshold) {
-      window.navigator.vibrate?.(50);
-      prev();
+  // Map textPosition to Tailwind classes
+  const getTextPositionClasses = (position) => {
+    switch (position) {
+      case 'top-left':
+        return 'justify-start items-start text-left p-6';
+      case 'top-right':
+        return 'justify-end items-start text-right p-6';
+      case 'bottom-left':
+        return 'justify-start items-end text-left p-6';
+      case 'bottom-right':
+        return 'justify-end items-end text-right p-6';
+      case 'center':
+      default:
+        return 'justify-center items-center text-center';
     }
-    touchStartX.current = null;
-    touchEndX.current = null;
   };
 
   return (
-    <div
-      className="relative"
-      onTouchStart={handleTouchStart}
-      onTouchEnd={handleTouchEnd}
-      onMouseEnter={() => setPaused(true)}
-      onMouseLeave={() => setPaused(false)}
-    >
-      {/* Announce slide changes to screen readers */}
-      <div aria-live="polite" className="sr-only">
-        Slide {current + 1} of {items.length}
-      </div>
-
-      {/* Render current slide */}
-      <AnimatePresence mode="wait">
+    <div className="relative w-full h-[60vh] sm:h-[80vh] overflow-hidden">
+      {items.map((slide, index) => (
         <motion.div
-          key={current}
-          initial={{ opacity: 0, y: 10 }}
-          animate={{ opacity: 1, y: 0 }}
-          exit={{ opacity: 0, y: -10 }}
-          transition={{ duration: 0.5 }}
+          key={index}
+          className={`absolute top-0 left-0 w-full h-full flex items-center justify-center ${
+            index === currentIndex ? 'opacity-100' : 'opacity-0'
+          }`}
+          initial={{ opacity: 0, x: 100 }}
+          animate={{ opacity: index === currentIndex ? 1 : 0, x: index === currentIndex ? 0 : 100 }}
+          transition={{ duration: 0.5, ease: 'easeOut' }}
         >
-          {renderItem(items[current], current)}
+          {slide.type === 'image' && (
+            <img
+              src={slide.image}
+              alt={slide.alt || 'Carousel slide'}
+              className="w-full h-full object-cover"
+              loading="lazy"
+            />
+          )}
+          {slide.type === 'imageWithText' && (
+            <div className="relative w-full h-full">
+              <img
+                src={slide.image}
+                alt={slide.alt || 'Carousel slide'}
+                className="w-full h-full object-cover"
+                loading="lazy"
+              />
+              <div
+                className={`absolute inset-0 flex flex-col ${
+                  getTextPositionClasses(slide.overlay?.textPosition || 'center')
+                }`}
+                style={{ background: slide.overlay?.background || 'rgba(0,0,0,0.5)' }}
+              >
+                <h2
+                  className={`font-bold mb-4 ${slide.overlay?.textColor || 'text-white'} ${
+                    slide.overlay?.fontSize || 'text-3xl sm:text-5xl'
+                  }`}
+                >
+                  {slide.text}
+                </h2>
+                <p
+                  className={`text-lg sm:text-xl max-w-md ${
+                    slide.overlay?.textColor || 'text-gray-300'
+                  }`}
+                >
+                  {slide.subText}
+                </p>
+              </div>
+            </div>
+          )}
+          {slide.type === 'text' && (
+            <div
+              className="w-full h-full flex flex-col items-center justify-center text-center"
+              style={{ background: slide.background || 'linear-gradient(to bottom, rgba(255,255,255,0), rgba(107,114,128,0.2))' }}
+            >
+              <h2 className="text-3xl sm:text-5xl font-bold text-white mb-4">{slide.text}</h2>
+              <p className="text-lg sm:text-xl text-gray-300 max-w-md">{slide.subText}</p>
+            </div>
+          )}
         </motion.div>
-      </AnimatePresence>
-
-      {/* Navigation Arrows */}
-      <div
-        className="absolute left-4 top-1/2 transform -translate-y-1/2 cursor-pointer text-3xl text-white"
-        onClick={prev}
-        role="button"
-        tabIndex={0}
-        aria-label="Previous slide"
-        onKeyDown={(e) => e.key === 'Enter' && prev()}
-      >
-        ❮
-      </div>
-      <div
-        className="absolute right-4 top-1/2 transform -translate-y-1/2 cursor-pointer text-3xl text-white"
-        onClick={next}
-        role="button"
-        tabIndex={0}
-        aria-label="Next slide"
-        onKeyDown={(e) => e.key === 'Enter' && next()}
-      >
-        ❯
-      </div>
-
-      {/* Navigation Dots */}
-      <div className="absolute bottom-5 left-1/2 transform -translate-x-1/2 flex space-x-2">
-        {items.map((_, i) => (
-          <div
-            key={i}
+      ))}
+      <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex space-x-2">
+        {items.map((_, index) => (
+          <button
+            key={index}
             className={`w-3 h-3 rounded-full ${
-              i === current ? 'bg-amber-500' : 'bg-gray-400'
-            } cursor-pointer`}
-            onClick={() => setCurrent(i)}
-            role="button"
-            tabIndex={0}
-            aria-label={`Go to slide ${i + 1}`}
-            onKeyDown={(e) => e.key === 'Enter' && setCurrent(i)}
+              index === currentIndex ? 'bg-amber-500' : 'bg-gray-400'
+            }`}
+            onClick={() => goToSlide(index)}
+            aria-label={`Go to slide ${index + 1}`}
           />
         ))}
       </div>
+      <button
+        className="absolute top-1/2 left-4 transform -translate-y-1/2 text-white text-3xl"
+        onClick={goToPrev}
+        aria-label="Previous slide"
+      >
+        ❮
+      </button>
+      <button
+        className="absolute top-1/2 right-4 transform -translate-y-1/2 text-white text-3xl"
+        onClick={goToNext}
+        aria-label="Next slide"
+      >
+        ❯
+      </button>
     </div>
   );
 };
