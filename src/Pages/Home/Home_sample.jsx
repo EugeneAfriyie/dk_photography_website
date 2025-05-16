@@ -655,6 +655,7 @@ const Home = () => {
           </div>
         </div>
       </section>
+      {/* Our Process Section 2*/}
 
       <section className="w-full">
         <div className="bg-gradient-to-b from-white0 to-gray-500/20 h-full py-10 relative pl-4">
