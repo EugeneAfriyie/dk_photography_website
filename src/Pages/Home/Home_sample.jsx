@@ -242,7 +242,7 @@ const Home = () => {
 
         <nav className="flex justify-between items-center px-6 py-4 max-w-7xl mx-auto "> */}
 
-          <header className="shadow-2xl shadow-gray-600  fixed top-5 left-1/2 transform -translate-x-1/2 w-full sm:w-[70%] z-500 bg-black/70 backdrop-blur-md rounded-full">
+      <header className="shadow-2xl shadow-gray-600  fixed top-5 left-1/2 transform -translate-x-1/2 w-full sm:w-[70%] z-500 bg-black/70 backdrop-blur-md rounded-full">
         <nav className="flex justify-between items-center px-6 py-4 max-w-7xl mx-auto">
 
         <div className="flex items-center gap-2">

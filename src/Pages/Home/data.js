@@ -16,13 +16,15 @@ export const heroData = [
       textPosition: 'center',
       textColor: 'text-white',
       fontSize: 'text-3xl sm:text-5xl'
-    }
+    },
+    cta: { text: 'Book Now', link: '/booking' }
   },
   {
     type: 'text',
     text: 'Book Now for Exclusive Offers!',
     subText: 'Limited slots available. Secure yours today.',
-    background: 'linear-gradient(to bottom, rgba(255,255,255,0), rgba(107,114,128,0.2))'
+    background: 'linear-gradient(to bottom, rgba(255,255,255,0), rgba(107,114,128,0.2))',
+    cta: { text: 'Book Now', link: '/booking' }
   },
   {
     type: 'image',
@@ -40,11 +42,10 @@ export const heroData = [
       textPosition: 'bottom-right',
       textColor: 'text-white',
       fontSize: 'text-2xl sm:text-4xl'
-    }
+    },
+    cta: { text: 'Book Now', link: '/booking' }
   }
 ];
-
-
 export const services = [
   {
     title: 'Wedding Photography',
