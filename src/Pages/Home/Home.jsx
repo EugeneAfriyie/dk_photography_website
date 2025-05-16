@@ -234,14 +234,16 @@ const Home = () => {
   };
 
   return (
-    <div className="text-white bg-black m-auto w-full">
-      {/* Navbar */}
-      <header className="fixed top-5 left-1/2 transform -translate-x-1/2 w-[70%] z-50 bg-black/70 backdrop-blur-md border-b border-gray-800">
+<div className="text-white bg-black m-auto w-full">
+  {/* Navbar */}
+  <header className=" shadow-lg shadow-gray-500/60 h-[60px] overflow-hidden fixed top-5 left-1/2 transform -translate-x-1/2 w-[70%] z-500 bg-black/70 backdrop-blur-md">
 
-        <nav className="flex justify-between items-center px-6 py-4 max-w-7xl mx-auto">
-          <div className="text-2xl font-bold text-amber-500">
-            <img src="/src/assets/logo-1.jpg" className='h-10' alt="" />
-          </div>
+
+        <nav className="flex justify-between items-center px-6 py-4 max-w-7xl mx-auto ">
+         <div className="w-40 h-10 overflow-hidden flex items-center justify-center">
+  <img src="/src/assets/LOGO.png" className="object-cover object-center w-full h-full" alt="" />
+</div>
+
 
           <ul className="hidden md:flex gap-6 text-sm">
             <li>

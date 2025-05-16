@@ -15,6 +15,10 @@ body{
   /* transform: rotate(180deg); */
 }
 
+.header_shadow{
+      box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px !important; 
+}
+
 
 @media (max-width: 380px) {
   .sm-size{
