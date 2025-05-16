@@ -234,7 +234,7 @@ const Home = () => {
   };
 
   return (
-    <div className="text-white bg-black  m-auto">
+      <div className="text-white bg-black  m-auto">
       {/* Navbar */}
       <header className="fixed top-0 w-full z-50 bg-black/70 backdrop-blur-md border-b border-gray-800">
         <nav className="flex justify-between items-center px-6 py-4 max-w-7xl mx-auto">

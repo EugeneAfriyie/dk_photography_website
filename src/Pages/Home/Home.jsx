@@ -236,12 +236,17 @@ const Home = () => {
   return (
 <div className="text-white bg-black m-auto w-full">
   {/* Navbar */}
-  <header className=" shadow-lg shadow-gray-500/60 h-[60px] overflow-hidden fixed top-5 left-1/2 transform -translate-x-1/2 w-[70%] z-500 bg-black/70 backdrop-blur-md">
+  {/* <header className=" shadow-lg shadow-gray-500/60 h-[60px] overflow-hidden fixed top-5 left-1/2 transform -translate-x-1/2 w-[70%] z-500 bg-black/70 backdrop-blur-md">
 
 
-        <nav className="flex justify-between items-center px-6 py-4 max-w-7xl mx-auto ">
-         <div className="w-40 h-10 overflow-hidden flex items-center justify-center">
-  <img src="/src/assets/LOGO.png" className="object-cover object-center w-full h-full" alt="" />
+        <nav className="flex justify-between items-center px-6 py-4 max-w-7xl mx-auto "> */}
+
+          <header className="shadow-2xl shadow-gray-600  fixed top-5 left-1/2 transform -translate-x-1/2 w-full sm:w-[70%] z-500 bg-black/70 backdrop-blur-md rounded-full">
+        <nav className="flex justify-between items-center px-6 py-4 max-w-7xl mx-auto">
+         <div className="w-25 md:w-10 h-10 overflow-hidden flex items-center justify-center">
+  <img src="/src/assets/lo1.png" className="hidden lg:block object-cover object- w-full h-full" alt="" />
+  <img src="/src/assets/LOGO21.PNG" className='lg:hidden  object-cover object- w-full h-full' alt="" />
+  
 </div>
 
 
