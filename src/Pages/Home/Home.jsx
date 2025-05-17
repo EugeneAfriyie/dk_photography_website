@@ -293,7 +293,7 @@ const Home = () => {
         `}</script>
       </Helmet>
 
-    <div className="text-white bg-black m-auto w-full">
+    <div className="text-white bg-black m-auto w-full sm:pt-0 pt-20">
       {/* Navbar */}
       {/* <header className=" shadow-lg shadow-gray-500/60 h-[60px] overflow-hidden fixed top-5 left-1/2 transform -translate-x-1/2 w-[70%] z-500 bg-black/70 backdrop-blur-md">
     
@@ -423,8 +423,9 @@ const Home = () => {
                     Your number 1 for capturing life’s moments.
                   </motion.p>
                   <div className="flex flex-col md:flex-row justify-center items-center gap-8">
+                    
                     <motion.div
-                      className="bg-gray-800 p-6 rounded-xl shadow-md w-full md:w-1/3"
+                      className="bg-gray-800 p-6 rounded-xl shadow-md w-full "
                       initial={{ opacity: 0, y: 50 }}
                       whileInView={{ opacity: 1, y: 0 }}
                       transition={{ duration: 0.6, delay: 0.2 }}
@@ -449,7 +450,7 @@ const Home = () => {
                     </motion.div>
         
                     <motion.div
-                      className="bg-gray-800 p-6 rounded-xl shadow-md w-full md:w-1/3"
+                      className="bg-gray-800 p-6 rounded-xl shadow-md w-full "
                       initial={{ opacity: 0, y: 50 }}
                       whileInView={{ opacity: 1, y: 0 }}
                       transition={{ duration: 0.6, delay: 0.2 }}
@@ -472,9 +473,11 @@ const Home = () => {
                         </button>
                       </Link>
                     </motion.div>
+
                   </div>
                 </div>
               </section>
+
           {/* Services Section */}
           <section className="bg-black text-white py-20 px-4">
             <div className="max-w-6xl mx-auto text-center">

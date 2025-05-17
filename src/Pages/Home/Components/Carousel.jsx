@@ -36,7 +36,7 @@ const Carousel = ({ items }) => {
 
   return (
     <div
-      className="relative w-full h-[60vh] sm:h-[80vh] overflow-hidden "
+      className="relative w-full h-[60vh] sm:h-[80vh] overflow-hidden  sm:mt-0"
       role="region"
       aria-label="Photography carousel"
       tabIndex={0}
