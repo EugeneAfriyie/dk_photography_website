@@ -1,4 +1,7 @@
 import React from 'react'
+import { motion } from 'framer-motion';
+import { Link } from 'react-router-dom';
+
 
 const Intro_Sec = () => {
     const introData =[
@@ -42,7 +45,7 @@ const Intro_Sec = () => {
                       <div className="flex flex-col md:flex-row justify-center items-center gap-8">
                         
                     {
-                        introData.map(({heading,introText,imgUrl},index) =>{
+                        introData.map((i,index) =>(
                             <motion.div
                           key={index}
                           className="bg-gray-800 p-6 rounded-xl shadow-md w-full "
@@ -53,14 +56,14 @@ const Intro_Sec = () => {
                         >
                           <div className="flex justify-center h-40 mb-4">
                             <img
-                              src={imgUrl}
+                              src={i.imgUrl}
                               className="w-full h-full object-cover rounded-sm"
                               alt="Custom Packages"
                             />
                           </div>
-                          <h3 className="text-xl font-semibold mb-2 text-amber-300">{heading}</h3>
+                          <h3 className="text-xl font-semibold mb-2 text-amber-300">{i.heading}</h3>
                           <p className="text-gray-400 mb-4">
-                            {introText}
+                            {i.introText}nunbuub
                           </p>
                           <Link to="/contact">
                             <button className="bg-purple-600 px-6 py-2 rounded hover:bg-purple-700 transition-colors duration-300 text-sm">
@@ -68,13 +71,15 @@ const Intro_Sec = () => {
                             </button>
                           </Link>
                         </motion.div>
-                        })
+                        ))
                     }
             
                         
     
                       </div>
                     </div>
+
+                    {}
                   </section>
   )
 }
