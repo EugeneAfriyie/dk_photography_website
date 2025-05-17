@@ -8,6 +8,7 @@ import Carousel from './Components/Carousel';
 import { heroData, testimonials } from './data';
 import BookingPrompt from './Components/BookingPrompt';
 import { Component } from 'react';
+import Testmonial from './Components/Testmonial';
 
 // Error Boundary Component
 class ErrorBoundary extends Component {
@@ -395,7 +396,7 @@ const Home = () => {
 
         {/* Carousel */}
         <ErrorBoundary>
-          <Carousel items={heroData} />
+          <Carousel items={heroData}  />
         </ErrorBoundary>
 
 
@@ -761,14 +762,14 @@ const Home = () => {
         <div id='no1' className="xs:hidden flex items-start justify-center flex-col text-white relative lg:p-8 order-2 lg:order-1 w-[300px] sm-size ">
             <div className=" flex items-center justify-center gap-2 ">
                 <p className=' p-0.5 px-2 text-[.6rem] lg:text-sm text-gray-300/70 rounded-xl bg-gray-500/20'>01</p>
-                <h3 className='font-bold text-[1.3rem] lg:text-4xl'>Booking</h3>
+                <h3 className='font-bold text-[1.3rem] lg:text-4xl'>Book Your Session</h3>
             </div>
             <motion.p
             initial={{opacity:-100}}
             whileInView={{x:0}}
             transition={{duration:.2}}
-             className=' text-[1.2rem] lg:text-[1.2rem] font-semibold mt-4 lg:mt-20'>100% Profit target</motion.p>
-            <p className='lg:text-sm text-[.7rem] text-gray-400 lg:mt-2 mt-1'>The evaluation process starts with the first challenge. You must pass all requirements of this stage to become eligible and move on to the verification stage and become an Alpha funded trader!</p>
+             className=' text-[1.2rem] lg:text-[1.2rem] font-semibold mt-4 lg:mt-20'>Start Your Journey</motion.p>
+            <p className='lg:text-sm text-[.7rem] text-gray-400 lg:mt-2 mt-1'>Choose your package and reach out via our contact page to secure your booking with ease.</p>
 
                <div className="xl:top-10 lg:top-0 left-20 absolute hidden lg:block bg-ambr-50/10 w-72 h-32 ">
                <img src="/src/assets/Process_bg/bg-high-1.png" className=' w-full h-full ' alt="" />
@@ -780,10 +781,10 @@ const Home = () => {
         <div id='no2' className="flex items-start justify-center flex-col text-white relative lg:p-8 order-3 lg:order-3 w-[300px] bg-ambr-50/10 sm-size">
             <div className=" flex items-center justify-center gap-2 ">
                 <p className=' p-0.5 px-2 text-[.6rem] lg:text-sm text-gray-300/70 rounded-xl bg-gray-500/20'>02</p>
-                <h3 className='font-bold text-[1.3rem] lg:text-4xl'>Booking</h3>
+                <h3 className='font-bold text-[1.3rem] lg:text-4xl'>Schedule the Shoot</h3>
             </div>
-            <p className=' text-[1.2rem] lg:text-[1.2rem] font-semibold mt-4 lg:mt-20'>100% Profit target</p>
-            <p className='lg:text-sm text-[.7rem] text-gray-400 lg:mt-2 mt-1'>The evaluation process starts with the first challenge. You must pass all requirements of this stage to become eligible and move on to the verification stage and become an Alpha funded trader!</p>
+            <p className=' text-[1.2rem] lg:text-[1.2rem] font-semibold mt-4 lg:mt-20'>Plan Your Moment</p>
+            <p className='lg:text-sm text-[.7rem] text-gray-400 lg:mt-2 mt-1'>We’ll coordinate with you to set a date, time, and location that perfectly suits your needs.</p>
 
             <div className="xl:top-10 lg:top-0 -left-20 absolute hidden lg:block bg-ambr-50/10 w-72 h-32 ">
                <img src="/src/assets/Process_bg/bg-2.png" className=' w-full h-full ' alt="" />
@@ -800,10 +801,10 @@ const Home = () => {
          <div className="flex lg:items-center  justify-center flex-col text-white lg:text-center lg:w-[30rem] sm:m-auto w-[300px] sm-size ">
             <div className=" flex items-center justify-cente gap-2 ">
                 <p className=' p-0.5 px-2 text-[.6rem] lg:text-sm text-gray-300/70 rounded-xl bg-gray-500/20'>03</p>
-                <h3 className='font-bold text-[1.3rem] lg:text-4xl'>Booking</h3>
+                <h3 className='font-bold text-[1.3rem] lg:text-4xl'>Photo Shoot Day</h3>
             </div>
-            <p className='text-[1.2rem] lg:text-[1.2rem] font-semibold mt-4 lg:mt-20'>90:10 Simulated Performance Reward Structuret</p>
-            <p className='lg:text-sm text-[.7rem] text-gray-400 lg:mt-2 mt-1'>T90:10 Simulated Performance Reward Structure</p>
+            <p className='text-[1.2rem] lg:text-[1.2rem] font-semibold mt-4 lg:mt-20'>Capture the Magic</p>
+            <p className='lg:text-sm text-[.7rem] text-gray-400 lg:mt-2 mt-1'>Our professional photographers will capture your moments with care and creativity.</p>
         </div>
       </div>
 
@@ -828,7 +829,8 @@ const Home = () => {
           take our word for it — hear from our happy clients!
         </p>
         <div className="relative max-w-3xl mx-auto">
-          <Carousel
+          <Testmonial
+          
             items={testimonials}
             interval={7000}
             autoPlay={true}
@@ -935,9 +937,17 @@ const Home = () => {
         <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-10">
           {/* Logo & Socials */}
           <div>
-            <div className="flex items-center space-x-2 mb-4">
-              <span className="text-2xl font-bold">📸</span>
-              <span className="text-lg font-semibold">SnapShot Studio</span>
+          
+            <div className="flex items-center gap-2">
+               <div className="w-10 h-10 overflow-hidden flex items-center justify-center">
+              <img src="/src/assets/lo1.png" className=" object-cover object- w-full h-full" alt="" />
+              {/* <img src="/src/assets/LOGO21.PNG" className='lg:hidden  object-cover object- w-full h-full' alt="" /> */}
+            </div>
+            <p className='text-[.6rem] lg:flex md:hidden font-semibold flex flex-col hover:text-amber-400 transition-colors duration-300'>
+                <span>DKSHOTIT STUDIO &</span>
+                <span>PHOTOGRAPHY</span>
+              </p>
+    
             </div>
             <div className="flex space-x-4 text-xl">
               <a href="#" aria-label="YouTube" className="hover:text-amber-400 transition-colors duration-300">
@@ -1003,9 +1013,9 @@ const Home = () => {
         {/* Disclaimer */}
         <div className="text-xs text-gray-400 mt-10 max-w-7xl mx-auto">
           <p className="mb-4">
-            <strong>Disclaimer:</strong> SnapShot Studio provides professional photography services for personal and event use. All bookings are subject to availability and our Terms & Conditions. Packages and pricing may vary based on location and specific requirements. For more details, please contact us directly.
+            <strong>Disclaimer:</strong> DKSHOTIT Studio provides professional photography services for personal and event use. All bookings are subject to availability and our Terms & Conditions. Packages and pricing may vary based on location and specific requirements. For more details, please contact us directly.
           </p>
-          <p className="text-center mt-4">© 2025 SNAPSHOT STUDIO AND PHOTOGRAPHY, All Rights Reserved.</p>
+          <p className="text-center mt-4">© 2025 DKSHOTIT  STUDIO AND PHOTOGRAPHY, All Rights Reserved.</p>
         </div>
       </footer>
       </div>
