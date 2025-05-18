@@ -10,6 +10,8 @@ import BookingPrompt from './Components/BookingPrompt';
 import { Component } from 'react';
 import Testmonial from './Components/Testmonial';
 import Intro_Sec from './Components/Intro_Sec';
+import 'leaflet/dist/leaflet.css'; // Required for react-leaflet
+
 
 // Error Boundary Component
 class ErrorBoundary extends Component {
@@ -249,6 +251,29 @@ const Home = () => {
         answer: 'You can book a session by visiting our Contact page and filling out the form, or by clicking the "Book Now" button on any package.',
       },
     ];
+
+    // Sample locations for the map
+  const locations = [
+    {
+      name: 'New York Studio',
+      coordinates: [40.7128, -74.0060],
+      description: 'Our main studio in the heart of NYC.',
+      bookingLink: '/booking?location=new-york',
+    },
+    {
+      name: 'Central Park',
+      coordinates: [40.7829, -73.9654],
+      description: 'Perfect for outdoor portrait sessions.',
+      bookingLink: '/booking?location=central-park',
+    },
+    {
+      name: 'Los Angeles Beach',
+      coordinates: [34.0522, -118.2437],
+      description: 'Stunning beach shoots in LA.',
+      bookingLink: '/booking?location=los-angeles',
+    },
+  ];
+
   
     const toggleFaq = (index) => {
       setOpenFaqIndex(openFaqIndex === index ? null : index);
@@ -306,7 +331,7 @@ const Home = () => {
     
             <div className="flex items-center gap-2">
                <div className="w-10 h-10 overflow-hidden flex items-center justify-center">
-              <img src="/src/assets/lo1.png" className=" object-cover object- w-full h-full" alt="" />
+              <img src="/src/assets/lo1.PNG" className=" object-cover object- w-full h-full" alt="LOGO" />
               {/* <img src="/src/assets/LOGO21.PNG" className='lg:hidden  object-cover object- w-full h-full' alt="" /> */}
             </div>
             <p className='text-[.6rem] lg:flex md:hidden font-semibold flex flex-col hover:text-amber-400 transition-colors duration-300'>
@@ -753,6 +778,70 @@ const Home = () => {
           <BookingPrompt />
         </ErrorBoundary>
 
+         {/* </motion.section> Locations Section  */}
+
+        <motion.section
+          id="locations"
+          className="w-full py-16 px-4 sm:px-8"
+          initial={{ opacity: 0, y: 50 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+          viewport={{ once: true }}
+        >
+          <div className="max-w-7xl mx-auto text-center">
+            <h2 className="text-3xl sm:text-4xl font-bold text-white mb-8">Our Photography Locations</h2>
+            <p className="text-gray-300 max-w-2xl mx-auto mb-12">
+              Choose from our stunning locations for your next photography session.
+            </p>
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+              {/* Interactive Map */}
+              <div className="h-[400px] rounded-lg overflow-hidden">
+                <MapContainer
+                  center={[40.7128, -74.0060]} // Default: New York
+                  zoom={10}
+                  style={{ height: '100%', width: '100%' }}
+                  aria-label="Map of photography locations"
+                >
+                  <TileLayer
+                    url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+                    attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+                  />
+                  {locations.map((location, index) => (
+                    <Marker key={index} position={location.coordinates}>
+                      <Popup>
+                        <div>
+                          <h3 className="font-semibold">{location.name}</h3>
+                          <p>{location.description}</p>
+                          <Link
+                            to={location.bookingLink}
+                            className="text-amber-500 hover:text-amber-400"
+                          >
+                            Book Here
+                          </Link>
+                        </div>
+                      </Popup>
+                    </Marker>
+                  ))}
+                </MapContainer>
+              </div>
+              {/* Location List */}
+              <div className="space-y-6">
+                {locations.map((location, index) => (
+                  <div key={index} className="bg-gray-800 p-6 rounded-lg text-left">
+                    <h3 className="text-xl font-semibold text-amber-500 mb-2">{location.name}</h3>
+                    <p className="text-gray-300 mb-4">{location.description}</p>
+                    <Link
+                      to={location.bookingLink}
+                      className="inline-block bg-amber-500 px-4 py-2 rounded-lg text-white hover:bg-amber-600"
+                    >
+                      Book Here
+                    </Link>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </motion.section>
        
       {/* Testimonials Section */}
       <section className="bg-gray-600/20 text-white py-20 px-4 text-center xl:w-[90%] m-auto">
@@ -875,7 +964,7 @@ const Home = () => {
           
             <div className="flex items-center gap-2">
                <div className="w-10 h-10 overflow-hidden flex items-center justify-center">
-              <img src="/src/assets/lo1.png" className=" object-cover object- w-full h-full" alt="" />
+              <img src="/src/assets/lo1.PNG" className=" object-cover object- w-full h-full" alt="logo" />
               {/* <img src="/src/assets/LOGO21.PNG" className='lg:hidden  object-cover object- w-full h-full' alt="" /> */}
             </div>
             <p className='text-[.6rem] lg:flex md:hidden font-semibold flex flex-col hover:text-amber-400 transition-colors duration-300'>

@@ -62,8 +62,8 @@ const Intro_Sec = () => {
                             />
                           </div>
                           <h3 className="text-xl font-semibold mb-2 text-amber-300">{i.heading}</h3>
-                          <p className="text-gray-400 mb-4">
-                            {i.introText}nunbuub
+                          <p className="text-gray-400 mb-4 sm:text-[1rem] text-sm">
+                            {i.introText}
                           </p>
                           <Link to="/contact">
                             <button className="bg-purple-600 px-6 py-2 rounded hover:bg-purple-700 transition-colors duration-300 text-sm">
