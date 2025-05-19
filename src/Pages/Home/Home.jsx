@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { Helmet } from 'react-helmet';
 import { Menu, X, Camera, Info, Calendar, Camera as ShootIcon, Edit, Download, Image as PhotoIcon, Package } from 'lucide-react';
 import { Instagram, PhoneCall, Music } from 'lucide-react';
-import { FaTiktok } from "react-icons/fa";
+// import { FaTiktok } from "react-icons/fa";
 import { AnimatePresence } from 'framer-motion';
 import Carousel from './Components/Carousel';
 import { heroData, testimonials } from './data';
@@ -259,23 +259,12 @@ const Home = () => {
     // Sample locations for the map
   const locations = [
     {
-      name: 'Dk Studio',
+      name: 'DKSHOTIT Studio',
       coordinates: [6.690112573887113, -1.6095430126993149],
-      description: 'Our main studio in the heart of NYC.',
+      description: 'Our main studio in the heart of Kumasi.',
       bookingLink: 'https://www.google.com/maps/place/DKSHOTIT+PHOTOGRAPHY/@6.6930715,-1.6127072,869m/data=!3m1!1e3!4m6!3m5!1s0xfdb9769e64f2581:0xde3a7ffbbc47cef4!8m2!3d6.6897681!4d-1.6094694!16s%2Fg%2F11q_0kj18k?entry=ttu&g_ep=EgoyMDI1MDUxMy4xIKXMDSoASAFQAw%3D%3D',
     },
-    // {
-    //   name: 'Central Park',
-    //   coordinates: [40.7829, -73.9654],
-    //   description: 'Perfect for outdoor portrait sessions.',
-    //   bookingLink: '/booking?location=central-park',
-    // },
-    // {
-    //   name: 'Los Angeles Beach',
-    //   coordinates: [34.0522, -118.2437],
-    //   description: 'Stunning beach shoots in LA.',
-    //   bookingLink: '/booking?location=los-angeles',
-    // },
+
   ];
 
   
@@ -463,7 +452,7 @@ const Home = () => {
                     viewport={{ once: true }}
                     whileHover={{ scale: 1.05 }}
                   >
-                  <motion.div className=' w-full h-40 bg-red-800 overflow-hidden'>
+                  <motion.div className=' w-full h40 bg-red-800 overflow-hidden aspect-[4/2]'>
                       <motion.img
                       initial={{ scale: 1 }}
                       whileHover={{ scale: 1.05 }}
@@ -570,14 +559,19 @@ const Home = () => {
                 />
                 {/* <Camera className="w-8 h-8 mx-auto mb-2 text-gray-300 group-hover:text-amber-400 transition-colors duration-300" /> */}
 
-                <div className=' w-full h-40 bg-red-800 overflow-hidden mb-4'>
-                  <img
+                <motion.div className=' w-full h40 bg-red-800 overflow-hidden mb-4 aspect-[4/2]'
+                   
+                >
+                  <motion.img
                   src='/src/assets/Services_img/img-1.jpg'
                   alt=''
                   className="w-full  object-cover mx-auto mb-4"
                   loading="lazy"
+                  initial={{ scale: 1 }}
+                  whileHover={{ scale: 1.05 }}
+                 
                 />
-              </div>
+              </motion.div>
 
                 <p className="text-3xl font-bold text-white mb-2">{packageItem.price}</p>
                 <p className="text-gray-300 text-sm mb-4">{packageItem.title}</p>
@@ -992,35 +986,47 @@ const Home = () => {
               </p>
     
             </div>
-    <div className="flex space-x-6 text-xl bg-black p-4 rounded-lg">
+
+            <div className="flex flex-col gap-1 mt-2">
+      <h4 className='text-white text-2xl'>Socials</h4>
+
+    <div className="flex space-x-6 text-xl bg-black p-4 rounded-lg ">
+      
       {/* Instagram */}
-      <a
+      <motion.a
         href="#"
         aria-label="Instagram"
-        className="group transition-colors duration-300"
+        initial={{ color: '#D1D5DB' }} // gray-300
+        whileHover={{ color: '#E4405F' }}
+        transition={{ duration: 0.3 }}
       >
-        <Instagram className="text-gray-300 group-hover:text-[#E4405F]" />
-      </a>
+        <Instagram />
+      </motion.a>
 
       {/* WhatsApp */}
-      <a
+      <motion.a
         href="#"
         aria-label="WhatsApp"
-        className="group transition-colors duration-300"
+        initial={{ color: '#D1D5DB' }}
+        whileHover={{ color: '#25D366' }}
+        transition={{ duration: 0.3 }}
       >
-        <PhoneCall className="text-gray-300 group-hover:text-[#25D366]" />
-      </a>
+        <PhoneCall />
+      </motion.a>
 
       {/* TikTok */}
-      <a
+      <motion.a
         href="#"
         aria-label="TikTok"
-        className="group transition-colors duration-300"
+        initial={{ color: '#D1D5DB' }}
+        whileHover={{ color: '#25F4EE' }}
+        transition={{ duration: 0.3 }}
       >
-        <FaTiktok className="text-gray-300 group-hover:text-[#25F4EE]" />
-        {/* <FaTiktok /> */}
-      </a>
+        <Music />
+      </motion.a>
+
     </div>
+            </div>
 
 
           </div>

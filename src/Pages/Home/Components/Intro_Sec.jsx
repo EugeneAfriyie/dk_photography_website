@@ -54,13 +54,14 @@ const Intro_Sec = () => {
                           transition={{ duration: 0.6, delay: 0.2 }}
                           viewport={{ once: true }}
                         >
-                          <div className="flex justify-center h-40 mb-4">
-                            <img
-                              src={i.imgUrl}
-                              className="w-full h-full object-cover rounded-sm"
-                              alt="Custom Packages"
-                            />
-                          </div>
+                     <div className="flex justify-center h40 mb-4 aspect-[4/2]">
+  <img
+    src={i.imgUrl}
+    className="w-full h-full object-cover rounded-sm"
+    alt="Custom Packages"
+  />
+</div>
+
                           <h3 className="text-xl font-semibold mb-2 text-amber-300">{i.heading}</h3>
                           <p className="text-gray-400 mb-4 sm:text-[1rem] text-sm">
                             {i.introText}
