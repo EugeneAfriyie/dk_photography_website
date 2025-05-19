@@ -7,7 +7,7 @@ import { Instagram, PhoneCall, Music } from 'lucide-react';
 // import { FaTiktok } from "react-icons/fa";
 import { AnimatePresence } from 'framer-motion';
 import Carousel from './Components/Carousel';
-import { heroData, testimonials } from './data';
+import { faqs, heroData, packages, processSteps, testimonials } from './data';
 import BookingPrompt from './Components/BookingPrompt';
 import { Component } from 'react';
 import Testmonial from './Components/Testmonial';
@@ -564,7 +564,7 @@ const Home = () => {
              className=' text-[1.2rem] lg:text-[1.2rem] font-semibold mt-4 lg:mt-20'>Start Your Journey</motion.p>
             <p className='lg:text-sm text-[.7rem] text-gray-400 lg:mt-2 mt-1'>Choose your package and reach out via our contact page to secure your booking with ease.</p>
 
-               <div className="xl:top-10 lg:top-0 left-20 absolute hidden lg:block bg-ambr-50/10 w-72 h-32 ">
+               <div className="xl:top-10 lg:top-0 left-20 absolute hidden lg:block bg-ambr-50/10 w-72 h-40 ">
                <img src="/src/assets/Process_bg/bg-high-1.png" className=' w-full h-full ' alt="" />
             </div>
         </div>
@@ -579,7 +579,7 @@ const Home = () => {
             <p className=' text-[1.2rem] lg:text-[1.2rem] font-semibold mt-4 lg:mt-20'>Plan Your Moment</p>
             <p className='lg:text-sm text-[.7rem] text-gray-400 lg:mt-2 mt-1'>We’ll coordinate with you to set a date, time, and location that perfectly suits your needs.</p>
 
-            <div className="xl:top-10 lg:top-0 -left-20 absolute hidden lg:block bg-ambr-50/10 w-72 h-32 ">
+            <div className="xl:top-10 lg:top-0 -left-20 absolute hidden lg:block bg-ambr-50/10 w-72 h-40 ">
                <img src="/src/assets/Process_bg/bg-2.png" className=' w-full h-full ' alt="" />
             </div>
         </div>

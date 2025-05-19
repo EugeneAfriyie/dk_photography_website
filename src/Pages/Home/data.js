@@ -229,27 +229,27 @@ export const testimonials = [
       {
         title: 'Book Your Session',
         description: 'Choose your package and reach out to us via the contact page to secure your booking.',
-        icon: <Calendar className="w-10 h-10 text-amber-400" />,
+        icon: '<Calendar className="w-10 h-10 text-amber-400" />',
       },
       {
         title: 'Schedule the Shoot',
         description: 'We’ll coordinate with you to set a date, time, and location that works best for your session.',
-        icon: <ShootIcon className="w-10 h-10 text-amber-400" />,
+        icon: '<ShootIcon className="w-10 h-10 text-amber-400" />',
       },
       {
         title: 'Photo Shoot Day',
         description: 'Our professional photographers will capture your moments with care and creativity.',
-        icon: <Camera className="w-10 h-10 text-amber-400" />,
+        icon:' <Camera className="w-10 h-10 text-amber-400" />',
       },
       {
         title: 'Editing & Review',
         description: 'We meticulously edit your photos to ensure they meet our high standards of quality.',
-        icon: <Edit className="w-10 h-10 text-amber-400" />,
+        icon: '<Edit className="w-10 h-10 text-amber-400" />',
       },
       {
         title: 'Receive Your Photos',
         description: 'Get your edited photos delivered within the specified timeframe, ready to cherish forever.',
-        icon: <Download className="w-10 h-10 text-amber-400" />,
+        icon: '<Download className="w-10 h-10 text-amber-400" />',
       },
     ];
 
