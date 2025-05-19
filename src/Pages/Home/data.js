@@ -252,3 +252,27 @@ export const testimonials = [
         icon: <Download className="w-10 h-10 text-amber-400" />,
       },
     ];
+
+
+     export const faqs = [
+      {
+        question: 'What types of photography do you offer?',
+        answer: 'We specialize in Wedding Photography, Portrait Sessions, Event Coverage, Children Photography, Family Photography, and Graduation Photography. Check out our Services section for more details.',
+      },
+      {
+        question: 'How long does it take to receive my photos?',
+        answer: 'Delivery times vary by package, ranging from 2 to 5 weeks. Each package lists its specific delivery time in the Packages section.',
+      },
+      {
+        question: 'Can I customize my photography package?',
+        answer: 'Yes! We offer custom packages tailored to your needs. Contact us to discuss your vision, and we’ll create a plan that suits you.',
+      },
+      {
+        question: 'What is included in a typical session?',
+        answer: 'A typical session includes professional photographers, a set number of edited photos, and extras like digital galleries or albums, depending on the package. See our Packages section for specifics.',
+      },
+      {
+        question: 'How do I book a session?',
+        answer: 'You can book a session by visiting our Contact page and filling out the form, or by clicking the "Book Now" button on any package.',
+      },
+    ];
