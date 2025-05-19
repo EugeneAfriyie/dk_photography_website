@@ -85,125 +85,7 @@ const Home = () => {
     ];
   
     // Updated packages array with Graduation Photography packages
-    const packages = [
-      {
-        title: 'Wedding Bliss Package',
-        price: '$2,500',
-        coverageHours: '8 Hours',
-        photographers: '2 Photographers',
-        editedPhotos: '300 Photos',
-        deliveryTime: '4 Weeks',
-        extras: 'Custom Album',
-        sessionLocation: 'Outdoor or Venue',
-        description: 'Capture your special day with our Wedding Photography and Event Coverage. Includes 8 hours of coverage, two photographers, and a custom album.',
-        servicesIncluded: [services[0], services[2]],
-        isPopular: false,
-      },
-      {
-        title: 'Portrait Perfection Package',
-        price: '$800',
-        coverageHours: '2 Hours',
-        photographers: '1 Photographer',
-        editedPhotos: '50 Photos',
-        deliveryTime: '2 Weeks',
-        extras: 'Bonus Family Shoot',
-        sessionLocation: 'Studio',
-        description: 'Get stunning portraits with our Portrait Sessions and a bonus family shoot. Includes 2 hours of studio time and professional editing.',
-        servicesIncluded: [services[1]],
-        isPopular: true,
-      },
-      {
-        title: 'Family Memories Package',
-        price: '$1,200',
-        coverageHours: '3 Hours',
-        photographers: '1 Photographer',
-        editedPhotos: '100 Photos',
-        deliveryTime: '3 Weeks',
-        extras: 'Digital Gallery',
-        sessionLocation: 'Outdoor or Indoor',
-        description: 'Cherish your family bond with Children Photography and Family Photography. Includes 3 hours of outdoor or indoor sessions and a digital gallery.',
-        servicesIncluded: [services[3], services[4]],
-        isPopular: false,
-      },
-      {
-        title: 'Wedding & Portrait Combo',
-        price: '$2,000',
-        coverageHours: '6 Hours',
-        photographers: '1 Photographer',
-        editedPhotos: '200 Photos',
-        deliveryTime: '4 Weeks',
-        extras: 'Digital Album',
-        sessionLocation: 'Client’s Choice',
-        description: 'Combine Wedding Photography and Portrait Sessions for a special rate. Includes 6 hours of coverage, one photographer, and a digital album.',
-        servicesIncluded: [services[0], services[1]],
-        isPopular: false,
-      },
-      {
-        title: 'Family & Event Combo',
-        price: '$1,500',
-        coverageHours: '5 Hours',
-        photographers: '1 Photographer',
-        editedPhotos: '150 Photos',
-        deliveryTime: '3 Weeks',
-        extras: 'Shared Online Gallery',
-        sessionLocation: 'Outdoor or Venue',
-        description: 'Bundle Family Photography and Event Coverage for a memorable package. Includes 5 hours of coverage and a shared online gallery.',
-        servicesIncluded: [services[4], services[2]],
-        isPopular: false,
-      },
-      {
-        title: 'Premium Wedding Experience',
-        price: '$4,000',
-        coverageHours: '12 Hours',
-        photographers: '2 Photographers',
-        editedPhotos: '500 Photos',
-        deliveryTime: '5 Weeks',
-        extras: 'Premium Album, Drone Footage',
-        sessionLocation: 'Outdoor or Venue',
-        description: 'Luxury Wedding Photography and Event Coverage with 12 hours, two photographers, a premium album, and drone footage.',
-        servicesIncluded: [services[0], services[2]],
-        isPopular: false,
-      },
-      {
-        title: 'Premium Family Legacy',
-        price: '$2,500',
-        coverageHours: '6 Hours',
-        photographers: '2 Photographers',
-        editedPhotos: '200 Photos',
-        deliveryTime: '4 Weeks',
-        extras: 'Hardcover Book, Video Highlights',
-        sessionLocation: 'Studio or Outdoor',
-        description: 'Elite Children Photography and Family Photography with 6 hours, studio access, a hardcover book, and video highlights.',
-        servicesIncluded: [services[3], services[4]],
-        isPopular: false,
-      },
-      {
-        title: 'Graduation Celebration Package',
-        price: '$600',
-        coverageHours: '1.5 Hours',
-        photographers: '1 Photographer',
-        editedPhotos: '30 Photos',
-        deliveryTime: '2 Weeks',
-        extras: 'Digital Frame',
-        sessionLocation: 'Campus or Outdoor',
-        description: 'Capture your graduation day with professional photos featuring caps, gowns, and milestone moments.',
-        servicesIncluded: [services[5]], // Graduation Photography
-        isPopular: false,
-      },
-      {
-        title: 'Premium Graduation Package',
-        price: '$1,000',
-        coverageHours: '3 Hours',
-        photographers: '1 Photographer',
-        editedPhotos: '75 Photos',
-        deliveryTime: '3 Weeks',
-        extras: 'Custom Photo Book, Group Shots',
-        sessionLocation: 'Campus or Venue',
-        description: 'A comprehensive graduation package with extended coverage, a custom photo book, and group shots.',
-        servicesIncluded: [services[5]], // Graduation Photography
-        isPopular: true,
-      },
-    ];
+  
   
     const processSteps = [
       {
@@ -540,7 +422,7 @@ const Home = () => {
                 className="relative bg-gradient-to-br from-blue-500/20 to-gray-500/20 p-6 rounded-xl shadow-md group transition-all duration-300 cursor-pointer"
                 initial={{ opacity: 0, y: 50 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                transition={{ delay: i * 0.2, duration: 0.6, ease: 'easeInOut',type: 'spring' }}
+                transition={{ delay: i * 0.2, duration: .5, ease: 'easeInOut',type: '' }}
                 viewport={{ once: true }}
                 whileHover={{ scale: 1.05 }}
               >
@@ -793,9 +675,9 @@ const Home = () => {
             </p>
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
               {/* Interactive Map */}
-              <div className="h-[400px] rounded-lg overflow-hidden">
+              <div className="h[400px] rounded-lg overflow-hidden">
                 <MapContainer
-                  center={[6.690112573887113, -1.6095430126993149]} // Default: New York
+                  center={[6.690112573887113, -1.6095430126993149]} 
                   zoom={10}
                   style={{ height: '100%', width: '100%' }}
                   aria-label="Map of photography locations"
@@ -822,18 +704,36 @@ const Home = () => {
                   ))}
                 </MapContainer>
               </div>
+
               {/* Location List */}
               <div className="space-y-6">
                 {locations.map((location, index) => (
-                  <div key={index} className="bg-gray-800 p-6 rounded-lg text-left">
-                    <h3 className="text-xl font-semibold text-amber-500 mb-2">{location.name}</h3>
-                    <p className="text-gray-300 mb-4">{location.description}</p>
+                
+                  <div className="">
+                    <div key={index} className="bg-gray-800 p-2 px-4 rounded-lg text-left flex items-center justify-between">
+                      <div className="">
+                        <h3 className="text-xl font-semibold text-amber-500 mb-2">{location.name}</h3>
+                        <p className="text-gray-300 mb-4">{location.description}</p>
+                      </div>
                     <Link
                       to={location.bookingLink}
-                      className="inline-block bg-amber-500 px-4 py-2 rounded-lg text-white hover:bg-amber-600"
+                      className="inline-bloc bg-amber-500 px-4 py-2 rounded-lg text-white hover:bg-amber-600"
                     >
                       Book Here
                     </Link>
+                    </div>
+                    <section style={{ position: 'relative', paddingBottom: '56.25%', height: 0, overflow: 'hidden' }}>
+                      <iframe
+                        src="https://www.google.com/maps/embed?pb=!4v1747669154143!6m8!1m7!1sW8JoXGPtiA8cbKLhJmvUag!2m2!1d6.689628583394144!2d-1.609494544395536!3f343.76786277358013!4f-5.211760663626208!5f1.0026514696513045"
+                        width="600"
+                        height="350"
+                        style={{ border: 0 }}
+                        allowFullScreen
+                        loading="lazy"
+                        referrerPolicy="no-referrer-when-downgrade"
+                      />
+
+                    </section>
                   </div>
                 ))}
               </div>
@@ -955,18 +855,7 @@ const Home = () => {
       </section>
 
 
-<section style={{ position: 'relative', paddingBottom: '56.25%', height: 0, overflow: 'hidden' }}>
- <iframe
-  src="https://www.google.com/maps/embed?pb=!4v1747669154143!6m8!1m7!1sW8JoXGPtiA8cbKLhJmvUag!2m2!1d6.689628583394144!2d-1.609494544395536!3f343.76786277358013!4f-5.211760663626208!5f1.0026514696513045"
-  width="600"
-  height="450"
-  style={{ border: 0 }}
-  allowFullScreen
-  loading="lazy"
-  referrerPolicy="no-referrer-when-downgrade"
-/>
 
-</section>
 
 
       {/* Footer */}
