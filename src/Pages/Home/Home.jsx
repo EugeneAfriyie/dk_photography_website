@@ -11,6 +11,8 @@ import { Component } from 'react';
 import Testmonial from './Components/Testmonial';
 import Intro_Sec from './Components/Intro_Sec';
 import 'leaflet/dist/leaflet.css'; // Required for react-leaflet
+import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
+
 
 
 // Error Boundary Component
