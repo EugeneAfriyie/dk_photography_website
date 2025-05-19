@@ -3,6 +3,8 @@ import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { Helmet } from 'react-helmet';
 import { Menu, X, Camera, Info, Calendar, Camera as ShootIcon, Edit, Download, Image as PhotoIcon, Package } from 'lucide-react';
+import { Instagram, PhoneCall, Music } from 'lucide-react';
+import { FaTiktok } from "react-icons/fa";
 import { AnimatePresence } from 'framer-motion';
 import Carousel from './Components/Carousel';
 import { heroData, testimonials } from './data';
@@ -257,23 +259,23 @@ const Home = () => {
     // Sample locations for the map
   const locations = [
     {
-      name: 'New York Studio',
-      coordinates: [40.7128, -74.0060],
+      name: 'Dk Studio',
+      coordinates: [6.690112573887113, -1.6095430126993149],
       description: 'Our main studio in the heart of NYC.',
-      bookingLink: '/booking?location=new-york',
+      bookingLink: 'https://www.google.com/maps/place/DKSHOTIT+PHOTOGRAPHY/@6.6930715,-1.6127072,869m/data=!3m1!1e3!4m6!3m5!1s0xfdb9769e64f2581:0xde3a7ffbbc47cef4!8m2!3d6.6897681!4d-1.6094694!16s%2Fg%2F11q_0kj18k?entry=ttu&g_ep=EgoyMDI1MDUxMy4xIKXMDSoASAFQAw%3D%3D',
     },
-    {
-      name: 'Central Park',
-      coordinates: [40.7829, -73.9654],
-      description: 'Perfect for outdoor portrait sessions.',
-      bookingLink: '/booking?location=central-park',
-    },
-    {
-      name: 'Los Angeles Beach',
-      coordinates: [34.0522, -118.2437],
-      description: 'Stunning beach shoots in LA.',
-      bookingLink: '/booking?location=los-angeles',
-    },
+    // {
+    //   name: 'Central Park',
+    //   coordinates: [40.7829, -73.9654],
+    //   description: 'Perfect for outdoor portrait sessions.',
+    //   bookingLink: '/booking?location=central-park',
+    // },
+    // {
+    //   name: 'Los Angeles Beach',
+    //   coordinates: [34.0522, -118.2437],
+    //   description: 'Stunning beach shoots in LA.',
+    //   bookingLink: '/booking?location=los-angeles',
+    // },
   ];
 
   
@@ -799,7 +801,7 @@ const Home = () => {
               {/* Interactive Map */}
               <div className="h-[400px] rounded-lg overflow-hidden">
                 <MapContainer
-                  center={[40.7128, -74.0060]} // Default: New York
+                  center={[6.690112573887113, -1.6095430126993149]} // Default: New York
                   zoom={10}
                   style={{ height: '100%', width: '100%' }}
                   aria-label="Map of photography locations"
@@ -958,6 +960,21 @@ const Home = () => {
         </div>
       </section>
 
+
+<section style={{ position: 'relative', paddingBottom: '56.25%', height: 0, overflow: 'hidden' }}>
+ <iframe
+  src="https://www.google.com/maps/embed?pb=!4v1747669154143!6m8!1m7!1sW8JoXGPtiA8cbKLhJmvUag!2m2!1d6.689628583394144!2d-1.609494544395536!3f343.76786277358013!4f-5.211760663626208!5f1.0026514696513045"
+  width="600"
+  height="450"
+  style={{ border: 0 }}
+  allowFullScreen
+  loading="lazy"
+  referrerPolicy="no-referrer-when-downgrade"
+/>
+
+</section>
+
+
       {/* Footer */}
       <footer className="bg-black text-white py-10 px-6 md:px-20">
         <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-10">
@@ -975,20 +992,37 @@ const Home = () => {
               </p>
     
             </div>
-            <div className="flex space-x-4 text-xl">
-              <a href="#" aria-label="YouTube" className="hover:text-amber-400 transition-colors duration-300">
-                <i className="fab fa-youtube"></i>
-              </a>
-              <a href="#" aria-label="Instagram" className="hover:text-amber-400 transition-colors duration-300">
-                <i className="fab fa-instagram"></i>
-              </a>
-              <a href="#" aria-label="Telegram" className="hover:text-amber-400 transition-colors duration-300">
-                <i className="fab fa-telegram"></i>
-              </a>
-              <a href="#" aria-label="Twitter" className="hover:text-amber-400 transition-colors duration-300">
-                <i className="fab fa-x-twitter"></i>
-              </a>
-            </div>
+    <div className="flex space-x-6 text-xl bg-black p-4 rounded-lg">
+      {/* Instagram */}
+      <a
+        href="#"
+        aria-label="Instagram"
+        className="group transition-colors duration-300"
+      >
+        <Instagram className="text-gray-300 group-hover:text-[#E4405F]" />
+      </a>
+
+      {/* WhatsApp */}
+      <a
+        href="#"
+        aria-label="WhatsApp"
+        className="group transition-colors duration-300"
+      >
+        <PhoneCall className="text-gray-300 group-hover:text-[#25D366]" />
+      </a>
+
+      {/* TikTok */}
+      <a
+        href="#"
+        aria-label="TikTok"
+        className="group transition-colors duration-300"
+      >
+        <FaTiktok className="text-gray-300 group-hover:text-[#25F4EE]" />
+        {/* <FaTiktok /> */}
+      </a>
+    </div>
+
+
           </div>
 
           {/* Quick Links */}
