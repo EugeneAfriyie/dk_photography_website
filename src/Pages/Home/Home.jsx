@@ -217,9 +217,9 @@ const Home = () => {
                   animate={{ x: 0 }}
                   exit={{ x: '100%' }}
                   transition={{ duration: 0.3, ease: 'easeInOut' }}
-                  className="md:hidden fixed top-0 right-0 h-full w-3/4 bg-black border-l border-gray-800 z-50"
+                  className="md:hidden fixed -top-5  right-0 h-full w-3/4 bg-black border-l border-gray-800 z-5000 backdrop-blur-md"
                 >
-                  <ul className="flex flex-col items-center gap-6 py-16 text-base">
+                  <ul className="flex flex-col items-center gap-6 py-16 text-base bg-black shadow-md ">
                     <li>
                       <Link to="/" onClick={() => setMobileMenuOpen(false)} className="hover:text-amber-400 transition-colors duration-300">Home</Link>
                     </li>
@@ -494,6 +494,7 @@ const Home = () => {
           </motion.p>
           <div className="flex flex-col md:flex-row justify-center items-center gap-8">
             {processSteps.map((step, i) => (
+              //  const Icon = step.icon;
               <motion.div
                 key={step.title}
                 className="bg-gray-800 p-6 rounded-xl shadow-md hover:shadow-lg transition-all duration-300 w-full md:w-1/5"
@@ -502,7 +503,7 @@ const Home = () => {
                 transition={{ delay: i * 0.2, duration: 0.6 }}
                 viewport={{ once: true }}
               >
-                <div className="flex justify-center mb-4">{step.icon}</div>
+                <div className="flex justify-center mb-4">{ <step.icon className="w-10 h-10 text-amber-400" />}</div>
                 <h3 className="text-lg font-semibold mb-2 text-amber-300">{step.title}</h3>
                 <p className="text-gray-400 text-sm">{step.description}</p>
               </motion.div>
@@ -557,12 +558,11 @@ const Home = () => {
                 <p className=' p-0.5 px-2 text-[.6rem] lg:text-sm text-gray-300/70 rounded-xl bg-gray-500/20'>01</p>
                 <h3 className='font-bold text-[1.3rem] lg:text-4xl'>Book Your Session</h3>
             </div>
-            <motion.p
-            initial={{opacity:-100}}
-            whileInView={{x:0}}
-            transition={{duration:.2}}
-             className=' text-[1.2rem] lg:text-[1.2rem] font-semibold mt-4 lg:mt-20'>Start Your Journey</motion.p>
-            <p className='lg:text-sm text-[.7rem] text-gray-400 lg:mt-2 mt-1'>Choose your package and reach out via our contact page to secure your booking with ease.</p>
+         
+            <p className=' text-[1.2rem] lg:text-[1.2rem] font-semibold mt-4 lg:mt-20'>Start Your Journey</p>
+
+             
+            <p className='lg:text-[.9rem] text-[.8rem] text-gray-400 lg:mt-2 mt-1'>Choose your package and reach out via our contact page to secure your booking with ease.</p>
 
                <div className="xl:top-10 lg:top-0 left-20 absolute hidden lg:block bg-ambr-50/10 w-72 h-40 ">
                <img src="/src/assets/Process_bg/bg-high-1.png" className=' w-full h-full ' alt="" />
@@ -571,13 +571,13 @@ const Home = () => {
 
     
 
-        <div id='no2' className="flex items-start justify-center flex-col text-white relative lg:p-8 order-3 lg:order-3 w-[300px] bg-ambr-50/10 sm-size">
+        <div id='no2' className="flex items-start justify-center flex-col text-white relative lg:p-8 order-3 lg:order-3 w-[300px] bg-ambr-50/10 sm-size mt-5">
             <div className=" flex items-center justify-center gap-2 ">
                 <p className=' p-0.5 px-2 text-[.6rem] lg:text-sm text-gray-300/70 rounded-xl bg-gray-500/20'>02</p>
                 <h3 className='font-bold text-[1.3rem] lg:text-4xl'>Schedule the Shoot</h3>
             </div>
             <p className=' text-[1.2rem] lg:text-[1.2rem] font-semibold mt-4 lg:mt-20'>Plan Your Moment</p>
-            <p className='lg:text-sm text-[.7rem] text-gray-400 lg:mt-2 mt-1'>We’ll coordinate with you to set a date, time, and location that perfectly suits your needs.</p>
+            <p className='lg:text-[.9rem] text-[.8rem] text-gray-400 lg:mt-2 mt-1'>We’ll coordinate with you to set a date, time, and location that perfectly suits your needs.</p>
 
             <div className="xl:top-10 lg:top-0 -left-20 absolute hidden lg:block bg-ambr-50/10 w-72 h-40 ">
                <img src="/src/assets/Process_bg/bg-2.png" className=' w-full h-full ' alt="" />
@@ -587,7 +587,7 @@ const Home = () => {
       </div>
 
 
-      <div className=" flex flex-col mt-4 sm:justify-center sm:items-center  lg:w-[80%] m-auto relative ">
+      <div className=" flex flex-col mt-10 sm:justify-center sm:items-center  lg:w-[80%] m-auto relative ">
 
         <img src="/src/assets/Process_bg/final.png" className='hidden lg:block' alt="" />
 
@@ -597,11 +597,11 @@ const Home = () => {
                 <h3 className='font-bold text-[1.3rem] lg:text-4xl'>Photo Shoot Day</h3>
             </div>
             <p className='text-[1.2rem] lg:text-[1.2rem] font-semibold mt-4 lg:mt-20'>Capture the Magic</p>
-            <p className='lg:text-sm text-[.7rem] text-gray-400 lg:mt-2 mt-1'>Our professional photographers will capture your moments with care and creativity.</p>
+            <p className='lg:text-[.9rem] text-[.8rem] text-gray-400 lg:mt-2 mt-1'>Our professional photographers will capture your moments with care and creativity.</p>
         </div>
       </div>
 
-      <img src="/src/assets/Process_bg/small-screen-ng.png" className='absolute top-72 right-10 sm:right-40 lg:hidden sm-pos' alt="" />
+      <img src="/src/assets/Process_bg/small-screen-ng.png" className='absolute top-64 right-10 sm:right-40 lg:hidden sm-pos' alt="" />
         </div>
        
       </section>
@@ -628,7 +628,7 @@ const Home = () => {
             </p>
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
               {/* Interactive Map */}
-              <div className="h[400px] rounded-lg overflow-hidden">
+              <div className="h-[400px] rounded-lg overflow-hidden">
                 <MapContainer
                   center={[6.690112573887113, -1.6095430126993149]} 
                   zoom={10}
