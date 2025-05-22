@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { Helmet } from 'react-helmet';
 import { Menu, X, Camera, Info, Calendar, Camera as ShootIcon, Edit, Download, Image as PhotoIcon, Package } from 'lucide-react';
 import { Instagram, PhoneCall, Music } from 'lucide-react';
-// import { FaTiktok } from "react-icons/fa";
+import { FaInstagram, FaTiktok, FaWhatsapp } from "react-icons/fa";
 import { AnimatePresence } from 'framer-motion';
 import Carousel from './Components/Carousel';
 import { faqs, heroData, packages, processSteps, testimonials } from './data';
@@ -12,7 +12,7 @@ import BookingPrompt from './Components/BookingPrompt';
 import { Component } from 'react';
 import Testmonial from './Components/Testmonial';
 import Intro_Sec from './Components/Intro_Sec';
-import 'leaflet/dist/leaflet.css'; // Required for react-leaflet
+import 'leaflet/dist/leaflet.css'; // Required for react-leafletz
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
 
 
@@ -894,44 +894,44 @@ const Home = () => {
             </div>
 
             <div className="flex flex-col gap-1 mt-2">
-      <h4 className='text-white text-2xl'>Socials</h4>
+                <h4 className='text-white sm:text-2xl'>Socials</h4>
 
-    <div className="flex space-x-6 text-xl bg-black p-4 rounded-lg ">
-      
-      {/* Instagram */}
-      <motion.a
-        href="#"
-        aria-label="Instagram"
-        initial={{ color: '#D1D5DB' }} // gray-300
-        whileHover={{ color: '#E4405F' }}
-        transition={{ duration: 0.3 }}
-      >
-        <Instagram />
-      </motion.a>
+                  <div className="flex space-x-6 text-xl bg-black p-2 rounded-lg ">
+                    
+                    {/* Instagram */}
+                    <motion.a
+                      href="#"
+                      aria-label="Instagram"
+                      initial={{ color: '#D1D5DB' }} // gray-300
+                      whileHover={{ color: '#E4405F' }}
+                      transition={{ duration: 0.3 }}
+                    >
+                      <FaInstagram />
+                    </motion.a>
 
-      {/* WhatsApp */}
-      <motion.a
-        href="#"
-        aria-label="WhatsApp"
-        initial={{ color: '#D1D5DB' }}
-        whileHover={{ color: '#25D366' }}
-        transition={{ duration: 0.3 }}
-      >
-        <PhoneCall />
-      </motion.a>
+                    {/* WhatsApp */}
+                    <motion.a
+                      href="#"
+                      aria-label="WhatsApp"
+                      initial={{ color: '#D1D5DB' }}
+                      whileHover={{ color: '#25D366' }}
+                      transition={{ duration: 0.3 }}
+                    >
+                      <FaWhatsapp />
+                    </motion.a>
 
-      {/* TikTok */}
-      <motion.a
-        href="#"
-        aria-label="TikTok"
-        initial={{ color: '#D1D5DB' }}
-        whileHover={{ color: '#25F4EE' }}
-        transition={{ duration: 0.3 }}
-      >
-        <Music />
-      </motion.a>
+                    {/* TikTok */}
+                    <motion.a
+                      href="#"
+                      aria-label="TikTok"
+                      initial={{ color: '#D1D5DB' }}
+                      whileHover={{ color: '#25F4EE' }}
+                      transition={{ duration: 0.3 }}
+                    >
+                      <FaTiktok />
+                    </motion.a>
 
-    </div>
+                  </div>
             </div>
 
 
@@ -966,12 +966,12 @@ const Home = () => {
             <div className="flex">
               <input
                 type="email"
-                placeholder="Enter your email"
+                placeholder={isFocused ? "" : 'Enter your email'}
                 onClick={() => setIsFocused(true)}
                 onBlur={(e) => {
                   if (!e.target.value) setIsFocused(false);
                 }}
-                className={`w-full p-2 bg-gray-700 text-white rounded-l-md outline-none placeholder-white transition-opacity duration-300 ${
+                className={`w-full p-2 bg-gray-700/30 text-white rounded-l-md outline-none placeholder-white transition-opacity duration-300 ${
                   isFocused ? "placeholder-opacity-0" : "placeholder-opacity-100"
                 }`}
               />
