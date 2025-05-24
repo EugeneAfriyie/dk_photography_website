@@ -769,7 +769,6 @@ const Home = () => {
         </p>
         <div className="relative max-w-3xl mx-auto">
           <Testmonial
-          
             items={testimonials}
             interval={7000}
             autoPlay={true}
