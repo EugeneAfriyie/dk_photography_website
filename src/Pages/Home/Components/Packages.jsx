@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Link } from 'react-router-dom';
 
-// SVG Info icon (replacing assumed missing Info component)
+// SVG Info icon
 const InfoIcon = ({ className, onClick, ariaLabel }) => (
   <svg
     className={className}
@@ -35,7 +35,7 @@ const packages = [
     extras: 'Custom Album',
     sessionLocation: 'Outdoor or Venue',
     description: 'Capture your special day with our Wedding Photography and Event Coverage. Includes 8 hours of coverage, two photographers, and a custom album.',
-    servicesIncluded: ['Photography'], // Updated to match your Services
+    servicesIncluded: ['Photography'],
     isPopular: false,
     icon: 'https://images.unsplash.com/photo-1519741497674-4113f6d8b600?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=400&q=80',
   },
@@ -49,7 +49,7 @@ const packages = [
     extras: 'Premium Album, Drone Footage',
     sessionLocation: 'Outdoor or Venue',
     description: 'Luxury Wedding Photography and Event Coverage with 12 hours, two photographers, a premium album, and drone footage.',
-    servicesIncluded: ['Photography', 'Videography'], // Includes drone footage
+    servicesIncluded: ['Photography', 'Videography'],
     isPopular: false,
     icon: 'https://images.unsplash.com/photo-1511285560929-80b456fef5cb?auto=format&fit=crop&w=800&h=400&q=80',
   },
@@ -123,6 +123,20 @@ const packages = [
     isPopular: true,
     icon: 'https://images.pexels.com/photos/2909067/pexels-photo-2909067.jpeg?auto=compress&cs=tinysrgb&w=800&h=400',
   },
+  {
+    title: 'Birthday Celebration Package',
+    price: '$900',
+    coverageHours: '3 Hours',
+    photographers: '1 Photographer',
+    editedPhotos: '80 Photos',
+    deliveryTime: '3 Weeks',
+    extras: 'Digital Gallery, Party Highlights',
+    sessionLocation: 'Venue or Outdoor',
+    description: 'Celebrate your special day with vibrant birthday photography, capturing every joyful moment.',
+    servicesIncluded: ['Photography'],
+    isPopular: false,
+    icon: 'https://images.pexels.com/photos/1543766/pexels-photo-1543766.jpeg?auto=compress&cs=tinysrgb&w=800&h=400',
+  },
 ];
 
 const PackagesSection = () => {
@@ -147,7 +161,7 @@ const PackagesSection = () => {
               className="bg-gray-800 p-8 rounded-xl shadow-md hover:shadow-lg transition-all duration-300 flex flex-col min-h-full"
               initial={{ opacity: 0, y: 50 }}
               whileInView={{ opacity: 1, y: 0 }}
-              transition={{ delay: i * 0.2, duration: 0.5, ease: 'easeInOut' }}
+              transition={{ delay: i * 0.2, duration: 0.5, ease: 'easeInOut', type: 'spring' }}
               viewport={{ once: true }}
               whileHover={{ scale: 1.05 }}
             >
@@ -345,4 +359,3 @@ const PackagesSection = () => {
 };
 
 export default PackagesSection;
-```
