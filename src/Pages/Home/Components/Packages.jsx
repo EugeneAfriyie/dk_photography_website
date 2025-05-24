@@ -41,15 +41,15 @@ const packages = [
   },
   {
     title: 'Premium Wedding Experience',
-    price: '$4,000',
+    price: '$4,800',
     coverageHours: '12 Hours',
     photographers: '2 Photographers',
-    editedPhotos: '500 Photos',
+    editedPhotos: '550 Photos',
     deliveryTime: '5 Weeks',
-    extras: 'Premium Album, Drone Footage',
+    extras: 'Premium Album, Drone Footage, Dedicated Videographer, Bridal Makeup and Hair, Pre-Wedding Photo Session',
     sessionLocation: 'Outdoor or Venue',
-    description: 'Luxury Wedding Photography and Event Coverage with 12 hours, two photographers, a premium album, and drone footage.',
-    servicesIncluded: ['Photography', 'Videography'],
+    description: 'Luxury Wedding Photography with a pre-wedding photo session, a dedicated videographer for cinematic videography including drone footage, and professional bridal makeup and hairstyling. Features 12 hours of coverage, two photographers, and a premium album.',
+    servicesIncluded: ['Photography', 'Videography', 'Make Up and Hair Styling'],
     isPopular: false,
     icon: 'https://images.unsplash.com/photo-1511285560929-80b456fef5cb?auto=format&fit=crop&w=800&h=400&q=80',
   },
@@ -125,17 +125,31 @@ const packages = [
   },
   {
     title: 'Birthday Celebration Package',
-    price: '$900',
+    price: '$1,300',
     coverageHours: '3 Hours',
     photographers: '1 Photographer',
     editedPhotos: '80 Photos',
     deliveryTime: '3 Weeks',
-    extras: 'Digital Gallery, Party Highlights',
+    extras: 'Digital Gallery, Party Highlights, Dedicated Videographer, Special Occasion Makeup and Hair',
     sessionLocation: 'Venue or Outdoor',
-    description: 'Celebrate your special day with vibrant birthday photography, capturing every joyful moment.',
-    servicesIncluded: ['Photography'],
+    description: 'Celebrate your special day with vibrant birthday photography, a dedicated videographer for cinematic videography, and professional makeup and hairstyling. Includes 3 hours of coverage and a digital gallery.',
+    servicesIncluded: ['Photography', 'Videography', 'Make Up and Hair Styling'],
     isPopular: false,
     icon: 'https://images.pexels.com/photos/1543766/pexels-photo-1543766.jpeg?auto=compress&cs=tinysrgb&w=800&h=400',
+  },
+  {
+    title: 'Couple Shots Package',
+    price: '$800',
+    coverageHours: '2 Hours',
+    photographers: '1 Photographer',
+    editedPhotos: '50 Photos',
+    deliveryTime: '2 Weeks',
+    extras: 'Digital Gallery, Romantic Photo Book',
+    sessionLocation: 'Studio or Outdoor',
+    description: 'Capture your love story with a romantic couple photography session, perfect for engagements, anniversaries, or special moments.',
+    servicesIncluded: ['Photography'],
+    isPopular: false,
+    icon: 'https://images.unsplash.com/photo-1505840717430-88294338e639?auto=format&fit=crop&w=800&h=400&q=80',
   },
 ];
 
@@ -158,7 +172,7 @@ const PackagesSection = () => {
           {packages.map((packageItem, i) => (
             <motion.div
               key={packageItem.title}
-              className="bg-gray-800 p-8 rounded-xl shadow-md hover:shadow-lg transition-all duration-300 flex flex-col min-h-full"
+              className="bg-gray-800 p-8 rounded-xl shadow-md hover:shadow-lg transition-all duration-300 flex flex-col min-h-full relative"
               initial={{ opacity: 0, y: 50 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ delay: i * 0.2, duration: 0.5, ease: 'easeInOut', type: 'spring' }}
@@ -171,7 +185,7 @@ const PackagesSection = () => {
                 </span>
               )}
               <InfoIcon
-                className="absolute bottom-2 right-2 w-5 h-5 text-gray-400 cursor-pointer hover:text-amber-400 transition-colors duration-300"
+                className="absolute bottom-2 right-2 w-5 h-5 text-gray-400 cursor-pointer hover:text-amber-400 transition-colors duration-300 opacity-100"
                 onClick={(e) => {
                   e.stopPropagation();
                   setSelectedPackage(packageItem);
