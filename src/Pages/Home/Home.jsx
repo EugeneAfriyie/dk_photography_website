@@ -15,6 +15,7 @@ import Intro_Sec from './Components/Intro_Sec';
 import 'leaflet/dist/leaflet.css'; // Required for react-leafletz
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
 import PackagesSection from './Components/Packages';
+import GalleryPreview from './Components/PageGallery';
 
 
 
@@ -475,12 +476,13 @@ const Home = () => {
          <div id='center-circle' className="flex items-center justify-center order-1 lg:order-2 relative">
         <div 
           className="font-semibold text-white rounded-full w-[300px] h-[300px] xl:w-[460px] xl:h-[460px] flex items-center justify-center flex-col bg-cover bg-center relative overflow-hidden"
-          style={{ 
-             backgroundImage: `url('https://png.pngtree.com/png-clipart/20200224/original/pngtree-camera-icon-png-image_5233265.jpg')`,
-            backgroundSize: 'contain',
-            backgroundRepeat: 'no-repeat',
-            backgroundPosition: 'center',
-          }}
+       style={{
+          backgroundImage: `url('https://images.pexels.com/photos/51383/photo-camera-subject-photographer-51383.jpeg?auto=compress&cs=tinysrgb&w=1920&blur=50')`,
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+          backgroundBlendMode: 'overlay',
+          backgroundColor: 'rgba(17,24,39,0.8)' // gray-900/80
+        }}
         >
           {/* Dark overlay for text readability */}
           <div className="absolute inset-0 bg-black/50"></div>
@@ -566,6 +568,11 @@ const Home = () => {
         </ErrorBoundary>
 
          {/* </motion.section> Locations Section  */}
+
+
+         <ErrorBoundary>
+          <GalleryPreview />
+         </ErrorBoundary>
 
         <motion.section
           id="locations"
