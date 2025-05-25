@@ -1,4 +1,5 @@
 // data.js
+import { image } from 'framer-motion/client';
 import { Menu, X, Camera, Info, Calendar, Camera as ShootIcon, Edit, Download, Image as PhotoIcon, Package } from 'lucide-react';
 
 
@@ -53,12 +54,14 @@ export const heroData = [
   },
   {
     type: 'imageWithText',
-    image: 'https://images.pexels.com/photos/3178938/pexels-photo-3178938.jpeg?auto=compress&cs=tinysrgb&w=1920',
+    // image: 'https://images.pexels.com/photos/3178938/pexels-photo-3178938.jpeg?auto=compress&cs=tinysrgb&w=1920',
+    image: 'https://images.unsplash.com/photo-1523050854058-8df90110c9f1?auto=format&fit=crop&w=800&h=600&q=80',
+
     text: 'Celebrate Your Graduation!',
     subText: 'Book your professional photoshoot to capture this milestone.',
     alt: 'Graduation photography',
     overlay: {
-      background: 'rgba(255,191,0,0.5)',
+      // background: 'rgba(255,191,0,0.5)',
       textPosition: 'top-left',
       textColor: 'text-white',
       fontSize: 'text-3xl sm:text-5xl',
