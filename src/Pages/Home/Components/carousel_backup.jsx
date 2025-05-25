@@ -1,21 +1,23 @@
 import { motion } from 'framer-motion';
 import { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 
 const Carousel = ({ items }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [isPaused, setIsPaused] = useState(false);
 
   useEffect(() => {
+    if (isPaused) return;
     const interval = setInterval(() => {
       setCurrentIndex((prev) => (prev + 1) % items.length);
     }, 5000);
     return () => clearInterval(interval);
-  }, [items.length]);
+  }, [items.length, isPaused]);
 
   const goToSlide = (index) => setCurrentIndex(index);
   const goToPrev = () => setCurrentIndex((prev) => (prev - 1 + items.length) % items.length);
   const goToNext = () => setCurrentIndex((prev) => (prev + 1) % items.length);
 
-  // Map textPosition to Tailwind classes
   const getTextPositionClasses = (position) => {
     switch (position) {
       case 'top-left':
@@ -33,13 +35,27 @@ const Carousel = ({ items }) => {
   };
 
   return (
-    <div className="relative w-full h-[60vh] sm:h-[80vh] overflow-hidden">
+    <div
+      className="relative w-full h-[60vh] sm:h-[80vh] overflow-hidden  sm:mt-0"
+      role="region"
+      aria-label="Photography carousel"
+      tabIndex={0}
+      onMouseEnter={() => setIsPaused(true)}
+      onMouseLeave={() => setIsPaused(false)}
+      onKeyDown={(e) => {
+        if (e.key === 'ArrowLeft') goToPrev();
+        if (e.key === 'ArrowRight') goToNext();
+      }}
+    >
       {items.map((slide, index) => (
         <motion.div
           key={index}
           className={`absolute top-0 left-0 w-full h-full flex items-center justify-center ${
             index === currentIndex ? 'opacity-100' : 'opacity-0'
           }`}
+          role="group"
+          aria-current={index === currentIndex ? 'true' : 'false'}
+          aria-hidden={index !== currentIndex}
           initial={{ opacity: 0, x: 100 }}
           animate={{ opacity: index === currentIndex ? 1 : 0, x: index === currentIndex ? 0 : 100 }}
           transition={{ duration: 0.5, ease: 'easeOut' }}
@@ -47,18 +63,32 @@ const Carousel = ({ items }) => {
           {slide.type === 'image' && (
             <img
               src={slide.image}
+              srcSet={`${slide.image}&w=100&q=10 100w, ${slide.image} 1920w`}
+              sizes="(max-width: 640px) 100vw, 1920px"
               alt={slide.alt || 'Carousel slide'}
               className="w-full h-full object-cover"
               loading="lazy"
+              style={{
+                transform: index === currentIndex ? 'translateY(0)' : 'translateY(20px)',
+                transition: 'transform 0.5s ease-out'
+              }}
+              onError={(e) => (e.target.src = 'https://placehold.co/1920x1080?text=Fallback+Image')}
             />
           )}
           {slide.type === 'imageWithText' && (
             <div className="relative w-full h-full">
               <img
                 src={slide.image}
+                srcSet={`${slide.image}&w=100&q=10 100w, ${slide.image} 1920w`}
+                sizes="(max-width: 640px) 100vw, 1920px"
                 alt={slide.alt || 'Carousel slide'}
                 className="w-full h-full object-cover"
                 loading="lazy"
+                style={{
+                  transform: index === currentIndex ? 'translateY(0)' : 'translateY(20px)',
+                  transition: 'transform 0.5s ease-out'
+                }}
+                onError={(e) => (e.target.src = 'https://placehold.co/1920x1080?text=Fallback+Image')}
               />
               <div
                 className={`absolute inset-0 flex flex-col ${
@@ -80,6 +110,17 @@ const Carousel = ({ items }) => {
                 >
                   {slide.subText}
                 </p>
+                {slide.cta && (
+                  <Link to={slide.cta.link}>
+                    <motion.button
+                      className="mt-4 bg-amber-500 px-6 py-3 rounded-lg text-lg font-semibold text-white hover:bg-amber-600"
+                      whileHover={{ scale: 1.1 }}
+                      whileTap={{ scale: 0.95 }}
+                    >
+                      {slide.cta.text}
+                    </motion.button>
+                  </Link>
+                )}
               </div>
             </div>
           )}
@@ -90,6 +131,17 @@ const Carousel = ({ items }) => {
             >
               <h2 className="text-3xl sm:text-5xl font-bold text-white mb-4">{slide.text}</h2>
               <p className="text-lg sm:text-xl text-gray-300 max-w-md">{slide.subText}</p>
+              {slide.cta && (
+                <Link to={slide.cta.link}>
+                  <motion.button
+                    className="mt-4 bg-amber-500 px-6 py-3 rounded-lg text-lg font-semibold text-white hover:bg-amber-600"
+                    whileHover={{ scale: 1.1 }}
+                    whileTap={{ scale: 0.95 }}
+                  >
+                    {slide.cta.text}
+                  </motion.button>
+                </Link>
+              )}
             </div>
           )}
         </motion.div>

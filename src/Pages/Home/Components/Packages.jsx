@@ -81,20 +81,7 @@ const packages = [
     isPopular: false,
     icon: 'https://images.pexels.com/photos/3184183/pexels-photo-3184183.jpeg?auto=compress&cs=tinysrgb&w=800&h=400',
   },
-  {
-    title: 'Wedding & Portrait Combo',
-    price: '$2,000',
-    coverageHours: '6 Hours',
-    photographers: '1 Photographer',
-    editedPhotos: '200 Photos',
-    deliveryTime: '4 Weeks',
-    extras: 'Digital Album',
-    sessionLocation: 'Client’s Choice',
-    description: 'Combine Wedding Photography and Portrait Sessions for a special rate. Includes 6 hours of coverage, one photographer, and a digital album.',
-    servicesIncluded: ['Photography'],
-    isPopular: false,
-    icon: 'https://images.unsplash.com/photo-1529636798458-92182e662485?auto=format&fit=crop&w=800&h=400&q=80',
-  },
+ 
   {
     title: 'Graduation Celebration Package',
     price: '$600',
@@ -150,6 +137,20 @@ const packages = [
     servicesIncluded: ['Photography'],
     isPopular: false,
     icon: 'https://images.unsplash.com/photo-1505840717430-88294338e639?auto=format&fit=crop&w=800&h=400&q=80',
+  },
+  {
+    title: 'Children Shot Package',
+    price: '$700',
+    coverageHours: '2 Hours',
+    photographers: '1 Photographer',
+    editedPhotos: '50 Photos',
+    deliveryTime: '2 Weeks',
+    extras: 'Digital Gallery, Children’s Photo Book',
+    sessionLocation: 'Studio or Outdoor',
+    description: 'Capture your child’s milestones with a fun and vibrant photography session, perfect for birthdays, first steps, or special moments.',
+    servicesIncluded: ['Photography'],
+    isPopular: false,
+    icon: 'https://images.unsplash.com/photo-1591382696684-38c427c7547a?auto=format&fit=crop&w=800&h=400&q=80',
   },
 ];
 
