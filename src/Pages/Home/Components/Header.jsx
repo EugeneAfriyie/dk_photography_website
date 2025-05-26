@@ -77,7 +77,7 @@ const Header = ({mobileMenuOpen,setMobileMenuOpen}) => {
                     
                     
 
-<ul className="flex flex-col items-cente gap-6 py-16 text-base bg-gray-800 shadow-md">
+<ul className="flex flex-col items-cente gap-6 py-1 text-base bg-gray-800 shadow-md">
   <li className="group flex items-center gap-2 p-2 rounded hover:bg-gray-700 transition-all duration-300">
     <svg
       className="w-5 h-5 text-white group-hover:text-amber-400 transition-colors duration-300"
