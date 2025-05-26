@@ -13,7 +13,6 @@ import { Component } from 'react';
 import Testmonial from './Components/Testmonial';
 import Intro_Sec from './Components/Intro_Sec';
 import 'leaflet/dist/leaflet.css'; // Required for react-leafletz
-import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
 import PackagesSection from './Components/Packages';
 import GalleryPreview from './Components/PageGallery';
 import Header from './Components/Header';
@@ -381,7 +380,7 @@ const Home = () => {
          </ErrorBoundary>
 
         <ErrorBoundary>
-          <Studio_Location />
+          <Studio_Location locations={locations} />
         </ErrorBoundary>
        
       {/* Testimonials Section */}

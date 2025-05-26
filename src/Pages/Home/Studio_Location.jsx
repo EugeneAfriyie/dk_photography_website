@@ -1,8 +1,10 @@
 import React from 'react'
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
+import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
 
-const Studio_Location = () => {
+
+const Studio_Location = ({locations}) => {
   return (
     <div><motion.section
           id="locations"
