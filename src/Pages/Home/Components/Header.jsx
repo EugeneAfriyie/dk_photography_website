@@ -72,12 +72,12 @@ const Header = ({mobileMenuOpen,setMobileMenuOpen}) => {
                      animate={{ x: 0 }}
                      exit={{ x: '100%' }}
                      transition={{ duration: 0.3, ease: 'easeInOut' }}
-                     className="md:hidden fixed top-15  right-0 h-auto w-3/4 bg-black border-l border-gray-800 z-5000 backdrop-blur-md p-4"
+                     className="md:hidden fixed top-15  right-0 bottom-0 h-auto w-3/4 bg-black border-l border-gray-800 z-5000 backdrop-blur-md p-4"
                    >
                     
                     
 
-<ul className="flex flex-col items-cente gap-6 py-1 text-base bg-gray-800 shadow-md">
+<ul className="flex flex-col items-cente gap-6 py-1 text-base bg-gray-800 shadow-md ">
   <li className="group flex items-center gap-2 p-2 rounded hover:bg-gray-700 transition-all duration-300">
     <svg
       className="w-5 h-5 text-white group-hover:text-amber-400 transition-colors duration-300"
