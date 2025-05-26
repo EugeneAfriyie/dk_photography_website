@@ -295,7 +295,7 @@ export const testimonials = [
     ];
 
 
-     export const faqs = [
+     export const faqsData = [
       {
         question: 'What types of photography do you offer?',
         answer: 'We specialize in Wedding Photography, Portrait Sessions, Event Coverage, Children Photography, Family Photography, and Graduation Photography. Check out our Services section for more details.',

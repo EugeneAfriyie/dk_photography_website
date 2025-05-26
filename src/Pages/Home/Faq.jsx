@@ -2,7 +2,11 @@ import React from 'react'
 import { motion,AnimatePresence } from 'framer-motion';
 import { Link } from 'react-router-dom';
 
-const Faq = () => {
+const Faq = ({faqsData ,openFaqIndex,setOpenFaqIndex}) => {
+     const toggleFaq = (index) => {
+      setOpenFaqIndex(openFaqIndex === index ? null : index);
+    };
+  
   return (
        <section className="bg-gray-600/20 text-white py-10 sm:py-20 px-4 relative overflow-hidden xl:w-[90%] m-auto mt-40">
         <div
@@ -36,7 +40,7 @@ const Faq = () => {
           </motion.p>
 
           <div className=" sm:p-8  shadow-md w-full  mx-auto rounded-lg ">
-            {faqs.map((faq, index) => (
+            {faqsData.map((faq, index) => (
               <motion.div
                 key={index}
                 initial={{ opacity: 0, y: 50 }}
