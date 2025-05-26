@@ -7,7 +7,7 @@ import { Instagram, PhoneCall, Music } from 'lucide-react';
 import { FaInstagram, FaTiktok, FaWhatsapp } from "react-icons/fa";
 import { AnimatePresence } from 'framer-motion';
 import Carousel from './Components/Carousel';
-import { faqs, heroData, packages, processSteps, testimonials,servicesData } from './data';
+import { faqs, heroData, packages, processSteps, testimonials,servicesData,locationsData } from './data';
 import BookingPrompt from './Components/BookingPrompt';
 import { Component } from 'react';
 import Testmonial from './Components/Testmonial';
@@ -94,15 +94,7 @@ const Home = () => {
 
 
     // Sample locations for the map
-  const locations = [
-    {
-      name: 'DKSHOTIT Studio',
-      coordinates: [6.690112573887113, -1.6095430126993149],
-      description: 'Our main studio in the heart of Kumasi.',
-      bookingLink: 'https://www.google.com/maps/place/DKSHOTIT+PHOTOGRAPHY/@6.6930715,-1.6127072,869m/data=!3m1!1e3!4m6!3m5!1s0xfdb9769e64f2581:0xde3a7ffbbc47cef4!8m2!3d6.6897681!4d-1.6094694!16s%2Fg%2F11q_0kj18k?entry=ttu&g_ep=EgoyMDI1MDUxMy4xIKXMDSoASAFQAw%3D%3D',
-    },
 
-  ];
 
   
     const toggleFaq = (index) => {
@@ -380,7 +372,7 @@ const Home = () => {
          </ErrorBoundary>
 
         <ErrorBoundary>
-          <Studio_Location locations={locations} />
+          <Studio_Location locations={locationsData} />
         </ErrorBoundary>
        
       {/* Testimonials Section */}
