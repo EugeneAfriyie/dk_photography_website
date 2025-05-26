@@ -228,7 +228,7 @@ const Home = () => {
 
       {/* Packages Section */}
         <ErrorBoundary>
-          <PackagesSection />
+          <PackagesSection packages={packages}/>
         </ErrorBoundary>
 
       {/* Our Process Section */}
