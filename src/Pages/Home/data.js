@@ -266,7 +266,7 @@ export const testimonials = [
    },
  ];
 
-      export  const processSteps = [
+      export  const processStepsData = [
       {
         title: 'Book Your Session',
         description: 'Choose your package and reach out to us via the contact page to secure your booking.',
