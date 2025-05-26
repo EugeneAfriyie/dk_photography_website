@@ -1,6 +1,12 @@
 import React from 'react'
+import { Link } from 'react-router-dom';
+import { Menu, X, Camera, Info, Calendar, Camera as ShootIcon, Edit, Download, Image as PhotoIcon, Package } from 'lucide-react';
+import { AnimatePresence,motion } from 'framer-motion';
 
-const Header = () => {
+
+
+
+const Header = ({mobileMenuOpen,setMobileMenuOpen}) => {
   return (
    
              <header className="shadow-2xl shadow-gray-600  fixed top-5 left-1/2 transform -translate-x-1/2 w-full sm:w-[70%] z-500 bg-black/70 backdrop-blur-md rounded-full">
