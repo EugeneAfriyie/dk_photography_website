@@ -75,38 +75,41 @@ export const heroData = [
     },
   },
 ];
-export const services = [
-  {
-    title: 'Wedding Photography',
-    description:
-      'Elegant and emotional captures of your big day. Every vow, every smile, preserved forever.',
-    icon: 'https://img.icons8.com/ios/100/ffd700/wedding-dress.png',
-  },
-  {
-    title: 'Portrait Sessions',
-    description:
-      'Professional headshots or creative portraits—tailored to highlight your best self.',
-    icon: 'https://img.icons8.com/ios-filled/100/ffd700/portrait.png',
-  },
-  {
-    title: 'Event Coverage',
-    description:
-      'From corporate galas to birthday parties, we capture your event’s best angles and candid energy.',
-    icon: 'https://img.icons8.com/ios-filled/100/ffd700/event-accepted.png',
-  },
-  {
-    title: 'Children Photography',
-    description:
-      'Capture the wonder and joy of childhood with our fun and creative photography sessions. Perfect for preserving those precious early years.',
-    icon: 'https://img.icons8.com/ios-filled/100/ffd700/children.png',
-  },
-  {
-    title: 'Family Photography',
-    description:
-      "Celebrate your family's unique bond with our warm and heartfelt photography sessions. Cherish the memories for generations to come.",
-    icon: 'https://img.icons8.com/ios-filled/100/ffd700/family--v1.png',
-  },
-];
+export const servicesData = [
+                      {
+                        title: 'Photography',
+                        description: [
+                          'Wedding photography with candid and posed shots',
+                          'Portrait sessions for individuals and families',
+                          'Event photography for corporate and personal occasions',
+                          'Commercial photography for brands and products',
+                        ],
+                        icon: 'https://images.unsplash.com/photo-1519741497674-4113f6d8b600?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=400&q=80',
+                        bookingLink: '/booking?service=photography',
+                      },
+                      {
+                        title: 'Videography',
+                        description: [
+                          'Cinematic wedding films capturing every moment',
+                          'Event videography for conferences and celebrations',
+                          'Promotional videos for businesses and campaigns',
+                          'Drone footage for stunning aerial perspectives',
+                        ],
+                        icon: 'https://images.pexels.com/photos/3372826/pexels-photo-3372826.jpeg?auto=compress&cs=tinysrgb&w=800&h=400',
+                        bookingLink: '/booking?service=videography',
+                      },
+                      {
+                        title: 'Make Up and Hair Styling',
+                        description: [
+                          'Bridal makeup and hair for a flawless wedding day',
+                          'Photoshoot styling for portraits and fashion',
+                          'Special occasion looks for events and parties',
+                          'Professional consultations for personalized styles',
+                        ],
+                        icon: 'https://images.pexels.com/photos/457701/pexels-photo-457701.jpeg?auto=compress&cs=tinysrgb&w=800&h=400',
+                        bookingLink: '/booking?service=make-up-and-hair-styling',
+                      },
+                    ]
 
 export const testimonials = [
   {
@@ -144,7 +147,7 @@ export const testimonials = [
         extras: 'Custom Album',
         sessionLocation: 'Outdoor or Venue',
         description: 'Capture your special day with our Wedding Photography and Event Coverage. Includes 8 hours of coverage, two photographers, and a custom album.',
-        servicesIncluded: [services[0], services[2]],
+        servicesIncluded: [servicesData[0], servicesData[2]],
         isPopular: false,
       },
       {
@@ -157,7 +160,7 @@ export const testimonials = [
         extras: 'Bonus Family Shoot',
         sessionLocation: 'Studio',
         description: 'Get stunning portraits with our Portrait Sessions and a bonus family shoot. Includes 2 hours of studio time and professional editing.',
-        servicesIncluded: [services[1]],
+        servicesIncluded: [servicesData[1]],
         isPopular: true,
       },
       {
@@ -170,7 +173,7 @@ export const testimonials = [
         extras: 'Digital Gallery',
         sessionLocation: 'Outdoor or Indoor',
         description: 'Cherish your family bond with Children Photography and Family Photography. Includes 3 hours of outdoor or indoor sessions and a digital gallery.',
-        servicesIncluded: [services[3], services[4]],
+        servicesIncluded: [servicesData[3], servicesData[4]],
         isPopular: false,
       },
       {
@@ -183,7 +186,7 @@ export const testimonials = [
         extras: 'Digital Album',
         sessionLocation: 'Client’s Choice',
         description: 'Combine Wedding Photography and Portrait Sessions for a special rate. Includes 6 hours of coverage, one photographer, and a digital album.',
-        servicesIncluded: [services[0], services[1]],
+        servicesIncluded: [servicesData[0], servicesData[1]],
         isPopular: false,
       },
       {
@@ -196,7 +199,7 @@ export const testimonials = [
         extras: 'Shared Online Gallery',
         sessionLocation: 'Outdoor or Venue',
         description: 'Bundle Family Photography and Event Coverage for a memorable package. Includes 5 hours of coverage and a shared online gallery.',
-        servicesIncluded: [services[4], services[2]],
+        servicesIncluded: [servicesData[4], servicesData[2]],
         isPopular: false,
       },
       {
@@ -209,7 +212,7 @@ export const testimonials = [
         extras: 'Premium Album, Drone Footage',
         sessionLocation: 'Outdoor or Venue',
         description: 'Luxury Wedding Photography and Event Coverage with 12 hours, two photographers, a premium album, and drone footage.',
-        servicesIncluded: [services[0], services[2]],
+        servicesIncluded: [servicesData[0], servicesData[2]],
         isPopular: false,
       },
       {
@@ -222,7 +225,7 @@ export const testimonials = [
         extras: 'Hardcover Book, Video Highlights',
         sessionLocation: 'Studio or Outdoor',
         description: 'Elite Children Photography and Family Photography with 6 hours, studio access, a hardcover book, and video highlights.',
-        servicesIncluded: [services[3], services[4]],
+        servicesIncluded: [servicesData[3], servicesData[4]],
         isPopular: false,
       },
       {
@@ -235,7 +238,7 @@ export const testimonials = [
         extras: 'Digital Frame',
         sessionLocation: 'Campus or Outdoor',
         description: 'Capture your graduation day with professional photos featuring caps, gowns, and milestone moments.',
-        servicesIncluded: [services[5]], // Graduation Photography
+        servicesIncluded: [servicesData[5]], // Graduation Photography
         isPopular: false,
       },
       {
@@ -248,7 +251,7 @@ export const testimonials = [
         extras: 'Custom Photo Book, Group Shots',
         sessionLocation: 'Campus or Venue',
         description: 'A comprehensive graduation package with extended coverage, a custom photo book, and group shots.',
-        servicesIncluded: [services[5]], // Graduation Photography
+        servicesIncluded: [servicesData[5]], // Graduation Photography
         isPopular: true,
       },
     ];

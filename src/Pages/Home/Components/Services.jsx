@@ -1,6 +1,7 @@
 import React from 'react'
-
-const Services = () => {
+import { motion } from 'framer-motion'
+import { Link } from 'react-router-dom'
+const Services = ({servicesData}) => {
   return (
     <div> <section className="bg-black text-white py-20 px-4">
                 <div className="max-w-6xl mx-auto text-center">
@@ -14,41 +15,7 @@ const Services = () => {
                     Our Services
                   </motion.h2>
                   <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-                    {[
-                      {
-                        title: 'Photography',
-                        description: [
-                          'Wedding photography with candid and posed shots',
-                          'Portrait sessions for individuals and families',
-                          'Event photography for corporate and personal occasions',
-                          'Commercial photography for brands and products',
-                        ],
-                        icon: 'https://images.unsplash.com/photo-1519741497674-4113f6d8b600?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=400&q=80',
-                        bookingLink: '/booking?service=photography',
-                      },
-                      {
-                        title: 'Videography',
-                        description: [
-                          'Cinematic wedding films capturing every moment',
-                          'Event videography for conferences and celebrations',
-                          'Promotional videos for businesses and campaigns',
-                          'Drone footage for stunning aerial perspectives',
-                        ],
-                        icon: 'https://images.pexels.com/photos/3372826/pexels-photo-3372826.jpeg?auto=compress&cs=tinysrgb&w=800&h=400',
-                        bookingLink: '/booking?service=videography',
-                      },
-                      {
-                        title: 'Make Up and Hair Styling',
-                        description: [
-                          'Bridal makeup and hair for a flawless wedding day',
-                          'Photoshoot styling for portraits and fashion',
-                          'Special occasion looks for events and parties',
-                          'Professional consultations for personalized styles',
-                        ],
-                        icon: 'https://images.pexels.com/photos/457701/pexels-photo-457701.jpeg?auto=compress&cs=tinysrgb&w=800&h=400',
-                        bookingLink: '/booking?service=make-up-and-hair-styling',
-                      },
-                    ].map((service, i) => (
+                    {servicesData.map((service, i) => (
                       <motion.div
                         key={service.title}
                         className="bg-gray-800 p-8 rounded-xl shadow-md hover:shadow-lg transition-all duration-300 flex flex-col min-h-full"

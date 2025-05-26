@@ -1,16 +1,19 @@
 // data.js
+import { image } from 'framer-motion/client';
 import { Menu, X, Camera, Info, Calendar, Camera as ShootIcon, Edit, Download, Image as PhotoIcon, Package } from 'lucide-react';
 
 
 export const heroData = [
   {
     type: 'image',
-    image: 'https://images.unsplash.com/photo-1519741497674-4113f6d8b600?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80',
-    alt: 'Wedding photography'
+    image:
+      'https://images.unsplash.com/photo-1519741497674-4113f6d8b600?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80',
+    alt: 'Wedding photography',
   },
   {
     type: 'imageWithText',
-    image: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80',
+    image:
+      'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80',
     text: 'Capture Your Moments',
     subText: 'Professional photography for every occasion.',
     alt: 'Portrait session',
@@ -18,21 +21,22 @@ export const heroData = [
       background: 'rgba(0,0,0,0.6)',
       textPosition: 'center',
       textColor: 'text-white',
-      fontSize: 'text-3xl sm:text-5xl'
+      fontSize: 'text-3xl sm:text-5xl',
     },
-    cta: { text: 'Book Now', link: '/booking' }
+    cta: { text: 'Book Now', link: '/booking' },
   },
   {
     type: 'text',
     text: 'Book Now for Exclusive Offers!',
     subText: 'Limited slots available. Secure yours today.',
     background: 'linear-gradient(to bottom, rgba(255,255,255,0), rgba(107,114,128,0.2))',
-    cta: { text: 'Book Now', link: '/booking' }
+    cta: { text: 'Book Now', link: '/booking' },
   },
   {
     type: 'image',
-    image: 'https://images.unsplash.com/photo-1506748686214-e9df14d4d9d0?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80',
-    alt: 'Event photography'
+    image:
+      'https://images.unsplash.com/photo-1506748686214-e9df14d4d9d0?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80',
+    alt: 'Event photography',
   },
   {
     type: 'imageWithText',
@@ -44,10 +48,32 @@ export const heroData = [
       background: 'rgba(255,191,0,0.4)',
       textPosition: 'bottom-right',
       textColor: 'text-white',
-      fontSize: 'text-2xl sm:text-4xl'
+      fontSize: 'text-2xl sm:text-4xl',
     },
-    cta: { text: 'Book Now', link: '/booking' }
-  }
+    cta: { text: 'Book Now', link: '/booking' },
+  },
+  {
+    type: 'imageWithText',
+    // image: 'https://images.pexels.com/photos/3178938/pexels-photo-3178938.jpeg?auto=compress&cs=tinysrgb&w=1920',
+    image: 'https://images.unsplash.com/photo-1523050854058-8df90110c9f1?auto=format&fit=crop&w=800&h=600&q=80',
+
+    text: 'Celebrate Your Graduation!',
+    subText: 'Book your professional photoshoot to capture this milestone.',
+    alt: 'Graduation photography',
+    overlay: {
+      // background: 'rgba(255,191,0,0.5)',
+      textPosition: 'top-left',
+      textColor: 'text-white',
+      fontSize: 'text-3xl sm:text-5xl',
+    },
+    countdown: {
+      deadline: '2025-06-01T23:59:59Z',
+    },
+    cta: {
+      text: 'Book Now',
+      link: '/booking?package=graduation-celebration-package',
+    },
+  },
 ];
 export const services = [
   {

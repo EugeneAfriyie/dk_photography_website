@@ -7,7 +7,7 @@ import { Instagram, PhoneCall, Music } from 'lucide-react';
 import { FaInstagram, FaTiktok, FaWhatsapp } from "react-icons/fa";
 import { AnimatePresence } from 'framer-motion';
 import Carousel from './Components/Carousel';
-import { faqs, heroData, packages, processSteps, testimonials } from './data';
+import { faqs, heroData, packages, processSteps, testimonials,servicesData } from './data';
 import BookingPrompt from './Components/BookingPrompt';
 import { Component } from 'react';
 import Testmonial from './Components/Testmonial';
@@ -18,6 +18,7 @@ import PackagesSection from './Components/Packages';
 import GalleryPreview from './Components/PageGallery';
 import Header from './Components/Header';
 import Services from './Components/Services';
+
 
 
 
@@ -172,9 +173,9 @@ const Home = () => {
              
 
                   {/* Services Section */}
-           <ErrorBoundary>
-            <Services />
-           </ErrorBoundary>
+                    <ErrorBoundary>
+                      <Services servicesData={servicesData} />
+                    </ErrorBoundary>
 
             {/* Our Vision Section */}
                 <section className="min-h-[60vh] flex flex-col justify-center items-center text-center px-4 bg-black relative overflow-hidden">
@@ -226,9 +227,9 @@ const Home = () => {
 
 
       {/* Packages Section */}
-  <ErrorBoundary>
-    <PackagesSection />
-  </ErrorBoundary>
+        <ErrorBoundary>
+          <PackagesSection />
+        </ErrorBoundary>
 
       {/* Our Process Section */}
       <section className="bg-gray-600/30 text-white py-20 px-4 mb-20">
