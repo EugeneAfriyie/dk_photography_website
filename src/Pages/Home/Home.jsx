@@ -5,7 +5,7 @@ import { Helmet } from 'react-helmet';
 import { Menu, X, Camera, Info, Calendar, Camera as ShootIcon, Edit, Download, Image as PhotoIcon, Package } from 'lucide-react';
 import { FaInstagram, FaTiktok, FaWhatsapp } from "react-icons/fa";
 import Carousel from './Components/Carousel';
-import { faqsData, heroData, packages, processStepsData, testimonials,servicesData,locationsData } from './data';
+import { faqsData, heroData, packages, processStepsData, testimonials,servicesData,locationsData, galleryImages } from './data';
 import BookingPrompt from './Components/BookingPrompt';
 import { Component } from 'react';
 import Testmonial from './Components/Testmonial';
@@ -235,7 +235,7 @@ const Home = () => {
 
 
          <ErrorBoundary>
-          <GalleryPreview />
+          <GalleryPreview galleryImages={galleryImages}/>
          </ErrorBoundary>
 
         <ErrorBoundary>

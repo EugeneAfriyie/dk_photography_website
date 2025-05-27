@@ -7,7 +7,8 @@ export const heroData = [
   {
     type: 'image',
     image:
-      'https://images.unsplash.com/photo-1519741497674-4113f6d8b600?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80',
+      // 'https://images.unsplash.com/photo-1519741497674-4113f6d8b600?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80',
+      '/src/assets/PageImg/WEDDING/WED2.jpg',
     alt: 'Wedding photography',
   },
   {
@@ -85,6 +86,7 @@ export const servicesData = [
                           'Commercial photography for brands and products',
                         ],
                         icon: 'https://images.unsplash.com/photo-1519741497674-4113f6d8b600?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=400&q=80',
+                        icon: '/src/assets/PageImg/services/camera.jpeg',
                         bookingLink: '/booking?service=photography',
                       },
                       {
@@ -96,6 +98,7 @@ export const servicesData = [
                           'Drone footage for stunning aerial perspectives',
                         ],
                         icon: 'https://images.pexels.com/photos/3372826/pexels-photo-3372826.jpeg?auto=compress&cs=tinysrgb&w=800&h=400',
+                        icon: '/src/assets/PageImg/services/video.jpeg',
                         bookingLink: '/booking?service=videography',
                       },
                       {
@@ -107,6 +110,7 @@ export const servicesData = [
                           'Professional consultations for personalized styles',
                         ],
                         icon: 'https://images.pexels.com/photos/457701/pexels-photo-457701.jpeg?auto=compress&cs=tinysrgb&w=800&h=400',
+                        icon: '/src/assets/PageImg/services/makeup.jpeg',
                         bookingLink: '/booking?service=make-up-and-hair-styling',
                       },
                     ]
@@ -342,6 +346,7 @@ export const testimonials = [
   export const galleryImages = [
     {
       src: 'https://images.unsplash.com/photo-1519741497674-4113f6d8b600?auto=format&fit=crop&w=800&h=600&q=80',
+      src: '/src/assets/PageImg/WEDDING/WED2.jpg',
       alt: 'Wedding ceremony',
       category: 'Wedding',
     },
@@ -387,6 +392,7 @@ export const testimonials = [
     },
     {
       src: 'https://images.pexels.com/photos/3603908/pexels-photo-3603908.jpeg?auto=compress&cs=tinysrgb&w=800&h=600',
+      src: '/src/assets/PageImg/CHILDREN/CH2.jpg',
       alt: 'Child portrait',
       category: 'Children',
     },
@@ -412,6 +418,7 @@ export const testimonials = [
     },
     {
       src: 'https://images.unsplash.com/photo-1506748686214-e9df14d4d9d0?auto=format&fit=crop&w=800&h=600&q=80',
+      src: '/src/assets/PageImg/FAMILY/FAM1.jpg',
       alt: 'Family event',
       category: 'Family',
     },

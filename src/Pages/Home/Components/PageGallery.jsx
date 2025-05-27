@@ -6,7 +6,7 @@ import { useState, useEffect } from 'react';
 // Gallery images data
 
 
-const GalleryPreview = () => {
+const GalleryPreview = ({galleryImages}) => {
   const [selectedImageIndex, setSelectedImageIndex] = useState(null);
 
   // Handle keyboard navigation
@@ -136,7 +136,7 @@ const GalleryPreview = () => {
               <img
                 src={galleryImages[selectedImageIndex].src}
                 alt={galleryImages[selectedImageIndex].alt}
-                className="max-w-full max-h-[70vh] object-contain rounded"
+                className="max-w-full max-h-[70vh]  object-contain rounded"
                 loading="lazy"
                 onError={(e) => (e.target.src = 'https://placehold.co/800x600?text=Fallback+Image')}
               />
