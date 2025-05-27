@@ -149,7 +149,9 @@ export const testimonials = [
      description: 'Capture your special day with our Wedding Photography and Event Coverage. Includes 8 hours of coverage, two photographers, and a custom album.',
      servicesIncluded: ['Photography'],
      isPopular: false,
-     icon: 'https://images.unsplash.com/photo-1519741497674-4113f6d8b600?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=400&q=80',
+     icon: '/src/assets/PageImg/WEDDING/BRIDE1.jpg',
+    //  icon: 'https://images.unsplash.com/photo-1519741497674-4113f6d8b600?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=400&q=80',
+
    },
    {
      title: 'Premium Wedding Experience',
@@ -163,7 +165,8 @@ export const testimonials = [
      description: 'Luxury Wedding Photography with a pre-wedding photo session, a dedicated videographer for cinematic videography including drone footage, and professional bridal makeup and hairstyling. Features 12 hours of coverage, two photographers, and a premium album.',
      servicesIncluded: ['Photography', 'Videography', 'Make Up and Hair Styling'],
      isPopular: false,
-     icon: 'https://images.unsplash.com/photo-1511285560929-80b456fef5cb?auto=format&fit=crop&w=800&h=400&q=80',
+    //  icon: 'https://images.unsplash.com/photo-1511285560929-80b456fef5cb?auto=format&fit=crop&w=800&h=400&q=80',
+     icon: '/src/assets/PageImg/WEDDING/WED2.jpg',
    },
    {
      title: 'Premium Family Legacy',
@@ -178,6 +181,7 @@ export const testimonials = [
      servicesIncluded: ['Photography', 'Videography'],
      isPopular: false,
      icon: 'https://images.pexels.com/photos/1128318/pexels-photo-1128318.jpeg?auto=compress&cs=tinysrgb&w=800&h=400',
+     icon: '/src/assets/PageImg/FAMILY/FAM1.jpg',
    },
    {
      title: 'Family Memories Package',
@@ -192,6 +196,8 @@ export const testimonials = [
      servicesIncluded: ['Photography'],
      isPopular: false,
      icon: 'https://images.pexels.com/photos/3184183/pexels-photo-3184183.jpeg?auto=compress&cs=tinysrgb&w=800&h=400',
+     icon: '/src/assets/PageImg/FAMILY/FAM2.jpg',
+
    },
   
    {
@@ -207,6 +213,7 @@ export const testimonials = [
      servicesIncluded: ['Photography'],
      isPopular: false,
      icon: 'https://images.pexels.com/photos/3178938/pexels-photo-3178938.jpeg?auto=compress&cs=tinysrgb&w=800&h=400',
+     icon: '/src/assets/PageImg/GRADUATION/GRAWM2.jpg',
    },
    {
      title: 'Premium Graduation Package',
@@ -221,6 +228,8 @@ export const testimonials = [
      servicesIncluded: ['Photography'],
      isPopular: true,
      icon: 'https://images.pexels.com/photos/2909067/pexels-photo-2909067.jpeg?auto=compress&cs=tinysrgb&w=800&h=400',
+     icon: '/src/assets/PageImg/GRADUATION/GRAWM3.jpg',
+
    },
    {
      title: 'Birthday Celebration Package',
@@ -235,6 +244,7 @@ export const testimonials = [
      servicesIncluded: ['Photography', 'Videography', 'Make Up and Hair Styling'],
      isPopular: false,
      icon: 'https://images.pexels.com/photos/1543766/pexels-photo-1543766.jpeg?auto=compress&cs=tinysrgb&w=800&h=400',
+     icon: '/src/assets/PageImg/BIRTHDAY/BIRTH3.jpg',
    },
    {
      title: 'Couple Shots Package',
@@ -249,6 +259,7 @@ export const testimonials = [
      servicesIncluded: ['Photography'],
      isPopular: false,
      icon: 'https://images.unsplash.com/photo-1505840717430-88294338e639?auto=format&fit=crop&w=800&h=400&q=80',
+     icon: '/src/assets/PageImg/COPPLE/COP1.jpg',
    },
    {
      title: 'Children Shot Package',
@@ -262,7 +273,7 @@ export const testimonials = [
      description: 'Capture your child’s milestones with a fun and vibrant photography session, perfect for birthdays, first steps, or special moments.',
      servicesIncluded: ['Photography'],
      isPopular: false,
-     icon: 'https://images.unsplash.com/photo-1591382696684-38c427c7547a?auto=format&fit=crop&w=800&h=400&q=80',
+     icon: '/src/assets/PageImg/CHILDREN/SKYLA.jpg',
    },
  ];
 

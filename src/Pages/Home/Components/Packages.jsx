@@ -65,14 +65,14 @@ const PackagesSection = ({packages}) => {
                 }}
                 ariaLabel={`More information about ${packageItem.title}`}
               />
-              <motion.div className="w-full h-40 bg-gray-700 overflow-hidden aspect-[4/2] mb-4">
+              <motion.div className="w-full  bg-gray-700 overflow-hidden aspect-[4/3] mb-4">
                 <motion.img
                   src={packageItem.icon}
                   alt={`${packageItem.title} package`}
                   className="w-full h-full object-cover mx-auto"
                   loading="lazy"
                   initial={{ scale: 1 }}
-                  whileHover={{ scale: 1.05 }}
+                  whileHover={{ scale: 1.1 }}
                 />
               </motion.div>
               <div className="flex flex-col h-full">
