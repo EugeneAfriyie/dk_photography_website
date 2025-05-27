@@ -1,25 +1,23 @@
 import { useState, useEffect } from 'react';
-import { motion } from 'framer-motion';
+import { motion,AnimatePresence } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { Helmet } from 'react-helmet';
 import { Menu, X, Camera, Info, Calendar, Camera as ShootIcon, Edit, Download, Image as PhotoIcon, Package } from 'lucide-react';
-import { Instagram, PhoneCall, Music } from 'lucide-react';
 import { FaInstagram, FaTiktok, FaWhatsapp } from "react-icons/fa";
-import { AnimatePresence } from 'framer-motion';
 import Carousel from './Components/Carousel';
 import { faqsData, heroData, packages, processStepsData, testimonials,servicesData,locationsData } from './data';
 import BookingPrompt from './Components/BookingPrompt';
 import { Component } from 'react';
 import Testmonial from './Components/Testmonial';
 import Intro_Sec from './Components/Intro_Sec';
-import 'leaflet/dist/leaflet.css'; // Required for react-leafletz
+import 'leaflet/dist/leaflet.css'; 
 import PackagesSection from './Components/Packages';
 import GalleryPreview from './Components/PageGallery';
 import Header from './Components/Header';
 import Services from './Components/Services';
 import Studio_Location from './Studio_Location';
 import Faq from './Faq';
-import { Progress } from './Progress';
+import  Progress from './Progress';
 import Footer from '../../Components/Footer';
 
 

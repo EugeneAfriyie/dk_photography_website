@@ -2,7 +2,7 @@ import React from 'react'
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 
-export const Progress = ({processStepsData}) => {
+ const Progress = ({processStepsData}) => {
   return (
         <>
               <section className="bg-gray-600/30 text-white py-20 px-4 mb-20">
@@ -142,3 +142,6 @@ export const Progress = ({processStepsData}) => {
 </>
   )
 }
+
+
+export default Progress;

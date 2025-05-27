@@ -9,6 +9,7 @@ import { AnimatePresence,motion } from 'framer-motion';
 const Header = ({mobileMenuOpen,setMobileMenuOpen}) => {
   return (
    
+        <>
              <header className="shadow-2xl shadow-gray-600  fixed top-5 left-1/2 transform -translate-x-1/2 w-full sm:w-[70%] z-500 bg-black/70 backdrop-blur-md rounded-full">
                <nav className="flex justify-between items-center px-6 py-4 max-w-7xl mx-auto">
        
@@ -52,6 +53,7 @@ const Header = ({mobileMenuOpen,setMobileMenuOpen}) => {
                  </div>
        
                  <div className="md:hidden">
+
                    <button
                      onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
                      aria-label="Toggle mobile menu"
@@ -65,6 +67,7 @@ const Header = ({mobileMenuOpen,setMobileMenuOpen}) => {
                  </div>
                </nav>
        
+             </header>
                <AnimatePresence>
                  {mobileMenuOpen && (
                    <motion.div
@@ -72,13 +75,37 @@ const Header = ({mobileMenuOpen,setMobileMenuOpen}) => {
                      animate={{ x: 0 }}
                      exit={{ x: '100%' }}
                      transition={{ duration: 0.3, ease: 'easeInOut' }}
-                     className="md:hidden fixed top-15  right-0 bottom-0 h-auto w-3/4 bg-black border-l border-gray-800 z-5000 backdrop-blur-md p-4"
+                     className="md:hidden fixed top-0  right-0 bottom- h-auto w-3/4 bg-black border-l border-gray-800 z-5000 backdrop-blur-md p-4"
                    >
+                      <div className="md:hidden flex justify-between mb-2">
+                        
+               <div className="flex items-center gap-2">
+                  <div className="w-10 h-10 overflow-hidden flex items-center justify-center">
+                 <img src="/src/assets/lo1.PNG" className=" object-cover object- w-full h-full" alt="LOGO" />
+                 {/* <img src="/src/assets/LOGO21.PNG" className='lg:hidden  object-cover object- w-full h-full' alt="" /> */}
+               </div>
+               <p className='text-[.6rem] lg:flex md:hidden font-semibold flex flex-col hover:text-amber-400 transition-colors duration-300'>
+                   <span>DKSHOTIT STUDIO &</span>
+                   <span>PHOTOGRAPHY</span>
+                 </p>
+       
+               </div>
+                   <button
+                     onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+                     aria-label="Toggle mobile menu"
+                   >
+                     {mobileMenuOpen ? (
+                       <X className="w-8 h-8 p-1 rounded-md bg-amber-500" />
+                     ) : (
+                       <Menu className="w-8 h-8 p-1  rounded-md bg-amber-500" />
+                     )}
+                   </button>
+                 </div>
                     
                     
 
-<ul className="flex flex-col items-cente gap-6 py-1 text-base bg-gray-800 shadow-md ">
-  <li className="group flex items-center gap-2 p-2 rounded hover:bg-gray-700 transition-all duration-300">
+<ul className="w-full flex flex-col items-cente gap-6 py-1 text-base bg-black shadow-md ">
+  <li className="group flex items-center gap-2 p-2 rounded hover:border hover:border-amber-700 transition-all duration-300">
     <svg
       className="w-5 h-5 text-white group-hover:text-amber-400 transition-colors duration-300"
       fill="none"
@@ -102,7 +129,7 @@ const Header = ({mobileMenuOpen,setMobileMenuOpen}) => {
       Home
     </Link>
   </li>
-  <li className="group flex items-center gap-2 p-2 rounded hover:bg-gray-700 transition-all duration-300">
+  <li className="group flex items-center gap-2 p-2 rounded  hover:border hover:border-amber-700  transition-all duration-300">
     <svg
       className="w-5 h-5 text-white group-hover:text-amber-400 transition-colors duration-300"
       fill="none"
@@ -126,7 +153,7 @@ const Header = ({mobileMenuOpen,setMobileMenuOpen}) => {
       About
     </Link>
   </li>
-  <li className="group flex items-center gap-2 p-2 rounded hover:bg-gray-700 transition-all duration-300">
+  <li className="group flex items-center gap-2 p-2 rounded hover:border hover:border-amber-700  transition-all duration-300">
     <svg
       className="w-5 h-5 text-white group-hover:text-amber-400 transition-colors duration-300"
       fill="none"
@@ -150,7 +177,7 @@ const Header = ({mobileMenuOpen,setMobileMenuOpen}) => {
       Gallery
     </Link>
   </li>
-  <li className="group flex items-center gap-2 p-2 rounded hover:bg-gray-700 transition-all duration-300">
+  <li className="group flex items-center gap-2 p-2 rounded hover:border hover:border-amber-700  transition-all duration-300">
     <svg
       className="w-5 h-5 text-white group-hover:text-amber-400 transition-colors duration-300"
       fill="none"
@@ -174,7 +201,7 @@ const Header = ({mobileMenuOpen,setMobileMenuOpen}) => {
       Services
     </Link>
   </li>
-  <li className="group flex items-center gap-2 p-2 rounded hover:bg-gray-700 transition-all duration-300">
+  <li className="group flex items-center gap-2 p-2 rounded hover:border hover:border-amber-700  transition-all duration-300">
     <svg
       className="w-5 h-5 text-white group-hover:text-amber-400 transition-colors duration-300"
       fill="none"
@@ -198,8 +225,13 @@ const Header = ({mobileMenuOpen,setMobileMenuOpen}) => {
       Contact
     </Link>
   </li>
-  <li className="group flex items-center gap-2 p-2 rounded hover:bg-gray-700 transition-all duration-300">
-    <svg
+</ul>
+  <li className="w-full group flex items-center gap-2 p-2 rounded hover:border hover:border-amber-700  transition-all duration-300">
+
+      <button className="font-semibold w-full bg-amber-500 px-6 py-2 rounded text-sm hover:bg-amber-600 transition-colors duration-300">
+    <Link className='flex justify-center gap' to="/contact" onClick={() => setMobileMenuOpen(false)}>
+       <span>
+            <svg
       className="w-5 h-5 text-white group-hover:text-amber-400 transition-colors duration-300"
       fill="none"
       stroke="currentColor"
@@ -216,19 +248,17 @@ const Header = ({mobileMenuOpen,setMobileMenuOpen}) => {
 0 v12 a2 2
 0 0 2"/>
 </svg>
-    <Link to="/contact" onClick={() => setMobileMenuOpen(false)}>
-      <button className="bg-amber-500 px-6 py-2 rounded text-sm hover:bg-amber-600 transition-colors duration-300">
+       </span>
+       
         Book Now
-      </button>
     </Link>
+      </button>
   </li>
-</ul>
 
 
                    </motion.div>
                  )}
-               </AnimatePresence>
-             </header>
+               </AnimatePresence></>
   )
 }
 
