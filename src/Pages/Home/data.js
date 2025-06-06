@@ -10,11 +10,13 @@ export const heroData = [
       // 'https://images.unsplash.com/photo-1519741497674-4113f6d8b600?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80',
       '/src/assets/PageImg/WEDDING/WED2.jpg',
     alt: 'Wedding photography',
+    link: '/booking'
   },
   {
     type: 'imageWithText',
     image:
-      'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80',
+      // 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80',
+      '/src/assets/PageImg/HOT/HOT1.jpg',
     text: 'Capture Your Moments',
     subText: 'Professional photography for every occasion.',
     alt: 'Portrait session',
@@ -36,17 +38,20 @@ export const heroData = [
   {
     type: 'image',
     image:
-      'https://images.unsplash.com/photo-1506748686214-e9df14d4d9d0?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80',
+      // 'https://images.unsplash.com/photo-1506748686214-e9df14d4d9d0?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80',
+      '/src/assets/PageImg/HEADSHOT/HEAD2.jpg',
     alt: 'Event photography',
+    link: '/booking'
   },
   {
     type: 'imageWithText',
     image: 'https://images.pexels.com/photos/2253879/pexels-photo-2253879.jpeg?auto=compress&cs=tinysrgb&w=1920',
+    image: '/src/assets/PageImg/BIRTHDAY/BRITH2.jpg',
     text: 'Timeless Memories',
     subText: 'Let us preserve your special moments forever.',
     alt: 'Family photography',
     overlay: {
-      background: 'rgba(255,191,0,0.4)',
+      background: 'rgba(255,191,0,0.1)',
       textPosition: 'bottom-right',
       textColor: 'text-white',
       fontSize: 'text-2xl sm:text-4xl',
@@ -119,22 +124,23 @@ export const testimonials = [
   {
     quote:
       '"SnapShot Studio made our wedding day even more special. Every photo was stunning and captured our emotions perfectly."',
-    author: 'Sarah & Mike',
-    image: 'https://randomuser.me/api/portraits/women/68.jpg',
+    author: 'Abena & Kojo',
+    image: '/src/assets/PageImg/COPPLE/COP1.jpg',
     rating: 5,
   },
   {
     quote:
       '"Professional, friendly, and extremely talented. The best portrait session I\'ve ever had!"',
-    author: 'James T.',
+    author: 'Afia Frema',
     image: 'https://randomuser.me/api/portraits/men/45.jpg',
+    image: '/src/assets/PageImg/HEADSHOT/HEAD2.jpg',
     rating: 4,
   },
   {
     quote:
       '"I needed headshots for my business profile, and SnapShot delivered exactly what I envisioned. Highly recommend!"',
-    author: 'Clara D.',
-    image: 'https://randomuser.me/api/portraits/women/42.jpg',
+    author: 'Osei Asibey',
+    image: '/src/assets/PageImg/DK/DK1.jpg',
     rating: 5,
   },
 ];
@@ -352,37 +358,44 @@ export const testimonials = [
     },
     {
       src: 'https://images.pexels.com/photos/3178938/pexels-photo-3178938.jpeg?auto=compress&cs=tinysrgb&w=800&h=600',
+      src: '/src/assets/PageImg/GRADUATION/GRAWM2.jpg',
       alt: 'Graduate in cap and gown',
       category: 'Graduation',
     },
     {
       src: 'https://images.pexels.com/photos/3184183/pexels-photo-3184183.jpeg?auto=compress&cs=tinysrgb&w=800&h=600',
+      src: '/src/assets/PageImg/FAMILY/FAM1.jpg',
       alt: 'Family portrait',
       category: 'Family',
     },
     {
       src: 'https://images.unsplash.com/photo-1591382696684-38c427c7547a?auto=format&fit=crop&w=800&h=600&q=80',
+      src: '/src/assets/PageImg/CHILDREN/CH4.jpg',
       alt: 'Child playing',
       category: 'Children',
     },
     {
       src: 'https://images.unsplash.com/photo-1505840717430-88294338e639?auto=format&fit=crop&w=800&h=600&q=80',
+      src: '/src/assets/PageImg/COPPLE/COP2.jpg',
       alt: 'Couple in love',
       category: 'Couple',
     },
     {
       src: 'https://images.pexels.com/photos/1543766/pexels-photo-1543766.jpeg?auto=compress&cs=tinysrgb&w=800&h=600',
+      src: '/src/assets/PageImg/BIRTHDAY/BRITH2.jpg',
       alt: 'Birthday celebration',
       category: 'Birthday',
     },
     {
       src: 'https://images.unsplash.com/photo-1511285560929-80b456fef5cb?auto=format&fit=crop&w=800&h=600&q=80',
+      src: '/src/assets/PageImg/COPPLE/COP3.jpg',
       alt: 'Bride and groom',
       category: 'Wedding',
     },
     {
-      src: 'https://images.pexels.com/photos/2909067/pexels-photo-2909067.jpeg?auto=compress&cs=tinysrgb&w=800&h=600',
       alt: 'Graduation group',
+      src: 'https://images.pexels.com/photos/2909067/pexels-photo-2909067.jpeg?auto=compress&cs=tinysrgb&w=800&h=600',
+      src: '/src/assets/PageImg/GRADUATION/GRAWM1.jpg',
       category: 'Graduation',
     },
     {
@@ -398,22 +411,25 @@ export const testimonials = [
     },
     {
       src: 'https://images.unsplash.com/photo-1500259571355-332da5cb07f1?auto=format&fit=crop&w=800&h=600&q=80',
+      src: '/src/assets/PageImg/COPPLE/COP2.jpg',
       alt: 'Couple engagement',
       category: 'Couple',
     },
     {
       src: 'https://images.pexels.com/photos/2253879/pexels-photo-2253879.jpeg?auto=compress&cs=tinysrgb&w=800&h=600',
+      src: '/src/assets/PageImg/BIRTHDAY/BIRTH3.jpg',
       alt: 'Birthday party',
       category: 'Birthday',
     },
     {
       src: 'https://images.unsplash.com/photo-1529636798458-92182e662485?auto=format&fit=crop&w=800&h=600&q=80',
+      src: '/src/assets/PageImg/WEDDING/BRIDE1.jpg',
       alt: 'Wedding portrait',
       category: 'Wedding',
     },
     {
       src: 'https://images.unsplash.com/photo-1523050854058-8df90110c9f1?auto=format&fit=crop&w=800&h=600&q=80',
-      alt: 'Graduate with diploma',
+      src: '/src/assets/PageImg/GRADUATION/GRAM1.jpg',
       category: 'Graduation',
     },
     {
@@ -424,6 +440,7 @@ export const testimonials = [
     },
     {
       src: 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=800&h=600&q=80',
+      src: '/src/assets/PageImg/CHILDREN/CH3.jpg',
       alt: 'Child smiling',
       category: 'Children',
     },
