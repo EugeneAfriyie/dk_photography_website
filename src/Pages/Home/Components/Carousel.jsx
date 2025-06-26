@@ -128,7 +128,7 @@ const Carousel = ({ items }) => {
               srcSet={`${slide.image}&w=100&q=10 100w, ${slide.image} 1920w`}
               sizes="(max-width: 640px) 100vw, 1920px"
               alt={slide.alt || 'Carousel slide'}
-              className="w-full h-full object-cover"
+              className="w-full h-full object-cover "
               loading="lazy"
               style={{
                 transform: index === currentIndex ? 'translateY(0)' : 'translateY(20px)',
