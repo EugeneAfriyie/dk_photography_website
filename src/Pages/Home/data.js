@@ -61,7 +61,8 @@ export const heroData = [
   {
     type: 'imageWithText',
     // image: 'https://images.pexels.com/photos/3178938/pexels-photo-3178938.jpeg?auto=compress&cs=tinysrgb&w=1920',
-    image: 'https://images.unsplash.com/photo-1523050854058-8df90110c9f1?auto=format&fit=crop&w=800&h=600&q=80',
+    image:       'src/assets/PageImg/GRADUATION/GRAWM2.jpg',
+
 
     text: 'Celebrate Your Graduation!',
     subText: 'Book your professional photoshoot to capture this milestone.',
