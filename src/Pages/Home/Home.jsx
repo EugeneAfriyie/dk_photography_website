@@ -19,6 +19,7 @@ import Studio_Location from './Studio_Location';
 import Faq from './Faq';
 import  Progress from './Progress';
 import Footer from '../../Components/Footer';
+import ExclusiveOffer from './Components/ExclusiveOffer';
 
 
 
@@ -214,6 +215,9 @@ const Home = () => {
                     </Link>
                   </motion.div>
                 </section>
+
+
+                <ExclusiveOffer />
 
 
       {/* Packages Section */}
