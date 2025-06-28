@@ -1,8 +1,11 @@
 import React from 'react'
+import UnderConstruction from '../UnderConstruction/UnderConstruction';
 
 const Contact = () => {
   return (
-    <div>Contact</div>
+    <div>
+      <UnderConstruction />
+    </div>
   )
 }
 
