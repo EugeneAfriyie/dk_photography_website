@@ -2,7 +2,9 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { Camera, Palette } from 'lucide-react';
 import { Link } from 'react-router-dom';
-import CountdownTimer from './CountdownTimer'; // Assuming CountdownTimer is in the same directory
+import CountdownTimer from '../CountdownTimer';
+import { Phone, MessageCircle } from 'lucide-react'; // Add these imports at the top of ExclusiveOffer.jsx
+
 
 const ExclusiveOffer = () => {
   return (
@@ -64,21 +66,31 @@ const ExclusiveOffer = () => {
             </Link>
           </motion.div>
         </div>
-        <motion.div
-          className="mt-8"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.4 }}
-          viewport={{ once: true }}
-        >
-          <p className="text-gray-300 mb-4">Offer ends in:</p>
-          <CountdownTimer deadline="2025-07-05T17:00:00Z" />
-          <Link to="/training">
-            <button className="mt-4 bg-amber-500 px-6 py-2 rounded hover:bg-amber-600">
-              Enroll Now
-            </button>
-          </Link>
-        </motion.div>
+
+<motion.div
+  className="mt-8 p-6 rounded-xl"
+  style={{
+    background: 'linear-gradient(135deg, rgba(31, 41, 55, 0.9), rgba(17, 24, 39, 0.9))',
+    boxShadow: '0 4px 6px rgba(0, 0, 0, 0.3)',
+  }}
+  initial={{ opacity: 0, y: 20 }}
+  whileInView={{ opacity: 1, y: 0 }}
+  transition={{ duration: 0.6, delay: 0.4 }}
+  viewport={{ once: true }}
+>
+  <p className="text-gray-300 mb-4">Offer ends in:</p>
+  <CountdownTimer deadline="2025-07-05T17:00:00Z" />
+  <div className="flex flex-col sm:flex-row gap-4 mt-4 justify-center">
+    <a href="tel:+12025550123" className="flex items-center justify-center bg-amber-500 px-6 py-2 rounded hover:bg-amber-600 text-white">
+      <Phone className="w-5 h-5 mr-2" />
+      Call to Enroll
+    </a>
+    <a href="https://wa.me/12025550123?text=Hello,%20I%20want%20to%20enroll%20in%20the%20training%20program!" target="_blank" rel="noopener noreferrer" className="flex items-center justify-center bg-amber-500 px-6 py-2 rounded hover:bg-amber-600 text-white">
+      <MessageCircle className="w-5 h-5 mr-2" />
+      WhatsApp to Enroll
+    </a>
+  </div>
+</motion.div>
       </div>
     </section>
   );

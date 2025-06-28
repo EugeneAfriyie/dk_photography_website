@@ -1,5 +1,14 @@
-export const CountdownTimer = ({ deadline }) => {
-  const [timeLeft, setTimeLeft] = useState({ days: 1, hours: 4, minutes: 0, seconds: 0 });
+import React, { useState, useEffect } from 'react';
+import { motion } from 'framer-motion';
+
+const CountdownTimer = ({ deadline }) => {
+  const [timeLeft, setTimeLeft] = useState({
+    days: 0,
+    hours: 0,
+    minutes: 0,
+    seconds: 0,
+    expired: false,
+  });
 
   useEffect(() => {
     const calculateTimeLeft = () => {
@@ -57,3 +66,5 @@ export const CountdownTimer = ({ deadline }) => {
     </motion.div>
   );
 };
+
+export default CountdownTimer;
