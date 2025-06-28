@@ -106,7 +106,7 @@ const GalleryPreview = ({galleryImages}) => {
       <AnimatePresence>
         {selectedImageIndex !== null && (
           <motion.div
-            className="fixed inset-0 bg-black/80 flex items-center justify-center z-50"
+            className="fixed inset-0 bg-black/80 flex items-center justify-center z-5000"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
@@ -126,13 +126,15 @@ const GalleryPreview = ({galleryImages}) => {
               transition={{ duration: 0.3, ease: 'easeInOut' }}
               onClick={(e) => e.stopPropagation()}
             >
-              <button
-                className="absolute top-2 right-2 text-gray-400 hover:text-white text-xl"
+              <div className="flex items-center justify-end w-full mb-2 ">
+                <button
+                className=" top-2 right-2 text-gray-400 hover:text-white text-xl"
                 onClick={() => setSelectedImageIndex(null)}
                 aria-label="Close image overlay"
               >
                 ✕
               </button>
+              </div>
               <img
                 src={galleryImages[selectedImageIndex].src}
                 alt={galleryImages[selectedImageIndex].alt}
