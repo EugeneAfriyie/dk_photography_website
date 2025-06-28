@@ -1,8 +1,11 @@
 import React from 'react'
+import UnderConstruction from '../UnderConstruction/UnderConstruction'
 
 const Gallery = () => {
   return (
-    <div>Gallery</div>
+    <div>
+      <UnderConstruction />
+    </div>
   )
 }
 
