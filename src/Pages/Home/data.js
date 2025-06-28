@@ -74,7 +74,7 @@ export const heroData = [
       fontSize: 'text-3xl sm:text-5xl',
     },
     countdown: {
-      deadline: '2025-06-01T23:59:59Z',
+      deadline: '2025-07-01T23:59:59Z',
     },
     cta: {
       text: 'Book Now',
