@@ -28,44 +28,49 @@ const ExclusiveOffer = () => {
         >
           Elevate your skills with our specialized training programs for photographers and makeup artists. Limited-time offer!
         </motion.p>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          <motion.div
-            className="bg-gray-800 p-6 rounded-xl shadow-md hover:shadow-lg transition-all duration-300"
-            initial={{ opacity: 0, y: 50 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            viewport={{ once: true }}
-          >
-            <Camera className="w-12 h-12 mx-auto mb-4 text-amber-400" />
-            <h3 className="text-xl font-semibold mb-2 text-amber-300">Photographer Training</h3>
-            <p className="text-gray-400 mb-4">
-              Master the art of photography with hands-on training, advanced techniques, and equipment mastery. Includes 10 sessions.
-            </p>
-            <Link to="/training/photographer">
-              <button className="bg-amber-500 px-4 py-2 rounded hover:bg-amber-600">
-                Learn More
-              </button>
-            </Link>
-          </motion.div>
-          <motion.div
-            className="bg-gray-800 p-6 rounded-xl shadow-md hover:shadow-lg transition-all duration-300"
-            initial={{ opacity: 0, y: 50 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            viewport={{ once: true }}
-          >
-            <Palette className="w-12 h-12 mx-auto mb-4 text-amber-400" />
-            <h3 className="text-xl font-semibold mb-2 text-amber-300">Makeup Artist Training</h3>
-            <p className="text-gray-400 mb-4">
-              Learn professional makeup techniques for photoshoots, including lighting and product application. Includes 8 sessions.
-            </p>
-            <Link to="/training/makeup">
-              <button className="bg-amber-500 px-4 py-2 rounded hover:bg-amber-600">
-                Learn More
-              </button>
-            </Link>
-          </motion.div>
-        </div>
+<div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+  <motion.div
+    className="bg-gray-800 p-6 rounded-xl shadow-md hover:shadow-lg transition-all duration-300"
+    initial={{ opacity: 0, y: 50 }}
+    whileInView={{ opacity: 1, y: 0 }}
+    transition={{ duration: 0.6 }}
+    viewport={{ once: true }}
+  >
+        <img src="/src/assets/training/makeup.jpg" alt="Makeup Artist Training" className="aspect-[4/2] mx-auto mb-4 object-cover rounded-t-xl" />
+
+    <h3 className="text-xl font-semibold mb-2 text-amber-300">Photographer Training</h3>
+    <div className="flex flex-col justify-between flex-grow">
+      <p className="text-gray-400 mb-4">
+        Master photography with training in wedding (candid and posed), portrait (individuals and families), event (corporate and personal), and commercial (brands and products) shoots. Includes 10 hands-on sessions with advanced techniques and equipment mastery.
+      </p>
+      <Link to="/training/photographer">
+        <button className="bg-amber-500 px-4 py-2 rounded hover:bg-amber-600">
+          Learn More
+        </button>
+      </Link>
+    </div>
+  </motion.div>
+  <motion.div
+    className="bg-gray-800 p-6 rounded-xl shadow-md hover:shadow-lg transition-all duration-300"
+    initial={{ opacity: 0, y: 50 }}
+    whileInView={{ opacity: 1, y: 0 }}
+    transition={{ duration: 0.6, delay: 0.2 }}
+    viewport={{ once: true }}
+  >
+    <img src="/src/assets/training/makeup.jpg" alt="Makeup Artist Training" className="aspect-[4/2] mx-auto mb-4 object-cover rounded-t-xl" />
+    <h3 className="text-xl font-semibold mb-2 text-amber-300">Makeup Artist Training</h3>
+    <div className="flex flex-col justify-between flex-grow">
+      <p className="text-gray-400 mb-4">
+        Master professional makeup and hair styling techniques tailored for bridal looks, photoshoot portraits, fashion shoots, and special occasions. Learn lighting mastery, product application, and personalized styling through 8 hands-on sessions, including professional consultations to craft your unique style.
+      </p>
+      <Link to="/training/makeup">
+        <button className="bg-amber-500 px-4 py-2 rounded hover:bg-amber-600">
+          Learn More
+        </button>
+      </Link>
+    </div>
+  </motion.div>
+</div>
 
 <motion.div
   className="mt-8 p-6 rounded-xl"
