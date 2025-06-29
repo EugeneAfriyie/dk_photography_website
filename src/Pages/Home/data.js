@@ -2,6 +2,22 @@
 import { image } from 'framer-motion/client';
 import { Menu, X, Camera, Info, Calendar, Camera as ShootIcon, Edit, Download, Image as PhotoIcon, Package } from 'lucide-react';
 
+  export const introData =[
+        {
+            heading: ' Photography Tools',
+            introText: '  Unlock next-gen equipment and editing software. Integrated with the latest technology to enhance your photo quality.',
+            imgUrl: '/src/assets/Photo_Equiment/EQ_image-2.png',
+
+
+        },
+        {
+            heading: ' Custom Packages',
+            introText: '   Build your photography journey with a tailored plan. Test your vision and we’ll adjust based on your needs.',
+            imgUrl: '/src/assets/Photo_Equiment/EQ_image_1.png',
+
+
+        },
+    ]
 
 export const heroData = [
   {

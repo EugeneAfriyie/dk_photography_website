@@ -1,25 +1,11 @@
 import React from 'react'
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
+import { introData } from '../data';
 
 
 const Intro_Sec = () => {
-    const introData =[
-        {
-            heading: ' Photography Tools',
-            introText: '  Unlock next-gen equipment and editing software. Integrated with the latest technology to enhance your photo quality.',
-            imgUrl: '/src/assets/Photo_Equiment/EQ_image-2.png',
-
-
-        },
-        {
-            heading: ' Custom Packages',
-            introText: '   Build your photography journey with a tailored plan. Test your vision and we’ll adjust based on your needs.',
-            imgUrl: '/src/assets/Photo_Equiment/EQ_image_1.png',
-
-
-        },
-    ]
+  
 
   return (
     <section className="bg-black text-white py-20 px-4">
@@ -54,13 +40,13 @@ const Intro_Sec = () => {
                           transition={{ duration: 0.6, delay: 0.2 }}
                           viewport={{ once: true }}
                         >
-                     <div className="flex justify-center h40 mb-4 aspect-[4/2]">
-  <img
-    src={i.imgUrl}
-    className="w-full h-full object-cover rounded-sm"
-    alt="Custom Packages"
-  />
-</div>
+                        <div className="flex justify-center h40 mb-4 aspect-[4/2]">
+                          <img
+                            src={i.imgUrl}
+                            className="w-full h-full object-cover rounded-sm"
+                            alt="Custom Packages"
+                          />
+                        </div>
 
                           <h3 className="text-xl font-semibold mb-2 text-amber-300">{i.heading}</h3>
                           <p className="text-gray-400 mb-4 sm:text-[1rem] text-sm">
