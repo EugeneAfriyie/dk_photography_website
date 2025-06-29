@@ -14,7 +14,7 @@ const Footer = ({isFocused,setIsFocused}) => {
           
             <div className="flex items-center gap-2">
                <div className="w-10 h-10 overflow-hidden flex items-center justify-center">
-              <img src="/src/assets/lo1.PNG" className=" object-cover object- w-full h-full" alt="logo" />
+              <img src="/src/assets/LOGO/lo1.PNG" className=" object-cover object- w-full h-full" alt="logo" />
               {/* <img src="/src/assets/LOGO21.PNG" className='lg:hidden  object-cover object- w-full h-full' alt="" /> */}
             </div>
             <p className='text-[.6rem] lg:flex md:hidden font-semibold flex flex-col hover:text-amber-400 transition-colors duration-300'>
