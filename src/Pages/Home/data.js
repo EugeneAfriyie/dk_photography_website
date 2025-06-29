@@ -42,14 +42,14 @@ export const heroData = [
       textColor: 'text-white',
       fontSize: 'text-3xl sm:text-5xl',
     },
-    cta: { text: 'Book Now', link: '/booking' },
+    cta: { text: 'Book Now', link: '/contact' },
   },
   {
     type: 'text',
     text: 'Book Now for Exclusive Offers!',
     subText: 'Limited slots available. Secure yours today.',
     background: 'linear-gradient(to bottom, rgba(255,255,255,0), rgba(107,114,128,0.2))',
-    cta: { text: 'Book Now', link: '/booking' },
+    cta: { text: 'Book Now', link: '/contact' },
   },
   {
     type: 'image',
@@ -57,7 +57,7 @@ export const heroData = [
       // 'https://images.unsplash.com/photo-1506748686214-e9df14d4d9d0?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80',
       '/src/assets/PageImg/HEADSHOT/HEAD2.jpg',
     alt: 'Event photography',
-    link: '/booking'
+    link: '/contact'
   },
   {
     type: 'imageWithText',
@@ -72,7 +72,7 @@ export const heroData = [
       textColor: 'text-white',
       fontSize: 'text-2xl sm:text-4xl',
     },
-    cta: { text: 'Book Now', link: '/booking' },
+    cta: { text: 'Book Now', link: '/contact' },
   },
   {
     type: 'imageWithText',

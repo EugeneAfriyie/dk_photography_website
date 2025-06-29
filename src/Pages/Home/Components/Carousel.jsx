@@ -109,7 +109,6 @@ const Carousel = ({ items }) => {
       }}
     >
       {items.map((slide, index) => (
-        <Link to={'/booking'}>
         <motion.div
           key={index}
           className={`absolute top-0 left-0 w-full h-full flex items-center justify-center ${
@@ -123,6 +122,10 @@ const Carousel = ({ items }) => {
           transition={{ duration: 0.5, ease: 'easeOut' }}
         >
           {slide.type === 'image' && (
+        <Link to={'/contact'} 
+              className='w-full '
+        >
+
             <img
               src={slide.image}
               srcSet={`${slide.image}&w=100&q=10 100w, ${slide.image} 1920w`}
@@ -136,7 +139,9 @@ const Carousel = ({ items }) => {
               }}
               onError={(e) => (e.target.src = 'https://placehold.co/1920x1080?text=Fallback+Image')}
             />
+        </Link>
           )}
+
           {slide.type === 'imageWithText' && (
             <div className="relative w-full h-full">
               <img
@@ -212,7 +217,6 @@ const Carousel = ({ items }) => {
             </div>
           )}
         </motion.div>
-        </Link>
       ))}
       <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex space-x-2">
         {items.map((_, index) => (
