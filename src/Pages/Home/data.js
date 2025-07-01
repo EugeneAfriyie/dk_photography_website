@@ -6,14 +6,14 @@ import { Menu, X, Camera, Info, Calendar, Camera as ShootIcon, Edit, Download, I
         {
             heading: ' Photography Tools',
             introText: '  Unlock next-gen equipment and editing software. Integrated with the latest technology to enhance your photo quality.',
-            imgUrl: '/src/assets/Photo_Equiment/EQ_image-2.png',
+            imgUrl: 'https://res.cloudinary.com/djeorsh5d/image/upload/v1751247136/EQ_image-2_ttqpf8.png',
 
 
         },
         {
             heading: ' Custom Packages',
             introText: '   Build your photography journey with a tailored plan. Test your vision and we’ll adjust based on your needs.',
-            imgUrl: '/src/assets/Photo_Equiment/EQ_image_1.png',
+            imgUrl: 'https://res.cloudinary.com/djeorsh5d/image/upload/v1751247134/EQ_image_1_dzi1mx.png',
 
 
         },
