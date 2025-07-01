@@ -170,8 +170,7 @@ export const testimonials = [
      description: 'Capture your special day with our Wedding Photography and Event Coverage. Includes 8 hours of coverage, two photographers, and a custom album.',
      servicesIncluded: ['Photography'],
      isPopular: false,
-     icon: '/src/assets/PageImg/WEDDING/BRIDE1.jpg',
-    //  icon: 'https://images.unsplash.com/photo-1519741497674-4113f6d8b600?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=400&q=80',
+     icon: 'https://res.cloudinary.com/djeorsh5d/image/upload/v1751247125/BRIDE1_kjfo1p.jpg',
 
    },
    {
@@ -186,8 +185,7 @@ export const testimonials = [
      description: 'Luxury Wedding Photography with a pre-wedding photo session, a dedicated videographer for cinematic videography including drone footage, and professional bridal makeup and hairstyling. Features 12 hours of coverage, two photographers, and a premium album.',
      servicesIncluded: ['Photography', 'Videography', 'Make Up and Hair Styling'],
      isPopular: false,
-    //  icon: 'https://images.unsplash.com/photo-1511285560929-80b456fef5cb?auto=format&fit=crop&w=800&h=400&q=80',
-     icon: '/src/assets/PageImg/WEDDING/WED2.jpg',
+     icon: 'https://res.cloudinary.com/djeorsh5d/image/upload/v1751247127/WED1_c0gp9p.jpg',
    },
    {
      title: 'Premium Family Legacy',
@@ -201,8 +199,7 @@ export const testimonials = [
      description: 'Elite Children Photography and Family Photography with 6 hours, studio access, a hardcover book, and video highlights.',
      servicesIncluded: ['Photography', 'Videography'],
      isPopular: false,
-     icon: 'https://images.pexels.com/photos/1128318/pexels-photo-1128318.jpeg?auto=compress&cs=tinysrgb&w=800&h=400',
-     icon: '/src/assets/PageImg/FAMILY/FAM1.jpg',
+     icon: 'https://res.cloudinary.com/djeorsh5d/image/upload/v1751247111/FAM1_wdqml7.jpg',
    },
    {
      title: 'Family Memories Package',
@@ -216,7 +213,7 @@ export const testimonials = [
      description: 'Cherish your family bond with Children Photography and Family Photography. Includes 3 hours of outdoor or indoor sessions and a digital gallery.',
      servicesIncluded: ['Photography'],
      isPopular: false,
-     icon: 'https://images.pexels.com/photos/3184183/pexels-photo-3184183.jpeg?auto=compress&cs=tinysrgb&w=800&h=400',
+     icon: 'https://res.cloudinary.com/djeorsh5d/image/upload/v1751247111/FAM2_kaaw51.jpg',
      icon: '/src/assets/PageImg/FAMILY/FAM2.jpg',
 
    },
@@ -233,8 +230,7 @@ export const testimonials = [
      description: 'Capture your graduation day with professional photos featuring caps, gowns, and milestone moments.',
      servicesIncluded: ['Photography'],
      isPopular: false,
-     icon: 'https://images.pexels.com/photos/3178938/pexels-photo-3178938.jpeg?auto=compress&cs=tinysrgb&w=800&h=400',
-     icon: '/src/assets/PageImg/GRADUATION/GRAWM2.jpg',
+     icon: 'https://res.cloudinary.com/djeorsh5d/image/upload/v1751247111/GRAWM2_flta1z.jpg',
    },
    {
      title: 'Premium Graduation Package',
@@ -248,8 +244,7 @@ export const testimonials = [
      description: 'A comprehensive graduation package with extended coverage, a custom photo book, and group shots.',
      servicesIncluded: ['Photography'],
      isPopular: true,
-     icon: 'https://images.pexels.com/photos/2909067/pexels-photo-2909067.jpeg?auto=compress&cs=tinysrgb&w=800&h=400',
-     icon: '/src/assets/PageImg/GRADUATION/GRAWM3.jpg',
+     icon: 'https://res.cloudinary.com/djeorsh5d/image/upload/v1751247111/GRAWM1_azekpo.jpg',
 
    },
    {
@@ -264,8 +259,7 @@ export const testimonials = [
      description: 'Celebrate your special day with vibrant birthday photography, a dedicated videographer for cinematic videography, and professional makeup and hairstyling. Includes 3 hours of coverage and a digital gallery.',
      servicesIncluded: ['Photography', 'Videography', 'Make Up and Hair Styling'],
      isPopular: false,
-     icon: 'https://images.pexels.com/photos/1543766/pexels-photo-1543766.jpeg?auto=compress&cs=tinysrgb&w=800&h=400',
-     icon: '/src/assets/PageImg/BIRTHDAY/BIRTH3.jpg',
+     icon: 'https://res.cloudinary.com/djeorsh5d/image/upload/v1751247104/BIRTH3_po4i3v.jpg',
    },
    {
      title: 'Couple Shots Package',
@@ -279,7 +273,7 @@ export const testimonials = [
      description: 'Capture your love story with a romantic couple photography session, perfect for engagements, anniversaries, or special moments.',
      servicesIncluded: ['Photography'],
      isPopular: false,
-     icon: 'https://images.unsplash.com/photo-1505840717430-88294338e639?auto=format&fit=crop&w=800&h=400&q=80',
+     icon: 'https://res.cloudinary.com/djeorsh5d/image/upload/v1751247107/COP1_gfdb3c.jpg',
      icon: '/src/assets/PageImg/COPPLE/COP1.jpg',
    },
    {
@@ -294,7 +288,7 @@ export const testimonials = [
      description: 'Capture your child’s milestones with a fun and vibrant photography session, perfect for birthdays, first steps, or special moments.',
      servicesIncluded: ['Photography'],
      isPopular: false,
-     icon: '/src/assets/PageImg/CHILDREN/SKYLA.jpg',
+     icon: 'https://res.cloudinary.com/djeorsh5d/image/upload/v1751247106/SKYLA_d81pvt.jpg',
    },
  ];
 
