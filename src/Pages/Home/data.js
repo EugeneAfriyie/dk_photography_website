@@ -103,8 +103,7 @@ export const servicesData = [
                           'Event photography for corporate and personal occasions',
                           'Commercial photography for brands and products',
                         ],
-                        icon: 'https://images.unsplash.com/photo-1519741497674-4113f6d8b600?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=400&q=80',
-                        icon: '/src/assets/PageImg/services/camera.jpeg',
+                        icon: 'https://res.cloudinary.com/djeorsh5d/image/upload/v1751247112/camera_wwl3ep.jpg',
                         bookingLink: '/booking?service=photography',
                       },
                       {
@@ -115,8 +114,7 @@ export const servicesData = [
                           'Promotional videos for businesses and campaigns',
                           'Drone footage for stunning aerial perspectives',
                         ],
-                        icon: 'https://images.pexels.com/photos/3372826/pexels-photo-3372826.jpeg?auto=compress&cs=tinysrgb&w=800&h=400',
-                        icon: '/src/assets/PageImg/services/video.jpeg',
+                        icon: 'https://res.cloudinary.com/djeorsh5d/image/upload/v1751247118/video_m9r5ph.jpg',
                         bookingLink: '/booking?service=videography',
                       },
                       {
@@ -127,7 +125,7 @@ export const servicesData = [
                           'Special occasion looks for events and parties',
                           'Professional consultations for personalized styles',
                         ],
-                        icon: 'https://images.pexels.com/photos/457701/pexels-photo-457701.jpeg?auto=compress&cs=tinysrgb&w=800&h=400',
+                        icon: 'https://res.cloudinary.com/djeorsh5d/image/upload/v1751247118/makeup_im8ojo.jpg',
                         icon: '/src/assets/PageImg/services/makeup.jpeg',
                         bookingLink: '/booking?service=make-up-and-hair-styling',
                       },
