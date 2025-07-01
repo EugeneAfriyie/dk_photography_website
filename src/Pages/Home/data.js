@@ -23,16 +23,14 @@ export const heroData = [
   {
     type: 'image',
     image:
-      // 'https://images.unsplash.com/photo-1519741497674-4113f6d8b600?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80',
-      '/src/assets/PageImg/WEDDING/WED2.jpg',
+      'https://res.cloudinary.com/djeorsh5d/image/upload/v1751247130/WED2_wodmzq.jpg',
     alt: 'Wedding photography',
     link: '/booking'
   },
   {
     type: 'imageWithText',
     image:
-      // 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80',
-      '/src/assets/PageImg/HOT/HOT1.jpg',
+      'https://res.cloudinary.com/djeorsh5d/image/upload/v1751247126/HOT1_chjduo.jpg',
     text: 'Capture Your Moments',
     subText: 'Professional photography for every occasion.',
     alt: 'Portrait session',
@@ -54,14 +52,13 @@ export const heroData = [
   {
     type: 'image',
     image:
-      // 'https://images.unsplash.com/photo-1506748686214-e9df14d4d9d0?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80',
-      '/src/assets/PageImg/HEADSHOT/HEAD2.jpg',
+      'https://res.cloudinary.com/djeorsh5d/image/upload/v1751247112/HEAD2_hdxgm2.jpg',
     alt: 'Event photography',
     link: '/contact'
   },
   {
     type: 'imageWithText',
-    image: 'https://images.pexels.com/photos/2253879/pexels-photo-2253879.jpeg?auto=compress&cs=tinysrgb&w=1920',
+    image: 'https://res.cloudinary.com/djeorsh5d/image/upload/v1751247104/BRITH1_awhuvx.jpg',
     image: '/src/assets/PageImg/BIRTHDAY/BRITH2.jpg',
     text: 'Timeless Memories',
     subText: 'Let us preserve your special moments forever.',
@@ -76,8 +73,7 @@ export const heroData = [
   },
   {
     type: 'imageWithText',
-    // image: 'https://images.pexels.com/photos/3178938/pexels-photo-3178938.jpeg?auto=compress&cs=tinysrgb&w=1920',
-    image:       'src/assets/PageImg/GRADUATION/GRAWM2.jpg',
+    image:       'https://res.cloudinary.com/djeorsh5d/image/upload/v1751247111/GRAWM2_flta1z.jpg',
 
 
     text: 'Celebrate Your Graduation!',
