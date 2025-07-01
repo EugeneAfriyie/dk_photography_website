@@ -36,7 +36,7 @@ const ExclusiveOffer = () => {
             viewport={{ once: true }}
           >
             <motion.img
-              src="/src/assets/training/makeup.jpg"
+              src="https://res.cloudinary.com/djeorsh5d/image/upload/v1751247135/makeup_aqazg9.jpg"
               alt="Photography Training"
               className="aspect-[4/2] mx-auto mb-4 object-cover rounded-t-xl"
               initial={{ opacity: 0, scale: 0.9 }}
@@ -71,7 +71,7 @@ const ExclusiveOffer = () => {
             viewport={{ once: true }}
           >
             <motion.img
-              src="/src/assets/training/makeup.jpg"
+              src="https://res.cloudinary.com/djeorsh5d/image/upload/v1751247135/makeup_aqazg9.jpg"
               alt="Makeup Artist Training"
               className="aspect-[4/2] mx-auto mb-4 object-cover rounded-t-xl"
               initial={{ opacity: 0, scale: 0.9 }}
