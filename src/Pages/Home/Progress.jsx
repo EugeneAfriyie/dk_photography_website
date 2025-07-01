@@ -55,7 +55,7 @@ import { Link } from 'react-router-dom';
         <div 
           className="font-semibold text-white rounded-full w-[300px] h-[300px] xl:w-[460px] xl:h-[460px] flex items-center justify-center flex-col bg-cover bg-center relative overflow-hidden"
        style={{
-          backgroundImage: `url('https://images.pexels.com/photos/51383/photo-camera-subject-photographer-51383.jpeg?auto=compress&cs=tinysrgb&w=1920&blur=50')`,
+          backgroundImage: `url('https://res.cloudinary.com/djeorsh5d/image/upload/v1751332865/921bbdf3-0f69-466c-bd5d-c384bedef79f.png')`,
           backgroundSize: 'cover',
           backgroundPosition: 'center',
           backgroundBlendMode: 'overlay',

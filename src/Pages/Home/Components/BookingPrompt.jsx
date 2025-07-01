@@ -47,7 +47,7 @@ const BookingPrompt = ({ deadlineDate }) => {
       <div
         className="py-12 px-4 sm:px-8 rounded-xl max-w-5xl mx-auto text-center"
         style={{
-          backgroundImage: `url('https://images.pexels.com/photos/51383/photo-camera-subject-photographer-51383.jpeg?auto=compress&cs=tinysrgb&w=1920&blur=50')`,
+          backgroundImage: `url('https://res.cloudinary.com/djeorsh5d/image/upload/v1751332865/921bbdf3-0f69-466c-bd5d-c384bedef79f.png')`,
           backgroundSize: 'cover',
           backgroundPosition: 'center',
           backgroundBlendMode: 'overlay',

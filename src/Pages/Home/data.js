@@ -136,22 +136,21 @@ export const testimonials = [
     quote:
       '"SnapShot Studio made our wedding day even more special. Every photo was stunning and captured our emotions perfectly."',
     author: 'Abena & Kojo',
-    image: '/src/assets/PageImg/COPPLE/COP1.jpg',
+    image: 'https://res.cloudinary.com/djeorsh5d/image/upload/v1751247107/COP1_gfdb3c.jpg',
     rating: 5,
   },
   {
     quote:
       '"Professional, friendly, and extremely talented. The best portrait session I\'ve ever had!"',
     author: 'Afia Frema',
-    image: 'https://randomuser.me/api/portraits/men/45.jpg',
-    image: '/src/assets/PageImg/HEADSHOT/HEAD2.jpg',
+    image: 'https://res.cloudinary.com/djeorsh5d/image/upload/v1751247112/HEAD2_hdxgm2.jpg',
     rating: 4,
   },
   {
     quote:
       '"I needed headshots for my business profile, and SnapShot delivered exactly what I envisioned. Highly recommend!"',
     author: 'Osei Asibey',
-    image: '/src/assets/PageImg/DK/DK1.jpg',
+    image: 'https://res.cloudinary.com/djeorsh5d/image/upload/v1751247107/DK1_zmhx8j.jpg',
     rating: 5,
   },
 ];
