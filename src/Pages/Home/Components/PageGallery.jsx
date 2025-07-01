@@ -142,9 +142,9 @@ const GalleryPreview = ({galleryImages}) => {
                 loading="lazy"
                 onError={(e) => (e.target.src = 'https://placehold.co/800x600?text=Fallback+Image')}
               />
-              <p className="text-gray-300 text-sm mt-2 text-center">
+              {/* <p className="text-gray-300 text-sm mt-2 text-center">
                 {galleryImages[selectedImageIndex].alt}
-              </p>
+              </p> */}
               <div className="flex items-center justify-between w-full mt-4">
                 <motion.button
                   className="bg-amber-500 text-white text-2xl px-4 py-2 rounded-full hover:bg-amber-600"

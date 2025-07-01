@@ -213,7 +213,6 @@ export const testimonials = [
      servicesIncluded: ['Photography'],
      isPopular: false,
      icon: 'https://res.cloudinary.com/djeorsh5d/image/upload/v1751247111/FAM2_kaaw51.jpg',
-     icon: '/src/assets/PageImg/FAMILY/FAM2.jpg',
 
    },
   
@@ -273,7 +272,6 @@ export const testimonials = [
      servicesIncluded: ['Photography'],
      isPopular: false,
      icon: 'https://res.cloudinary.com/djeorsh5d/image/upload/v1751247107/COP1_gfdb3c.jpg',
-     icon: '/src/assets/PageImg/COPPLE/COP1.jpg',
    },
    {
      title: 'Children Shot Package',
@@ -361,7 +359,6 @@ export const testimonials = [
     },
     {
       src: 'https://res.cloudinary.com/djeorsh5d/image/upload/v1751247111/GRAWM2_flta1z.jpg',
-      src: '/src/assets/PageImg/GRADUATION/GRAWM2.jpg',
       alt: 'Graduate in cap and gown',
       category: 'Graduation',
     },
