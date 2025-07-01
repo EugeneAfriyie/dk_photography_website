@@ -59,7 +59,6 @@ export const heroData = [
   {
     type: 'imageWithText',
     image: 'https://res.cloudinary.com/djeorsh5d/image/upload/v1751247104/BRITH1_awhuvx.jpg',
-    image: '/src/assets/PageImg/BIRTHDAY/BRITH2.jpg',
     text: 'Timeless Memories',
     subText: 'Let us preserve your special moments forever.',
     alt: 'Family photography',
@@ -213,6 +212,7 @@ export const testimonials = [
      servicesIncluded: ['Photography'],
      isPopular: false,
      icon: 'https://res.cloudinary.com/djeorsh5d/image/upload/v1751247111/FAM2_kaaw51.jpg',
+     
 
    },
   

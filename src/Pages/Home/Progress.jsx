@@ -99,7 +99,7 @@ import { Link } from 'react-router-dom';
             <p className='lg:text-[.9rem] text-[.8rem] text-gray-400 lg:mt-2 mt-1'>Choose your package and reach out via our contact page to secure your booking with ease.</p>
 
                <div className="xl:top-10 lg:top-0 left-20 absolute hidden lg:block bg-ambr-50/10 w-72 h-40 ">
-               <img src="/src/assets/Process_bg/bg-high-1.png" className=' w-full h-full ' alt="" />
+               <img src="https://res.cloudinary.com/djeorsh5d/image/upload/v1751247131/bg-high-1_gm00hb.png" className=' w-full h-full ' alt="" />
             </div>
         </div>
 
@@ -114,7 +114,7 @@ import { Link } from 'react-router-dom';
             <p className='lg:text-[.9rem] text-[.8rem] text-gray-400 lg:mt-2 mt-1'>We’ll coordinate with you to set a date, time, and location that perfectly suits your needs.</p>
 
             <div className="xl:top-10 lg:top-0 -left-20 absolute hidden lg:block bg-ambr-50/10 w-72 h-40 ">
-               <img src="/src/assets/Process_bg/bg-2.png" className=' w-full h-full ' alt="" />
+               <img src="https://res.cloudinary.com/djeorsh5d/image/upload/v1751247127/bg-2_xvct63.png" className=' w-full h-full ' alt="" />
             </div>
         </div>
 
@@ -135,7 +135,7 @@ import { Link } from 'react-router-dom';
         </div>
       </div>
 
-      <img src="/src/assets/Process_bg/small-screen-ng.png" className='absolute top-64 right-10 sm:right-40 lg:hidden sm-pos' alt="" />
+      <img src="https://res.cloudinary.com/djeorsh5d/image/upload/v1751247131/final_aexpmd.png" className='absolute top-64 right-10 sm:right-40 lg:hidden sm-pos' alt="" />
         </div>
        
       </section>
