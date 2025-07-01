@@ -69,7 +69,7 @@ const PackagesSection = ({packages}) => {
                 <motion.img
                   src={packageItem.icon}
                   alt={`${packageItem.title} package`}
-                  className="w-full h-full object-cover mx-auto"
+                  className={`w-full h-full object-cover mx-auto ${packageItem.title.includes('Graduation') ? 'object-top' : ''}`}
                   loading="lazy"
                   initial={{ scale: 1 }}
                   whileHover={{ scale: 1.1 }}
