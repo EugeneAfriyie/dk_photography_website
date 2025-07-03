@@ -84,7 +84,7 @@ const BookingPrompt = ({ deadlineDate }) => {
             </div>
           ))}
         </div>
-        <Link to="/booking">
+        <Link to="/contact">
           <motion.button
             animate={{
               scale: [1, 1.1, 1],

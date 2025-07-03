@@ -1,5 +1,5 @@
 // data.js
-import { image } from 'framer-motion/client';
+// import { image } from 'framer-motion/client';
 import { Menu, X, Camera, Info, Calendar, Camera as ShootIcon, Edit, Download, Image as PhotoIcon, Package } from 'lucide-react';
 
   export const introData =[
@@ -103,7 +103,7 @@ export const servicesData = [
                           'Commercial photography for brands and products',
                         ],
                         icon: 'https://res.cloudinary.com/djeorsh5d/image/upload/v1751247112/camera_wwl3ep.jpg',
-                        bookingLink: '/booking?service=photography',
+                        bookingLink: '/contact?service=photography',
                       },
                       {
                         title: 'Videography',
@@ -114,7 +114,7 @@ export const servicesData = [
                           'Drone footage for stunning aerial perspectives',
                         ],
                         icon: 'https://res.cloudinary.com/djeorsh5d/image/upload/v1751247118/video_m9r5ph.jpg',
-                        bookingLink: '/booking?service=videography',
+                        bookingLink: '/contact?service=videography',
                       },
                       {
                         title: 'Make Up and Hair Styling',
@@ -126,7 +126,7 @@ export const servicesData = [
                         ],
                         icon: 'https://res.cloudinary.com/djeorsh5d/image/upload/v1751247118/makeup_im8ojo.jpg',
                         icon: '/src/assets/PageImg/services/makeup.jpeg',
-                        bookingLink: '/booking?service=make-up-and-hair-styling',
+                        bookingLink: '/contact?service=make-up-and-hair-styling',
                       },
                     ]
 

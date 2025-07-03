@@ -42,7 +42,7 @@ const Studio_Location = ({locations}) => {
                             to={location.bookingLink}
                             className="text-amber-500 hover:text-amber-400"
                           >
-                            Book Here
+                            Direction Here
                           </Link>
                         </div>
                       </Popup>
@@ -65,7 +65,7 @@ const Studio_Location = ({locations}) => {
                       to={location.bookingLink}
                       className="inline-bloc bg-amber-500 px-4 py-2 rounded-lg text-white hover:bg-amber-600"
                     >
-                      Book Here
+                      Direction Here
                     </Link>
                     </div>
                     <section style={{ position: 'relative', paddingBottom: '56.25%', height: 0, overflow: 'hidden' }}>

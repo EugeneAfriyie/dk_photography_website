@@ -46,7 +46,6 @@ const Home = () => {
     const [openFaqIndex, setOpenFaqIndex] = useState(null);
     const [isFocused, setIsFocused] = useState(false);
   
-    // Updated services array with Graduation Photography
     const services = [
       {
         title: 'Wedding Photography',
@@ -91,11 +90,9 @@ const Home = () => {
       },
     ];
   
-    // Updated packages array with Graduation Photography packages
   
 
 
-    // Sample locations for the map
 
 
   

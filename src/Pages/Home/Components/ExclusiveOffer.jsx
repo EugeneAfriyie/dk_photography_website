@@ -55,11 +55,7 @@ const ExclusiveOffer = () => {
                 transition={{ duration: 0.5, delay: 0.5 }}
                 viewport={{ once: true }}
               >
-                <Link to="/training/photographer">
-                  <button className="bg-amber-500 px-4 py-2 rounded hover:bg-amber-600">
-                    Learn More
-                  </button>
-                </Link>
+              
               </motion.div>
             </div>
           </motion.div>
@@ -90,11 +86,10 @@ const ExclusiveOffer = () => {
                 transition={{ duration: 0.5, delay: 0.6 }}
                 viewport={{ once: true }}
               >
-                <Link to="/training/makeup">
-                  <button className="bg-amber-500 px-4 py-2 rounded hover:bg-amber-600">
-                    Learn More
-                  </button>
-                </Link>
+          
+
+
+          
               </motion.div>
             </div>
           </motion.div>

@@ -23,7 +23,6 @@ const InfoIcon = ({ className, onClick, ariaLabel }) => (
   </svg>
 );
 
-// Packages data
 
 
 const PackagesSection = ({packages}) => {
@@ -182,7 +181,7 @@ const PackagesSection = ({packages}) => {
                     <span>Location: {packageItem.sessionLocation}</span>
                   </li>
                 </ul>
-                <Link to={packageItem.bookingLink || `/booking?package=${packageItem.title.toLowerCase().replace(/\s+/g, '-')}`}>
+                <Link to={packageItem.bookingLink || `/contact?package=${packageItem.title.toLowerCase().replace(/\s+/g, '-')}`}>
                   <motion.button
                     className="w-full mt-4 bg-amber-300 text-gray-900 font-semibold py-2 rounded-lg hover:bg-amber-400 transition-colors duration-300"
                     whileHover={{ scale: 1.05 }}

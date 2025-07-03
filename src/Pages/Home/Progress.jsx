@@ -65,6 +65,7 @@ import { Link } from 'react-router-dom';
           {/* Dark overlay for text readability */}
           <div className="absolute inset-0 bg-black/50"></div>
           <p className='relative text-lg w-[60%] mb-4 text-white text-center'>Ready to capture your moments?</p>
+            <Link to="/contact">
           <motion.button
             animate={{ 
               scale: [1, 1.1, 1], 
@@ -81,6 +82,7 @@ import { Link } from 'react-router-dom';
           >
             Book Now
           </motion.button>
+          </Link>
         </div>
       </div>
 
