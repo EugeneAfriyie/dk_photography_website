@@ -214,12 +214,15 @@ const Home = () => {
                 </section>
 
 
-                <ExclusiveOffer />
 
 
       {/* Packages Section */}
         <ErrorBoundary>
           <PackagesSection packages={packages}/>
+        </ErrorBoundary>
+
+        <ErrorBoundary>
+          <ExclusiveOffer />
         </ErrorBoundary>
 
       {/* Our Process Section */}

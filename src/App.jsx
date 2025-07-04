@@ -6,7 +6,6 @@ import About from './Pages/About/About';
 import Gallery from './Pages/Gallery/Gallery';
 import Contact from './Pages/Contact/Contact';
 import Services from './Pages/Home/Components/Services';
-// import Test from './Pages/Home/Test';
 
 const App = () => {
   return (
@@ -14,9 +13,9 @@ const App = () => {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />
-        <Route path="/gallery" element={<Gallery /> } /> {/* Placeholder */}
-        <Route path="/services" element={<Services />} /> {/* Placeholder */}
-        <Route path="/contact" element={<Contact /> } /> {/* Placeholder */}
+        <Route path="/gallery" element={<Gallery /> } /> 
+        <Route path="/services" element={<Services />} /> 
+        <Route path="/contact" element={<Contact /> } /> 
       </Routes>
     </Router>
   );
