@@ -125,7 +125,6 @@ export const servicesData = [
                           'Professional consultations for personalized styles',
                         ],
                         icon: 'https://res.cloudinary.com/djeorsh5d/image/upload/v1751247118/makeup_im8ojo.jpg',
-                        icon: '/src/assets/PageImg/services/makeup.jpeg',
                         bookingLink: '/contact?service=make-up-and-hair-styling',
                       },
                     ]
