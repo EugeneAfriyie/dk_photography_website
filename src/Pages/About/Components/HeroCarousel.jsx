@@ -1,6 +1,6 @@
-// src/components/HeroCarousel.jsx
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { Link } from 'react-router-dom';
 
 const HeroCarousel = () => {
   const slides = [
@@ -45,11 +45,12 @@ const HeroCarousel = () => {
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: -50 }}
           transition={{ duration: 1.0, type: 'spring', stiffness: 100 }}
+          onError={(e) => (e.target.style.backgroundImage = "url('/fallback-image.jpg')")}
           viewport={{ once: true }}
         >
           <div className="absolute inset-0 bg-black bg-opacity-60"></div>
           <div className="relative z-10">
-            <div className="max-w-[80%] mx-auto p-6 md:p-8 lg:p-12 bg-gradient-to-r from-amber-900/80 via-gray-900/80 to-black/80 rounded-xl shadow-2xl">
+            <div className="max-w-6xl mx-auto p-6 md:p-8 lg:p-12 bg-gradient-to-r from-amber-900/80 via-gray-900/80 to-black/80 rounded-xl shadow-2xl">
               <motion.h1
                 className="text-4xl md:text-5xl font-extrabold text-amber-300 mb-4 tracking-wide"
                 initial={{ opacity: 0, y: 20 }}
@@ -68,6 +69,15 @@ const HeroCarousel = () => {
               >
                 {slides[currentSlide].tagline}
               </motion.p>
+              <Link to="/services">
+                <motion.button
+                  className="mt-6 px-6 py-3 bg-amber-500 text-white rounded-full hover:bg-amber-600 transition duration-300"
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                >
+                  View More
+                </motion.button>
+              </Link>
             </div>
           </div>
         </motion.div>
