@@ -12,75 +12,103 @@ const IntroductionSection = () => {
     }
   };
 
-  // Summary for the main section (2-3 paragraphs)
-  const summary = `
-    <p class="text-gray-400 text-sm md:text-base leading-relaxed mb-4">
-      The journey of Adomako Photography began with Mr. Adomako’s childhood inspiration from his uncle, a skilled photographer whose lens transformed ordinary moments into timeless treasures. As a young boy, Adomako spent countless hours trailing his uncle, absorbing the art of the craft during weddings, birthdays, and studio sessions, igniting a lifelong passion for photography.
-    </p>
-    <p class="text-gray-400 text-sm md:text-base leading-relaxed mb-4">
-      In 2000, Mr. Adomako enrolled at Sunyani Technical University to pursue a diploma in Business Management, refining his skills through university gigs like graduations and campus events. After graduating in 2012 and working as an accountant at Ecobank’s Kumasi branch for two years, he founded Adomako Photography in 2014, leaving corporate life to pursue his true calling.
-    </p>
-    <p class="text-gray-400 text-sm md:text-base leading-relaxed">
-      Starting with a small studio in Amakom and limited capital, he invested in his first camera and equipment. Through hard work and dedication, the studio evolved into a modern facility with makeup services, standing today as a beacon of inspiration across Kumasi and beyond.
-    </p>
-  `;
+// Summary for the main section
+const summary = `
+  <p class="text-gray-400 text-sm md:text-base leading-relaxed mb-4">
+    DKSHOTIT STUDIO & PHOTOGRAPHY began with Emmanuel Adomako’s childhood inspiration from his uncle, a skilled photographer whose lens transformed ordinary moments into timeless treasures.
+  </p>
+  <p class="text-gray-400 text-sm md:text-base leading-relaxed mb-4">
+    In 2000, Emmanuel enrolled at Sunyani Technical University to pursue a diploma in Business Management, refining his photography skills through university events like graduations and campus programs. After graduating in 2012 and working as an accountant at Ecobank’s Kumasi branch for two years, he founded DKSHOTIT STUDIO & PHOTOGRAPHY in 2014, leaving corporate life to follow his true passion.
+  </p>
+  <p class="text-gray-400 text-sm md:text-base leading-relaxed">
+    Starting with a small studio in Amakom and limited capital, he invested in his first camera and equipment. Through hard work and dedication, the studio grew into a modern facility with makeup services, now serving as a creative hub across Kumasi and beyond.
+  </p>
+`;
 
-  // Full story for the overlay (magazine-style with four images)
-  const fullStory = `
-    <h3 class="text-2xl sm:text-3xl font-serif font-bold text-amber-300 mb-4 sm:mb-6 text-center tracking-tight">
-      Our Story
-    </h3>
-    <div class="border-t-2 border-amber-300 w-20 sm:w-24 mx-auto mb-6 sm:mb-8"></div>
-    <div class="prose prose-base sm:prose-lg text-gray-300">
-      <div class="mb-4 sm:mb-6">
-        <div class="float-left w-1/3 mr-3 sm:mr-4 mt-1 clear-both">
-          <img src="/src/assets/images/childhood-memory.jpg" alt="Childhood Inspiration" class="w-full h-32 object-cover rounded-md shadow-md" />
-          <p class="text-center text-[.5rem] text-amber-200 mt-2">Young Adomako with his uncle.</p>
-        </div>
-        <p class="leading-relaxed text-justify first-letter:text-3xl sm:first-letter:text-4xl first-letter:font-bold first-letter:text-amber-300 first-letter:float-left first-letter:mr-2 sm:first-letter:mr-3">
-          The origins of Adomako Photography are deeply rooted in a childhood dream, sparked by the guiding hand of an inspiring mentor. <em class="italic text-amber-200">"Every click was a lesson in capturing life’s essence,"</em> Mr. Adomako recalls of his uncle, a skilled photographer whose lens transformed ordinary moments into timeless treasures. As a young boy, Adomako spent countless hours trailing his uncle during his free time, eagerly absorbing the art of the craft. Together, they ventured to weddings filled with joy, birthdays brimming with laughter, and quiet studio sessions where creativity flourished. This intimate apprenticeship ignited a lifelong passion for capturing the essence of life through photography.
-        </p>
-        <div class="clear-both sm:clear-none"></div>
+
+  // Full story for the overlay
+const fullStory = `
+  <h3 class="text-2xl sm:text-3xl font-serif font-bold text-amber-300 mb-4 sm:mb-6 text-center tracking-tight">
+    Our Story
+  </h3>
+  <div class="border-t-2 border-amber-300 w-20 sm:w-24 mx-auto mb-6 sm:mb-8"></div>
+  <div class="prose prose-base sm:prose-lg text-gray-300">
+
+    <div class="mb-4 sm:mb-6">
+      <div class="float-left w-1/3 mr-3 sm:mr-4 mt-1 clear-both">
+        <img 
+          src="https://picsum.photos/200/128" 
+          alt="Childhood Inspiration" 
+          class="w-full h-32 object-cover rounded-md shadow-md"
+        />
+        <p class="text-center text-[.5rem] text-amber-200 mt-2">Young Emmanuel with his uncle.</p>
       </div>
-      <div class="mb-4 sm:mb-6">
-        <div class="float-left w-1/3 mr-3 sm:mr-4 mt-1 clear-both">
-          <img src="/src/assets/images/university-days.jpg" alt="University Photography" class="w-full h-32 object-cover rounded-md shadow-md" />
-          <p class="text-center text-[.5rem] text-amber-200 mt-2">Adomako at a university event.</p>
-        </div>
-        <p class="leading-relaxed text-justify first-letter:text-3xl sm:first-letter:text-4xl first-letter:font-bold first-letter:text-amber-300 first-letter:float-left first-letter:mr-2 sm:first-letter:mr-3">
-          In 2000, Mr. Adomako took a pivotal step by enrolling at Sunyani Technical University to pursue a diploma in Business Management, blending his creative interests with a practical skill set. His university years were a crucible for his talents, where he seized every opportunity to refine his photography skills. From photographing vibrant graduations to immortalizing friends’ birthdays, SRC week celebrations, and a myriad of campus events, each gig was a stepping stone. After graduating in 2012 and completing his national service with dedication, he joined Ecobank’s Kumasi branch as an accountant. For two years, he immersed himself in the corporate world, but by 2014, a deeper calling emerged, leading him to make the courageous decision to leave. <strong class="font-semibold text-amber-100">Thus, Adomako Photography was born</strong>—a testament to his unwavering commitment to preserving life’s precious memories.
-        </p>
-        <div class="clear-both sm:clear-none"></div>
+      <p class="leading-relaxed text-justify first-letter:text-3xl sm:first-letter:text-4xl first-letter:font-bold first-letter:text-amber-300 first-letter:float-left first-letter:mr-2 sm:first-letter:mr-3">
+        The origins of DKSHOTIT STUDIO & PHOTOGRAPHY are deeply rooted in the childhood dreams of its founder and lead photographer, Emmanuel Adomako. His journey began with a deep admiration for his uncle—a gifted photographer whose lens transformed ordinary moments into lasting memories.
+        As a young boy, Emmanuel would often trail behind his uncle, observing him during weddings, birthdays, and studio sessions. These experiences weren’t just inspiring; they were formative, igniting a passion for photography that never faded.
+      </p>
+      <div class="clear-both sm:clear-none"></div>
+    </div>
+
+    <div class="mb-4 sm:mb-6">
+      <div class="float-left w-1/3 mr-3 sm:mr-4 mt-1 clear-both">
+        <img 
+          src="https://picsum.photos/200/128" 
+          alt="University Photography" 
+          class="w-full h-32 object-cover rounded-md shadow-md"
+        />
+        <p class="text-center text-[.5rem] text-amber-200 mt-2">Emmanuel at a university event.</p>
       </div>
-      <div class="my-4 sm:my-6">
-        <div class="float-left w-1/3 mr-3 sm:mr-4 mt-1 clear-both">
-          <img src="/src/assets/images/mid-journey.jpg" alt="Mid-Journey Milestone" class="w-full h-32 object-cover rounded-md shadow-md" />
-          <p class="text-center text-[.5rem] text-amber-200 mt-2">A milestone moment in Adomako’s journey.</p>
-        </div>
-      </div>
-      <div class="mb-4 sm:mb-6">
-        <div class="float-left w-1/3 mr-3 sm:mr-4 mt-1 clear-both">
-          <img src="/src/assets/images/early-studio.jpg" alt="Early Studio" class="w-full h-32 object-cover rounded-md shadow-md" />
-          <p class="text-center text-[.5rem] text-amber-200 mt-2">The first Amakom studio.</p>
-        </div>
-        <p class="leading-relaxed text-justify first-letter:text-3xl sm:first-letter:text-4xl first-letter:font-bold first-letter:text-amber-300 first-letter:float-left first-letter:mr-2 sm:first-letter:mr-3">
-          The early days were humble, marked by limited capital and boundless determination. With savings painstakingly accumulated, he invested in his first camera and essential photography equipment, tools that would become the heartbeat of his vision. Securing a modest space in Amakom, he established his initial studio, a small but vibrant hub where dreams began to take shape. Through dedication, hard work, and divine favor, Adomako Photography flourished beyond its modest beginnings. The small Amakom studio evolved into a modern, state-of-the-art facility, reflecting years of perseverance and innovation. <em class="italic text-amber-200">"Challenges only fueled my resolve,"</em> Mr. Adomako reflects on the late nights editing and financial constraints. Mr. Adomako’s vision expanded to include makeup services, and today, it stands as a beacon of inspiration, preserving memories across Kumasi and beyond.
-        </p>
-        <div class="clear-both sm:clear-none"></div>
-      </div>
-      <div class="mt-8">
-        <h4 class="text-xl sm:text-2xl font-serif font-bold text-amber-300 mb-4">Our Mission & Vision</h4>
-        <div class="border-t-2 border-amber-300 w-20 sm:w-24 mx-auto mb-6"></div>
-        <p class="leading-relaxed text-justify first-letter:text-3xl sm:first-letter:text-4xl first-letter:font-bold first-letter:text-amber-300 first-letter:float-left first-letter:mr-2 sm:first-letter:mr-3">
-          Our mission is to capture life’s moments with artistry and dedication, while our vision is to inspire future photographers and preserve cultural heritage through innovative photography services.
-        </p>
+      <p class="leading-relaxed text-justify first-letter:text-3xl sm:first-letter:text-4xl first-letter:font-bold first-letter:text-amber-300 first-letter:float-left first-letter:mr-2 sm:first-letter:mr-3">
+        In 2000, Emmanuel enrolled at Sunyani Technical University to pursue a diploma in Business Management. Alongside his studies, he refined his craft through campus events, graduations, and birthdays. After graduating in 2012 and completing national service, he worked as an accountant at Ecobank’s Kumasi branch. But in 2014, he made the bold decision to leave corporate life and pursue his passion full-time.
+        <strong class="font-semibold text-amber-100">DKSHOTIT STUDIO & PHOTOGRAPHY was born.</strong>
+      </p>
+      <div class="clear-both sm:clear-none"></div>
+    </div>
+
+    <div class="my-4 sm:my-6">
+      <div class="w-full">
+        <img 
+          src="https://picsum.photos/300/200" 
+          alt="Milestone Moment" 
+          class="w-full h-40 object-cover rounded-md shadow-md"
+        />
+        <p class="text-center text-[.5rem] text-amber-200 mt-2">A milestone in the DKSHOTIT journey.</p>
       </div>
     </div>
-  `;
+
+    <div class="mb-4 sm:mb-6">
+      <div class="float-left w-1/3 mr-3 sm:mr-4 mt-1 clear-both">
+        <img 
+          src="https://picsum.photos/200/128" 
+          alt="First Studio" 
+          class="w-full h-32 object-cover rounded-md shadow-md"
+        />
+        <p class="text-center text-[.5rem] text-amber-200 mt-2">The first Amakom studio.</p>
+      </div>
+      <p class="leading-relaxed text-justify first-letter:text-3xl sm:first-letter:text-4xl first-letter:font-bold first-letter:text-amber-300 first-letter:float-left first-letter:mr-2 sm:first-letter:mr-3">
+        With limited capital but great determination, Emmanuel saved up to buy his first camera and gear. He established his first studio in Amakom—a modest space where vision met reality.
+        Through hard work, sleepless editing nights, and faith, DKSHOTIT evolved. The once-small studio grew into a modern photography space with professional makeup services. It now stands as one of Kumasi’s most respected photography brands.
+        <em class="italic text-amber-200">“Challenges only fueled my resolve,”</em> says Emmanuel.
+        The name "DK" was creatively derived from his surname, Adomako, and has since become his personal brand and artistic signature.
+      </p>
+      <div class="clear-both sm:clear-none"></div>
+    </div>
+
+    <div class="mt-8">
+      <h4 class="text-xl sm:text-2xl font-serif font-bold text-amber-300 mb-4">Our Mission & Vision</h4>
+      <div class="border-t-2 border-amber-300 w-20 sm:w-24 mx-auto mb-6"></div>
+      <p class="leading-relaxed text-justify first-letter:text-3xl sm:first-letter:text-4xl first-letter:font-bold first-letter:text-amber-300 first-letter:float-left first-letter:mr-2 sm:first-letter:mr-3">
+        Our mission is to capture life’s most meaningful moments with creativity, excellence, and soul. Our vision is to inspire future generations of photographers and preserve cultural memories through timeless, high-quality visual storytelling.
+      </p>
+    </div>
+  </div>
+`;
+
 
   return (
     <motion.section
-      className="m-16 mt-7"
+      className="mb-16"
       initial={{ opacity: 0, y: 50 }}
       whileInView={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.9, delay: 0.5, type: 'spring', stiffness: 90 }}
@@ -99,7 +127,7 @@ const IntroductionSection = () => {
             src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=600&h=400&fit=crop"
             alt="Mr. Adomako at Work"
             className="w-full h-full object-cover"
-            onError={(e) => (e.target.src = '/fallback-image.jpg')}
+            onError={(e) => (e.target.src = 'https://via.placeholder.com/600x400')}
           />
         </motion.div>
 
@@ -112,11 +140,11 @@ const IntroductionSection = () => {
           viewport={{ once: true }}
         >
           <div>
-            <h2 className="text-xl md:text-2xl font-semibold text-amber-300 mb-4">Our Story</h2>
-            <div className="text-gray-400 text-sm md:text-base leading-relaxed mb-6" dangerouslySetInnerHTML={{ __html: summary }} />
+            <h2 className="text-xl md:text-4xl font-bold text-amber-300 mb-4">Our Story</h2>
+            <div className="text-gray-400 text-sm md:text-base leading-relaxed mb-6 font-semibold" dangerouslySetInnerHTML={{ __html: summary }} />
           </div>
           <motion.button
-            className="mt-6 px-6 py-3 bg-amber-600 text-white rounded-full hover:bg-amber-700 transition duration-300 self-end"
+            className="mt-6 px-6 py-3 bg-amber-600 text-white rounded-md hover:bg-amber-700 transition duration-300 md:self-start w-full md:w-auto"
             onClick={() => setIsOverlayOpen(true)}
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
