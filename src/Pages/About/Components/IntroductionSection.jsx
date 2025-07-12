@@ -35,7 +35,7 @@ const fullStory = `
   <div class="prose prose-base sm:prose-lg text-gray-300">
 
     <div class="mb-4 sm:mb-6">
-      <div class="float-left w-1/3 mr-3 sm:mr-4 mt-1 clear-both">
+      <div class="float-left w-[60%] sm:w-1/3 mr-3 sm:mr-4 mt-1 clear-both">
         <img 
           src="https://picsum.photos/200/128" 
           alt="Childhood Inspiration" 
@@ -51,7 +51,7 @@ const fullStory = `
     </div>
 
     <div class="mb-4 sm:mb-6">
-      <div class="float-left w-1/3 mr-3 sm:mr-4 mt-1 clear-both">
+      <div class="float-left w-[60%] sm:w-1/3 mr-3 sm:mr-4 mt-1 clear-both">
         <img 
           src="https://picsum.photos/200/128" 
           alt="University Photography" 
@@ -78,7 +78,7 @@ const fullStory = `
     </div>
 
     <div class="mb-4 sm:mb-6">
-      <div class="float-left w-1/3 mr-3 sm:mr-4 mt-1 clear-both">
+      <div class="float-left w-[60%] sm:w-1/3 mr-3 sm:mr-4 mt-1 clear-both">
         <img 
           src="https://picsum.photos/200/128" 
           alt="First Studio" 
@@ -117,7 +117,7 @@ const fullStory = `
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-7xl mx-auto">
         {/* Image Container */}
         <motion.div
-          className="h-full bg-gray-800 rounded-xl shadow-md"
+          className="h-80  sm:h-full bg-gray-800 rounded-xl shadow-md"
           initial={{ opacity: 0, scale: 0.9 }}
           whileInView={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.6, delay: 0.6 }}
@@ -126,7 +126,7 @@ const fullStory = `
           <img
             src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=600&h=400&fit=crop"
             alt="Mr. Adomako at Work"
-            className="w-full h-full object-cover"
+            className="w-full h-full object-cover object-top"
             onError={(e) => (e.target.src = 'https://via.placeholder.com/600x400')}
           />
         </motion.div>
