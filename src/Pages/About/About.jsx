@@ -2,6 +2,7 @@
 import React from 'react';
 import HeroCarousel from './Components/HeroCarousel';
 import IntroductionSection from './Components/IntroductionSection';
+import MissionSection from './Components/MissionSection';
 
 const About = () => {
   return (
@@ -9,6 +10,8 @@ const About = () => {
       <div className="max-w-7xl mx-auto">
         <HeroCarousel />
         <IntroductionSection />
+
+        <MissionSection />
       </div>
     </div>
   );

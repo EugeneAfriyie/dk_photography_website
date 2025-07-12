@@ -20,10 +20,11 @@ const MissionSection = () => {
               We aim to capture life’s moments with skill and heart, dedicating ourselves to every frame. Our vision is to guide new photographers and protect cultural stories through creative innovation.
             </p>
           </div>
+
           {/* Image on the Right */}
           <div className="flex justify-end">
             <img 
-              src="https://picsum.photos/400/300" 
+              src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=600&h=400&fit=crop" 
               alt="Mission Vision Imagery" 
               className="w-full h-64 object-cover rounded-md shadow-md"
               onError={(e) => { e.target.src = 'https://via.placeholder.com/400x300'; }}
