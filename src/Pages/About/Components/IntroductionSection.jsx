@@ -136,26 +136,39 @@ const IntroductionSection = () => {
           <div>
             <h2 className="text-xl md:text-4xl font-bold text-amber-300 mb-4">Our Story</h2>
             <div className="text-gray-400 text-sm md:text-base leading-relaxed mb-6 font-semibold">
-              <div dangerouslySetInnerHTML={{ __html: `
-                <p class="text-gray-400 text-sm md:text-base leading-relaxed mb-4">
-                  DKSHOTIT STUDIO & PHOTOGRAPHY began with Emmanuel Adomako’s childhood inspiration from his uncle, a skilled photographer whose lens transformed ordinary moments into timeless treasures.
-                </p>
-                ${isSummaryExpanded ? `
+              <div dangerouslySetInnerHTML={{ __html: summary }} className="md:block hidden" />
+              <div className="md:hidden">
+                <p className="mb-4" dangerouslySetInnerHTML={{ __html: `
                   <p class="text-gray-400 text-sm md:text-base leading-relaxed mb-4">
-                    In 2000, Emmanuel enrolled at Sunyani Technical University to pursue a diploma in Business Management, refining his photography skills through university events like graduations and campus programs. After graduating in 2012 and working as an accountant at Ecobank’s Kumasi branch for two years, he founded DKSHOTIT STUDIO & PHOTOGRAPHY in 2014, leaving corporate life to follow his true passion.
+                    DKSHOTIT STUDIO & PHOTOGRAPHY began with Emmanuel Adomako’s childhood inspiration from his uncle, a skilled photographer whose lens transformed ordinary moments into timeless treasures.
                   </p>
-                  <p class="text-gray-400 text-sm md:text-base leading-relaxed">
-                    Starting with a small studio in Amakom and limited capital, he invested in his first camera and equipment. Through hard work and dedication, the studio grew into a modern facility with makeup services, now serving as a creative hub across Kumasi and beyond.
-                  </p>
-                ` : ''}
-              ` }} />
+                ` }} />
+                <motion.div
+                  initial={{ height: 0, opacity: 0 }}
+                  animate={{ height: isSummaryExpanded ? 'auto' : 0, opacity: isSummaryExpanded ? 1 : 0 }}
+                  transition={{ duration: 0.3, ease: "easeInOut" }}
+                >
+                  {isSummaryExpanded && (
+                    <div dangerouslySetInnerHTML={{ __html: `
+                      <p class="text-gray-400 text-sm md:text-base leading-relaxed mb-4">
+                        In 2000, Emmanuel enrolled at Sunyani Technical University to pursue a diploma in Business Management, refining his photography skills through university events like graduations and campus programs. After graduating in 2012 and working as an accountant at Ecobank’s Kumasi branch for two years, he founded DKSHOTIT STUDIO & PHOTOGRAPHY in 2014, leaving corporate life to follow his true passion.
+                      </p>
+                      <p class="text-gray-400 text-sm md:text-base leading-relaxed">
+                        Starting with a small studio in Amakom and limited capital, he invested in his first camera and equipment. Through hard work and dedication, the studio grew into a modern facility with makeup services, now serving as a creative hub across Kumasi and beyond.
+                      </p>
+                    ` }} />
+                  )}
+                </motion.div>
+              </div>
               <div className="mt-4">
-                <button
+                <motion.button
                   className="text-amber-300 hover:text-amber-100 transition duration-300 md:hidden"
                   onClick={() => setIsSummaryExpanded(!isSummaryExpanded)}
+                  whileHover={{ scale: 1.1 }}
+                  whileTap={{ scale: 0.95 }}
                 >
                   {isSummaryExpanded ? 'See Less' : 'See More'}
-                </button>
+                </motion.button>
               </div>
             </div>
           </div>
