@@ -6,7 +6,7 @@ const LocationSection = () => {
 
   return (
     <motion.section
-      className="py-16 bg-gray-900"
+      className="py-16 bg-gray-900 mt-16"
       initial={{ opacity: 0, y: 50 }}
       whileInView={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.9, delay: 0.5, type: 'spring', stiffness: 90 }}
@@ -45,7 +45,9 @@ const LocationSection = () => {
                   DKSHOTIT STUDIO & PHOTOGRAPHY is conveniently located in Amakom, Kumasi. Traveling from the Amakom traffic light to Kejetia, you’ll find us on the right side of the road. Heading back from Kejetia to the Amakom traffic light, we are on the left. Our studio is easily accessible and situated in a lively area.
                 </p>
                 <p className="leading-relaxed text-justify first-letter:text-3xl sm:first-letter:text-4xl first-letter:font-bold first-letter:text-amber-300 first-letter:float-left first-letter:mr-2 sm:first-letter:mr-3">
-                  Look for us two buildings after the Bank of Africa or right next to the Menka Memorial Hotel on your left. Our studio is housed in a distinctive three-storey building, with the photography space located on the second floor, offering a welcoming and creative environment. <a href="https://maps.google.com/maps?q=Amakom,+Kumasi,+Ghana" target="_blank" rel="noopener noreferrer" className="text-amber-300 hover:underline">View on Map</a>
+                  Look for us two buildings after the Bank of Africa or right next to the Menka Memorial Hotel on your left. Our studio is housed in a distinctive three-storey building, with the photography space located on the second floor, offering a welcoming and creative environment. <a href="https://maps.google.com/maps?q=Amakom,+Kumasi,+Ghana" target="_blank" rel="noopener noreferrer">
+                  <button  className="bg-amber-500 px-2 py- rounded  hover:bg-amber-600 transition-colors duration-300 hover:underline cursor-pointer">View on Map</button>
+                  </a>
                 </p>
               </div>
               <div className="md:hidden">
@@ -59,7 +61,9 @@ const LocationSection = () => {
                 >
                   {isExpanded && (
                     <p className="leading-relaxed text-justify first-letter:text-3xl sm:first-letter:text-4xl first-letter:font-bold first-letter:text-amber-300 first-letter:float-left first-letter:mr-2 sm:first-letter:mr-3 mt-4">
-                      Look for us two buildings after the Bank of Africa or right next to the Menka Memorial Hotel on your left. Our studio is housed in a distinctive three-storey building, with the photography space located on the second floor, offering a welcoming and creative environment. <a href="https://maps.google.com/maps?q=Amakom,+Kumasi,+Ghana" target="_blank" rel="noopener noreferrer" className="text-amber-300 hover:underline">View on Map</a>
+                      Look for us two buildings after the Bank of Africa or right next to the Menka Memorial Hotel on your left. Our studio is housed in a distinctive three-storey building, with the photography space located on the second floor, offering a welcoming and creative environment. <a href="https://maps.google.com/maps?q=Amakom,+Kumasi,+Ghana" target="_blank" rel="noopener noreferrer">
+                  <button  className="bg-amber-500 px-2 py- rounded  hover:bg-amber-600 transition-colors duration-300 hover:underline cursor-pointer">View on Map</button>
+                  </a>
                     </p>
                   )}
                 </motion.div>

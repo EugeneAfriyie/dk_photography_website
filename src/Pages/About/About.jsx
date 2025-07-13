@@ -5,6 +5,7 @@ import IntroductionSection from './Components/IntroductionSection';
 import MissionSection from './Components/MissionSection';
 import Header from '../Home/Components/Header';
 import LocationSection from './Components/LocationSection';
+import Footer from '../../Components/Footer';
 
 const About = () => {
   return (
@@ -19,6 +20,9 @@ const About = () => {
         <MissionSection />
 
         <LocationSection />
+
+
+        <Footer />
       </div>
     </div>
   );
