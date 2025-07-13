@@ -1,8 +1,33 @@
-
 import React, { useState, useEffect, useRef } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 
-const Testmonial = ({ items, interval, renderItem, autoPlay = true }) => {
+// Default renderItem function in case none is provided
+const defaultRenderItem = ({ quote, author, image, rating }, index) => (
+  <div key={index} className="bg-gray-800/50 p-8 rounded-xl shadow-md flex flex-col items-center ">
+    <img
+      src={image}
+      alt={author}
+      className="w-20 h-20 rounded-full object-cover mb-4 border-4 border-amber-400"
+      loading="lazy"
+    />
+    <div className="flex justify-center mb-2">
+      {[...Array(5)].map((_, i) => (
+        <span
+          key={i}
+          className={`text-xl ${i < rating ? 'text-amber-400' : 'text-gray-600'}`}
+        >
+          ★
+        </span>
+      ))}
+    </div>
+    <p className="text-sm text-gray-300 italic">{quote}</p>
+    <div className="mt-4 font-semibold text-amber-300">
+      — {author}
+    </div>
+  </div>
+);
+
+const Testmonial = ({ items, interval, renderItem = defaultRenderItem, autoPlay = true }) => {
   const [current, setCurrent] = useState(0);
   const [paused, setPaused] = useState(false);
   const touchStartX = useRef(null);
@@ -52,8 +77,20 @@ const Testmonial = ({ items, interval, renderItem, autoPlay = true }) => {
   };
 
   return (
+
+    <>
+
+      <section className="bg-gray-600/20 text-white py-20 px-4 text-center xl:w-[90%] m-auto">
+        <h2 className="text-4xl font-bold mb-6 text-amber-400">
+          What Our Clients Say
+        </h2>
+        <p className="text-gray-300 mb-12 max-w-2xl mx-auto">
+          We take pride in capturing the moments that matter most. But don't just
+          take our word for it — hear from our happy clients!
+        </p>
+       
     <div
-      className="relative"
+      className="relative border border-gray-700 rounded-lg overflow-hidden shadow-lg bg-gray-900 text-white p-6"
       onTouchStart={handleTouchStart}
       onTouchEnd={handleTouchEnd}
       onMouseEnter={() => setPaused(true)}
@@ -116,6 +153,12 @@ const Testmonial = ({ items, interval, renderItem, autoPlay = true }) => {
         ))}
       </div>
     </div>
+
+      </section>
+
+
+    </>
+
   );
 };
 

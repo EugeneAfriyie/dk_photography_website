@@ -247,46 +247,14 @@ const Home = () => {
         </ErrorBoundary>
        
       {/* Testimonials Section */}
-      <section className="bg-gray-600/20 text-white py-20 px-4 text-center xl:w-[90%] m-auto">
-        <h2 className="text-4xl font-bold mb-6 text-amber-400">
-          What Our Clients Say
-        </h2>
-        <p className="text-gray-300 mb-12 max-w-2xl mx-auto">
-          We take pride in capturing the moments that matter most. But don't just
-          take our word for it — hear from our happy clients!
-        </p>
-        <div className="relative max-w-3xl mx-auto">
+   
           <Testmonial
             items={testimonials}
             interval={7000}
             autoPlay={true}
-            renderItem={({ quote, author, image, rating }, index) => (
-              <div className="bg-gray-800/50 p-8 rounded-xl shadow-md flex flex-col items-center">
-                <img
-                  src={image}
-                  alt={author}
-                  className="w-20 h-20 rounded-full object-cover mb-4 border-4 border-amber-400"
-                  loading="lazy"
-                />
-                <div className="flex justify-center mb-2">
-                  {[...Array(5)].map((_, i) => (
-                    <span
-                      key={i}
-                      className={`text-xl ${i < rating ? 'text-amber-400' : 'text-gray-600'}`}
-                    >
-                      ★
-                    </span>
-                  ))}
-                </div>
-                <p className="text-sm text-gray-300 italic">{quote}</p>
-                <div className="mt-4 font-semibold text-amber-300">
-                  — {author}
-                </div>
-              </div>
-            )}
+    
           />
-        </div>
-      </section>
+      
 
       {/* FAQ Section */}
             <ErrorBoundary>
