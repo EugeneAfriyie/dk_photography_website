@@ -1,5 +1,6 @@
 import React, { useState, useRef } from 'react';
 import { motion } from 'framer-motion';
+import { FaInstagram, FaTiktok, FaWhatsapp } from 'react-icons/fa';
 
 const IntroductionSection = () => {
   const [isOverlayOpen, setIsOverlayOpen] = useState(false);
@@ -89,13 +90,7 @@ const IntroductionSection = () => {
         </p>
         <div class="clear-both sm:clear-none"></div>
       </div>
-      <div class="mt-8">
-        <h4 class="text-xl sm:text-2xl font-serif font-bold text-amber-300 mb-4">Our Mission & Vision</h4>
-        <div class="border-t-2 border-amber-300 w-20 sm:w-24 mx-auto mb-6"></div>
-        <p class="leading-relaxed text-justify first-letter:text-3xl sm:first-letter:text-4xl first-letter:font-bold first-letter:text-amber-300 first-letter:float-left first-letter:mr-2 sm:first-letter:mr-3">
-          Our mission is to capture life’s most meaningful moments with creativity, excellence, and soul. Our vision is to inspire future generations of photographers and preserve cultural memories through timeless, high-quality visual storytelling.
-        </p>
-      </div>
+      
     </div>
   `;
 
@@ -208,6 +203,47 @@ const IntroductionSection = () => {
               </button>
             </div>
             <div className="prose prose-base sm:prose-lg text-gray-300" dangerouslySetInnerHTML={{ __html: fullStory }} />
+
+              <div className="flex flex-col gap-1 mt-2">
+                            <h4 className='text-white sm:text-2xl'>Socials</h4>
+            
+                              <div className="flex space-x-6 text-xl  p-2 rounded-lg ">
+                                
+                                {/* Instagram */}
+                                <motion.a
+                                  href="#"
+                                  aria-label="Instagram"
+                                  initial={{ color: '#D1D5DB' }} // gray-300
+                                  whileHover={{ color: '#E4405F' }}
+                                  transition={{ duration: 0.3 }}
+                                >
+                                  <FaInstagram />
+                                </motion.a>
+            
+                                {/* WhatsApp */}
+                                <motion.a
+                                  href="#"
+                                  aria-label="WhatsApp"
+                                  initial={{ color: '#D1D5DB' }}
+                                  whileHover={{ color: '#25D366' }}
+                                  transition={{ duration: 0.3 }}
+                                >
+                                  <FaWhatsapp />
+                                </motion.a>
+            
+                                {/* TikTok */}
+                                <motion.a
+                                  href="#"
+                                  aria-label="TikTok"
+                                  initial={{ color: '#D1D5DB' }}
+                                  whileHover={{ color: '#25F4EE' }}
+                                  transition={{ duration: 0.3 }}
+                                >
+                                  <FaTiktok />
+                                </motion.a>
+            
+                              </div>
+                        </div>
           </div>
         </div>
       )}

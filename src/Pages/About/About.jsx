@@ -38,7 +38,7 @@ const About = () => {
 
 
   return (
-    <div className="min-h-screen bg-black text-white py-20 px-4 overflow-hidden">
+    <div className="min-h-screen bg-black text-white pt-20 px-4 overflow-hidden">
          <ErrorBoundary>
             <Header mobileMenuOpen={mobileMenuOpen} setMobileMenuOpen={setMobileMenuOpen} />
           </ErrorBoundary>
