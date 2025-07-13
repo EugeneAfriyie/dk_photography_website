@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, Component } from 'react';
 import HeroCarousel from './Components/HeroCarousel';
 import IntroductionSection from './Components/IntroductionSection';
 import MissionSection from './Components/MissionSection';
@@ -11,14 +11,32 @@ import GallerySection from './Components/GallerySection';
 import ServicesSection from './Components/ServicesSection';
 import TestimonialSection from './Components/TestimonialSection';
 import Testmonial from '../Home/Components/Testmonial';
-import { testimonials } from '../Home/data';
+import { galleryImages, servicesData, testimonials } from '../Home/data';
+import GalleryPreview from '../Home/Components/PageGallery';
+import Services from '../Home/Components/Services';
+
+
+class ErrorBoundary extends Component {
+  state = { hasError: false };
+  static getDerivedStateFromError() {
+    return { hasError: true };
+  }
+  render() {
+    if (this.state.hasError) {
+      return <div className="text-white text-center py-8">Something went wrong.</div>;
+    }
+    return this.props.children;
+  }
+}
 
 const About = () => {
   const [isVisible, setIsVisible] = useState(false);
+    const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+
 
   useEffect(() => {
     const handleScroll = () => {
-      if (window.scrollY > 300) {
+      if (window.scrollY > 8000) {
         setIsVisible(true);
       } else {
         setIsVisible(false);
@@ -35,7 +53,9 @@ const About = () => {
 
   return (
     <div className="min-h-screen bg-black text-white py-20 px-4 overflow-hidden">
-      <Header />
+         <ErrorBoundary>
+            <Header mobileMenuOpen={mobileMenuOpen} setMobileMenuOpen={setMobileMenuOpen} />
+          </ErrorBoundary>
 
       <div className="max-w-7xl mx-auto">
         <HeroCarousel />
@@ -44,20 +64,26 @@ const About = () => {
         <LocationSection />
         <Ads />
 
-        <GallerySection />
-        <ServicesSection />
-         <Testmonial
+         <ErrorBoundary>
+                      <Services servicesData={servicesData} />
+                    </ErrorBoundary>
+       
+
+           <ErrorBoundary>
+          <GalleryPreview galleryImages={galleryImages}/>
+         </ErrorBoundary>
+
+           <Testmonial
             items={testimonials}
             interval={7000}
             autoPlay={true}
-    
           />
         <Footer />
       </div>
 
       {isVisible && (
         <motion.button
-          className="fixed bottom-8 right-8 bg-amber-500 hover:bg-amber-600 text-white p-3 rounded-full shadow-lg transition duration-300"
+          className="fixed bottom-8 right-5 bg-amber-500 hover:bg-amber-600 text-white p-1.5 md:p-3 rounded-full shadow-lg transition duration-300"
           onClick={scrollToTop}
           initial={{ y: 50, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
@@ -67,7 +93,7 @@ const About = () => {
           whileTap={{ scale: 0.95 }}
         >
           <svg
-            className="w-6 h-6"
+            className="md:w-6 md:h-6 w-3 h-3"
             fill="none"
             stroke="currentColor"
             viewBox="0 0 24 24"

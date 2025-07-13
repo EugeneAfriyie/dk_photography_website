@@ -7,7 +7,7 @@ import { FaInstagram, FaTiktok, FaWhatsapp } from "react-icons/fa";
 
 const Footer = ({isFocused,setIsFocused}) => {
   return (
-       <footer className="bg-black text-white py-10 px-6 md:px-20">
+       <footer className="bg-black text-white py-10 px-6 md:px-20 bg-gradient-to-b from-black to-gray-900">
         <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-10">
           {/* Logo & Socials */}
           <div>

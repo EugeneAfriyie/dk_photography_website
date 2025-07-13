@@ -17,7 +17,7 @@ const fadeUp = {
 const Ads = () => {
   return (
     <motion.section
-      className="bg-black text-white py-12 sm:py-16 md:py-20 lg:py-24 text-center"
+      className="bg-black text-white py-12 sm:py-16 md:py-20 lg:py-24 text-center bg-gradient-to-b from-black to-gray-900"
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true }}

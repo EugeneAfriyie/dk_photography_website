@@ -38,6 +38,19 @@ class ErrorBoundary extends Component {
   }
 }
 
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 8000) {
+        setIsVisible(true);
+      } else {
+        setIsVisible(false);
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
 const Home = () => {
   // State for mobile menu (assumed from typical setup)
 
