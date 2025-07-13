@@ -6,6 +6,7 @@ import MissionSection from './Components/MissionSection';
 import Header from '../Home/Components/Header';
 import LocationSection from './Components/LocationSection';
 import Footer from '../../Components/Footer';
+import Ads from './Components/Ads';
 
 const About = () => {
   return (
@@ -20,6 +21,8 @@ const About = () => {
         <MissionSection />
 
         <LocationSection />
+
+        <Ads />
 
 
         <Footer />
