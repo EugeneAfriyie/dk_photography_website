@@ -4,6 +4,7 @@ import HeroCarousel from './Components/HeroCarousel';
 import IntroductionSection from './Components/IntroductionSection';
 import MissionSection from './Components/MissionSection';
 import Header from '../Home/Components/Header';
+import LocationSection from './Components/LocationSection';
 
 const About = () => {
   return (
@@ -16,6 +17,8 @@ const About = () => {
         <IntroductionSection />
 
         <MissionSection />
+
+        <LocationSection />
       </div>
     </div>
   );
