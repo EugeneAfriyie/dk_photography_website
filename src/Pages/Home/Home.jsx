@@ -20,6 +20,7 @@ import Faq from './Faq';
 import  Progress from './Progress';
 import Footer from '../../Components/Footer';
 import ExclusiveOffer from './Components/ExclusiveOffer';
+import ToTop from '../About/Components/ToTop';
 
 
 
@@ -38,18 +39,7 @@ class ErrorBoundary extends Component {
   }
 }
 
-  useEffect(() => {
-    const handleScroll = () => {
-      if (window.scrollY > 8000) {
-        setIsVisible(true);
-      } else {
-        setIsVisible(false);
-      }
-    };
 
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
 
 const Home = () => {
   // State for mobile menu (assumed from typical setup)
@@ -58,6 +48,8 @@ const Home = () => {
     const [selectedPackage, setSelectedPackage] = useState(null);
     const [openFaqIndex, setOpenFaqIndex] = useState(null);
     const [isFocused, setIsFocused] = useState(false);
+        const [Show, setshow] = useState(5000);
+    
   
     const services = [
       {
@@ -283,6 +275,8 @@ const Home = () => {
                 <Footer isFocused={isFocused} setIsFocused={setIsFocused} />
               </ErrorBoundary>
       </div>
+
+      <ToTop Showtop={Show}/>
     </>
   );
 };
