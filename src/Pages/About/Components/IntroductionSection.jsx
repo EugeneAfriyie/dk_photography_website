@@ -1,6 +1,5 @@
 import React, { useState, useRef } from 'react';
 import { motion } from 'framer-motion';
-import { X } from 'lucide-react';
 
 const IntroductionSection = () => {
   const [isOverlayOpen, setIsOverlayOpen] = useState(false);
@@ -112,9 +111,9 @@ const IntroductionSection = () => {
         {/* Image Container */}
         <motion.div
           className="h-80 sm:h-full bg-gray-800 rounded-xl shadow-md"
-          initial={{ opacity: 0, scale: 0.9 }}
-          whileInView={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.6, delay: 0.6 }}
+          initial={{ scale: 0.5, opacity: 0 }}
+          whileInView={{ scale: 1, opacity: 1 }}
+          transition={{ duration: 0.7, delay: 0.6, ease: "easeOut" }}
           viewport={{ once: true }}
         >
           <img
@@ -128,9 +127,9 @@ const IntroductionSection = () => {
         {/* Story Container with Summary and Button */}
         <motion.div
           className="p-6 bg-gray-800 rounded-xl shadow-md flex flex-col justify-between h-full"
-          initial={{ opacity: 0, x: 50 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.6, delay: 0.7 }}
+          initial={{ x: 100, opacity: 0 }}
+          whileInView={{ x: 0, opacity: 1 }}
+          transition={{ duration: 0.7, delay: 0.7, ease: "easeOut" }}
           viewport={{ once: true }}
         >
           <div>
