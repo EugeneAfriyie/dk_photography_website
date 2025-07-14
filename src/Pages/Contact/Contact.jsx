@@ -42,7 +42,6 @@ const Contact = () => {
     if (formData.attachment) {
       formDataToSend.append('attachment', formData.attachment);
     }
-    // Simulate form submission (replace with actual API call)
     console.log('Form submitted:', {
       name: formData.name,
       email: formData.email,
@@ -50,7 +49,7 @@ const Contact = () => {
       attachment: formData.attachment ? formData.attachment.name : null
     });
     setIsSubmitted(true);
-    setTimeout(() => setIsSubmitted(false), 3000); // Reset after 3 seconds
+    setTimeout(() => setIsSubmitted(false), 3000);
   };
 
   return (
@@ -60,117 +59,168 @@ const Contact = () => {
       <div className="max-w-7xl mx-auto">
         {/* Contact Banner */}
         <motion.section
-          className="bg-gray-900 rounded-lg p-6 sm:p-8 mb-12"
+          className="rounded-lg mb-12"
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.9, ease: "easeOut" }}
           viewport={{ once: true }}
         >
-          <div className="text-center">
-            <motion.h1
-              className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4"
-              initial={{ scale: 0.9, opacity: 0 }}
-              whileInView={{ scale: 1, opacity: 1 }}
-              transition={{ duration: 0.6, delay: 0.2 }}
-              viewport={{ once: true }}
-            >
-              Get in Touch
-            </motion.h1>
-            <motion.p
-              className="text-gray-400 text-base sm:text-lg md:text-xl mb-6"
-              initial={{ y: 20, opacity: 0 }}
-              whileInView={{ y: 0, opacity: 1 }}
-              transition={{ duration: 0.6, delay: 0.4 }}
-              viewport={{ once: true }}
-            >
-              We’d love to hear from you! Reach out for bookings or inquiries.
-            </motion.p>
+          <div className="relative w-full h-48 sm:h-64 rounded-md overflow-hidden text-center flex items-center justify-center">
             <motion.img
               src="https://picsum.photos/800/400"
               alt="Contact Banner"
-              className="w-full h-48 sm:h-64 object-cover rounded-md"
+              className="absolute top-0 left-0 w-full h-full object-cover z-0"
               initial={{ x: -100, opacity: 0 }}
               whileInView={{ x: 0, opacity: 1 }}
               transition={{ duration: 0.7, ease: "easeOut" }}
               viewport={{ once: true }}
             />
+            <div className="relative z-10 text-white p-4 bg-black/50 rounded-md">
+              <motion.h1
+                className="text-3xl sm:text-4xl md:text-5xl font-bold mb-2"
+                initial={{ scale: 0.9, opacity: 0 }}
+                whileInView={{ scale: 1, opacity: 1 }}
+                transition={{ duration: 0.6, delay: 0.2 }}
+                viewport={{ once: true }}
+              >
+                Get in Touch
+              </motion.h1>
+              <motion.p
+                className="text-gray-200 text-base sm:text-lg md:text-xl"
+                initial={{ y: 20, opacity: 0 }}
+                whileInView={{ y: 0, opacity: 1 }}
+                transition={{ duration: 0.6, delay: 0.4 }}
+                viewport={{ once: true }}
+              >
+                We’d love to hear from you! Reach out for bookings or inquiries.
+              </motion.p>
+            </div>
           </div>
         </motion.section>
 
         {/* Contact Form */}
         <motion.section
-          className="bg-gray-800 p-6 sm:p-8 rounded-lg mb-12"
+          className="bg-gry-800 p-6 sm:p-8 rounded-lg mb-12"
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.9, ease: "easeOut" }}
           viewport={{ once: true }}
         >
           <h2 className="text-2xl sm:text-3xl font-bold mb-6 text-center">Send Us a Message</h2>
-          <form onSubmit={handleSubmit} className="max-w-lg mx-auto">
-            <div className="mb-4">
-              <label htmlFor="name" className="block text-sm sm:text-base font-medium mb-2">Name</label>
-              <input
-                type="text"
-                id="name"
-                name="name"
-                value={formData.name}
-                onChange={handleChange}
-                className="w-full p-3 bg-gray-700 rounded-md border border-gray-600 focus:outline-none focus:border-amber-500"
-                required
-              />
-            </div>
-            <div className="mb-4">
-              <label htmlFor="email" className="block text-sm sm:text-base font-medium mb-2">Email</label>
-              <input
-                type="email"
-                id="email"
-                name="email"
-                value={formData.email}
-                onChange={handleChange}
-                className="w-full p-3 bg-gray-700 rounded-md border border-gray-600 focus:outline-none focus:border-amber-500"
-                required
-              />
-            </div>
-            <div className="mb-4">
-              <label htmlFor="message" className="block text-sm sm:text-base font-medium mb-2">Message</label>
-              <textarea
-                id="message"
-                name="message"
-                value={formData.message}
-                onChange={handleChange}
-                className="w-full p-3 bg-gray-700 rounded-md border border-gray-600 focus:outline-none focus:border-amber-500 h-32"
-                required
-              />
-            </div>
-            <div className="mb-4">
-              <label htmlFor="attachment" className="block text-sm sm:text-base font-medium mb-2">Attachment (e.g., Photos)</label>
-              <input
-                type="file"
-                id="attachment"
-                name="attachment"
-                onChange={handleChange}
-                className="w-full p-2 bg-gray-700 rounded-md border border-gray-600 focus:outline-none focus:border-amber-500"
-                accept="image/*,application/pdf"
-              />
-              {formData.attachment && <p className="text-gray-400 text-sm mt-1">Selected: {formData.attachment.name}</p>}
-            </div>
-            <motion.button
-              type="submit"
-              className="w-full sm:w-auto px-6 py-3 bg-amber-500 hover:bg-amber-600 text-white rounded-full transition duration-300"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-            >
-              Send Message
-            </motion.button>
-            {isSubmitted && (
-              <p className="text-green-400 text-center mt-4">Message sent successfully!</p>
-            )}
-          </form>
+          <form onSubmit={handleSubmit} className="max-w-2xl mx-auto space-y-6">
+  {/* Name */}
+  <div>
+    <label htmlFor="name" className="block text-sm font-medium mb-2 text-white">
+      Your full name
+    </label>
+    <div className="flex items-center bg-[#111] text-white rounded-xl px-4 py-3">
+      <span className="mr-3 text-gray-400">
+        <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+          <path d="M5.121 17.804A9 9 0 1118.88 6.196 9 9 0 015.12 17.804zM15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+        </svg>
+      </span>
+      <input
+        type="text"
+        name="name"
+        id="name"
+        value={formData.name}
+        onChange={handleChange}
+        placeholder="Enter your full name"
+        className="bg-transparent flex-1 outline-none text-white placeholder-gray-500"
+        required
+      />
+    </div>
+  </div>
+
+  {/* Email */}
+  <div>
+    <label htmlFor="email" className="block text-sm font-medium mb-2 text-white">
+      Email address
+    </label>
+    <div className="flex items-center bg-[#111] text-white rounded-xl px-4 py-3">
+      <span className="mr-3 text-gray-400">
+        <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+          <path d="M16 12H8m0 0l-4 4m4-4l-4-4m8 0h8v16H4V4h8z" />
+        </svg>
+      </span>
+      <input
+        type="email"
+        name="email"
+        id="email"
+        value={formData.email}
+        onChange={handleChange}
+        placeholder="Enter your email"
+        className="bg-transparent flex-1 outline-none text-white placeholder-gray-500"
+        required
+      />
+    </div>
+  </div>
+
+  {/* Subject */}
+  <div>
+    <label htmlFor="subject" className="block text-sm font-medium mb-2 text-white">
+      Subject
+    </label>
+    <div className="flex items-center bg-[#111] text-white rounded-xl px-4 py-3">
+      <span className="mr-3 text-gray-400">
+        <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+          <path d="M4 6h16M4 12h16M4 18h7" />
+        </svg>
+      </span>
+      <input
+        type="text"
+        name="subject"
+        id="subject"
+        placeholder="Enter your subject"
+        className="bg-transparent flex-1 outline-none text-white placeholder-gray-500"
+        onChange={handleChange}
+        required
+      />
+    </div>
+  </div>
+
+  {/* Message */}
+  <div>
+    <label htmlFor="message" className="block text-sm font-medium mb-2 text-white">
+      Message
+    </label>
+    <div className="flex items-start bg-[#111] text-white rounded-xl px-4 py-3">
+      <span className="mr-3 text-gray-400 pt-1">
+        <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+          <path d="M8 10h.01M12 10h.01M16 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+        </svg>
+      </span>
+      <textarea
+        name="message"
+        id="message"
+        placeholder="Describe your message"
+        value={formData.message}
+        onChange={handleChange}
+        className="bg-transparent flex-1 outline-none text-white placeholder-gray-500 h-24 resize-none"
+        required
+      ></textarea>
+    </div>
+  </div>
+
+  {/* Submit */}
+  <div className="text-center">
+    <motion.button
+      type="submit"
+      className="bg-[#7c3aed] hover:bg-purple-700 text-white font-medium px-6 py-3 rounded-xl transition duration-300"
+      whileHover={{ scale: 1.05 }}
+      whileTap={{ scale: 0.95 }}
+    >
+      Send Message
+    </motion.button>
+    {isSubmitted && <p className="text-green-400 mt-4">Message sent successfully!</p>}
+  </div>
+</form>
+
         </motion.section>
 
         {/* Contact Info */}
         <motion.section
-          className="bg-gray-900 p-6 sm:p-8 rounded-lg mb-12"
+          className="bg-gay-900 p-6 sm:p-8 rounded-lg mb-12"
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.9, ease: "easeOut" }}
@@ -201,7 +251,7 @@ const Contact = () => {
 
         {/* Social Media */}
         <motion.section
-          className="bg-gray-800 p-6 sm:p-8 rounded-lg mb-12 text-center"
+          className="bg-gry-800 p-6 sm:p-8 rounded-lg mb-12 text-center"
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.9, ease: "easeOut" }}
@@ -212,7 +262,7 @@ const Contact = () => {
             {['facebook', 'instagram', 'twitter'].map((social, index) => (
               <motion.a
                 key={social}
-                href={`https://${social}.com/dkshotitstudio`} // Replace with actual URLs
+                href={`https://${social}.com/dkshotitstudio`}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-2xl sm:text-3xl text-gray-400 hover:text-amber-300 transition duration-300"
