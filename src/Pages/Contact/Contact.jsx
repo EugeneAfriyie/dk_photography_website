@@ -3,6 +3,8 @@ import { motion } from 'framer-motion';
 import Header from '../Home/Components/Header';
 import Footer from '../../Components/Footer';
 import { FaInstagram, FaTiktok, FaWhatsapp } from 'react-icons/fa';
+import Studio_Location from '../Home/Studio_Location';
+import { locationsData } from '../Home/data';
 
 // Export packages (to be used elsewhere if needed)
 export const packages = [
@@ -743,7 +745,10 @@ const Contact = () => {
                    
                  </div>
                </motion.section>
-       
+
+
+            <Studio_Location locations={locationsData} />
+  
                {/* Social Media */}
                <motion.section
                  className="bg-gray-800 p-6 sm:p-8 rounded-lg mb-12 text-center "
