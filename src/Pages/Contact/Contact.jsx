@@ -692,7 +692,10 @@ const Contact = () => {
                     Request Booking
                   </motion.button>
                   <p className="text-gray-400 text-sm mt-2">
-                    Check the <a href="/services" className="text-amber-300 hover:underline">service page</a> for package details or call/WhatsApp your photographer for more details.
+                    Check the <a href="/services" className="text-amber-300 hover:underline">service page</a> for package details or{' '}
+                    <a href="tel:+233123456789" className="text-amber-300 hover:underline">call</a>{' '}
+                    /{' '}
+                    <a href="https://wa.me/233123456789" className="text-amber-300 hover:underline">WhatsApp</a> your photographer for more details.
                   </p>
                 </div>
 
