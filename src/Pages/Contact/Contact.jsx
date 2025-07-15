@@ -3,12 +3,143 @@ import { motion } from 'framer-motion';
 import Header from '../Home/Components/Header';
 import Footer from '../../Components/Footer';
 
+// Export packages (to be used elsewhere if needed)
+export const packages = [
+  {
+    title: 'Wedding Bliss Package',
+    price: '$2,500',
+    coverageHours: '8 Hours',
+    photographers: '2 Photographers',
+    editedPhotos: '300 Photos',
+    deliveryTime: '4 Weeks',
+    extras: 'Custom Album',
+    sessionLocation: 'Outdoor or Venue',
+    description: 'Capture your special day with our Wedding Photography and Event Coverage. Includes 8 hours of coverage, two photographers, and a custom album.',
+    servicesIncluded: ['Photography'],
+    isPopular: false,
+    icon: 'https://res.cloudinary.com/djeorsh5d/image/upload/v1751247125/BRIDE1_kjfo1p.jpg',
+  },
+  {
+    title: 'Premium Wedding Experience',
+    price: '$4,800',
+    coverageHours: '12 Hours',
+    photographers: '2 Photographers',
+    editedPhotos: '550 Photos',
+    deliveryTime: '5 Weeks',
+    extras: 'Premium Album, Drone Footage, Dedicated Videographer, Bridal Makeup and Hair, Pre-Wedding Photo Session',
+    sessionLocation: 'Outdoor or Venue',
+    description: 'Luxury Wedding Photography with a pre-wedding photo session, a dedicated videographer for cinematic videography including drone footage, and professional bridal makeup and hairstyling. Features 12 hours of coverage, two photographers, and a premium album.',
+    servicesIncluded: ['Photography', 'Videography', 'Make Up and Hair Styling'],
+    isPopular: false,
+    icon: 'https://res.cloudinary.com/djeorsh5d/image/upload/v1751247127/WED1_c0gp9p.jpg',
+  },
+  {
+    title: 'Premium Family Legacy',
+    price: '$2,500',
+    coverageHours: '6 Hours',
+    photographers: '2 Photographers',
+    editedPhotos: '200 Photos',
+    deliveryTime: '4 Weeks',
+    extras: 'Hardcover Book, Video Highlights',
+    sessionLocation: 'Studio or Outdoor',
+    description: 'Elite Children Photography and Family Photography with 6 hours, studio access, a hardcover book, and video highlights.',
+    servicesIncluded: ['Photography', 'Videography'],
+    isPopular: false,
+    icon: 'https://res.cloudinary.com/djeorsh5d/image/upload/v1751247111/FAM1_wdqml7.jpg',
+  },
+  {
+    title: 'Family Memories Package',
+    price: '$1,200',
+    coverageHours: '3 Hours',
+    photographers: '1 Photographer',
+    editedPhotos: '100 Photos',
+    deliveryTime: '3 Weeks',
+    extras: 'Digital Gallery',
+    sessionLocation: 'Outdoor or Indoor',
+    description: 'Cherish your family bond with Children Photography and Family Photography. Includes 3 hours of outdoor or indoor sessions and a digital gallery.',
+    servicesIncluded: ['Photography'],
+    isPopular: false,
+    icon: 'https://res.cloudinary.com/djeorsh5d/image/upload/v1751247111/FAM2_kaaw51.jpg',
+  },
+  {
+    title: 'Graduation Celebration Package',
+    price: '$600',
+    coverageHours: '1.5 Hours',
+    photographers: '1 Photographer',
+    editedPhotos: '30 Photos',
+    deliveryTime: '2 Weeks',
+    extras: 'Digital Frame',
+    sessionLocation: 'Campus or Outdoor',
+    description: 'Capture your graduation day with professional photos featuring caps, gowns, and milestone moments.',
+    servicesIncluded: ['Photography'],
+    isPopular: false,
+    icon: 'https://res.cloudinary.com/djeorsh5d/image/upload/v1751247111/GRAWM2_flta1z.jpg',
+  },
+  {
+    title: 'Premium Graduation Package',
+    price: '$1,000',
+    coverageHours: '3 Hours',
+    photographers: '1 Photographer',
+    editedPhotos: '75 Photos',
+    deliveryTime: '3 Weeks',
+    extras: 'Custom Photo Book, Group Shots',
+    sessionLocation: 'Campus or Venue',
+    description: 'A comprehensive graduation package with extended coverage, a custom photo book, and group shots.',
+    servicesIncluded: ['Photography'],
+    isPopular: true,
+    icon: 'https://res.cloudinary.com/djeorsh5d/image/upload/v1751247111/GRAWM1_azekpo.jpg',
+  },
+  {
+    title: 'Birthday Celebration Package',
+    price: '$1,300',
+    coverageHours: '3 Hours',
+    photographers: '1 Photographer',
+    editedPhotos: '80 Photos',
+    deliveryTime: '3 Weeks',
+    extras: 'Digital Gallery, Party Highlights, Dedicated Videographer, Special Occasion Makeup and Hair',
+    sessionLocation: 'Venue or Outdoor',
+    description: 'Celebrate your special day with vibrant birthday photography, a dedicated videographer for cinematic videography, and professional makeup and hairstyling. Includes 3 hours of coverage and a digital gallery.',
+    servicesIncluded: ['Photography', 'Videography', 'Make Up and Hair Styling'],
+    isPopular: false,
+    icon: 'https://res.cloudinary.com/djeorsh5d/image/upload/v1751247104/BIRTH3_po4i3v.jpg',
+  },
+  {
+    title: 'Couple Shots Package',
+    price: '$800',
+    coverageHours: '2 Hours',
+    photographers: '1 Photographer',
+    editedPhotos: '50 Photos',
+    deliveryTime: '2 Weeks',
+    extras: 'Digital Gallery, Romantic Photo Book',
+    sessionLocation: 'Studio or Outdoor',
+    description: 'Capture your love story with a romantic couple photography session, perfect for engagements, anniversaries, or special moments.',
+    servicesIncluded: ['Photography'],
+    isPopular: false,
+    icon: 'https://res.cloudinary.com/djeorsh5d/image/upload/v1751247107/COP1_gfdb3c.jpg',
+  },
+  {
+    title: 'Children Shot Package',
+    price: '$700',
+    coverageHours: '2 Hours',
+    photographers: '1 Photographer',
+    editedPhotos: '50 Photos',
+    deliveryTime: '2 Weeks',
+    extras: 'Digital Gallery, Children’s Photo Book',
+    sessionLocation: 'Studio or Outdoor',
+    description: 'Capture your child’s milestones with a fun and vibrant photography session, perfect for birthdays, first steps, or special moments.',
+    servicesIncluded: ['Photography'],
+    isPopular: false,
+    icon: 'https://res.cloudinary.com/djeorsh5d/image/upload/v1751247106/SKYLA_d81pvt.jpg',
+  },
+];
+
 const Contact = () => {
   const [isVisible, setIsVisible] = useState(false);
   const [formMode, setFormMode] = useState('inquiry'); // 'inquiry' or 'booking'
-  const [formData, setFormData] = useState({ name: '', email: '', subject: '', message: '', attachment: null, phone: '' });
+  const [formData, setFormData] = useState({ name: '', email: '', subject: '', message: '', attachment: null, phone: '', notes: '' });
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [showPopup, setShowPopup] = useState(false);
+  const [acceptedTerms, setAcceptedTerms] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -28,15 +159,22 @@ const Contact = () => {
   };
 
   const handleChange = (e) => {
-    const { name, value, files } = e.target;
+    const { name, value, files, type, checked } = e.target;
     setFormData(prev => ({
       ...prev,
-      [name]: files ? files[0] : value
+      [name]: type === 'checkbox' ? checked : files ? files[0] : value
     }));
+    if (type === 'checkbox') {
+      setAcceptedTerms(checked);
+    }
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    if (!acceptedTerms) {
+      alert('Please accept the Terms and Conditions to proceed.');
+      return;
+    }
     if (formMode === 'inquiry') {
       const formDataToSend = new FormData();
       formDataToSend.append('name', formData.name);
@@ -44,6 +182,7 @@ const Contact = () => {
       formDataToSend.append('subject', formData.subject);
       formDataToSend.append('message', formData.message);
       formDataToSend.append('phone', formData.phone);
+      formDataToSend.append('notes', formData.notes);
       if (formData.attachment) {
         formDataToSend.append('attachment', formData.attachment);
       }
@@ -54,6 +193,7 @@ const Contact = () => {
         subject: formData.subject,
         message: formData.message,
         phone: formData.phone,
+        notes: formData.notes,
         attachment: formData.attachment ? formData.attachment.name : null
       });
     } else {
@@ -62,12 +202,14 @@ const Contact = () => {
         name: formData.name,
         email: formData.email,
         phone: formData.phone,
+        notes: formData.notes,
         package: selectedPackage
       });
     }
     setIsSubmitted(true);
     setShowPopup(true);
-    setFormData({ name: '', email: '', subject: '', message: '', attachment: null, phone: '' });
+    setFormData({ name: '', email: '', subject: '', message: '', attachment: null, phone: '', notes: '' });
+    setAcceptedTerms(false);
     setTimeout(() => {
       setShowPopup(false);
       setIsSubmitted(false);
@@ -79,12 +221,7 @@ const Contact = () => {
     setIsSubmitted(false);
   };
 
-  // Sample packages for booking
-  const packages = [
-    { id: 1, name: 'Basic Photo Session', price: 50 },
-    { id: 2, name: 'Standard Photo Session', price: 100 },
-    { id: 3, name: 'Premium Photo Session', price: 200 }
-  ];
+  // State for selected package
   const [selectedPackage, setSelectedPackage] = useState(packages[0]);
 
   return (
@@ -288,6 +425,28 @@ const Contact = () => {
                   </div>
                 </div>
 
+                {/* Notes */}
+                <div>
+                  <label htmlFor="notes" className="block text-sm font-medium mb-2 text-white">
+                    Notes
+                  </label>
+                  <div className="flex items-start bg-[#111] text-white rounded-xl px-4 py-3">
+                    <span className="mr-3 text-gray-400 pt-1">
+                      <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+                        <path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4" />
+                      </svg>
+                    </span>
+                    <textarea
+                      name="notes"
+                      id="notes"
+                      placeholder="Add any additional notes or requests"
+                      value={formData.notes}
+                      onChange={handleChange}
+                      className="bg-transparent flex-1 outline-none text-white placeholder-gray-500 h-20 resize-none"
+                    ></textarea>
+                  </div>
+                </div>
+
                 {/* Attachment */}
                 <div>
                   <label htmlFor="attachment" className="block text-sm font-medium mb-2 text-white">
@@ -309,6 +468,25 @@ const Contact = () => {
                     />
                   </div>
                   {formData.attachment && <p className="text-gray-400 text-sm mt-1">Selected: {formData.attachment.name}</p>}
+                </div>
+
+                {/* Terms and Conditions */}
+                <div className="flex items-center space-x-2">
+                  <input
+                    type="checkbox"
+                    name="terms"
+                    id="terms"
+                    checked={acceptedTerms}
+                    onChange={handleChange}
+                    className="h-4 w-4 text-amber-500 focus:ring-amber-500 border-gray-600 rounded"
+                    required
+                  />
+                  <label htmlFor="terms" className="text-sm text-gray-300">
+                    I accept the{' '}
+                    <a href="/terms" target="_blank" rel="noopener noreferrer" className="text-amber-300 hover:underline">
+                      Terms and Conditions
+                    </a>
+                  </label>
                 </div>
 
                 {/* Submit */}
@@ -336,12 +514,14 @@ const Contact = () => {
                   <select
                     name="package"
                     id="package"
-                    value={selectedPackage.id}
-                    onChange={(e) => setSelectedPackage(packages.find(p => p.id === parseInt(e.target.value)))}
+                    value={selectedPackage.title}
+                    onChange={(e) => setSelectedPackage(packages.find(p => p.title === e.target.value) || packages[0])}
                     className="w-full bg-[#111] text-white rounded-xl px-4 py-3 outline-none"
                   >
                     {packages.map((pkg) => (
-                      <option key={pkg.id} value={pkg.id}>{pkg.name} - ${pkg.price}</option>
+                      <option key={pkg.title} value={pkg.title}>
+                        {pkg.title} - {pkg.price}
+                      </option>
                     ))}
                   </select>
                 </div>
@@ -416,10 +596,51 @@ const Contact = () => {
                   </div>
                 </div>
 
+                {/* Notes */}
+                <div>
+                  <label htmlFor="notes" className="block text-sm font-medium mb-2 text-white">
+                    Notes
+                  </label>
+                  <div className="flex items-start bg-[#111] text-white rounded-xl px-4 py-3">
+                    <span className="mr-3 text-gray-400 pt-1">
+                      <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+                        <path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4" />
+                      </svg>
+                    </span>
+                    <textarea
+                      name="notes"
+                      id="notes"
+                      placeholder="Add any additional notes or requests"
+                      value={formData.notes}
+                      onChange={handleChange}
+                      className="bg-transparent flex-1 outline-none text-white placeholder-gray-500 h-20 resize-none"
+                    ></textarea>
+                  </div>
+                </div>
+
                 {/* Amount Due */}
                 <div className="bg-gray-700 p-4 rounded-lg text-center">
                   <h3 className="text-lg font-bold text-white mb-2">Amount Due</h3>
-                  <p className="text-amber-300 text-xl">${selectedPackage.price}</p>
+                  <p className="text-amber-300 text-xl">{selectedPackage.price}</p>
+                </div>
+
+                {/* Terms and Conditions */}
+                <div className="flex items-center space-x-2">
+                  <input
+                    type="checkbox"
+                    name="terms"
+                    id="terms"
+                    checked={acceptedTerms}
+                    onChange={handleChange}
+                    className="h-4 w-4 text-amber-500 focus:ring-amber-500 border-gray-600 rounded"
+                    required
+                  />
+                  <label htmlFor="terms" className="text-sm text-gray-300">
+                    I accept the{' '}
+                    <a href="/terms" target="_blank" rel="noopener noreferrer" className="text-amber-300 hover:underline">
+                      Terms and Conditions
+                    </a>
+                  </label>
                 </div>
 
                 {/* Submit */}
