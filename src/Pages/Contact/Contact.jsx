@@ -64,6 +64,11 @@ const Contact = () => {
     }, 3000); // Popup and success state reset after 3 seconds
   };
 
+  const handleClosePopup = () => {
+    setShowPopup(false);
+    setIsSubmitted(false);
+  };
+
   return (
     <div className="min-h-screen bg-black text-white py-20 px-4 overflow-hidden">
       <Header />
@@ -276,64 +281,66 @@ const Contact = () => {
           </form>
         </motion.section>
 
-        {/* Contact Info */}
-        <motion.section
-          className="bg-gray-900 p-6 sm:p-8 rounded-lg mb-12"
-          initial={{ opacity: 0, y: 50 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.9, ease: "easeOut" }}
-          viewport={{ once: true }}
-        >
-          <h2 className="text-2xl sm:text-3xl font-bold mb-6 text-center">Contact Information</h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 text-center sm:text-left">
-            <div>
-              <p className="text-gray-400 mb-2">Address:</p>
-              <p>DKSHOTIT Studio, Amakom, Kumasi, Ghana</p>
-              <a
-                href="https://maps.google.com/maps?q=Amakom,+Kumasi,+Ghana"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-amber-300 hover:underline mt-2 inline-block"
-              >
-                View on Map
-              </a>
-            </div>
-            <div>
-              <p className="text-gray-400 mb-2">Phone:</p>
-              <p>+233 123 456 789</p>
-              <p className="text-gray-400 mb-2 mt-4">Email:</p>
-              <p>info@dkshotit.com</p>
-            </div>
-          </div>
-        </motion.section>
-
-        {/* Social Media */}
-        <motion.section
-          className="bg-gray-800 p-6 sm:p-8 rounded-lg mb-12 text-center"
-          initial={{ opacity: 0, y: 50 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.9, ease: "easeOut" }}
-          viewport={{ once: true }}
-        >
-          <h2 className="text-2xl sm:text-3xl font-bold mb-6">Connect With Us</h2>
-          <div className="flex justify-center gap-6">
-            {['facebook', 'instagram', 'twitter'].map((social, index) => (
-              <motion.a
-                key={social}
-                href={`https://${social}.com/dkshotitstudio`} // Replace with actual URLs
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-2xl sm:text-3xl text-gray-400 hover:text-amber-300 transition duration-300"
-                initial={{ y: 20, opacity: 0 }}
-                whileInView={{ y: 0, opacity: 1 }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
-                viewport={{ once: true }}
-              >
-                {social === 'facebook' ? '🇫' : social === 'instagram' ? '📸' : '🐦'}
-              </motion.a>
-            ))}
-          </div>
-        </motion.section>
+       {/* Contact Info */}
+             <motion.section
+               className="bg-gray-900/30 p-6 sm:p-8 rounded-lg mb-12"
+               initial={{ opacity: 0, y: 50 }}
+               whileInView={{ opacity: 1, y: 0 }}
+               transition={{ duration: 0.9, ease: "easeOut" }}
+               viewport={{ once: true }}
+             >
+               <h2 className="text-2xl sm:text-3xl font-bold mb-6 text-center">Contact Information</h2>
+               <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 text-center sm:text-left">
+                 <div className="text-center">
+                   <p className="text-gray-400 mb-2 ">Address:</p>
+                   <p>DKSHOTIT Studio, Amakom, Kumasi, Ghana</p>
+                   <a
+                     href="https://maps.google.com/maps?q=Amakom,+Kumasi,+Ghana"
+                     target="_blank"
+                     rel="noopener noreferrer"
+                     className="text-amber-300 hover:underline mt-2 inline-block"
+                   >
+                     View on Map
+                   </a>
+                 </div>
+     
+                 <div className="text-center" >
+                   <p className="text-gray-400 mb-2">Phone:</p>
+                   <p>+233 123 456 789</p>
+                   <p className="text-gray-400 mb-2 mt-4">Email:</p>
+                   <p>info@dkshotit.com</p>
+                 </div>
+                 
+               </div>
+             </motion.section>
+     
+             {/* Social Media */}
+             <motion.section
+               className="bg-gray-800 p-6 sm:p-8 rounded-lg mb-12 text-center"
+               initial={{ opacity: 0, y: 50 }}
+               whileInView={{ opacity: 1, y: 0 }}
+               transition={{ duration: 0.9, ease: "easeOut" }}
+               viewport={{ once: true }}
+             >
+               <h2 className="text-2xl sm:text-3xl font-bold mb-6">Connect With Us</h2>
+               <div className="flex justify-center gap-6">
+                 {['facebook', 'instagram', 'twitter'].map((social, index) => (
+                   <motion.a
+                     key={social}
+                     href={`https://${social}.com/dkshotitstudio`} // Replace with actual URLs
+                     target="_blank"
+                     rel="noopener noreferrer"
+                     className="text-2xl sm:text-3xl text-gray-400 hover:text-amber-300 transition duration-300"
+                     initial={{ y: 20, opacity: 0 }}
+                     whileInView={{ y: 0, opacity: 1 }}
+                     transition={{ duration: 0.6, delay: index * 0.1 }}
+                     viewport={{ once: true }}
+                   >
+                     {social === 'facebook' ? '🇫' : social === 'instagram' ? '📸' : '🐦'}
+                   </motion.a>
+                 ))}
+               </div>
+             </motion.section>
 
         <Footer />
       </div>
@@ -376,12 +383,22 @@ const Contact = () => {
           transition={{ duration: 0.3 }}
         >
           <motion.div
-            className="bg-gray-800 p-6 sm:p-8 rounded-lg shadow-lg max-w-md w-full text-center"
+            className="bg-gray-800 p-6 sm:p-8 rounded-lg shadow-lg max-w-md w-full text-center relative"
             initial={{ scale: 0.8, y: 50 }}
             animate={{ scale: 1, y: 0 }}
             exit={{ scale: 0.8, y: 50 }}
             transition={{ duration: 0.3 }}
           >
+            <button
+              onClick={handleClosePopup}
+              className="absolute top-2 right-2 text-gray-400 hover:text-white w-8 h-8 flex items-center justify-center rounded-full bg-gray-700 hover:bg-amber-500 transition duration-300"
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.9 }}
+            >
+              <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+              </svg>
+            </button>
             <svg
               className="w-12 h-12 text-green-400 mx-auto mb-4"
               fill="none"
