@@ -280,7 +280,7 @@ const Contact = () => {
   const [selectedPackage, setSelectedPackage] = useState({ title: 'Select a Package', price: '' });
 
   return (
-    <div className="min-h-screen bg-black text-white py-20 px-4 overflow-hidden">
+    <div className="min-h-screen bg-black text-white pt-20 px-0 overflow-hidden">
       <Header />
 
       <div className="max-w-7xl mx-auto">
@@ -726,14 +726,7 @@ const Contact = () => {
                    <div className="text-center">
                      <p className="text-gray-400 mb-2 ">Address:</p>
                      <p>DKSHOTIT Studio, Amakom, Kumasi, Ghana</p>
-                     <a
-                       href="https://maps.google.com/maps?q=Amakom,+Kumasi,+Ghana"
-                       target="_blank"
-                       rel="noopener noreferrer"
-                       className="text-amber-300 hover:underline mt-2 inline-block"
-                     >
-                       View on Map
-                     </a>
+                    
                    </div>
        
                    <div className="text-center" >
@@ -751,7 +744,7 @@ const Contact = () => {
   
                {/* Social Media */}
                <motion.section
-                 className="bg-gray-800 p-6 sm:p-8 rounded-lg mb-12 text-center "
+                 className="bg-gray-800/30 p-6 sm:p-8 rounded-lg mb-12 text-center "
                  initial={{ opacity: 0, y: 50 }}
                  whileInView={{ opacity: 1, y: 0 }}
                  transition={{ duration: 0.9, ease: "easeOut" }}
