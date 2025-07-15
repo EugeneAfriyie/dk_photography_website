@@ -145,6 +145,8 @@ const Contact = () => {
   const [errorMessage, setErrorMessage] = useState('');
   const [showNoteLimitAlert, setShowNoteLimitAlert] = useState(false);
   const [validationErrors, setValidationErrors] = useState({ name: false, email: false, phone: false, subject: false, message: false, package: false });
+  const [submittedData, setSubmittedData] = useState(null);
+  const [selectedPackage, setSelectedPackage] = useState({ title: 'Select a Package', price: '' });
 
   useEffect(() => {
     const handleScroll = () => {
@@ -208,7 +210,7 @@ const Contact = () => {
     e.preventDefault();
     if (formMode === 'inquiry') {
       const errors = {
-        name: !formData.name,
+        name: !formData.name.trim(),
         email: !formData.email || !validateEmail(formData.email),
         phone: !formData.phone || !validatePhone(formData.phone),
         subject: !formData.subject,
@@ -230,18 +232,19 @@ const Contact = () => {
         formDataToSend.append('attachment', formData.attachment);
       }
       // Simulate form submission (replace with actual API call)
-      console.log('Inquiry submitted:', {
+      console.log('Inquiry submitted with formData:', formData);
+      setSubmittedData({
         name: formData.name,
         email: formData.email,
+        phone: formData.phone,
         subject: formData.subject,
         message: formData.message,
-        phone: formData.phone,
         notes: formData.notes,
-        attachment: formData.attachment ? formData.attachment.name : null
+        attachment: formData.attachment
       });
       setIsSubmitted(true);
       setShowPopup(true);
-      setFormData({ name: '', email: '', subject: '', message: '', attachment: null, phone: '', notes: '' });
+      // Removed setTimeout with formData clearing
     } else {
       const errors = {
         name: !formData.name,
@@ -262,6 +265,27 @@ const Contact = () => {
     }
   };
 
+  const handleConfirmSubmit = () => {
+    console.log('Booking confirmed:', {
+      name: formData.name,
+      email: formData.email,
+      phone: formData.phone,
+      notes: formData.notes,
+      package: selectedPackage
+    });
+    setSubmittedData({
+      name: formData.name,
+      email: formData.email,
+      phone: formData.phone,
+      notes: formData.notes,
+      package: selectedPackage
+    });
+    setShowConfirm(false);
+    setIsSubmitted(true);
+    setShowPopup(true);
+    // Removed setTimeout with formData clearing
+  };
+
   const handleKeyPress = (e) => {
     if (e.key === 'Enter' && !e.shiftKey) {
       e.preventDefault();
@@ -273,21 +297,6 @@ const Contact = () => {
         handleSubmit(e);
       }
     }
-  };
-
-  const handleConfirmSubmit = () => {
-    console.log('Booking confirmed:', {
-      name: formData.name,
-      email: formData.email,
-      phone: formData.phone,
-      notes: formData.notes,
-      package: selectedPackage
-    });
-    setShowConfirm(false);
-    setIsSubmitted(true);
-    setShowPopup(true);
-    setFormData({ name: '', email: '', subject: '', message: '', attachment: null, phone: '', notes: '' });
-    setAcceptedTerms(false);
   };
 
   const handleClosePopup = () => {
@@ -311,9 +320,6 @@ const Contact = () => {
   const handleCloseNoteLimitAlert = () => {
     setShowNoteLimitAlert(false);
   };
-
-  // State for selected package with default "Select a Package"
-  const [selectedPackage, setSelectedPackage] = useState({ title: 'Select a Package', price: '' });
 
   return (
     <div className="min-h-screen bg-black text-white py-20 px-4 overflow-hidden" onKeyPress={handleKeyPress}>
@@ -375,7 +381,7 @@ const Contact = () => {
           </motion.div>
         </motion.section>
 
-        {/* Form Mode Toggle with Enhanced Active Background */}
+        {/* Form Mode Toggle with Consistent Active Background */}
         <motion.div
           className="mb-8 text-center"
           initial={{ opacity: 0, y: 20 }}
@@ -385,7 +391,7 @@ const Contact = () => {
           <motion.button
             onClick={() => setFormMode('inquiry')}
             className={`px-4 py-2 rounded-l-lg ${formMode === 'inquiry' ? 'bg-amber-500 text-white' : 'bg-gray-700 text-gray-300'} hover:bg-amber-600 transition duration-300`}
-            whileHover={{ scale: 1.05, backgroundColor: formMode === 'inquiry' ? '#f59e0b' : '#4b5563' }}
+            whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
             transition={{ duration: 0.3 }}
           >
@@ -394,7 +400,7 @@ const Contact = () => {
           <motion.button
             onClick={() => setFormMode('booking')}
             className={`px-4 py-2 rounded-r-lg ${formMode === 'booking' ? 'bg-emerald-500 text-white' : 'bg-gray-700 text-gray-300'} hover:bg-emerald-600 transition duration-300`}
-            whileHover={{ scale: 1.05, backgroundColor: formMode === 'booking' ? '#10b981' : '#4b5563' }}
+            whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
             transition={{ duration: 0.3 }}
           >
@@ -1057,7 +1063,7 @@ const Contact = () => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.4 }}
             >
-              {formMode === 'inquiry' ? 'Inquiry Submitted Successfully!' : `Booking for ${selectedPackage.title} Confirmed!`}
+              {formMode === 'inquiry' ? 'Inquiry Submitted Successfully!' : `Booking for ${submittedData?.package?.title} Confirmed!`}
             </motion.h3>
             <motion.p
               className="text-gray-300 text-sm sm:text-base"
@@ -1065,8 +1071,24 @@ const Contact = () => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.4, delay: 0.2 }}
             >
-              Thank you, {formData.name || 'valued client'}, for {formMode === 'inquiry' ? `submitting your inquiry about "${formData.subject || 'your request'}"` : `booking the ${selectedPackage.title}`} with DKSHOTIT Studio & Photography. We look forward to assisting you. Check your email for confirmation details!
+              {(() => {
+                console.log('Submitted name at popup render:', submittedData?.name);
+                return `Thank you, ${submittedData?.name.trim() || 'valued customer'}, for ${formMode === 'inquiry' ? `submitting your inquiry about "${submittedData?.subject || 'your request'}"` : `booking the ${submittedData?.package?.title}`} with DKSHOTIT Studio & Photography. We look forward to assisting you. Check your email for confirmation details!`;
+              })()}
             </motion.p>
+            <motion.button
+              onClick={() => {
+                setFormData({ name: '', email: '', subject: '', message: '', attachment: null, phone: '', notes: '' });
+                setAcceptedTerms(false);
+                setSubmittedData(null);
+                handleClosePopup();
+              }}
+              className="mt-4 bg-amber-500 hover:bg-amber-600 text-white font-medium px-6 py-3 rounded-xl transition duration-300"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              Close and Reset
+            </motion.button>
           </motion.div>
         </motion.div>
       )}
