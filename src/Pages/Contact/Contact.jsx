@@ -2,9 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import Header from '../Home/Components/Header';
 import Footer from '../../Components/Footer';
-import { FaInstagram, FaTiktok, FaWhatsapp } from 'react-icons/fa';
-import Studio_Location from '../Home/Studio_Location';
-import { locationsData } from '../Home/data';
 
 // Export packages (to be used elsewhere if needed)
 export const packages = [
@@ -147,7 +144,7 @@ const Contact = () => {
   const [showTermsPopup, setShowTermsPopup] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
   const [showNoteLimitAlert, setShowNoteLimitAlert] = useState(false);
-  const [validationErrors, setValidationErrors] = useState({ name: false, email: false, phone: false, package: false });
+  const [validationErrors, setValidationErrors] = useState({ name: false, email: false, phone: false, subject: false, message: false, package: false });
 
   useEffect(() => {
     const handleScroll = () => {
@@ -196,6 +193,18 @@ const Contact = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (formMode === 'inquiry') {
+      const errors = {
+        name: !formData.name,
+        email: !formData.email || !validateEmail(formData.email),
+        phone: !formData.phone || !validatePhone(formData.phone),
+        subject: !formData.subject,
+        message: !formData.message
+      };
+      setValidationErrors(errors);
+      if (Object.values(errors).some(error => error)) {
+        setErrorMessage('Please fill in all required fields with valid information (Name, Email, Phone, Subject, Message).');
+        return;
+      }
       const formDataToSend = new FormData();
       formDataToSend.append('name', formData.name);
       formDataToSend.append('email', formData.email);
@@ -280,7 +289,7 @@ const Contact = () => {
   const [selectedPackage, setSelectedPackage] = useState({ title: 'Select a Package', price: '' });
 
   return (
-    <div className="min-h-screen bg-black text-white pt-20 px-0 overflow-hidden">
+    <div className="min-h-screen bg-black text-white py-20 px-4 overflow-hidden">
       <Header />
 
       <div className="max-w-7xl mx-auto">
@@ -366,7 +375,7 @@ const Contact = () => {
                   <label htmlFor="name" className="block text-sm font-medium mb-2 text-white">
                     Your full name
                   </label>
-                  <div className="flex items-center bg-[#111] text-white rounded-xl px-4 py-3">
+                  <div className={`flex items-center bg-[#111] text-white rounded-xl px-4 py-3 ${validationErrors.name ? 'border-2 border-red-500' : ''}`}>
                     <span className="mr-3 text-gray-400">
                       <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
                         <path d="M5.121 17.804A9 9 0 1118.88 6.196 9 9 0 015.12 17.804zM15 11a3 3 0 11-6 0 3 3 0 016 0z" />
@@ -390,7 +399,7 @@ const Contact = () => {
                   <label htmlFor="email" className="block text-sm font-medium mb-2 text-white">
                     Email address
                   </label>
-                  <div className="flex items-center bg-[#111] text-white rounded-xl px-4 py-3">
+                  <div className={`flex items-center bg-[#111] text-white rounded-xl px-4 py-3 ${validationErrors.email ? 'border-2 border-red-500' : ''}`}>
                     <span className="mr-3 text-gray-400">
                       <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
                         <path d="M16 12H8m0 0l-4 4m4-4l-4-4m8 0h8v16H4V4h8z" />
@@ -414,7 +423,7 @@ const Contact = () => {
                   <label htmlFor="phone" className="block text-sm font-medium mb-2 text-white">
                     Phone number
                   </label>
-                  <div className="flex items-center bg-[#111] text-white rounded-xl px-4 py-3">
+                  <div className={`flex items-center bg-[#111] text-white rounded-xl px-4 py-3 ${validationErrors.phone ? 'border-2 border-red-500' : ''}`}>
                     <span className="mr-3 text-gray-400">
                       <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
                         <path d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
@@ -438,7 +447,7 @@ const Contact = () => {
                   <label htmlFor="subject" className="block text-sm font-medium mb-2 text-white">
                     Subject
                   </label>
-                  <div className="flex items-center bg-[#111] text-white rounded-xl px-4 py-3">
+                  <div className={`flex items-center bg-[#111] text-white rounded-xl px-4 py-3 ${validationErrors.subject ? 'border-2 border-red-500' : ''}`}>
                     <span className="mr-3 text-gray-400">
                       <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
                         <path d="M4 6h16M4 12h16M4 18h7" />
@@ -462,7 +471,7 @@ const Contact = () => {
                   <label htmlFor="message" className="block text-sm font-medium mb-2 text-white">
                     Message
                   </label>
-                  <div className="flex items-start bg-[#111] text-white rounded-xl px-4 py-3">
+                  <div className={`flex items-start bg-[#111] text-white rounded-xl px-4 py-3 ${validationErrors.message ? 'border-2 border-red-500' : ''}`}>
                     <span className="mr-3 text-gray-400 pt-1">
                       <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
                         <path d="M8 10h.01M12 10h.01M16 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
@@ -537,6 +546,13 @@ const Contact = () => {
                     Send Message
                   </motion.button>
                 </div>
+
+                {/* Error Message */}
+                {errorMessage && (
+                  <div className="text-red-500 text-sm mt-4 text-center">
+                    {errorMessage}
+                  </div>
+                )}
               </form>
             </>
           ) : (
@@ -714,84 +730,63 @@ const Contact = () => {
         </motion.section>
 
         {/* Contact Info */}
-               <motion.section
-                 className="bg-gray-900/30 p-6 sm:p-8 rounded-lg mb-12"
-                 initial={{ opacity: 0, y: 50 }}
-                 whileInView={{ opacity: 1, y: 0 }}
-                 transition={{ duration: 0.9, ease: "easeOut" }}
-                 viewport={{ once: true }}
-               >
-                 <h2 className="text-2xl sm:text-3xl font-bold mb-6 text-center">Contact Information</h2>
-                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 text-center sm:text-left">
-                   <div className="text-center">
-                     <p className="text-gray-400 mb-2 ">Address:</p>
-                     <p>DKSHOTIT Studio, Amakom, Kumasi, Ghana</p>
-                    
-                   </div>
-       
-                   <div className="text-center" >
-                     <p className="text-gray-400 mb-2">Phone:</p>
-                     <p>+233 123 456 789</p>
-                     <p className="text-gray-400 mb-2 mt-4">Email:</p>
-                     <p>info@dkshotit.com</p>
-                   </div>
-                   
-                 </div>
-               </motion.section>
+        <motion.section
+          className="bg-gray-900 p-6 sm:p-8 rounded-lg mb-12"
+          initial={{ opacity: 0, y: 50 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.9, ease: "easeOut" }}
+          viewport={{ once: true }}
+        >
+          <h2 className="text-2xl sm:text-3xl font-bold mb-6 text-center">Contact Information</h2>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 text-center sm:text-left">
+            <div>
+              <p className="text-gray-400 mb-2">Address:</p>
+              <p>DKSHOTIT Studio, Amakom, Kumasi, Ghana</p>
+              <a
+                href="https://maps.google.com/maps?q=Amakom,+Kumasi,+Ghana"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-amber-300 hover:underline mt-2 inline-block"
+              >
+                View on Map
+              </a>
+            </div>
+            <div>
+              <p className="text-gray-400 mb-2">Phone:</p>
+              <p>+233 123 456 789</p>
+              <p className="text-gray-400 mb-2 mt-4">Email:</p>
+              <p>info@dkshotit.com</p>
+            </div>
+          </div>
+        </motion.section>
 
-
-            <Studio_Location locations={locationsData} />
-  
-               {/* Social Media */}
-               <motion.section
-                 className="bg-gray-800/30 p-6 sm:p-8 rounded-lg mb-12 text-center "
-                 initial={{ opacity: 0, y: 50 }}
-                 whileInView={{ opacity: 1, y: 0 }}
-                 transition={{ duration: 0.9, ease: "easeOut" }}
-                 viewport={{ once: true }}
-               >
-                 <h2 className="text-2xl sm:text-3xl font-bold mb-6">Connect With Us</h2>
-                 
-    
-              <div className=" flex justify-center items-center">
-                <div className="flex items-center justify-center w-[max-content] space-x-6 text-xl bg-black p-2 rounded-lg ">
-                        
-                        {/* Instagram */}
-                        <motion.a
-                          href="#"
-                          aria-label="Instagram"
-                          initial={{ color: '#D1D5DB' }} // gray-300
-                          whileHover={{ color: '#E4405F' }}
-                          transition={{ duration: 0.3 }}
-                        >
-                          <FaInstagram />
-                        </motion.a>
-    
-                        {/* WhatsApp */}
-                        <motion.a
-                          href="#"
-                          aria-label="WhatsApp"
-                          initial={{ color: '#D1D5DB' }}
-                          whileHover={{ color: '#25D366' }}
-                          transition={{ duration: 0.3 }}
-                        >
-                          <FaWhatsapp />
-                        </motion.a>
-    
-                        {/* TikTok */}
-                        <motion.a
-                          href="#"
-                          aria-label="TikTok"
-                          initial={{ color: '#D1D5DB' }}
-                          whileHover={{ color: '#25F4EE' }}
-                          transition={{ duration: 0.3 }}
-                        >
-                          <FaTiktok />
-                        </motion.a>
-    
-              </div>
-              </div>
-               </motion.section>
+        {/* Social Media */}
+        <motion.section
+          className="bg-gray-800 p-6 sm:p-8 rounded-lg mb-12 text-center"
+          initial={{ opacity: 0, y: 50 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.9, ease: "easeOut" }}
+          viewport={{ once: true }}
+        >
+          <h2 className="text-2xl sm:text-3xl font-bold mb-6">Connect With Us</h2>
+          <div className="flex justify-center gap-6">
+            {['facebook', 'instagram', 'twitter'].map((social, index) => (
+              <motion.a
+                key={social}
+                href={`https://${social}.com/dkshotitstudio`} // Replace with actual URLs
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-2xl sm:text-3xl text-gray-400 hover:text-amber-300 transition duration-300"
+                initial={{ y: 20, opacity: 0 }}
+                whileInView={{ y: 0, opacity: 1 }}
+                transition={{ duration: 0.6, delay: index * 0.1 }}
+                viewport={{ once: true }}
+              >
+                {social === 'facebook' ? '🇫' : social === 'instagram' ? '📸' : '🐦'}
+              </motion.a>
+            ))}
+          </div>
+        </motion.section>
 
         <Footer />
       </div>
