@@ -302,6 +302,10 @@ const Contact = () => {
   const handleClosePopup = () => {
     setShowPopup(false);
     setIsSubmitted(false);
+
+      setFormData({ name: '', email: '', subject: '', message: '', attachment: null, phone: '', notes: '' });
+                setAcceptedTerms(false);
+                setSubmittedData(null);
   };
 
   const handleCloseConfirm = () => {
@@ -1076,19 +1080,7 @@ const Contact = () => {
                 return `Thank you, ${submittedData?.name.trim() || 'valued customer'}, for ${formMode === 'inquiry' ? `submitting your inquiry about "${submittedData?.subject || 'your request'}"` : `booking the ${submittedData?.package?.title}`} with DKSHOTIT Studio & Photography. We look forward to assisting you. Check your email for confirmation details!`;
               })()}
             </motion.p>
-            <motion.button
-              onClick={() => {
-                setFormData({ name: '', email: '', subject: '', message: '', attachment: null, phone: '', notes: '' });
-                setAcceptedTerms(false);
-                setSubmittedData(null);
-                handleClosePopup();
-              }}
-              className="mt-4 bg-amber-500 hover:bg-amber-600 text-white font-medium px-6 py-3 rounded-xl transition duration-300"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-            >
-              Close and Reset
-            </motion.button>
+           
           </motion.div>
         </motion.div>
       )}
