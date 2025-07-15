@@ -140,6 +140,7 @@ const Contact = () => {
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [showPopup, setShowPopup] = useState(false);
   const [acceptedTerms, setAcceptedTerms] = useState(false);
+  const [showConfirm, setShowConfirm] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -197,14 +198,7 @@ const Contact = () => {
         attachment: formData.attachment ? formData.attachment.name : null
       });
     } else {
-      // Simulate booking submission with selected package
-      console.log('Booking submitted:', {
-        name: formData.name,
-        email: formData.email,
-        phone: formData.phone,
-        notes: formData.notes,
-        package: selectedPackage
-      });
+      setShowConfirm(true); // Show confirmation popup for booking
     }
     setIsSubmitted(true);
     setShowPopup(true);
@@ -213,12 +207,30 @@ const Contact = () => {
     setTimeout(() => {
       setShowPopup(false);
       setIsSubmitted(false);
+      setShowConfirm(false);
     }, 3000);
+  };
+
+  const handleConfirmSubmit = () => {
+    console.log('Booking confirmed:', {
+      name: formData.name,
+      email: formData.email,
+      phone: formData.phone,
+      notes: formData.notes,
+      package: selectedPackage
+    });
+    setShowConfirm(false);
+    setShowPopup(true);
+    setTimeout(() => setShowPopup(false), 3000);
   };
 
   const handleClosePopup = () => {
     setShowPopup(false);
     setIsSubmitted(false);
+  };
+
+  const handleCloseConfirm = () => {
+    setShowConfirm(false);
   };
 
   // State for selected package
@@ -646,12 +658,13 @@ const Contact = () => {
                 {/* Submit */}
                 <div className="text-center">
                   <motion.button
-                    type="submit"
+                    type="button" // Changed to button to trigger confirmation
+                    onClick={handleSubmit}
                     className="bg-[#7c3aed] hover:bg-purple-700 text-white font-medium px-6 py-3 rounded-xl transition duration-300"
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
                   >
-                    Proceed to Checkout
+                    Request Booking
                   </motion.button>
                 </div>
               </div>
@@ -788,6 +801,62 @@ const Contact = () => {
             <p className="text-gray-300 text-sm sm:text-base">
               Thank you, {formData.name || 'valued client'}, for reaching out to DKSHOTIT Studio & Photography. We appreciate your interest and will get back to you shortly. Have a wonderful day!
             </p>
+          </motion.div>
+        </motion.div>
+      )}
+
+      {/* Confirmation Popup */}
+      {showConfirm && (
+        <motion.div
+          className="fixed inset-0 bg-black/10 backdrop-blur-md flex items-center justify-center z-50"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 0.3 }}
+        >
+          <motion.div
+            className="bg-gray-800 p-6 sm:p-8 rounded-lg shadow-lg max-w-md w-full text-center relative"
+            initial={{ scale: 0.8, y: 50 }}
+            animate={{ scale: 1, y: 0 }}
+            exit={{ scale: 0.8, y: 50 }}
+            transition={{ duration: 0.3 }}
+          >
+            <button
+              onClick={handleCloseConfirm}
+              className="absolute top-2 right-2 text-gray-400 hover:text-white w-8 h-8 flex items-center justify-center rounded-full bg-gray-700 hover:bg-amber-500 transition duration-300"
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.9 }}
+            >
+              <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+              </svg>
+            </button>
+            <h3 className="text-xl sm:text-2xl font-bold text-white mb-4">Confirm Booking Details</h3>
+            <div className="text-left text-gray-300 space-y-2">
+              <p><strong>Name:</strong> {formData.name}</p>
+              <p><strong>Email:</strong> {formData.email}</p>
+              <p><strong>Phone:</strong> {formData.phone}</p>
+              <p><strong>Notes:</strong> {formData.notes || 'None'}</p>
+              <p><strong>Package:</strong> {selectedPackage.title} - {selectedPackage.price}</p>
+            </div>
+            <div className="mt-6 space-x-4">
+              <motion.button
+                onClick={handleConfirmSubmit}
+                className="bg-green-500 hover:bg-green-600 text-white font-medium px-6 py-2 rounded-xl transition duration-300"
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                Confirm
+              </motion.button>
+              <motion.button
+                onClick={handleCloseConfirm}
+                className="bg-red-500 hover:bg-red-600 text-white font-medium px-6 py-2 rounded-xl transition duration-300"
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                Cancel
+              </motion.button>
+            </div>
           </motion.div>
         </motion.div>
       )}
