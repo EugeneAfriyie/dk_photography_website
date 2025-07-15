@@ -221,7 +221,7 @@ const Contact = () => {
         name: !formData.name,
         email: !formData.email || !validateEmail(formData.email),
         phone: !formData.phone || !validatePhone(formData.phone),
-        package: !formData.package || selectedPackage.title === 'Select a Package'
+        package: !selectedPackage || selectedPackage.title === 'Select a Package'
       };
       setValidationErrors(errors);
       if (Object.values(errors).some(error => error)) {
@@ -423,7 +423,7 @@ const Contact = () => {
                       id="phone"
                       value={formData.phone}
                       onChange={handleChange}
-                      placeholder="Enter your phone number"
+                      placeholder="Enter your phone number (e.g., +1234567890)"
                       className="bg-transparent flex-1 outline-none text-white placeholder-gray-500"
                       required
                     />
@@ -691,6 +691,9 @@ const Contact = () => {
                   >
                     Request Booking
                   </motion.button>
+                  <p className="text-gray-400 text-sm mt-2">
+                    Check the <a href="/services" className="text-amber-300 hover:underline">service page</a> for package details or call/WhatsApp your photographer for more details.
+                  </p>
                 </div>
 
                 {/* Error Message */}
