@@ -5,8 +5,9 @@ import Footer from '../../Components/Footer';
 
 const Contact = () => {
   const [isVisible, setIsVisible] = useState(false);
-  const [formData, setFormData] = useState({ name: '', email: '', subject: '', message: '', attachment: null });
+  const [formData, setFormData] = useState({ name: '', email: '', subject: '', message: '', attachment: null, phone: '' });
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [showPopup, setShowPopup] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -40,6 +41,7 @@ const Contact = () => {
     formDataToSend.append('email', formData.email);
     formDataToSend.append('subject', formData.subject);
     formDataToSend.append('message', formData.message);
+    formDataToSend.append('phone', formData.phone);
     if (formData.attachment) {
       formDataToSend.append('attachment', formData.attachment);
     }
@@ -49,10 +51,15 @@ const Contact = () => {
       email: formData.email,
       subject: formData.subject,
       message: formData.message,
+      phone: formData.phone,
       attachment: formData.attachment ? formData.attachment.name : null
     });
     setIsSubmitted(true);
-    setTimeout(() => setIsSubmitted(false), 3000); // Reset after 3 seconds
+    setShowPopup(true);
+    setTimeout(() => {
+      setShowPopup(false);
+      setIsSubmitted(false);
+    }, 3000); // Popup and success state reset after 3 seconds
   };
 
   return (
@@ -103,7 +110,7 @@ const Contact = () => {
 
         {/* Contact Form */}
         <motion.section
-          className="bg-gry-800/20 p-6 sm:p-8 rounded-lg mb-12"
+          className="bg-gray-800 p-6 sm:p-8 rounded-lg mb-12"
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.9, ease: "easeOut" }}
@@ -153,6 +160,30 @@ const Contact = () => {
                   value={formData.email}
                   onChange={handleChange}
                   placeholder="Enter your email"
+                  className="bg-transparent flex-1 outline-none text-white placeholder-gray-500"
+                  required
+                />
+              </div>
+            </div>
+
+            {/* Phone */}
+            <div>
+              <label htmlFor="phone" className="block text-sm font-medium mb-2 text-white">
+                Phone number
+              </label>
+              <div className="flex items-center bg-[#111] text-white rounded-xl px-4 py-3">
+                <span className="mr-3 text-gray-400">
+                  <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+                    <path d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                  </svg>
+                </span>
+                <input
+                  type="tel"
+                  name="phone"
+                  id="phone"
+                  value={formData.phone}
+                  onChange={handleChange}
+                  placeholder="Enter your phone number"
                   className="bg-transparent flex-1 outline-none text-white placeholder-gray-500"
                   required
                 />
@@ -239,14 +270,13 @@ const Contact = () => {
               >
                 Send Message
               </motion.button>
-              {isSubmitted && <p className="text-green-400 mt-4">Message sent successfully!</p>}
             </div>
           </form>
         </motion.section>
 
         {/* Contact Info */}
         <motion.section
-          className="bg-gray-900/30 p-6 sm:p-8 rounded-lg mb-12"
+          className="bg-gray-900 p-6 sm:p-8 rounded-lg mb-12"
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.9, ease: "easeOut" }}
@@ -254,8 +284,8 @@ const Contact = () => {
         >
           <h2 className="text-2xl sm:text-3xl font-bold mb-6 text-center">Contact Information</h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 text-center sm:text-left">
-            <div className="text-center">
-              <p className="text-gray-400 mb-2 ">Address:</p>
+            <div>
+              <p className="text-gray-400 mb-2">Address:</p>
               <p>DKSHOTIT Studio, Amakom, Kumasi, Ghana</p>
               <a
                 href="https://maps.google.com/maps?q=Amakom,+Kumasi,+Ghana"
@@ -266,14 +296,12 @@ const Contact = () => {
                 View on Map
               </a>
             </div>
-
-            <div className="text-center" >
+            <div>
               <p className="text-gray-400 mb-2">Phone:</p>
               <p>+233 123 456 789</p>
               <p className="text-gray-400 mb-2 mt-4">Email:</p>
               <p>info@dkshotit.com</p>
             </div>
-            
           </div>
         </motion.section>
 
@@ -334,6 +362,39 @@ const Contact = () => {
             />
           </svg>
         </motion.button>
+      )}
+
+      {/* Success Popup */}
+      {showPopup && (
+        <motion.div
+          className="fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center z-50"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 0.3 }}
+        >
+          <motion.div
+            className="bg-gray-800 p-6 sm:p-8 rounded-lg shadow-lg max-w-md w-full text-center"
+            initial={{ scale: 0.8, y: 50 }}
+            animate={{ scale: 1, y: 0 }}
+            exit={{ scale: 0.8, y: 50 }}
+            transition={{ duration: 0.3 }}
+          >
+            <svg
+              className="w-12 h-12 text-green-400 mx-auto mb-4"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              viewBox="0 0 24 24"
+            >
+              <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+            </svg>
+            <h3 className="text-xl sm:text-2xl font-bold text-white mb-2">Message Sent Successfully!</h3>
+            <p className="text-gray-300 text-sm sm:text-base">
+              Thank you, {formData.name || 'valued client'}, for reaching out to DKSHOTIT Studio & Photography. We appreciate your interest and will get back to you shortly. Have a wonderful day!
+            </p>
+          </motion.div>
+        </motion.div>
       )}
     </div>
   );
