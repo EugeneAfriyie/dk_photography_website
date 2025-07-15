@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import Header from '../Home/Components/Header';
 import Footer from '../../Components/Footer';
+import { FaInstagram, FaTiktok, FaWhatsapp } from 'react-icons/fa';
 
 // Export packages (to be used elsewhere if needed)
 export const packages = [
@@ -711,63 +712,88 @@ const Contact = () => {
         </motion.section>
 
         {/* Contact Info */}
-        <motion.section
-          className="bg-gray-900 p-6 sm:p-8 rounded-lg mb-12"
-          initial={{ opacity: 0, y: 50 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.9, ease: "easeOut" }}
-          viewport={{ once: true }}
-        >
-          <h2 className="text-2xl sm:text-3xl font-bold mb-6 text-center">Contact Information</h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 text-center sm:text-left">
-            <div>
-              <p className="text-gray-400 mb-2">Address:</p>
-              <p>DKSHOTIT Studio, Amakom, Kumasi, Ghana</p>
-              <a
-                href="https://maps.google.com/maps?q=Amakom,+Kumasi,+Ghana"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-amber-300 hover:underline mt-2 inline-block"
-              >
-                View on Map
-              </a>
-            </div>
-            <div>
-              <p className="text-gray-400 mb-2">Phone:</p>
-              <p>+233 123 456 789</p>
-              <p className="text-gray-400 mb-2 mt-4">Email:</p>
-              <p>info@dkshotit.com</p>
-            </div>
-          </div>
-        </motion.section>
-
-        {/* Social Media */}
-        <motion.section
-          className="bg-gray-800 p-6 sm:p-8 rounded-lg mb-12 text-center"
-          initial={{ opacity: 0, y: 50 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.9, ease: "easeOut" }}
-          viewport={{ once: true }}
-        >
-          <h2 className="text-2xl sm:text-3xl font-bold mb-6">Connect With Us</h2>
-          <div className="flex justify-center gap-6">
-            {['facebook', 'instagram', 'twitter'].map((social, index) => (
-              <motion.a
-                key={social}
-                href={`https://${social}.com/dkshotitstudio`} // Replace with actual URLs
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-2xl sm:text-3xl text-gray-400 hover:text-amber-300 transition duration-300"
-                initial={{ y: 20, opacity: 0 }}
-                whileInView={{ y: 0, opacity: 1 }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
-                viewport={{ once: true }}
-              >
-                {social === 'facebook' ? '🇫' : social === 'instagram' ? '📸' : '🐦'}
-              </motion.a>
-            ))}
-          </div>
-        </motion.section>
+               <motion.section
+                 className="bg-gray-900/30 p-6 sm:p-8 rounded-lg mb-12"
+                 initial={{ opacity: 0, y: 50 }}
+                 whileInView={{ opacity: 1, y: 0 }}
+                 transition={{ duration: 0.9, ease: "easeOut" }}
+                 viewport={{ once: true }}
+               >
+                 <h2 className="text-2xl sm:text-3xl font-bold mb-6 text-center">Contact Information</h2>
+                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 text-center sm:text-left">
+                   <div className="text-center">
+                     <p className="text-gray-400 mb-2 ">Address:</p>
+                     <p>DKSHOTIT Studio, Amakom, Kumasi, Ghana</p>
+                     <a
+                       href="https://maps.google.com/maps?q=Amakom,+Kumasi,+Ghana"
+                       target="_blank"
+                       rel="noopener noreferrer"
+                       className="text-amber-300 hover:underline mt-2 inline-block"
+                     >
+                       View on Map
+                     </a>
+                   </div>
+       
+                   <div className="text-center" >
+                     <p className="text-gray-400 mb-2">Phone:</p>
+                     <p>+233 123 456 789</p>
+                     <p className="text-gray-400 mb-2 mt-4">Email:</p>
+                     <p>info@dkshotit.com</p>
+                   </div>
+                   
+                 </div>
+               </motion.section>
+       
+               {/* Social Media */}
+               <motion.section
+                 className="bg-gray-800 p-6 sm:p-8 rounded-lg mb-12 text-center "
+                 initial={{ opacity: 0, y: 50 }}
+                 whileInView={{ opacity: 1, y: 0 }}
+                 transition={{ duration: 0.9, ease: "easeOut" }}
+                 viewport={{ once: true }}
+               >
+                 <h2 className="text-2xl sm:text-3xl font-bold mb-6">Connect With Us</h2>
+                 
+    
+              <div className=" flex justify-center items-center">
+                <div className="flex items-center justify-center w-[max-content] space-x-6 text-xl bg-black p-2 rounded-lg ">
+                        
+                        {/* Instagram */}
+                        <motion.a
+                          href="#"
+                          aria-label="Instagram"
+                          initial={{ color: '#D1D5DB' }} // gray-300
+                          whileHover={{ color: '#E4405F' }}
+                          transition={{ duration: 0.3 }}
+                        >
+                          <FaInstagram />
+                        </motion.a>
+    
+                        {/* WhatsApp */}
+                        <motion.a
+                          href="#"
+                          aria-label="WhatsApp"
+                          initial={{ color: '#D1D5DB' }}
+                          whileHover={{ color: '#25D366' }}
+                          transition={{ duration: 0.3 }}
+                        >
+                          <FaWhatsapp />
+                        </motion.a>
+    
+                        {/* TikTok */}
+                        <motion.a
+                          href="#"
+                          aria-label="TikTok"
+                          initial={{ color: '#D1D5DB' }}
+                          whileHover={{ color: '#25F4EE' }}
+                          transition={{ duration: 0.3 }}
+                        >
+                          <FaTiktok />
+                        </motion.a>
+    
+              </div>
+              </div>
+               </motion.section>
 
         <Footer />
       </div>
