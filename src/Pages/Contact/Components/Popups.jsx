@@ -17,7 +17,7 @@ const Popups = ({
 }) => (
   <>
     {/* Success Popup */}
-    {showPopup && (
+    {showPopup && isSubmitted && (
       <motion.div
         className="fixed inset-0 bg-black/10 backdrop-blur-md flex items-center justify-center z-50"
         initial={{ opacity: 0 }}
@@ -156,7 +156,7 @@ const Popups = ({
           className="bg-gray-800 p-6 sm:p-8 rounded-lg shadow-lg max-w-md w-full text-center relative"
           initial={{ scale: 0.8, y: 50 }}
           animate={{ scale: 1, y: 0 }}
-          exit={{ scale: 0.8, y: 50}}
+          exit={{ scale: 0.8, y: 50 }}
           transition={{ duration: 0.3 }}
         >
           <button
