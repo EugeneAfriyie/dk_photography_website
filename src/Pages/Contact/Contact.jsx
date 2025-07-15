@@ -229,7 +229,6 @@ const Contact = () => {
       if (formData.attachment) {
         formDataToSend.append('attachment', formData.attachment);
       }
-      // Simulate form submission (replace with actual API call)
       console.log('Inquiry submitted:', {
         name: formData.name,
         email: formData.email,
@@ -258,7 +257,7 @@ const Contact = () => {
         setShowTermsPopup(true);
         return;
       }
-      setShowConfirm(true); // Show confirmation popup for booking
+      setShowConfirm(true);
     }
   };
 
@@ -312,7 +311,6 @@ const Contact = () => {
     setShowNoteLimitAlert(false);
   };
 
-  // State for selected package with default "Select a Package"
   const [selectedPackage, setSelectedPackage] = useState({ title: 'Select a Package', price: '' });
 
   return (
@@ -423,17 +421,17 @@ const Contact = () => {
               </motion.h2>
               <form onSubmit={handleSubmit} className="max-w-2xl mx-auto space-y-6">
                 {/* Name */}
-                <motion.div
-                  className="flex items-center bg-[#111] text-white rounded-xl px-4 py-3"
-                  initial={{ opacity: 0, x: -20 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  transition={{ duration: 0.6, delay: 0.3 }}
-                  viewport={{ once: true }}
-                >
-                  <label htmlFor="name" className="block text-sm font-medium mb-2 text-white w-full">
-                    Your full name
+                <div className="space-y-2">
+                  <label htmlFor="name" className="block text-sm font-medium text-white">
+                    Your full name <span className="text-red-500">*</span>
                   </label>
-                  <div className={`flex-1 ${validationErrors.name ? 'border-2 border-red-500' : ''}`}>
+                  <motion.div
+                    className={`flex items-center bg-[#111] rounded-xl px-4 py-3 ${validationErrors.name ? 'border-2 border-red-500' : ''}`}
+                    initial={{ opacity: 0, x: -20 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    transition={{ duration: 0.6, delay: 0.3 }}
+                    viewport={{ once: true }}
+                  >
                     <span className="mr-3 text-gray-400">
                       <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
                         <path d="M5.121 17.804A9 9 0 1118.88 6.196 9 9 0 015.12 17.804zM15 11a3 3 0 11-6 0 3 3 0 016 0z" />
@@ -449,21 +447,21 @@ const Contact = () => {
                       className="bg-transparent flex-1 outline-none text-white placeholder-gray-500"
                       required
                     />
-                  </div>
-                </motion.div>
+                  </motion.div>
+                </div>
 
                 {/* Email */}
-                <motion.div
-                  className="flex items-center bg-[#111] text-white rounded-xl px-4 py-3"
-                  initial={{ opacity: 0, x: -20 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  transition={{ duration: 0.6, delay: 0.4 }}
-                  viewport={{ once: true }}
-                >
-                  <label htmlFor="email" className="block text-sm font-medium mb-2 text-white w-full">
-                    Email address
+                <div className="space-y-2">
+                  <label htmlFor="email" className="block text-sm font-medium text-white">
+                    Email address <span className="text-red-500">*</span>
                   </label>
-                  <div className={`flex-1 ${validationErrors.email ? 'border-2 border-red-500' : ''}`}>
+                  <motion.div
+                    className={`flex items-center bg-[#111] rounded-xl px-4 py-3 ${validationErrors.email ? 'border-2 border-red-500' : ''}`}
+                    initial={{ opacity: 0, x: -20 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    transition={{ duration: 0.6, delay: 0.4 }}
+                    viewport={{ once: true }}
+                  >
                     <span className="mr-3 text-gray-400">
                       <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
                         <path d="M16 12H8m0 0l-4 4m4-4l-4-4m8 0h8v16H4V4h8z" />
@@ -479,21 +477,21 @@ const Contact = () => {
                       className="bg-transparent flex-1 outline-none text-white placeholder-gray-500"
                       required
                     />
-                  </div>
-                </motion.div>
+                  </motion.div>
+                </div>
 
                 {/* Phone */}
-                <motion.div
-                  className="flex items-center bg-[#111] text-white rounded-xl px-4 py-3"
-                  initial={{ opacity: 0, x: -20 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  transition={{ duration: 0.6, delay: 0.5 }}
-                  viewport={{ once: true }}
-                >
-                  <label htmlFor="phone" className="block text-sm font-medium mb-2 text-white w-full">
-                    Phone number
+                <div className="space-y-2">
+                  <label htmlFor="phone" className="block text-sm font-medium text-white">
+                    Phone number <span className="text-red-500">*</span>
                   </label>
-                  <div className={`flex-1 ${validationErrors.phone ? 'border-2 border-red-500' : ''}`}>
+                  <motion.div
+                    className={`flex items-center bg-[#111] rounded-xl px-4 py-3 ${validationErrors.phone ? 'border-2 border-red-500' : ''}`}
+                    initial={{ opacity: 0, x: -20 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    transition={{ duration: 0.6, delay: 0.5 }}
+                    viewport={{ once: true }}
+                  >
                     <span className="mr-3 text-gray-400">
                       <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
                         <path d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
@@ -509,21 +507,21 @@ const Contact = () => {
                       className="bg-transparent flex-1 outline-none text-white placeholder-gray-500"
                       required
                     />
-                  </div>
-                </motion.div>
+                  </motion.div>
+                </div>
 
                 {/* Subject */}
-                <motion.div
-                  className="flex items-center bg-[#111] text-white rounded-xl px-4 py-3"
-                  initial={{ opacity: 0, x: -20 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  transition={{ duration: 0.6, delay: 0.6 }}
-                  viewport={{ once: true }}
-                >
-                  <label htmlFor="subject" className="block text-sm font-medium mb-2 text-white w-full">
-                    Subject
+                <div className="space-y-2">
+                  <label htmlFor="subject" className="block text-sm font-medium text-white">
+                    Subject <span className="text-red-500">*</span>
                   </label>
-                  <div className={`flex-1 ${validationErrors.subject ? 'border-2 border-red-500' : ''}`}>
+                  <motion.div
+                    className={`flex items-center bg-[#111] rounded-xl px-4 py-3 ${validationErrors.subject ? 'border-2 border-red-500' : ''}`}
+                    initial={{ opacity: 0, x: -20 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    transition={{ duration: 0.6, delay: 0.6 }}
+                    viewport={{ once: true }}
+                  >
                     <span className="mr-3 text-gray-400">
                       <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
                         <path d="M4 6h16M4 12h16M4 18h7" />
@@ -539,21 +537,21 @@ const Contact = () => {
                       className="bg-transparent flex-1 outline-none text-white placeholder-gray-500"
                       required
                     />
-                  </div>
-                </motion.div>
+                  </motion.div>
+                </div>
 
                 {/* Message */}
-                <motion.div
-                  className="flex items-start bg-[#111] text-white rounded-xl px-4 py-3"
-                  initial={{ opacity: 0, x: -20 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  transition={{ duration: 0.6, delay: 0.7 }}
-                  viewport={{ once: true }}
-                >
-                  <label htmlFor="message" className="block text-sm font-medium mb-2 text-white w-full">
-                    Message
+                <div className="space-y-2">
+                  <label htmlFor="message" className="block text-sm font-medium text-white">
+                    Message <span className="text-red-500">*</span>
                   </label>
-                  <div className={`flex-1 ${validationErrors.message ? 'border-2 border-red-500' : ''}`}>
+                  <motion.div
+                    className={`flex items-start bg-[#111] rounded-xl px-4 py-3 ${validationErrors.message ? 'border-2 border-red-500' : ''}`}
+                    initial={{ opacity: 0, x: -20 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    transition={{ duration: 0.6, delay: 0.7 }}
+                    viewport={{ once: true }}
+                  >
                     <span className="mr-3 text-gray-400 pt-1">
                       <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
                         <path d="M8 10h.01M12 10h.01M16 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
@@ -565,24 +563,24 @@ const Contact = () => {
                       placeholder="Describe your message"
                       value={formData.message}
                       onChange={handleChange}
-                      className="bg-transparent flex-1 outline-none text-white placeholder-gray-500 h-24 resize-none"
+                      className="bg-transparent flex-1 outline-none text-white placeholder-gray-500 h-24 resize-none w-full"
                       required
                     ></textarea>
-                  </div>
-                </motion.div>
+                  </motion.div>
+                </div>
 
                 {/* Notes */}
-                <motion.div
-                  className="flex items-start bg-[#111] text-white rounded-xl px-4 py-3"
-                  initial={{ opacity: 0, x: -20 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  transition={{ duration: 0.6, delay: 0.8 }}
-                  viewport={{ once: true }}
-                >
-                  <label htmlFor="notes" className="block text-sm font-medium mb-2 text-white w-full">
+                <div className="space-y-2">
+                  <label htmlFor="notes" className="block text-sm font-medium text-white">
                     Notes
                   </label>
-                  <div>
+                  <motion.div
+                    className="flex items-start bg-[#111] rounded-xl px-4 py-3"
+                    initial={{ opacity: 0, x: -20 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    transition={{ duration: 0.6, delay: 0.8 }}
+                    viewport={{ once: true }}
+                  >
                     <span className="mr-3 text-gray-400 pt-1">
                       <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
                         <path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4" />
@@ -594,24 +592,24 @@ const Contact = () => {
                       placeholder="Add any additional notes or requests (max 250 characters)"
                       value={formData.notes}
                       onChange={handleChange}
-                      className="bg-transparent flex-1 outline-none text-white placeholder-gray-500 h-20 resize-y overflow-y-auto max-h-40 scrollbar-thin scrollbar-thumb-amber-500 scrollbar-track-gray-900"
+                      className="bg-transparent flex-1 outline-none text-white placeholder-gray-500 h-20 resize-y overflow-y-auto max-h-40 scrollbar-thin scrollbar-thumb-amber-500 scrollbar-track-gray-900 w-full"
                       maxLength={250}
                     ></textarea>
-                  </div>
-                </motion.div>
+                  </motion.div>
+                </div>
 
                 {/* Attachment */}
-                <motion.div
-                  className="flex items-center bg-[#111] text-white rounded-xl px-4 py-3"
-                  initial={{ opacity: 0, x: -20 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  transition={{ duration: 0.6, delay: 0.9 }}
-                  viewport={{ once: true }}
-                >
-                  <label htmlFor="attachment" className="block text-sm font-medium mb-2 text-white w-full">
+                <div className="space-y-2">
+                  <label htmlFor="attachment" className="block text-sm font-medium text-white">
                     Attachment (e.g., Photos)
                   </label>
-                  <div>
+                  <motion.div
+                    className="flex items-center bg-[#111] rounded-xl px-4 py-3"
+                    initial={{ opacity: 0, x: -20 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    transition={{ duration: 0.6, delay: 0.9 }}
+                    viewport={{ once: true }}
+                  >
                     <span className="mr-3 text-gray-400">
                       <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
                         <path d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
@@ -622,12 +620,12 @@ const Contact = () => {
                       name="attachment"
                       id="attachment"
                       onChange={handleChange}
-                      className="bg-transparent flex-1 outline-none text-white placeholder-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-gray-700 file:text-white hover:file:bg-gray-600"
+                      className="bg-transparent flex-1 outline-none text-white placeholder-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-gray-700 file:text-white hover:file:bg-gray-600 w-full"
                       accept="image/*,application/pdf"
                     />
-                  </div>
+                  </motion.div>
                   {formData.attachment && <p className="text-gray-500 text-sm mt-1">Selected: {formData.attachment.name}</p>}
-                </motion.div>
+                </div>
 
                 {/* Submit */}
                 <motion.div
@@ -673,44 +671,46 @@ const Contact = () => {
               </motion.h2>
               <div className="max-w-2xl mx-auto space-y-6">
                 {/* Package Selection */}
-                <motion.div
-                  initial={{ opacity: 0, x: -20 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  transition={{ duration: 0.6, delay: 0.3 }}
-                  viewport={{ once: true }}
-                >
-                  <label htmlFor="package" className="block text-sm font-medium mb-2 text-white">
-                    Select a Package
+                <div className="space-y-2">
+                  <label htmlFor="package" className="block text-sm font-medium text-white">
+                    Select a Package <span className="text-red-500">*</span>
                   </label>
-                  <select
-                    name="package"
-                    id="package"
-                    value={selectedPackage.title}
-                    onChange={(e) => setSelectedPackage(packages.find(p => p.title === e.target.value) || { title: 'Select a Package', price: '' })}
-                    className={`w-full bg-[#111] text-white rounded-xl px-4 py-3 outline-none ${validationErrors.package ? 'border-2 border-red-500' : ''}`}
-                    required
+                  <motion.div
+                    initial={{ opacity: 0, x: -20 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    transition={{ duration: 0.6, delay: 0.3 }}
+                    viewport={{ once: true }}
                   >
-                    <option value="Select a Package" disabled>Select a Package</option>
-                    {packages.map((pkg) => (
-                      <option key={pkg.title} value={pkg.title}>
-                        {pkg.title} - {pkg.price}
-                      </option>
-                    ))}
-                  </select>
-                </motion.div>
+                    <select
+                      name="package"
+                      id="package"
+                      value={selectedPackage.title}
+                      onChange={(e) => setSelectedPackage(packages.find(p => p.title === e.target.value) || { title: 'Select a Package', price: '' })}
+                      className={`w-full bg-[#111] text-white rounded-xl px-4 py-3 outline-none ${validationErrors.package ? 'border-2 border-red-500' : ''}`}
+                      required
+                    >
+                      <option value="Select a Package" disabled>Select a Package</option>
+                      {packages.map((pkg) => (
+                        <option key={pkg.title} value={pkg.title}>
+                          {pkg.title} - {pkg.price}
+                        </option>
+                      ))}
+                    </select>
+                  </motion.div>
+                </div>
 
-                {/* Contact Info for Booking */}
-                <motion.div
-                  className="flex items-center bg-[#111] text-white rounded-xl px-4 py-3"
-                  initial={{ opacity: 0, x: -20 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  transition={{ duration: 0.6, delay: 0.4 }}
-                  viewport={{ once: true }}
-                >
-                  <label htmlFor="name" className="block text-sm font-medium mb-2 text-white w-full">
-                    Your full name
+                {/* Name */}
+                <div className="space-y-2">
+                  <label htmlFor="name" className="block text-sm font-medium text-white">
+                    Your full name <span className="text-red-500">*</span>
                   </label>
-                  <div className={`flex-1 ${validationErrors.name ? 'border-2 border-red-500' : ''}`}>
+                  <motion.div
+                    className={`flex items-center bg-[#111] rounded-xl px-4 py-3 ${validationErrors.name ? 'border-2 border-red-500' : ''}`}
+                    initial={{ opacity: 0, x: -20 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    transition={{ duration: 0.6, delay: 0.4 }}
+                    viewport={{ once: true }}
+                  >
                     <span className="mr-3 text-gray-400">
                       <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
                         <path d="M5.121 17.804A9 9 0 1118.88 6.196 9 9 0 015.12 17.804zM15 11a3 3 0 11-6 0 3 3 0 016 0z" />
@@ -726,20 +726,21 @@ const Contact = () => {
                       className="bg-transparent flex-1 outline-none text-white placeholder-gray-500"
                       required
                     />
-                  </div>
-                </motion.div>
+                  </motion.div>
+                </div>
 
-                <motion.div
-                  className="flex items-center bg-[#111] text-white rounded-xl px-4 py-3"
-                  initial={{ opacity: 0, x: -20 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  transition={{ duration: 0.6, delay: 0.5 }}
-                  viewport={{ once: true }}
-                >
-                  <label htmlFor="email" className="block text-sm font-medium mb-2 text-white w-full">
-                    Email address
+                {/* Email */}
+                <div className="space-y-2">
+                  <label htmlFor="email" className="block text-sm font-medium text-white">
+                    Email address <span className="text-red-500">*</span>
                   </label>
-                  <div className={`flex-1 ${validationErrors.email ? 'border-2 border-red-500' : ''}`}>
+                  <motion.div
+                    className={`flex items-center bg-[#111] rounded-xl px-4 py-3 ${validationErrors.email ? 'border-2 border-red-500' : ''}`}
+                    initial={{ opacity: 0, x: -20 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    transition={{ duration: 0.6, delay: 0.5 }}
+                    viewport={{ once: true }}
+                  >
                     <span className="mr-3 text-gray-400">
                       <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
                         <path d="M16 12H8m0 0l-4 4m4-4l-4-4m8 0h8v16H4V4h8z" />
@@ -755,20 +756,21 @@ const Contact = () => {
                       className="bg-transparent flex-1 outline-none text-white placeholder-gray-500"
                       required
                     />
-                  </div>
-                </motion.div>
+                  </motion.div>
+                </div>
 
-                <motion.div
-                  className="flex items-center bg-[#111] text-white rounded-xl px-4 py-3"
-                  initial={{ opacity: 0, x: -20 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  transition={{ duration: 0.6, delay: 0.6 }}
-                  viewport={{ once: true }}
-                >
-                  <label htmlFor="phone" className="block text-sm font-medium mb-2 text-white w-full">
-                    Phone number
+                {/* Phone */}
+                <div className="space-y-2">
+                  <label htmlFor="phone" className="block text-sm font-medium text-white">
+                    Phone number <span className="text-red-500">*</span>
                   </label>
-                  <div className={`flex-1 ${validationErrors.phone ? 'border-2 border-red-500' : ''}`}>
+                  <motion.div
+                    className={`flex items-center bg-[#111] rounded-xl px-4 py-3 ${validationErrors.phone ? 'border-2 border-red-500' : ''}`}
+                    initial={{ opacity: 0, x: -20 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    transition={{ duration: 0.6, delay: 0.6 }}
+                    viewport={{ once: true }}
+                  >
                     <span className="mr-3 text-gray-400">
                       <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
                         <path d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
@@ -784,21 +786,21 @@ const Contact = () => {
                       className="bg-transparent flex-1 outline-none text-white placeholder-gray-500"
                       required
                     />
-                  </div>
-                </motion.div>
+                  </motion.div>
+                </div>
 
                 {/* Notes */}
-                <motion.div
-                  className="flex items-start bg-[#111] text-white rounded-xl px-4 py-3"
-                  initial={{ opacity: 0, x: -20 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  transition={{ duration: 0.6, delay: 0.7 }}
-                  viewport={{ once: true }}
-                >
-                  <label htmlFor="notes" className="block text-sm font-medium mb-2 text-white w-full">
+                <div className="space-y-2">
+                  <label htmlFor="notes" className="block text-sm font-medium text-white">
                     Notes
                   </label>
-                  <div>
+                  <motion.div
+                    className="flex items-start bg-[#111] rounded-xl px-4 py-3"
+                    initial={{ opacity: 0, x: -20 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    transition={{ duration: 0.6, delay: 0.7 }}
+                    viewport={{ once: true }}
+                  >
                     <span className="mr-3 text-gray-400 pt-1">
                       <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
                         <path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4" />
@@ -810,11 +812,11 @@ const Contact = () => {
                       placeholder="Add any additional notes or requests (max 250 characters)"
                       value={formData.notes}
                       onChange={handleChange}
-                      className="bg-transparent flex-1 outline-none text-white placeholder-gray-500 h-20 resize-y overflow-y-auto max-h-40 scrollbar-thin scrollbar-thumb-amber-500 scrollbar-track-gray-900"
+                      className="bg-transparent flex-1 outline-none text-white placeholder-gray-500 h-20 resize-y overflow-y-auto max-h-40 scrollbar-thin scrollbar-thumb-amber-500 scrollbar-track-gray-900 w-full"
                       maxLength={250}
                     ></textarea>
-                  </div>
-                </motion.div>
+                  </motion.div>
+                </div>
 
                 {/* Amount Due */}
                 <motion.div
@@ -829,29 +831,25 @@ const Contact = () => {
                 </motion.div>
 
                 {/* Terms and Conditions */}
-                <motion.div
-                  className="flex items-center space-x-2"
-                  initial={{ opacity: 0, x: -20 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  transition={{ duration: 0.6, delay: 0.9 }}
-                  viewport={{ once: true }}
-                >
-                  <input
-                    type="checkbox"
-                    name="terms"
-                    id="terms"
-                    checked={acceptedTerms}
-                    onChange={handleChange}
-                    className={`h-4 w-4 ${!acceptedTerms && validationErrors.name ? 'border-2 border-red-500' : 'text-amber-500 focus:ring-amber-500 border-gray-600'} rounded`}
-                    required
-                  />
-                  <label htmlFor="terms" className="text-sm text-gray-300">
-                    I accept the{' '}
-                    <a href="#" onClick={(e) => { e.preventDefault(); setShowTermsPopup(true); }} className="text-amber-300 hover:underline">
-                      Terms and Conditions
-                    </a>
-                  </label>
-                </motion.div>
+                <div className="space-y-2">
+                  <div className="flex items-center space-x-2">
+                    <input
+                      type="checkbox"
+                      name="terms"
+                      id="terms"
+                      checked={acceptedTerms}
+                      onChange={handleChange}
+                      className={`h-4 w-4 ${!acceptedTerms && validationErrors.name ? 'border-2 border-red-500' : 'text-amber-500 focus:ring-amber-500 border-gray-600'} rounded`}
+                      required
+                    />
+                    <label htmlFor="terms" className="text-sm text-gray-300">
+                      I accept the{' '}
+                      <a href="#" onClick={(e) => { e.preventDefault(); setShowTermsPopup(true); }} className="text-amber-300 hover:underline">
+                        Terms and Conditions
+                      </a>
+                    </label>
+                  </div>
+                </div>
 
                 {/* Submit */}
                 <motion.div
@@ -862,7 +860,7 @@ const Contact = () => {
                   viewport={{ once: true }}
                 >
                   <motion.button
-                    type="button" // Changed to button to trigger confirmation
+                    type="button"
                     onClick={handleSubmit}
                     className="bg-[#7c3aed] hover:bg-purple-700 text-white font-medium px-6 py-3 rounded-xl transition duration-300"
                     whileHover={{ scale: 1.05 }}
