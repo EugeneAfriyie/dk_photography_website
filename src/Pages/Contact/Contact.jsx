@@ -172,10 +172,6 @@ const Contact = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (!acceptedTerms) {
-      alert('Please accept the Terms and Conditions to proceed.');
-      return;
-    }
     if (formMode === 'inquiry') {
       const formDataToSend = new FormData();
       formDataToSend.append('name', formData.name);
@@ -197,18 +193,16 @@ const Contact = () => {
         notes: formData.notes,
         attachment: formData.attachment ? formData.attachment.name : null
       });
+      setIsSubmitted(true);
+      setShowPopup(true);
+      setFormData({ name: '', email: '', subject: '', message: '', attachment: null, phone: '', notes: '' });
     } else {
+      if (!acceptedTerms) {
+        alert('Please accept the Terms and Conditions to proceed.');
+        return;
+      }
       setShowConfirm(true); // Show confirmation popup for booking
     }
-    setIsSubmitted(true);
-    setShowPopup(true);
-    setFormData({ name: '', email: '', subject: '', message: '', attachment: null, phone: '', notes: '' });
-    setAcceptedTerms(false);
-    setTimeout(() => {
-      setShowPopup(false);
-      setIsSubmitted(false);
-      setShowConfirm(false);
-    }, 3000);
   };
 
   const handleConfirmSubmit = () => {
@@ -220,8 +214,10 @@ const Contact = () => {
       package: selectedPackage
     });
     setShowConfirm(false);
+    setIsSubmitted(true);
     setShowPopup(true);
-    setTimeout(() => setShowPopup(false), 3000);
+    setFormData({ name: '', email: '', subject: '', message: '', attachment: null, phone: '', notes: '' });
+    setAcceptedTerms(false);
   };
 
   const handleClosePopup = () => {
@@ -480,25 +476,6 @@ const Contact = () => {
                     />
                   </div>
                   {formData.attachment && <p className="text-gray-400 text-sm mt-1">Selected: {formData.attachment.name}</p>}
-                </div>
-
-                {/* Terms and Conditions */}
-                <div className="flex items-center space-x-2">
-                  <input
-                    type="checkbox"
-                    name="terms"
-                    id="terms"
-                    checked={acceptedTerms}
-                    onChange={handleChange}
-                    className="h-4 w-4 text-amber-500 focus:ring-amber-500 border-gray-600 rounded"
-                    required
-                  />
-                  <label htmlFor="terms" className="text-sm text-gray-300">
-                    I accept the{' '}
-                    <a href="/terms" target="_blank" rel="noopener noreferrer" className="text-amber-300 hover:underline">
-                      Terms and Conditions
-                    </a>
-                  </label>
                 </div>
 
                 {/* Submit */}
@@ -818,7 +795,6 @@ const Contact = () => {
             className="bg-gray-800 p-6 sm:p-8 rounded-lg shadow-lg max-w-md w-full text-center relative"
             initial={{ scale: 0.8, y: 50 }}
             animate={{ scale: 1, y: 0 }}
-            exit={{ scale: 0.8, y: 50 }}
             transition={{ duration: 0.3 }}
           >
             <button
@@ -833,9 +809,9 @@ const Contact = () => {
             </button>
             <h3 className="text-xl sm:text-2xl font-bold text-white mb-4">Confirm Booking Details</h3>
             <div className="text-left text-gray-300 space-y-2">
-              <p><strong>Name:</strong> {formData.name}</p>
-              <p><strong>Email:</strong> {formData.email}</p>
-              <p><strong>Phone:</strong> {formData.phone}</p>
+              <p><strong>Name:</strong> {formData.name || 'Not provided'}</p>
+              <p><strong>Email:</strong> {formData.email || 'Not provided'}</p>
+              <p><strong>Phone:</strong> {formData.phone || 'Not provided'}</p>
               <p><strong>Notes:</strong> {formData.notes || 'None'}</p>
               <p><strong>Package:</strong> {selectedPackage.title} - {selectedPackage.price}</p>
             </div>
