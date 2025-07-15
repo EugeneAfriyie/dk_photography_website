@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import Header from '../Home/Components/Header';
 import Footer from '../../Components/Footer';
+import { FaInstagram, FaTiktok, FaWhatsapp } from 'react-icons/fa';
 
 const Contact = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -81,43 +82,51 @@ const Contact = () => {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.9, ease: "easeOut" }}
           viewport={{ once: true }}
-          style={{ height: '300px', minHeight: '200px' }}
+          style={{ height: '400px', minHeight: '250px', position: 'relative' }}
         >
           <motion.img
             src="https://picsum.photos/800/400"
             alt="Contact Banner"
-            className="absolute top-0 left-0 w-full h-full object-cover opacity-70"
+            className="absolute top-0 left-0 w-full h-full object-cover"
             initial={{ x: -100, opacity: 0 }}
             whileInView={{ x: 0, opacity: 1 }}
             transition={{ duration: 0.7, ease: "easeOut" }}
             viewport={{ once: true }}
           />
-          <div className="absolute inset-0 bg-black bg-opacity-50"></div> {/* Dark overlay for readability */}
-          <div className="relative z-10 h-full flex items-center justify-center text-center px-4">
-            <motion.h1
-              className="text-3xl sm:text-4xl md:text-5xl font-bold mb-2 text-white drop-shadow-lg"
+          <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/50 to-transparent"></div> {/* Gradient overlay */}
+          <div className="relative z-10 h-full flex items-center justify-center text-center px-4 py-8">
+            <motion.div
+              className="max-w-2xl"
               initial={{ scale: 0.9, opacity: 0 }}
               whileInView={{ scale: 1, opacity: 1 }}
               transition={{ duration: 0.6, delay: 0.2 }}
               viewport={{ once: true }}
             >
-              Get in Touch
-            </motion.h1>
-            <motion.p
-              className="text-gray-200 text-base sm:text-lg md:text-xl mb-4 drop-shadow-md"
-              initial={{ y: 20, opacity: 0 }}
-              whileInView={{ y: 0, opacity: 1 }}
-              transition={{ duration: 0.6, delay: 0.4 }}
-              viewport={{ once: true }}
-            >
-              We’d love to hear from you! Reach out for bookings or inquiries.
-            </motion.p>
+              <motion.h1
+                className="text-4xl sm:text-5xl md:text-6xl font-bold mb-4 text-white drop-shadow-lg"
+                initial={{ y: 20 }}
+                whileInView={{ y: 0 }}
+                transition={{ duration: 0.6, delay: 0.3 }}
+                viewport={{ once: true }}
+              >
+                Get in Touch
+              </motion.h1>
+              <motion.p
+                className="text-gray-200 text-lg sm:text-xl md:text-2xl drop-shadow-md"
+                initial={{ y: 30, opacity: 0 }}
+                whileInView={{ y: 0, opacity: 1 }}
+                transition={{ duration: 0.6, delay: 0.4 }}
+                viewport={{ once: true }}
+              >
+                We’d love to hear from you! Reach out for bookings or inquiries.
+              </motion.p>
+            </motion.div>
           </div>
         </motion.section>
 
         {/* Contact Form */}
         <motion.section
-          className="bg-gray-800 p-6 sm:p-8 rounded-lg mb-12"
+          className="p-6 sm:p-8 rounded-lg mb-12"
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.9, ease: "easeOut" }}
@@ -281,66 +290,88 @@ const Contact = () => {
           </form>
         </motion.section>
 
-       {/* Contact Info */}
-             <motion.section
-               className="bg-gray-900/30 p-6 sm:p-8 rounded-lg mb-12"
-               initial={{ opacity: 0, y: 50 }}
-               whileInView={{ opacity: 1, y: 0 }}
-               transition={{ duration: 0.9, ease: "easeOut" }}
-               viewport={{ once: true }}
-             >
-               <h2 className="text-2xl sm:text-3xl font-bold mb-6 text-center">Contact Information</h2>
-               <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 text-center sm:text-left">
-                 <div className="text-center">
-                   <p className="text-gray-400 mb-2 ">Address:</p>
-                   <p>DKSHOTIT Studio, Amakom, Kumasi, Ghana</p>
-                   <a
-                     href="https://maps.google.com/maps?q=Amakom,+Kumasi,+Ghana"
-                     target="_blank"
-                     rel="noopener noreferrer"
-                     className="text-amber-300 hover:underline mt-2 inline-block"
-                   >
-                     View on Map
-                   </a>
-                 </div>
-     
-                 <div className="text-center" >
-                   <p className="text-gray-400 mb-2">Phone:</p>
-                   <p>+233 123 456 789</p>
-                   <p className="text-gray-400 mb-2 mt-4">Email:</p>
-                   <p>info@dkshotit.com</p>
-                 </div>
-                 
-               </div>
-             </motion.section>
-     
-             {/* Social Media */}
-             <motion.section
-               className="bg-gray-800 p-6 sm:p-8 rounded-lg mb-12 text-center"
-               initial={{ opacity: 0, y: 50 }}
-               whileInView={{ opacity: 1, y: 0 }}
-               transition={{ duration: 0.9, ease: "easeOut" }}
-               viewport={{ once: true }}
-             >
-               <h2 className="text-2xl sm:text-3xl font-bold mb-6">Connect With Us</h2>
-               <div className="flex justify-center gap-6">
-                 {['facebook', 'instagram', 'twitter'].map((social, index) => (
-                   <motion.a
-                     key={social}
-                     href={`https://${social}.com/dkshotitstudio`} // Replace with actual URLs
-                     target="_blank"
-                     rel="noopener noreferrer"
-                     className="text-2xl sm:text-3xl text-gray-400 hover:text-amber-300 transition duration-300"
-                     initial={{ y: 20, opacity: 0 }}
-                     whileInView={{ y: 0, opacity: 1 }}
-                     transition={{ duration: 0.6, delay: index * 0.1 }}
-                     viewport={{ once: true }}
-                   >
-                     {social === 'facebook' ? '🇫' : social === 'instagram' ? '📸' : '🐦'}
-                   </motion.a>
-                 ))}
-               </div>
-             </motion.section>
+          {/* Contact Info */}
+                <motion.section
+                  className="bg-gray-900/30 p-6 sm:p-8 rounded-lg mb-12"
+                  initial={{ opacity: 0, y: 50 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.9, ease: "easeOut" }}
+                  viewport={{ once: true }}
+                >
+                  <h2 className="text-2xl sm:text-3xl font-bold mb-6 text-center">Contact Information</h2>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 text-center sm:text-left">
+                    <div className="text-center">
+                      <p className="text-gray-400 mb-2 ">Address:</p>
+                      <p>DKSHOTIT Studio, Amakom, Kumasi, Ghana</p>
+                      <a
+                        href="https://maps.google.com/maps?q=Amakom,+Kumasi,+Ghana"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-amber-300 hover:underline mt-2 inline-block"
+                      >
+                        View on Map
+                      </a>
+                    </div>
+        
+                    <div className="text-center" >
+                      <p className="text-gray-400 mb-2">Phone:</p>
+                      <p>+233 123 456 789</p>
+                      <p className="text-gray-400 mb-2 mt-4">Email:</p>
+                      <p>info@dkshotit.com</p>
+                    </div>
+                    
+                  </div>
+                </motion.section>
+        
+          {/* Social Media */}
+          <motion.section
+            className="bg-gray-800/20 p-6 sm:p-8 rounded-lg mb-12 text-center flex flex-col items-center"
+            initial={{ opacity: 0, y: 50 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.9, ease: "easeOut" }}
+            viewport={{ once: true }}
+          >
+            <h2 className="text-2xl sm:text-3xl font-bold mb-6">Connect With Us</h2>
+            
+          
+            <div className="flex space-x-6 text-xl bg-blac p-2 rounded-lg w-[fit-content]">
+              
+              {/* Instagram */}
+              <motion.a
+                href="#"
+                aria-label="Instagram"
+                initial={{ color: '#D1D5DB' }} // gray-300
+                whileHover={{ color: '#E4405F' }}
+                transition={{ duration: 0.3 }}
+              >
+                <FaInstagram />
+              </motion.a>
+
+              {/* WhatsApp */}
+              <motion.a
+                href="#"
+                aria-label="WhatsApp"
+                initial={{ color: '#D1D5DB' }}
+                whileHover={{ color: '#25D366' }}
+                transition={{ duration: 0.3 }}
+              >
+                <FaWhatsapp />
+              </motion.a>
+
+              {/* TikTok */}
+              <motion.a
+                href="#"
+                aria-label="TikTok"
+                initial={{ color: '#D1D5DB' }}
+                whileHover={{ color: '#25F4EE' }}
+                transition={{ duration: 0.3 }}
+              >
+                <FaTiktok />
+              </motion.a>
+
+            </div>
+                      
+          </motion.section>
 
         <Footer />
       </div>
