@@ -141,6 +141,9 @@ const Contact = () => {
   const [showPopup, setShowPopup] = useState(false);
   const [acceptedTerms, setAcceptedTerms] = useState(false);
   const [showConfirm, setShowConfirm] = useState(false);
+  const [showTermsPopup, setShowTermsPopup] = useState(false);
+  const [errorMessage, setErrorMessage] = useState('');
+  const [showNoteLimitAlert, setShowNoteLimitAlert] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -161,6 +164,10 @@ const Contact = () => {
 
   const handleChange = (e) => {
     const { name, value, files, type, checked } = e.target;
+    if (name === 'notes' && value.length >= 250) {
+      setShowNoteLimitAlert(true);
+      return;
+    }
     setFormData(prev => ({
       ...prev,
       [name]: type === 'checkbox' ? checked : files ? files[0] : value
@@ -168,6 +175,7 @@ const Contact = () => {
     if (type === 'checkbox') {
       setAcceptedTerms(checked);
     }
+    setErrorMessage(''); // Clear error when input changes
   };
 
   const handleSubmit = (e) => {
@@ -198,7 +206,11 @@ const Contact = () => {
       setFormData({ name: '', email: '', subject: '', message: '', attachment: null, phone: '', notes: '' });
     } else {
       if (!acceptedTerms) {
-        alert('Please accept the Terms and Conditions to proceed.');
+        setShowTermsPopup(true);
+        return;
+      }
+      if (!formData.name || !formData.email || !formData.phone) {
+        setErrorMessage('Please fill in all required fields (Name, Email, Phone).');
         return;
       }
       setShowConfirm(true); // Show confirmation popup for booking
@@ -227,6 +239,19 @@ const Contact = () => {
 
   const handleCloseConfirm = () => {
     setShowConfirm(false);
+  };
+
+  const handleCloseTermsPopup = () => {
+    setShowTermsPopup(false);
+  };
+
+  const handleAcceptTerms = () => {
+    setAcceptedTerms(true);
+    setShowTermsPopup(false);
+  };
+
+  const handleCloseNoteLimitAlert = () => {
+    setShowNoteLimitAlert(false);
   };
 
   // State for selected package
@@ -447,10 +472,11 @@ const Contact = () => {
                     <textarea
                       name="notes"
                       id="notes"
-                      placeholder="Add any additional notes or requests"
+                      placeholder="Add any additional notes or requests (max 250 characters)"
                       value={formData.notes}
                       onChange={handleChange}
-                      className="bg-transparent flex-1 outline-none text-white placeholder-gray-500 h-20 resize-none"
+                      className="bg-transparent flex-1 outline-none text-white placeholder-gray-500 h-20 resize-y overflow-y-auto max-h-40 scrollbar-thin scrollbar-thumb-amber-500 scrollbar-track-gray-900"
+                      maxLength={250}
                     ></textarea>
                   </div>
                 </div>
@@ -475,7 +501,7 @@ const Contact = () => {
                       accept="image/*,application/pdf"
                     />
                   </div>
-                  {formData.attachment && <p className="text-gray-400 text-sm mt-1">Selected: {formData.attachment.name}</p>}
+                  {formData.attachment && <p className="text-gray-500 text-sm mt-1">Selected: {formData.attachment.name}</p>}
                 </div>
 
                 {/* Submit */}
@@ -505,7 +531,8 @@ const Contact = () => {
                     id="package"
                     value={selectedPackage.title}
                     onChange={(e) => setSelectedPackage(packages.find(p => p.title === e.target.value) || packages[0])}
-                    className="w-full bg-[#111] text-white rounded-xl px-4 py-3 outline-none"
+                    className={`w-full bg-[#111] text-white rounded-xl px-4 py-3 outline-none ${!selectedPackage ? 'border-2 border-red-500' : ''}`}
+                    required
                   >
                     {packages.map((pkg) => (
                       <option key={pkg.title} value={pkg.title}>
@@ -520,7 +547,7 @@ const Contact = () => {
                   <label htmlFor="name" className="block text-sm font-medium mb-2 text-white">
                     Your full name
                   </label>
-                  <div className="flex items-center bg-[#111] text-white rounded-xl px-4 py-3">
+                  <div className={`flex items-center bg-[#111] text-white rounded-xl px-4 py-3 ${!formData.name ? 'border-2 border-red-500' : ''}`}>
                     <span className="mr-3 text-gray-400">
                       <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
                         <path d="M5.121 17.804A9 9 0 1118.88 6.196 9 9 0 015.12 17.804zM15 11a3 3 0 11-6 0 3 3 0 016 0z" />
@@ -543,7 +570,7 @@ const Contact = () => {
                   <label htmlFor="email" className="block text-sm font-medium mb-2 text-white">
                     Email address
                   </label>
-                  <div className="flex items-center bg-[#111] text-white rounded-xl px-4 py-3">
+                  <div className={`flex items-center bg-[#111] text-white rounded-xl px-4 py-3 ${!formData.email ? 'border-2 border-red-500' : ''}`}>
                     <span className="mr-3 text-gray-400">
                       <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
                         <path d="M16 12H8m0 0l-4 4m4-4l-4-4m8 0h8v16H4V4h8z" />
@@ -566,7 +593,7 @@ const Contact = () => {
                   <label htmlFor="phone" className="block text-sm font-medium mb-2 text-white">
                     Phone number
                   </label>
-                  <div className="flex items-center bg-[#111] text-white rounded-xl px-4 py-3">
+                  <div className={`flex items-center bg-[#111] text-white rounded-xl px-4 py-3 ${!formData.phone ? 'border-2 border-red-500' : ''}`}>
                     <span className="mr-3 text-gray-400">
                       <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
                         <path d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
@@ -599,10 +626,11 @@ const Contact = () => {
                     <textarea
                       name="notes"
                       id="notes"
-                      placeholder="Add any additional notes or requests"
+                      placeholder="Add any additional notes or requests (max 250 characters)"
                       value={formData.notes}
                       onChange={handleChange}
-                      className="bg-transparent flex-1 outline-none text-white placeholder-gray-500 h-20 resize-none"
+                      className="bg-transparent flex-1 outline-none text-white placeholder-gray-500 h-20 resize-y overflow-y-auto max-h-40 scrollbar-thin scrollbar-thumb-amber-500 scrollbar-track-gray-900"
+                      maxLength={250}
                     ></textarea>
                   </div>
                 </div>
@@ -621,12 +649,12 @@ const Contact = () => {
                     id="terms"
                     checked={acceptedTerms}
                     onChange={handleChange}
-                    className="h-4 w-4 text-amber-500 focus:ring-amber-500 border-gray-600 rounded"
+                    className={`h-4 w-4 ${!acceptedTerms ? 'border-2 border-red-500' : 'text-amber-500 focus:ring-amber-500 border-gray-600'} rounded`}
                     required
                   />
                   <label htmlFor="terms" className="text-sm text-gray-300">
                     I accept the{' '}
-                    <a href="/terms" target="_blank" rel="noopener noreferrer" className="text-amber-300 hover:underline">
+                    <a href="#" onClick={(e) => { e.preventDefault(); setShowTermsPopup(true); }} className="text-amber-300 hover:underline">
                       Terms and Conditions
                     </a>
                   </label>
@@ -644,6 +672,13 @@ const Contact = () => {
                     Request Booking
                   </motion.button>
                 </div>
+
+                {/* Error Message */}
+                {errorMessage && (
+                  <div className="text-red-500 text-sm mt-4 text-center">
+                    {errorMessage}
+                  </div>
+                )}
               </div>
             </>
           )}
@@ -774,9 +809,9 @@ const Contact = () => {
             >
               <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
             </svg>
-            <h3 className="text-xl sm:text-2xl font-bold text-white mb-2">Message Sent Successfully!</h3>
+            <h3 className="text-xl sm:text-2xl font-bold text-white mb-2">Booking Confirmed Successfully!</h3>
             <p className="text-gray-300 text-sm sm:text-base">
-              Thank you, {formData.name || 'valued client'}, for reaching out to DKSHOTIT Studio & Photography. We appreciate your interest and will get back to you shortly. Have a wonderful day!
+              Thank you, {formData.name || 'valued client'}, for booking with DKSHOTIT Studio & Photography. We look forward to capturing your special moments. Check your email for confirmation details!
             </p>
           </motion.div>
         </motion.div>
@@ -792,7 +827,7 @@ const Contact = () => {
           transition={{ duration: 0.3 }}
         >
           <motion.div
-            className="bg-gray-800 p-6 sm:p-8 rounded-lg shadow-lg max-w-md w-full text-center relative"
+            className="bg-gray-800 p-4 sm:p-6 rounded-lg shadow-lg max-w-md sm:max-w-lg w-full text-center relative"
             initial={{ scale: 0.8, y: 50 }}
             animate={{ scale: 1, y: 0 }}
             transition={{ duration: 0.3 }}
@@ -808,17 +843,17 @@ const Contact = () => {
               </svg>
             </button>
             <h3 className="text-xl sm:text-2xl font-bold text-white mb-4">Confirm Booking Details</h3>
-            <div className="text-left text-gray-300 space-y-2">
+            <div className="text-left text-gray-300 space-y-2 max-h-64 overflow-y-auto p-2 sm:p-4 scrollbar-thin scrollbar-thumb-amber-500 scrollbar-track-gray-900">
               <p><strong>Name:</strong> {formData.name || 'Not provided'}</p>
               <p><strong>Email:</strong> {formData.email || 'Not provided'}</p>
               <p><strong>Phone:</strong> {formData.phone || 'Not provided'}</p>
               <p><strong>Notes:</strong> {formData.notes || 'None'}</p>
               <p><strong>Package:</strong> {selectedPackage.title} - {selectedPackage.price}</p>
             </div>
-            <div className="mt-6 space-x-4">
+            <div className="mt-4 sm:mt-6 space-x-2 sm:space-x-4">
               <motion.button
                 onClick={handleConfirmSubmit}
-                className="bg-green-500 hover:bg-green-600 text-white font-medium px-6 py-2 rounded-xl transition duration-300"
+                className="bg-green-500 hover:bg-green-600 text-white font-medium px-4 py-2 sm:px-6 sm:py-3 rounded-xl transition duration-300"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >
@@ -826,13 +861,108 @@ const Contact = () => {
               </motion.button>
               <motion.button
                 onClick={handleCloseConfirm}
-                className="bg-red-500 hover:bg-red-600 text-white font-medium px-6 py-2 rounded-xl transition duration-300"
+                className="bg-red-500 hover:bg-red-600 text-white font-medium px-4 py-2 sm:px-6 sm:py-3 rounded-xl transition duration-300"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >
                 Cancel
               </motion.button>
             </div>
+          </motion.div>
+        </motion.div>
+      )}
+
+      {/* Terms and Conditions Popup */}
+      {showTermsPopup && (
+        <motion.div
+          className="fixed inset-0 bg-black/10 backdrop-blur-md flex items-center justify-center z-50"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 0.3 }}
+        >
+          <motion.div
+            className="bg-gray-800 p-6 sm:p-8 rounded-lg shadow-lg max-w-md w-full text-center relative"
+            initial={{ scale: 0.8, y: 50 }}
+            animate={{ scale: 1, y: 0 }}
+            exit={{ scale: 0.8, y: 50 }}
+            transition={{ duration: 0.3 }}
+          >
+            <button
+              onClick={handleCloseTermsPopup}
+              className="absolute top-2 right-2 text-gray-400 hover:text-white w-8 h-8 flex items-center justify-center rounded-full bg-gray-700 hover:bg-amber-500 transition duration-300"
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.9 }}
+            >
+              <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+              </svg>
+            </button>
+            <h3 className="text-xl sm:text-2xl font-bold text-white mb-4">Terms and Conditions</h3>
+            <div className="text-gray-300 text-sm sm:text-base max-h-64 overflow-y-auto p-2 scrollbar-thin scrollbar-thumb-amber-500 scrollbar-track-gray-900">
+              <p>Please review our terms: All bookings are subject to availability. A 50% deposit is required to secure your date. Cancellations within 7 days of the event incur a 25% fee. Full payment is due 48 hours before the event. We reserve the right to reschedule due to unforeseen circumstances.</p>
+            </div>
+            <div className="mt-6 space-x-4">
+              <motion.button
+                onClick={handleAcceptTerms}
+                className="bg-green-500 hover:bg-green-600 text-white font-medium px-6 py-3 rounded-xl transition duration-300"
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                Accept
+              </motion.button>
+              <motion.button
+                onClick={handleCloseTermsPopup}
+                className="bg-red-500 hover:bg-red-600 text-white font-medium px-6 py-3 rounded-xl transition duration-300"
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                Decline
+              </motion.button>
+            </div>
+          </motion.div>
+        </motion.div>
+      )}
+
+      {/* Note Limit Alert */}
+      {showNoteLimitAlert && (
+        <motion.div
+          className="fixed inset-0 bg-black/10 backdrop-blur-md flex items-center justify-center z-50"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 0.3 }}
+        >
+          <motion.div
+            className="bg-gray-800 p-6 sm:p-8 rounded-lg shadow-lg max-w-md w-full text-center relative"
+            initial={{ scale: 0.8, y: 50 }}
+            animate={{ scale: 1, y: 0 }}
+            exit={{ scale: 0.8, y: 50 }}
+            transition={{ duration: 0.3 }}
+          >
+            <button
+              onClick={handleCloseNoteLimitAlert}
+              className="absolute top-2 right-2 text-gray-400 hover:text-white w-8 h-8 flex items-center justify-center rounded-full bg-gray-700 hover:bg-amber-500 transition duration-300"
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.9 }}
+            >
+              <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+              </svg>
+            </button>
+            <svg
+              className="w-12 h-12 text-yellow-400 mx-auto mb-4"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              viewBox="0 0 24 24"
+            >
+              <path strokeLinecap="round" strokeLinejoin="round" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+            <h3 className="text-xl sm:text-2xl font-bold text-white mb-2">Note Limit Reached</h3>
+            <p className="text-gray-300 text-sm sm:text-base">
+              The maximum limit of 250 characters has been reached for the Notes field. Please shorten your text or remove some content.
+            </p>
           </motion.div>
         </motion.div>
       )}
