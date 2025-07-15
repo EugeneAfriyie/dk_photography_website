@@ -365,37 +365,37 @@ const Contact = () => {
       )}
 
       {/* Success Popup */}
-      {showPopup && (
-        <motion.div
-          className="fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center z-50"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
-          transition={{ duration: 0.3 }}
-        >
-          <motion.div
-            className="bg-gray-800 p-6 sm:p-8 rounded-lg shadow-lg max-w-md w-full text-center"
-            initial={{ scale: 0.8, y: 50 }}
-            animate={{ scale: 1, y: 0 }}
-            exit={{ scale: 0.8, y: 50 }}
-            transition={{ duration: 0.3 }}
-          >
-            <svg
-              className="w-12 h-12 text-green-400 mx-auto mb-4"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-              viewBox="0 0 24 24"
-            >
-              <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
-            </svg>
-            <h3 className="text-xl sm:text-2xl font-bold text-white mb-2">Message Sent Successfully!</h3>
-            <p className="text-gray-300 text-sm sm:text-base">
-              Thank you, {formData.name || 'valued client'}, for reaching out to DKSHOTIT Studio & Photography. We appreciate your interest and will get back to you shortly. Have a wonderful day!
-            </p>
-          </motion.div>
-        </motion.div>
-      )}
+    {showPopup && (
+  <motion.div
+    className="fixed inset-0 bg-black/10 backdrop-blur-xs flex items-center justify-center z-50"
+    initial={{ opacity: 0 }}
+    animate={{ opacity: 1 }}
+    exit={{ opacity: 0 }}
+    transition={{ duration: 0.3 }}
+  >
+    <motion.div
+      className="bg-gray-800 p-6 sm:p-8 rounded-lg shadow-lg max-w-md w-full text-center"
+      initial={{ scale: 0.8, y: 50 }}
+      animate={{ scale: 1, y: 0 }}
+      exit={{ scale: 0.8, y: 50 }}
+      transition={{ duration: 0.3 }}
+    >
+      <svg
+        className="w-12 h-12 text-green-400 mx-auto mb-4"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="2"
+        viewBox="0 0 24 24"
+      >
+        <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+      </svg>
+      <h3 className="text-xl sm:text-2xl font-bold text-white mb-2">Message Sent Successfully!</h3>
+      <p className="text-gray-300 text-sm sm:text-base">
+        Thank you, {formData.name || 'valued client'}, for reaching out to DKSHOTIT Studio & Photography. We appreciate your interest and will get back to you shortly. Have a wonderful day!
+      </p>
+    </motion.div>
+  </motion.div>
+)}
     </div>
   );
 };
