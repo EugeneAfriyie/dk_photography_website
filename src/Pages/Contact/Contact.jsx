@@ -323,9 +323,9 @@ const Contact = () => {
         {/* Contact Banner */}
         <motion.section
           className="relative rounded-lg mb-12 overflow-hidden"
-          initial={{ opacity: 0, y: 50 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.9, ease: "easeOut" }}
+          initial={{ opacity: 0, y: 50, scale: 0.95 }}
+          whileInView={{ opacity: 1, y: 0, scale: 1 }}
+          transition={{ duration: 1.2, ease: "easeOut" }}
           viewport={{ once: true }}
           style={{ height: '400px', minHeight: '250px', position: 'relative' }}
         >
@@ -335,23 +335,29 @@ const Contact = () => {
             className="absolute top-0 left-0 w-full h-full object-cover"
             initial={{ x: -100, opacity: 0 }}
             whileInView={{ x: 0, opacity: 1 }}
-            transition={{ duration: 0.7, ease: "easeOut" }}
+            transition={{ duration: 1.2, ease: "easeOut" }}
             viewport={{ once: true }}
           />
           <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/50 to-transparent"></div>
-          <div className="relative z-10 h-full flex items-center justify-center text-center px-4 py-8">
+          <motion.div
+            className="relative z-10 h-full flex items-center justify-center text-center px-4 py-8"
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            transition={{ duration: 1, delay: 0.3 }}
+            viewport={{ once: true }}
+          >
             <motion.div
               className="max-w-2xl"
               initial={{ scale: 0.9, opacity: 0 }}
               whileInView={{ scale: 1, opacity: 1 }}
-              transition={{ duration: 0.6, delay: 0.2 }}
+              transition={{ duration: 0.8, delay: 0.5 }}
               viewport={{ once: true }}
             >
               <motion.h1
                 className="text-4xl sm:text-5xl md:text-6xl font-bold mb-4 text-white drop-shadow-lg"
                 initial={{ y: 20 }}
                 whileInView={{ y: 0 }}
-                transition={{ duration: 0.6, delay: 0.3 }}
+                transition={{ duration: 0.8, delay: 0.6 }}
                 viewport={{ once: true }}
               >
                 Get in Touch
@@ -360,49 +366,74 @@ const Contact = () => {
                 className="text-gray-200 text-lg sm:text-xl md:text-2xl drop-shadow-md"
                 initial={{ y: 30, opacity: 0 }}
                 whileInView={{ y: 0, opacity: 1 }}
-                transition={{ duration: 0.6, delay: 0.4 }}
+                transition={{ duration: 0.8, delay: 0.7 }}
                 viewport={{ once: true }}
               >
                 We’d love to hear from you! Reach out for bookings or inquiries.
               </motion.p>
             </motion.div>
-          </div>
+          </motion.div>
         </motion.section>
 
-        {/* Form Mode Toggle */}
-        <div className="mb-8 text-center">
-          <button
+        {/* Form Mode Toggle with Animation */}
+        <motion.div
+          className="mb-8 text-center"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, ease: "easeOut" }}
+        >
+          <motion.button
             onClick={() => setFormMode('inquiry')}
-            className={`px-4 py-2 rounded-l-lg ${formMode === 'inquiry' ? 'bg-amber-500' : 'bg-gray-700'} text-white hover:bg-amber-600 transition duration-300`}
+            className={`px-6 py-3 rounded-l-lg ${formMode === 'inquiry' ? 'bg-amber-500' : 'bg-gray-700'} text-white font-semibold hover:bg-amber-600 transition-colors duration-300`}
+            whileHover={{ scale: 1.1, backgroundColor: formMode === 'inquiry' ? '#f59e0b' : '#4b5563' }}
+            whileTap={{ scale: 0.95 }}
+            transition={{ duration: 0.3 }}
           >
             Inquiry
-          </button>
-          <button
+          </motion.button>
+          <motion.button
             onClick={() => setFormMode('booking')}
-            className={`px-4 py-2 rounded-r-lg ${formMode === 'booking' ? 'bg-amber-500' : 'bg-gray-700'} text-white hover:bg-amber-600 transition duration-300`}
+            className={`px-6 py-3 rounded-r-lg ${formMode === 'booking' ? 'bg-amber-500' : 'bg-gray-700'} text-white font-semibold hover:bg-amber-600 transition-colors duration-300`}
+            whileHover={{ scale: 1.1, backgroundColor: formMode === 'booking' ? '#f59e0b' : '#4b5563' }}
+            whileTap={{ scale: 0.95 }}
+            transition={{ duration: 0.3 }}
           >
             Booking
-          </button>
-        </div>
+          </motion.button>
+        </motion.div>
 
         {/* Contact Form or Booking Checkout */}
         <motion.section
           className="bg-gray-800 p-6 sm:p-8 rounded-lg mb-12"
-          initial={{ opacity: 0, y: 50 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.9, ease: "easeOut" }}
+          initial={{ opacity: 0, y: 50, scale: 0.98 }}
+          whileInView={{ opacity: 1, y: 0, scale: 1 }}
+          transition={{ duration: 1, ease: "easeOut" }}
           viewport={{ once: true }}
         >
           {formMode === 'inquiry' ? (
             <>
-              <h2 className="text-2xl sm:text-3xl font-bold mb-6 text-center">Send Us a Message</h2>
+              <motion.h2
+                className="text-2xl sm:text-3xl font-bold mb-6 text-center"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.7, delay: 0.2 }}
+                viewport={{ once: true }}
+              >
+                Send Us a Message
+              </motion.h2>
               <form onSubmit={handleSubmit} className="max-w-2xl mx-auto space-y-6">
                 {/* Name */}
-                <div>
-                  <label htmlFor="name" className="block text-sm font-medium mb-2 text-white">
+                <motion.div
+                  className="flex items-center bg-[#111] text-white rounded-xl px-4 py-3"
+                  initial={{ opacity: 0, x: -20 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 0.6, delay: 0.3 }}
+                  viewport={{ once: true }}
+                >
+                  <label htmlFor="name" className="block text-sm font-medium mb-2 text-white w-full">
                     Your full name
                   </label>
-                  <div className={`flex items-center bg-[#111] text-white rounded-xl px-4 py-3 ${validationErrors.name ? 'border-2 border-red-500' : ''}`}>
+                  <div className={`flex-1 ${validationErrors.name ? 'border-2 border-red-500' : ''}`}>
                     <span className="mr-3 text-gray-400">
                       <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
                         <path d="M5.121 17.804A9 9 0 1118.88 6.196 9 9 0 015.12 17.804zM15 11a3 3 0 11-6 0 3 3 0 016 0z" />
@@ -419,14 +450,20 @@ const Contact = () => {
                       required
                     />
                   </div>
-                </div>
+                </motion.div>
 
                 {/* Email */}
-                <div>
-                  <label htmlFor="email" className="block text-sm font-medium mb-2 text-white">
+                <motion.div
+                  className="flex items-center bg-[#111] text-white rounded-xl px-4 py-3"
+                  initial={{ opacity: 0, x: -20 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 0.6, delay: 0.4 }}
+                  viewport={{ once: true }}
+                >
+                  <label htmlFor="email" className="block text-sm font-medium mb-2 text-white w-full">
                     Email address
                   </label>
-                  <div className={`flex items-center bg-[#111] text-white rounded-xl px-4 py-3 ${validationErrors.email ? 'border-2 border-red-500' : ''}`}>
+                  <div className={`flex-1 ${validationErrors.email ? 'border-2 border-red-500' : ''}`}>
                     <span className="mr-3 text-gray-400">
                       <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
                         <path d="M16 12H8m0 0l-4 4m4-4l-4-4m8 0h8v16H4V4h8z" />
@@ -443,14 +480,20 @@ const Contact = () => {
                       required
                     />
                   </div>
-                </div>
+                </motion.div>
 
                 {/* Phone */}
-                <div>
-                  <label htmlFor="phone" className="block text-sm font-medium mb-2 text-white">
+                <motion.div
+                  className="flex items-center bg-[#111] text-white rounded-xl px-4 py-3"
+                  initial={{ opacity: 0, x: -20 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 0.6, delay: 0.5 }}
+                  viewport={{ once: true }}
+                >
+                  <label htmlFor="phone" className="block text-sm font-medium mb-2 text-white w-full">
                     Phone number
                   </label>
-                  <div className={`flex items-center bg-[#111] text-white rounded-xl px-4 py-3 ${validationErrors.phone ? 'border-2 border-red-500' : ''}`}>
+                  <div className={`flex-1 ${validationErrors.phone ? 'border-2 border-red-500' : ''}`}>
                     <span className="mr-3 text-gray-400">
                       <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
                         <path d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
@@ -467,14 +510,20 @@ const Contact = () => {
                       required
                     />
                   </div>
-                </div>
+                </motion.div>
 
                 {/* Subject */}
-                <div>
-                  <label htmlFor="subject" className="block text-sm font-medium mb-2 text-white">
+                <motion.div
+                  className="flex items-center bg-[#111] text-white rounded-xl px-4 py-3"
+                  initial={{ opacity: 0, x: -20 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 0.6, delay: 0.6 }}
+                  viewport={{ once: true }}
+                >
+                  <label htmlFor="subject" className="block text-sm font-medium mb-2 text-white w-full">
                     Subject
                   </label>
-                  <div className={`flex items-center bg-[#111] text-white rounded-xl px-4 py-3 ${validationErrors.subject ? 'border-2 border-red-500' : ''}`}>
+                  <div className={`flex-1 ${validationErrors.subject ? 'border-2 border-red-500' : ''}`}>
                     <span className="mr-3 text-gray-400">
                       <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
                         <path d="M4 6h16M4 12h16M4 18h7" />
@@ -491,14 +540,20 @@ const Contact = () => {
                       required
                     />
                   </div>
-                </div>
+                </motion.div>
 
                 {/* Message */}
-                <div>
-                  <label htmlFor="message" className="block text-sm font-medium mb-2 text-white">
+                <motion.div
+                  className="flex items-start bg-[#111] text-white rounded-xl px-4 py-3"
+                  initial={{ opacity: 0, x: -20 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 0.6, delay: 0.7 }}
+                  viewport={{ once: true }}
+                >
+                  <label htmlFor="message" className="block text-sm font-medium mb-2 text-white w-full">
                     Message
                   </label>
-                  <div className={`flex items-start bg-[#111] text-white rounded-xl px-4 py-3 ${validationErrors.message ? 'border-2 border-red-500' : ''}`}>
+                  <div className={`flex-1 ${validationErrors.message ? 'border-2 border-red-500' : ''}`}>
                     <span className="mr-3 text-gray-400 pt-1">
                       <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
                         <path d="M8 10h.01M12 10h.01M16 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
@@ -514,14 +569,20 @@ const Contact = () => {
                       required
                     ></textarea>
                   </div>
-                </div>
+                </motion.div>
 
                 {/* Notes */}
-                <div>
-                  <label htmlFor="notes" className="block text-sm font-medium mb-2 text-white">
+                <motion.div
+                  className="flex items-start bg-[#111] text-white rounded-xl px-4 py-3"
+                  initial={{ opacity: 0, x: -20 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 0.6, delay: 0.8 }}
+                  viewport={{ once: true }}
+                >
+                  <label htmlFor="notes" className="block text-sm font-medium mb-2 text-white w-full">
                     Notes
                   </label>
-                  <div className="flex items-start bg-[#111] text-white rounded-xl px-4 py-3">
+                  <div>
                     <span className="mr-3 text-gray-400 pt-1">
                       <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
                         <path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4" />
@@ -537,14 +598,20 @@ const Contact = () => {
                       maxLength={250}
                     ></textarea>
                   </div>
-                </div>
+                </motion.div>
 
                 {/* Attachment */}
-                <div>
-                  <label htmlFor="attachment" className="block text-sm font-medium mb-2 text-white">
+                <motion.div
+                  className="flex items-center bg-[#111] text-white rounded-xl px-4 py-3"
+                  initial={{ opacity: 0, x: -20 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 0.6, delay: 0.9 }}
+                  viewport={{ once: true }}
+                >
+                  <label htmlFor="attachment" className="block text-sm font-medium mb-2 text-white w-full">
                     Attachment (e.g., Photos)
                   </label>
-                  <div className="flex items-center bg-[#111] text-white rounded-xl px-4 py-3">
+                  <div>
                     <span className="mr-3 text-gray-400">
                       <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
                         <path d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
@@ -560,10 +627,16 @@ const Contact = () => {
                     />
                   </div>
                   {formData.attachment && <p className="text-gray-500 text-sm mt-1">Selected: {formData.attachment.name}</p>}
-                </div>
+                </motion.div>
 
                 {/* Submit */}
-                <div className="text-center">
+                <motion.div
+                  className="text-center"
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.6, delay: 1 }}
+                  viewport={{ once: true }}
+                >
                   <motion.button
                     type="submit"
                     className="bg-[#7c3aed] hover:bg-purple-700 text-white font-medium px-6 py-3 rounded-xl transition duration-300"
@@ -572,22 +645,40 @@ const Contact = () => {
                   >
                     Send Message
                   </motion.button>
-                </div>
+                </motion.div>
 
                 {/* Error Message */}
                 {errorMessage && (
-                  <div className="text-red-500 text-sm mt-4 text-center">
+                  <motion.div
+                    className="text-red-500 text-sm mt-4 text-center"
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.5 }}
+                  >
                     {errorMessage}
-                  </div>
+                  </motion.div>
                 )}
               </form>
             </>
           ) : (
             <>
-              <h2 className="text-2xl sm:text-3xl font-bold mb-6 text-center">Book a Package</h2>
+              <motion.h2
+                className="text-2xl sm:text-3xl font-bold mb-6 text-center"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.7, delay: 0.2 }}
+                viewport={{ once: true }}
+              >
+                Book a Package
+              </motion.h2>
               <div className="max-w-2xl mx-auto space-y-6">
                 {/* Package Selection */}
-                <div>
+                <motion.div
+                  initial={{ opacity: 0, x: -20 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 0.6, delay: 0.3 }}
+                  viewport={{ once: true }}
+                >
                   <label htmlFor="package" className="block text-sm font-medium mb-2 text-white">
                     Select a Package
                   </label>
@@ -606,14 +697,20 @@ const Contact = () => {
                       </option>
                     ))}
                   </select>
-                </div>
+                </motion.div>
 
                 {/* Contact Info for Booking */}
-                <div>
-                  <label htmlFor="name" className="block text-sm font-medium mb-2 text-white">
+                <motion.div
+                  className="flex items-center bg-[#111] text-white rounded-xl px-4 py-3"
+                  initial={{ opacity: 0, x: -20 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 0.6, delay: 0.4 }}
+                  viewport={{ once: true }}
+                >
+                  <label htmlFor="name" className="block text-sm font-medium mb-2 text-white w-full">
                     Your full name
                   </label>
-                  <div className={`flex items-center bg-[#111] text-white rounded-xl px-4 py-3 ${validationErrors.name ? 'border-2 border-red-500' : ''}`}>
+                  <div className={`flex-1 ${validationErrors.name ? 'border-2 border-red-500' : ''}`}>
                     <span className="mr-3 text-gray-400">
                       <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
                         <path d="M5.121 17.804A9 9 0 1118.88 6.196 9 9 0 015.12 17.804zM15 11a3 3 0 11-6 0 3 3 0 016 0z" />
@@ -630,13 +727,19 @@ const Contact = () => {
                       required
                     />
                   </div>
-                </div>
+                </motion.div>
 
-                <div>
-                  <label htmlFor="email" className="block text-sm font-medium mb-2 text-white">
+                <motion.div
+                  className="flex items-center bg-[#111] text-white rounded-xl px-4 py-3"
+                  initial={{ opacity: 0, x: -20 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 0.6, delay: 0.5 }}
+                  viewport={{ once: true }}
+                >
+                  <label htmlFor="email" className="block text-sm font-medium mb-2 text-white w-full">
                     Email address
                   </label>
-                  <div className={`flex items-center bg-[#111] text-white rounded-xl px-4 py-3 ${validationErrors.email ? 'border-2 border-red-500' : ''}`}>
+                  <div className={`flex-1 ${validationErrors.email ? 'border-2 border-red-500' : ''}`}>
                     <span className="mr-3 text-gray-400">
                       <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
                         <path d="M16 12H8m0 0l-4 4m4-4l-4-4m8 0h8v16H4V4h8z" />
@@ -653,13 +756,19 @@ const Contact = () => {
                       required
                     />
                   </div>
-                </div>
+                </motion.div>
 
-                <div>
-                  <label htmlFor="phone" className="block text-sm font-medium mb-2 text-white">
+                <motion.div
+                  className="flex items-center bg-[#111] text-white rounded-xl px-4 py-3"
+                  initial={{ opacity: 0, x: -20 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 0.6, delay: 0.6 }}
+                  viewport={{ once: true }}
+                >
+                  <label htmlFor="phone" className="block text-sm font-medium mb-2 text-white w-full">
                     Phone number
                   </label>
-                  <div className={`flex items-center bg-[#111] text-white rounded-xl px-4 py-3 ${validationErrors.phone ? 'border-2 border-red-500' : ''}`}>
+                  <div className={`flex-1 ${validationErrors.phone ? 'border-2 border-red-500' : ''}`}>
                     <span className="mr-3 text-gray-400">
                       <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
                         <path d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
@@ -676,14 +785,20 @@ const Contact = () => {
                       required
                     />
                   </div>
-                </div>
+                </motion.div>
 
                 {/* Notes */}
-                <div>
-                  <label htmlFor="notes" className="block text-sm font-medium mb-2 text-white">
+                <motion.div
+                  className="flex items-start bg-[#111] text-white rounded-xl px-4 py-3"
+                  initial={{ opacity: 0, x: -20 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 0.6, delay: 0.7 }}
+                  viewport={{ once: true }}
+                >
+                  <label htmlFor="notes" className="block text-sm font-medium mb-2 text-white w-full">
                     Notes
                   </label>
-                  <div className="flex items-start bg-[#111] text-white rounded-xl px-4 py-3">
+                  <div>
                     <span className="mr-3 text-gray-400 pt-1">
                       <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
                         <path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4" />
@@ -699,16 +814,28 @@ const Contact = () => {
                       maxLength={250}
                     ></textarea>
                   </div>
-                </div>
+                </motion.div>
 
                 {/* Amount Due */}
-                <div className="bg-gray-700 p-4 rounded-lg text-center">
+                <motion.div
+                  className="bg-gray-700 p-4 rounded-lg text-center"
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.6, delay: 0.8 }}
+                  viewport={{ once: true }}
+                >
                   <h3 className="text-lg font-bold text-white mb-2">Amount Due</h3>
                   <p className="text-amber-300 text-xl">{selectedPackage.price || 'N/A'}</p>
-                </div>
+                </motion.div>
 
                 {/* Terms and Conditions */}
-                <div className="flex items-center space-x-2">
+                <motion.div
+                  className="flex items-center space-x-2"
+                  initial={{ opacity: 0, x: -20 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 0.6, delay: 0.9 }}
+                  viewport={{ once: true }}
+                >
                   <input
                     type="checkbox"
                     name="terms"
@@ -724,10 +851,16 @@ const Contact = () => {
                       Terms and Conditions
                     </a>
                   </label>
-                </div>
+                </motion.div>
 
                 {/* Submit */}
-                <div className="text-center">
+                <motion.div
+                  className="text-center"
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.6, delay: 1 }}
+                  viewport={{ once: true }}
+                >
                   <motion.button
                     type="button" // Changed to button to trigger confirmation
                     onClick={handleSubmit}
@@ -743,13 +876,18 @@ const Contact = () => {
                     /{' '}
                     <a href="https://wa.me/233123456789" className="text-amber-300 hover:underline">WhatsApp</a> your photographer for more details.
                   </p>
-                </div>
+                </motion.div>
 
                 {/* Error Message */}
                 {errorMessage && (
-                  <div className="text-red-500 text-sm mt-4 text-center">
+                  <motion.div
+                    className="text-red-500 text-sm mt-4 text-center"
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.5 }}
+                  >
                     {errorMessage}
-                  </div>
+                  </motion.div>
                 )}
               </div>
             </>
@@ -759,44 +897,84 @@ const Contact = () => {
         {/* Contact Info */}
         <motion.section
           className="bg-gray-900 p-6 sm:p-8 rounded-lg mb-12"
-          initial={{ opacity: 0, y: 50 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.9, ease: "easeOut" }}
+          initial={{ opacity: 0, y: 50, scale: 0.98 }}
+          whileInView={{ opacity: 1, y: 0, scale: 1 }}
+          transition={{ duration: 1, ease: "easeOut" }}
           viewport={{ once: true }}
         >
-          <h2 className="text-2xl sm:text-3xl font-bold mb-6 text-center">Contact Information</h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 text-center sm:text-left">
-            <div>
+          <motion.h2
+            className="text-2xl sm:text-3xl font-bold mb-6 text-center"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, delay: 0.2 }}
+            viewport={{ once: true }}
+          >
+            Contact Information
+          </motion.h2>
+          <motion.div
+            className="grid grid-cols-1 sm:grid-cols-2 gap-6 text-center sm:text-left"
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            transition={{ duration: 0.8, delay: 0.4 }}
+            viewport={{ once: true }}
+          >
+            <motion.div
+              initial={{ x: -20, opacity: 0 }}
+              whileInView={{ x: 0, opacity: 1 }}
+              transition={{ duration: 0.6, delay: 0.5 }}
+              viewport={{ once: true }}
+            >
               <p className="text-gray-400 mb-2">Address:</p>
               <p>DKSHOTIT Studio, Amakom, Kumasi, Ghana</p>
-              <a
+              <motion.a
                 href="https://maps.google.com/maps?q=Amakom,+Kumasi,+Ghana"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-amber-300 hover:underline mt-2 inline-block"
+                whileHover={{ scale: 1.05 }}
+                transition={{ duration: 0.3 }}
               >
                 View on Map
-              </a>
-            </div>
-            <div>
+              </motion.a>
+            </motion.div>
+            <motion.div
+              initial={{ x: 20, opacity: 0 }}
+              whileInView={{ x: 0, opacity: 1 }}
+              transition={{ duration: 0.6, delay: 0.6 }}
+              viewport={{ once: true }}
+            >
               <p className="text-gray-400 mb-2">Phone:</p>
               <p>+233 123 456 789</p>
               <p className="text-gray-400 mb-2 mt-4">Email:</p>
               <p>info@dkshotit.com</p>
-            </div>
-          </div>
+            </motion.div>
+          </motion.div>
         </motion.section>
 
         {/* Social Media */}
         <motion.section
           className="bg-gray-800 p-6 sm:p-8 rounded-lg mb-12 text-center"
-          initial={{ opacity: 0, y: 50 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.9, ease: "easeOut" }}
+          initial={{ opacity: 0, y: 50, scale: 0.98 }}
+          whileInView={{ opacity: 1, y: 0, scale: 1 }}
+          transition={{ duration: 1, ease: "easeOut" }}
           viewport={{ once: true }}
         >
-          <h2 className="text-2xl sm:text-3xl font-bold mb-6">Connect With Us</h2>
-          <div className="flex justify-center gap-6">
+          <motion.h2
+            className="text-2xl sm:text-3xl font-bold mb-6"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, delay: 0.2 }}
+            viewport={{ once: true }}
+          >
+            Connect With Us
+          </motion.h2>
+          <motion.div
+            className="flex justify-center gap-6"
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            transition={{ duration: 0.8, delay: 0.4 }}
+            viewport={{ once: true }}
+          >
             {['facebook', 'instagram', 'twitter'].map((social, index) => (
               <motion.a
                 key={social}
@@ -806,13 +984,14 @@ const Contact = () => {
                 className="text-2xl sm:text-3xl text-gray-400 hover:text-amber-300 transition duration-300"
                 initial={{ y: 20, opacity: 0 }}
                 whileInView={{ y: 0, opacity: 1 }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
+                whileHover={{ scale: 1.2, rotate: 5 }}
+                transition={{ duration: 0.4, delay: index * 0.1 }}
                 viewport={{ once: true }}
               >
                 {social === 'facebook' ? '🇫' : social === 'instagram' ? '📸' : '🐦'}
               </motion.a>
             ))}
-          </div>
+          </motion.div>
         </motion.section>
 
         <Footer />
@@ -881,10 +1060,22 @@ const Contact = () => {
             >
               <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
             </svg>
-            <h3 className="text-xl sm:text-2xl font-bold text-white mb-2">Booking Confirmed Successfully!</h3>
-            <p className="text-gray-300 text-sm sm:text-base">
+            <motion.h3
+              className="text-xl sm:text-2xl font-bold text-white mb-2"
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5 }}
+            >
+              Booking Confirmed Successfully!
+            </motion.h3>
+            <motion.p
+              className="text-gray-300 text-sm sm:text-base"
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.2 }}
+            >
               Thank you, {formData.name || 'valued client'}, for booking with DKSHOTIT Studio & Photography. We look forward to capturing your special moments. Check your email for confirmation details!
-            </p>
+            </motion.p>
           </motion.div>
         </motion.div>
       )}
@@ -914,15 +1105,32 @@ const Contact = () => {
                 <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
               </svg>
             </button>
-            <h3 className="text-xl sm:text-2xl font-bold text-white mb-4">Confirm Booking Details</h3>
-            <div className="text-left text-gray-300 space-y-2 max-h-64 overflow-y-auto p-2 sm:p-4 scrollbar-thin scrollbar-thumb-amber-500 scrollbar-track-gray-900">
+            <motion.h3
+              className="text-xl sm:text-2xl font-bold text-white mb-4"
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5 }}
+            >
+              Confirm Booking Details
+            </motion.h3>
+            <motion.div
+              className="text-left text-gray-300 space-y-2 max-h-64 overflow-y-auto p-2 sm:p-4 scrollbar-thin scrollbar-thumb-amber-500 scrollbar-track-gray-900"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.5, delay: 0.2 }}
+            >
               <p><strong>Name:</strong> {formData.name || 'Not provided'}</p>
               <p><strong>Email:</strong> {formData.email || 'Not provided'}</p>
               <p><strong>Phone:</strong> {formData.phone || 'Not provided'}</p>
               <p><strong>Notes:</strong> {formData.notes || 'None'}</p>
               <p><strong>Package:</strong> {selectedPackage.title} - {selectedPackage.price}</p>
-            </div>
-            <div className="mt-4 sm:mt-6 space-x-2 sm:space-x-4">
+            </motion.div>
+            <motion.div
+              className="mt-4 sm:mt-6 space-x-2 sm:space-x-4"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.4 }}
+            >
               <motion.button
                 onClick={handleConfirmSubmit}
                 className="bg-green-500 hover:bg-green-600 text-white font-medium px-4 py-2 sm:px-6 sm:py-3 rounded-xl transition duration-300"
@@ -939,7 +1147,7 @@ const Contact = () => {
               >
                 Cancel
               </motion.button>
-            </div>
+            </motion.div>
           </motion.div>
         </motion.div>
       )}
@@ -970,11 +1178,28 @@ const Contact = () => {
                 <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
               </svg>
             </button>
-            <h3 className="text-xl sm:text-2xl font-bold text-white mb-4">Terms and Conditions</h3>
-            <div className="text-gray-300 text-sm sm:text-base max-h-64 overflow-y-auto p-2 scrollbar-thin scrollbar-thumb-amber-500 scrollbar-track-gray-900">
+            <motion.h3
+              className="text-xl sm:text-2xl font-bold text-white mb-4"
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5 }}
+            >
+              Terms and Conditions
+            </motion.h3>
+            <motion.div
+              className="text-gray-300 text-sm sm:text-base max-h-64 overflow-y-auto p-2 scrollbar-thin scrollbar-thumb-amber-500 scrollbar-track-gray-900"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.5, delay: 0.2 }}
+            >
               <p>Please review our terms: All bookings are subject to availability. A 50% deposit is required to secure your date. Cancellations within 7 days of the event incur a 25% fee. Full payment is due 48 hours before the event. We reserve the right to reschedule due to unforeseen circumstances.</p>
-            </div>
-            <div className="mt-6 space-x-4">
+            </motion.div>
+            <motion.div
+              className="mt-6 space-x-4"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.4 }}
+            >
               <motion.button
                 onClick={handleAcceptTerms}
                 className="bg-green-500 hover:bg-green-600 text-white font-medium px-6 py-3 rounded-xl transition duration-300"
@@ -991,7 +1216,7 @@ const Contact = () => {
               >
                 Decline
               </motion.button>
-            </div>
+            </motion.div>
           </motion.div>
         </motion.div>
       )}
@@ -1031,10 +1256,22 @@ const Contact = () => {
             >
               <path strokeLinecap="round" strokeLinejoin="round" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
             </svg>
-            <h3 className="text-xl sm:text-2xl font-bold text-white mb-2">Note Limit Reached</h3>
-            <p className="text-gray-300 text-sm sm:text-base">
+            <motion.h3
+              className="text-xl sm:text-2xl font-bold text-white mb-2"
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5 }}
+            >
+              Note Limit Reached
+            </motion.h3>
+            <motion.p
+              className="text-gray-300 text-sm sm:text-base"
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.2 }}
+            >
               The maximum limit of 250 characters has been reached for the Notes field. Please shorten your text or remove some content.
-            </p>
+            </motion.p>
           </motion.div>
         </motion.div>
       )}
