@@ -155,8 +155,22 @@ const Contact = () => {
       }
     };
 
+    const handleKeyPress = (e) => {
+      if (e.key === 'Escape') {
+        setShowPopup(false);
+        setShowConfirm(false);
+        setShowTermsPopup(false);
+        setShowNoteLimitAlert(false);
+        setIsSubmitted(false);
+      }
+    };
+
     window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    window.addEventListener('keydown', handleKeyPress);
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener('keydown', handleKeyPress);
+    };
   }, []);
 
   const scrollToTop = () => {
@@ -248,6 +262,19 @@ const Contact = () => {
     }
   };
 
+  const handleKeyPress = (e) => {
+    if (e.key === 'Enter' && !e.shiftKey) {
+      e.preventDefault();
+      if (showConfirm) {
+        handleConfirmSubmit();
+      } else if (showTermsPopup) {
+        handleAcceptTerms();
+      } else {
+        handleSubmit(e);
+      }
+    }
+  };
+
   const handleConfirmSubmit = () => {
     console.log('Booking confirmed:', {
       name: formData.name,
@@ -289,7 +316,7 @@ const Contact = () => {
   const [selectedPackage, setSelectedPackage] = useState({ title: 'Select a Package', price: '' });
 
   return (
-    <div className="min-h-screen bg-black text-white py-20 px-4 overflow-hidden">
+    <div className="min-h-screen bg-black text-white py-20 px-4 overflow-hidden" onKeyPress={handleKeyPress}>
       <Header />
 
       <div className="max-w-7xl mx-auto">
