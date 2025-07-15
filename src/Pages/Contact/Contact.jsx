@@ -144,6 +144,7 @@ const Contact = () => {
   const [showTermsPopup, setShowTermsPopup] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
   const [showNoteLimitAlert, setShowNoteLimitAlert] = useState(false);
+  const [validationErrors, setValidationErrors] = useState({ name: false, email: false, phone: false, package: false });
 
   useEffect(() => {
     const handleScroll = () => {
@@ -162,6 +163,16 @@ const Contact = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
+  const validateEmail = (email) => {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
+  };
+
+  const validatePhone = (phone) => {
+    const phoneRegex = /^\+?[\d\s-]{10,}$/;
+    return phoneRegex.test(phone);
+  };
+
   const handleChange = (e) => {
     const { name, value, files, type, checked } = e.target;
     if (name === 'notes' && value.length >= 250) {
@@ -175,7 +186,8 @@ const Contact = () => {
     if (type === 'checkbox') {
       setAcceptedTerms(checked);
     }
-    setErrorMessage(''); // Clear error when input changes
+    setValidationErrors(prev => ({ ...prev, [name]: false })); // Clear error on change
+    setErrorMessage(''); // Clear error message on change
   };
 
   const handleSubmit = (e) => {
@@ -205,12 +217,19 @@ const Contact = () => {
       setShowPopup(true);
       setFormData({ name: '', email: '', subject: '', message: '', attachment: null, phone: '', notes: '' });
     } else {
-      if (!acceptedTerms) {
-        setShowTermsPopup(true);
+      const errors = {
+        name: !formData.name,
+        email: !formData.email || !validateEmail(formData.email),
+        phone: !formData.phone || !validatePhone(formData.phone),
+        package: !formData.package || selectedPackage.title === 'Select a Package'
+      };
+      setValidationErrors(errors);
+      if (Object.values(errors).some(error => error)) {
+        setErrorMessage('Please fill in all required fields with valid information (Name, Email, Phone, Package).');
         return;
       }
-      if (!formData.name || !formData.email || !formData.phone) {
-        setErrorMessage('Please fill in all required fields (Name, Email, Phone).');
+      if (!acceptedTerms) {
+        setShowTermsPopup(true);
         return;
       }
       setShowConfirm(true); // Show confirmation popup for booking
@@ -254,8 +273,8 @@ const Contact = () => {
     setShowNoteLimitAlert(false);
   };
 
-  // State for selected package
-  const [selectedPackage, setSelectedPackage] = useState(packages[0]);
+  // State for selected package with default "Select a Package"
+  const [selectedPackage, setSelectedPackage] = useState({ title: 'Select a Package', price: '' });
 
   return (
     <div className="min-h-screen bg-black text-white py-20 px-4 overflow-hidden">
@@ -530,10 +549,11 @@ const Contact = () => {
                     name="package"
                     id="package"
                     value={selectedPackage.title}
-                    onChange={(e) => setSelectedPackage(packages.find(p => p.title === e.target.value) || packages[0])}
-                    className={`w-full bg-[#111] text-white rounded-xl px-4 py-3 outline-none ${!selectedPackage ? 'border-2 border-red-500' : ''}`}
+                    onChange={(e) => setSelectedPackage(packages.find(p => p.title === e.target.value) || { title: 'Select a Package', price: '' })}
+                    className={`w-full bg-[#111] text-white rounded-xl px-4 py-3 outline-none ${validationErrors.package ? 'border-2 border-red-500' : ''}`}
                     required
                   >
+                    <option value="Select a Package" disabled>Select a Package</option>
                     {packages.map((pkg) => (
                       <option key={pkg.title} value={pkg.title}>
                         {pkg.title} - {pkg.price}
@@ -547,7 +567,7 @@ const Contact = () => {
                   <label htmlFor="name" className="block text-sm font-medium mb-2 text-white">
                     Your full name
                   </label>
-                  <div className={`flex items-center bg-[#111] text-white rounded-xl px-4 py-3 ${!formData.name ? 'border-2 border-red-500' : ''}`}>
+                  <div className={`flex items-center bg-[#111] text-white rounded-xl px-4 py-3 ${validationErrors.name ? 'border-2 border-red-500' : ''}`}>
                     <span className="mr-3 text-gray-400">
                       <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
                         <path d="M5.121 17.804A9 9 0 1118.88 6.196 9 9 0 015.12 17.804zM15 11a3 3 0 11-6 0 3 3 0 016 0z" />
@@ -570,7 +590,7 @@ const Contact = () => {
                   <label htmlFor="email" className="block text-sm font-medium mb-2 text-white">
                     Email address
                   </label>
-                  <div className={`flex items-center bg-[#111] text-white rounded-xl px-4 py-3 ${!formData.email ? 'border-2 border-red-500' : ''}`}>
+                  <div className={`flex items-center bg-[#111] text-white rounded-xl px-4 py-3 ${validationErrors.email ? 'border-2 border-red-500' : ''}`}>
                     <span className="mr-3 text-gray-400">
                       <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
                         <path d="M16 12H8m0 0l-4 4m4-4l-4-4m8 0h8v16H4V4h8z" />
@@ -593,7 +613,7 @@ const Contact = () => {
                   <label htmlFor="phone" className="block text-sm font-medium mb-2 text-white">
                     Phone number
                   </label>
-                  <div className={`flex items-center bg-[#111] text-white rounded-xl px-4 py-3 ${!formData.phone ? 'border-2 border-red-500' : ''}`}>
+                  <div className={`flex items-center bg-[#111] text-white rounded-xl px-4 py-3 ${validationErrors.phone ? 'border-2 border-red-500' : ''}`}>
                     <span className="mr-3 text-gray-400">
                       <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
                         <path d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
@@ -605,7 +625,7 @@ const Contact = () => {
                       id="phone"
                       value={formData.phone}
                       onChange={handleChange}
-                      placeholder="Enter your phone number"
+                      placeholder="Enter your phone number (e.g., +1234567890)"
                       className="bg-transparent flex-1 outline-none text-white placeholder-gray-500"
                       required
                     />
@@ -638,7 +658,7 @@ const Contact = () => {
                 {/* Amount Due */}
                 <div className="bg-gray-700 p-4 rounded-lg text-center">
                   <h3 className="text-lg font-bold text-white mb-2">Amount Due</h3>
-                  <p className="text-amber-300 text-xl">{selectedPackage.price}</p>
+                  <p className="text-amber-300 text-xl">{selectedPackage.price || 'N/A'}</p>
                 </div>
 
                 {/* Terms and Conditions */}
@@ -649,7 +669,7 @@ const Contact = () => {
                     id="terms"
                     checked={acceptedTerms}
                     onChange={handleChange}
-                    className={`h-4 w-4 ${!acceptedTerms ? 'border-2 border-red-500' : 'text-amber-500 focus:ring-amber-500 border-gray-600'} rounded`}
+                    className={`h-4 w-4 ${!acceptedTerms && validationErrors.name ? 'border-2 border-red-500' : 'text-amber-500 focus:ring-amber-500 border-gray-600'} rounded`}
                     required
                   />
                   <label htmlFor="terms" className="text-sm text-gray-300">
