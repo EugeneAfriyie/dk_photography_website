@@ -36,9 +36,9 @@ const IntroductionSection = () => {
       <div class="mb-4 sm:mb-6">
         <div class="float-left w-[60%] sm:w-1/3 mr-3 sm:mr-4 mt-1 clear-both">
           <img 
-            src="https://picsum.photos/200/128" 
+            src="https://res.cloudinary.com/djeorsh5d/image/upload/v1751247107/DK1_zmhx8j.jpg" 
             alt="Childhood Inspiration" 
-            class="w-full h-32 object-cover rounded-md shadow-md"
+            class="w-full h-32 object-cover rounded-md shadow-md object-top"
           />
           <p class="text-center text-[.5rem] text-amber-200 mt-2">Young Emmanuel with his uncle.</p>
         </div>
@@ -51,9 +51,9 @@ const IntroductionSection = () => {
       <div class="mb-4 sm:mb-6">
         <div class="float-left w-[60%] sm:w-1/3 mr-3 sm:mr-4 mt-1 clear-both">
           <img 
-            src="https://picsum.photos/200/128" 
+            src="https://res.cloudinary.com/djeorsh5d/image/upload/v1751247107/DK1_zmhx8j.jpg" 
             alt="University Photography" 
-            class="w-full h-32 object-cover rounded-md shadow-md"
+            class="w-full h-32 object-cover rounded-md shadow-md object-top"
           />
           <p class="text-center text-[.5rem] text-amber-200 mt-2">Emmanuel at a university event.</p>
         </div>
@@ -76,9 +76,9 @@ const IntroductionSection = () => {
       <div class="mb-4 sm:mb-6">
         <div class="float-left w-[60%] sm:w-1/3 mr-3 sm:mr-4 mt-1 clear-both">
           <img 
-            src="https://picsum.photos/200/128" 
+            src="https://res.cloudinary.com/djeorsh5d/image/upload/v1751247108/DKCURR_szzdvo.jpg" 
             alt="First Studio" 
-            class="w-full h-32 object-cover rounded-md shadow-md"
+            class="w-full h-32 object-cover rounded-md shadow-md object-top"
           />
           <p class="text-center text-[.5rem] text-amber-200 mt-2">The first Amakom studio.</p>
         </div>
@@ -112,7 +112,7 @@ const IntroductionSection = () => {
           viewport={{ once: true }}
         >
           <img
-            src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=600&h=400&fit=crop"
+            src="https://res.cloudinary.com/djeorsh5d/image/upload/v1751247107/DK1_zmhx8j.jpg"
             alt="Mr. Adomako at Work"
             className="w-full h-full object-cover object-top"
             onError={(e) => (e.target.src = 'https://via.placeholder.com/600x400')}

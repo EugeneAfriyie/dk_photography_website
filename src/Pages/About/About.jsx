@@ -51,7 +51,7 @@ const About = () => {
         <LocationSection />
         <Ads />
 
-         <ErrorBoundary>
+                    <ErrorBoundary>
                       <Services servicesData={servicesData} />
                     </ErrorBoundary>
        
