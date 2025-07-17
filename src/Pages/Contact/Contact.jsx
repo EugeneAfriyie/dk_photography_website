@@ -920,7 +920,7 @@ const Contact = () => {
                 Contact Information
               </motion.h2>
               <motion.div
-                  className="grid grid-cols-1  sm:grid-cols-2 gap-6 text-center sm:text-lef"
+                  className="grid grid-cols-1  sm:grid-cols-2 gap-6 text-center sm:text-left"
                   initial={{ opacity: 0 }}
                   whileInView={{ opacity: 1 }}
                   transition={{ duration: 0.8, delay: 0.6 }}

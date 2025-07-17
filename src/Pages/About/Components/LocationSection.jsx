@@ -23,7 +23,7 @@ const LocationSection = () => {
             viewport={{ once: true }}
           >
             <img 
-              src="https://picsum.photos/400/300" 
+              src="https://res.cloudinary.com/djeorsh5d/image/upload/v1752788672/81bd05ea-3a40-496a-a500-2cb6fcb8c246.png" 
               alt="Studio Location" 
               className="w-full h-64 object-cover rounded-md shadow-md"
               onError={(e) => { e.target.src = 'https://via.placeholder.com/400x300'; }}

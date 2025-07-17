@@ -76,9 +76,9 @@ const IntroductionSection = () => {
       <div class="mb-4 sm:mb-6">
         <div class="float-left w-[60%] sm:w-1/3 mr-3 sm:mr-4 mt-1 clear-both">
           <img 
-            src="https://res.cloudinary.com/djeorsh5d/image/upload/v1751247108/DKCURR_szzdvo.jpg" 
+            src="https://res.cloudinary.com/djeorsh5d/image/upload/v1751247136/STUDIO_natmdp.jpg" 
             alt="First Studio" 
-            class="w-full h-32 object-cover rounded-md shadow-md object-top"
+            class="w-full h-32 object-cover rounded-md shadow-md "
           />
           <p class="text-center text-[.5rem] text-amber-200 mt-2">The first Amakom studio.</p>
         </div>

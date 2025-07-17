@@ -23,7 +23,7 @@ const MissionSection = () => {
             viewport={{ once: true }}
           >
             <img 
-              src="https://picsum.photos/400/300" 
+              src="https://res.cloudinary.com/djeorsh5d/image/upload/v1751247106/SKYLA_d81pvt.jpg" 
               alt="Mission Vision Imagery" 
               className="w-full h-64 object-cover rounded-md shadow-md"
               onError={(e) => { e.target.src = 'https://via.placeholder.com/400x300'; }}

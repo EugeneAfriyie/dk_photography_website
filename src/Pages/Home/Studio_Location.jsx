@@ -38,12 +38,17 @@ const Studio_Location = ({locations}) => {
                         <div>
                           <h3 className="font-semibold">{location.name}</h3>
                           <p>{location.description}</p>
-                          <Link
-                            to={location.bookingLink}
-                            className="text-amber-500 hover:text-amber-400"
-                          >
-                            Direction Here
-                          </Link>
+                         <a
+                              href={location.bookingLink}
+                              className="text-amber-500 hover:text-amber-400"
+                              target="_blank"
+                              rel="noopener noreferrer"
+                            >
+                              Direction Here
+                          </a>
+
+                       
+
                         </div>
                       </Popup>
                     </Marker>
@@ -61,12 +66,16 @@ const Studio_Location = ({locations}) => {
                         <h3 className="text-xl font-semibold text-amber-500 mb-2">{location.name}</h3>
                         <p className="text-gray-300 mb-4">{location.description}</p>
                       </div>
-                    <Link
-                      to={location.bookingLink}
+                    <a
+                      href={location.bookingLink}
+                      target="_blank"
+                              rel="noopener noreferrer"
                       className="inline-bloc bg-amber-500 px-4 py-2 rounded-lg text-white hover:bg-amber-600"
                     >
                       Direction Here
-                    </Link>
+                    </a>
+
+               
                     </div>
                     <section style={{ position: 'relative', paddingBottom: '56.25%', height: 0, overflow: 'hidden' }}>
                       <iframe
