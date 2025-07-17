@@ -11,10 +11,11 @@ import GallerySection from './Components/GallerySection';
 import ServicesSection from './Components/ServicesSection';
 import TestimonialSection from './Components/TestimonialSection';
 import Testmonial from '../Home/Components/Testmonial';
-import { galleryImages, servicesData, testimonials } from '../Home/data';
+import { galleryImages, locationsData, servicesData, testimonials } from '../Home/data';
 import GalleryPreview from '../Home/Components/PageGallery';
 import Services from '../Home/Components/Services';
 import ToTop from './Components/ToTop';
+import Studio_Location from '../Home/Studio_Location';
 
 
 class ErrorBoundary extends Component {
@@ -58,6 +59,11 @@ const About = () => {
            <ErrorBoundary>
           <GalleryPreview galleryImages={galleryImages}/>
          </ErrorBoundary>
+
+         <ErrorBoundary>
+          <Studio_Location locations={locationsData} />
+        </ErrorBoundary>
+
 
            <Testmonial
             items={testimonials}

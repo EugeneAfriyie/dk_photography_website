@@ -2,6 +2,11 @@ import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import Header from '../Home/Components/Header';
 import Footer from '../../Components/Footer';
+import ExclusiveOffer from '../Home/Components/ExclusiveOffer';
+import BookingPrompt from '../Home/Components/BookingPrompt';
+import { FaInstagram, FaTiktok, FaWhatsapp } from 'react-icons/fa';
+
+// import Footer from '../../Components/Footer';
 
 // Export packages (to be used elsewhere if needed)
 export const packages = [
@@ -899,7 +904,7 @@ const Contact = () => {
 
         {/* Contact Info */}
         <motion.section
-          className="bg-gray-900 p-6 sm:p-8 rounded-lg mb-12"
+          className="bg-gray-900 p-6 sm:p-8 rounded-lg mb-12 "
           initial={{ opacity: 0, y: 50, scale: 0.98 }}
           whileInView={{ opacity: 1, y: 0, scale: 1 }}
           transition={{ duration: 1, ease: "easeOut", delay: 0.2 }}
@@ -915,7 +920,7 @@ const Contact = () => {
                 Contact Information
               </motion.h2>
               <motion.div
-                  className="grid grid-cols-1 sm:grid-cols-2 gap-6 text-center sm:text-left"
+                  className="grid grid-cols-1  sm:grid-cols-2 gap-6 text-center sm:text-lef"
                   initial={{ opacity: 0 }}
                   whileInView={{ opacity: 1 }}
                   transition={{ duration: 0.8, delay: 0.6 }}
@@ -945,12 +950,16 @@ const Contact = () => {
                   viewport={{ once: true }}
                 >
                   <p className="text-gray-400 mb-2">Phone:</p>
-                  <p>+233 123 456 789</p>
+                  <a href="tel:+233551217385">+233 123 456 789</a>
                   <p className="text-gray-400 mb-2 mt-4">Email:</p>
-                  <p>info@dkshotit.com</p>
+                  <a href="mailto:info@dkshotit.com">info@dkshotit.com</a>
+
                 </motion.div>
               </motion.div>
         </motion.section>
+
+          <BookingPrompt />
+
 
 
 
@@ -971,6 +980,8 @@ const Contact = () => {
               >
                 Connect With Us
               </motion.h2>
+
+              
               <motion.div
                 className="flex justify-center gap-6"
                 initial={{ opacity: 0 }}
@@ -978,7 +989,7 @@ const Contact = () => {
                 transition={{ duration: 0.8, delay: 0.6 }}
                 viewport={{ once: true }}
               >
-                {['facebook', 'instagram', 'twitter'].map((social, index) => (
+                {/* {['twittertagram', 'twitter'].map((social, index) => (
                   <motion.a
                     key={social}
                     href={`https://${social}.com/dkshotitstudio`} // Replace with actual URLs
@@ -991,9 +1002,68 @@ const Contact = () => {
                     whileHover={{ scale: 1.2, color: '#f59e0b' }}
                     viewport={{ once: true }}
                   >
-                    {social === 'facebook' ? '🇫' : social === 'instagram' ? '📸' : '🐦'}
+                    {social === 'TikTok' : social === 'instagram' ? '📸' : '🐦'}
                 </motion.a>
-                ))}
+                ))} */}
+
+
+                 <motion.a
+                                    href="#"
+                                    aria-label="Instagram"
+                                    // initial={{ color: '#D1D5DB' }} // gray-300
+                                    // whileHover={{ color: '#E4405F' }}
+                                    // transition={{ duration: 0.3 }}
+
+                                     target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-2xl sm:text-3xl text-gray-400 hover:text-amber-300 transition duration-300"
+                    initial={{ y: 20, opacity: 0 ,color: '#D1D5DB' }}
+                    whileInView={{ y: 0, opacity: 1 }}
+                    transition={{ duration: 0.4, delay: 0.2 + 0 * 0.1 }}
+                    whileHover={{ scale: 1.2, color: '#E4405F' }}
+                    viewport={{ once: true }}
+                                  >
+                                    <FaInstagram />
+                                  </motion.a>
+              
+                                  {/* WhatsApp */}
+                                  <motion.a
+                                    href="#"
+                                    aria-label="WhatsApp"
+                                    // initial={{ color: '#D1D5DB' }}
+                                    // whileHover={{ color: '#25D366' }}
+                                    // transition={{ duration: 0.4 }}
+
+                                                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-2xl sm:text-3xl text-gray-400 hover:text-amber-300 transition duration-300"
+                    initial={{ y: 20, opacity: 0 ,color: '#D1D5DB' }}
+                    whileInView={{ y: 0, opacity: 1 }}
+                    transition={{ duration: 0.4, delay: 0.8 + 1 * 0.1 }}
+                    whileHover={{ scale: 1.2, color: '#25D366' }}
+                    viewport={{ once: true }}
+                                  >
+                                    <FaWhatsapp />
+                                  </motion.a>
+              
+                                  {/* TikTok */}
+                                  <motion.a
+                                    href="#"
+                                    aria-label="TikTok"
+                                    // initial={{ color: '#D1D5DB' }}
+                                    // whileHover={{ color: '#25F4EE' }}
+                                    // transition={{ duration: 0.4 }}
+
+                                     rel="noopener noreferrer"
+                    className="text-2xl sm:text-3xl text-gray-400 hover:text-amber-300 transition duration-300"
+                    initial={{ y: 20, opacity: 0 ,color: '#D1D5DB' }}
+                    whileInView={{ y: 0, opacity: 1 }}
+                    transition={{ duration: 0.4, delay: 0.8 + 2 * 0.1 }}
+                    whileHover={{ scale: 1.2, color: '#25F4EE' }}
+                    viewport={{ once: true }}
+                                  >
+                                    <FaTiktok />
+                                  </motion.a>
               </motion.div>
         </motion.section>
 
