@@ -904,95 +904,97 @@ const Contact = () => {
           whileInView={{ opacity: 1, y: 0, scale: 1 }}
           transition={{ duration: 1, ease: "easeOut", delay: 0.2 }}
           viewport={{ once: true }}
-        >
-          <motion.h2
-            className="text-2xl sm:text-3xl font-bold mb-6 text-center"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.4 }}
-            viewport={{ once: true }}
-          >
-            Contact Information
-          </motion.h2>
-          <motion.div
-            className="grid grid-cols-1 sm:grid-cols-2 gap-6 text-center sm:text-left"
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            transition={{ duration: 0.8, delay: 0.6 }}
-            viewport={{ once: true }}
-          >
-            <motion.div
-              initial={{ x: -20, opacity: 0 }}
-              whileInView={{ x: 0, opacity: 1 }}
-              transition={{ duration: 0.7, delay: 0.8 }}
-              viewport={{ once: true }}
-            >
-              <p className="text-gray-400 mb-2">Address:</p>
-              <p>DKSHOTIT Studio, Amakom, Kumasi, Ghana</p>
-              <a
-                href="https://maps.google.com/maps?q=Amakom,+Kumasi,+Ghana"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-amber-300 hover:underline mt-2 inline-block"
+           >
+              <motion.h2
+                className="text-2xl sm:text-3xl font-bold mb-6 text-center"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.4 }}
+                viewport={{ once: true }}
               >
-                View on Map
-              </a>
-            </motion.div>
-            <motion.div
-              initial={{ x: 20, opacity: 0 }}
-              whileInView={{ x: 0, opacity: 1 }}
-              transition={{ duration: 0.7, delay: 0.9 }}
-              viewport={{ once: true }}
-            >
-              <p className="text-gray-400 mb-2">Phone:</p>
-              <p>+233 123 456 789</p>
-              <p className="text-gray-400 mb-2 mt-4">Email:</p>
-              <p>info@dkshotit.com</p>
-            </motion.div>
-          </motion.div>
+                Contact Information
+              </motion.h2>
+              <motion.div
+                  className="grid grid-cols-1 sm:grid-cols-2 gap-6 text-center sm:text-left"
+                  initial={{ opacity: 0 }}
+                  whileInView={{ opacity: 1 }}
+                  transition={{ duration: 0.8, delay: 0.6 }}
+                  viewport={{ once: true }}
+                  >
+                    <motion.div
+                      initial={{ x: -20, opacity: 0 }}
+                      whileInView={{ x: 0, opacity: 1 }}
+                      transition={{ duration: 0.7, delay: 0.8 }}
+                      viewport={{ once: true }}
+                    >
+                      <p className="text-gray-400 mb-2">Address:</p>
+                      <p>DKSHOTIT Studio, Amakom, Kumasi, Ghana</p>
+                      <a
+                        href="https://maps.google.com/maps?q=Amakom,+Kumasi,+Ghana"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-amber-300 hover:underline mt-2 inline-block"
+                      >
+                        View on Map
+                      </a>
+                    </motion.div>
+                <motion.div
+                  initial={{ x: 20, opacity: 0 }}
+                  whileInView={{ x: 0, opacity: 1 }}
+                  transition={{ duration: 0.7, delay: 0.9 }}
+                  viewport={{ once: true }}
+                >
+                  <p className="text-gray-400 mb-2">Phone:</p>
+                  <p>+233 123 456 789</p>
+                  <p className="text-gray-400 mb-2 mt-4">Email:</p>
+                  <p>info@dkshotit.com</p>
+                </motion.div>
+              </motion.div>
         </motion.section>
+
+
 
         {/* Social Media */}
         <motion.section
-          className="bg-gray-800 p-6 sm:p-8 rounded-lg mb-12 text-center"
-          initial={{ opacity: 0, y: 50, scale: 0.98 }}
-          whileInView={{ opacity: 1, y: 0, scale: 1 }}
-          transition={{ duration: 1, ease: "easeOut", delay: 0.2 }}
-          viewport={{ once: true }}
-        >
-          <motion.h2
-            className="text-2xl sm:text-3xl font-bold mb-6"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.4 }}
-            viewport={{ once: true }}
-          >
-            Connect With Us
-          </motion.h2>
-          <motion.div
-            className="flex justify-center gap-6"
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            transition={{ duration: 0.8, delay: 0.6 }}
-            viewport={{ once: true }}
-          >
-            {['facebook', 'instagram', 'twitter'].map((social, index) => (
-              <motion.a
-                key={social}
-                href={`https://${social}.com/dkshotitstudio`} // Replace with actual URLs
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-2xl sm:text-3xl text-gray-400 hover:text-amber-300 transition duration-300"
-                initial={{ y: 20, opacity: 0 }}
-                whileInView={{ y: 0, opacity: 1 }}
-                transition={{ duration: 0.5, delay: 0.8 + index * 0.1 }}
-                whileHover={{ scale: 1.2, color: '#f59e0b' }}
+              className="bg-gray-800 p-6 sm:p-8 rounded-lg mb-12 text-center"
+              initial={{ opacity: 0, y: 50, scale: 0.98 }}
+              whileInView={{ opacity: 1, y: 0, scale: 1 }}
+              transition={{ duration: 1, ease: "easeOut", delay: 0.2 }}
+              viewport={{ once: true }}
+            >
+              <motion.h2
+                className="text-2xl sm:text-3xl font-bold mb-6"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.4 }}
                 viewport={{ once: true }}
               >
-                {social === 'facebook' ? '🇫' : social === 'instagram' ? '📸' : '🐦'}
-              </motion.a>
-            ))}
-          </motion.div>
+                Connect With Us
+              </motion.h2>
+              <motion.div
+                className="flex justify-center gap-6"
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
+                transition={{ duration: 0.8, delay: 0.6 }}
+                viewport={{ once: true }}
+              >
+                {['facebook', 'instagram', 'twitter'].map((social, index) => (
+                  <motion.a
+                    key={social}
+                    href={`https://${social}.com/dkshotitstudio`} // Replace with actual URLs
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-2xl sm:text-3xl text-gray-400 hover:text-amber-300 transition duration-300"
+                    initial={{ y: 20, opacity: 0 }}
+                    whileInView={{ y: 0, opacity: 1 }}
+                    transition={{ duration: 0.5, delay: 0.8 + index * 0.1 }}
+                    whileHover={{ scale: 1.2, color: '#f59e0b' }}
+                    viewport={{ once: true }}
+                  >
+                    {social === 'facebook' ? '🇫' : social === 'instagram' ? '📸' : '🐦'}
+                </motion.a>
+                ))}
+              </motion.div>
         </motion.section>
 
         <Footer />
