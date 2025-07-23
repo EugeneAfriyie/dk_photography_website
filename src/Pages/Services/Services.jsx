@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import Header from '../Home/Components/Header';
 import Footer from '../../Components/Footer';
 import ExclusiveOffer from '../Home/Components/ExclusiveOffer';
+import BookingPrompt from '../Home/Components/BookingPrompt';
 
 // Export packages (same as in Contact.jsx for consistency)
 export const packages = [
@@ -158,6 +159,8 @@ const Services = () => {
     <div className="min-h-screen bg-black text-white py-20 px-4 overflow-hidden">
       <Header />
 
+
+
       <div className="max-w-7xl mx-auto">
         {/* Services Banner */}
         <motion.section
@@ -213,6 +216,10 @@ const Services = () => {
             </motion.div>
           </motion.div>
         </motion.section>
+
+
+                <ExclusiveOffer />
+
 
         {/* Packages Grid */}
         <motion.section
@@ -286,9 +293,45 @@ const Services = () => {
             ))}
           </div>
         </motion.section>
+
+
+        {/* Contact CTA Component */}
+        <motion.section
+          className="bg-gray-900 p-6 sm:p-8 rounded-lg mb-12 text-center"
+          initial={{ opacity: 0, y: 50 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1, ease: "easeOut", delay: 0.2 }}
+          viewport={{ once: true }}
+        >
+          <h2 className="text-2xl sm:text-3xl font-bold mb-6">Have Questions?</h2>
+          <p className="text-gray-300 text-lg mb-6">
+            If you have any questions or need assistance, feel free to reach out to us!
+          </p>
+          <div className="flex flex-col sm:flex-row justify-center gap-4">
+            <motion.a
+              href="tel:+233123456789"
+              className="bg-amber-500 hover:bg-amber-600 text-white font-medium px-6 py-3 rounded-xl transition duration-300"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              Call Us: +233 123 456 789
+            </motion.a>
+            <motion.a
+              href="https://wa.me/233123456789"
+              className="bg-emerald-500 hover:bg-emerald-600 text-white font-medium px-6 py-3 rounded-xl transition duration-300"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              WhatsApp Us
+            </motion.a>
+          </div>
+        </motion.section>
       </div>
 
-                <ExclusiveOffer />
+
+
+                <BookingPrompt />
+                
 
       <Footer />
 
