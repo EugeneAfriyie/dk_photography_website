@@ -226,7 +226,7 @@ const Services = () => {
             {packages.map((pkg, index) => (
             <motion.div
   key={pkg.title}
-  className={`flex flex-col justify-between bg-gray-800 p-6 rounded-lg shadow-lg ${
+  className={`group flex flex-col justify-between bg-gray-800 p-6 rounded-lg shadow-lg ${
     pkg.isPopular ? 'border-2 border-amber-500' : ''
   } hover:border-2 hover:border-amber-300 transition duration-300`}
   initial={{ opacity: 0, y: 50 }}
@@ -263,7 +263,7 @@ const Services = () => {
     <div className="mt-auto">
  <motion.a
   href="/contact"
-  className="inline-block bg-amber-500 text-white font-medium px-4 py-2 rounded-xl transition duration-300"
+  className="group-hover:animate-bounce inline-block bg-amber-500 text-white font-medium px-4 py-2 rounded-xl transition duration-300"
   whileHover={{
     scale: [1, 1.1, 1],
     transition: {
