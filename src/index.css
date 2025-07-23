@@ -44,7 +44,7 @@ body{
 .scroll-track {
   display: flex;
   width: max-content;
-  animation: scroll-horizontal 40s linear infinite;
+  animation: scroll-horizontal 150s linear infinite;
 }
 
 .scroll-track:hover {
