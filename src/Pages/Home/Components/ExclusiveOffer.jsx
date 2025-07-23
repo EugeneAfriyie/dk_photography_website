@@ -107,7 +107,7 @@ const ExclusiveOffer = () => {
           viewport={{ once: true }}
         >
           <p className="text-gray-300 mb-4">Offer ends in:</p>
-          <CountdownTimer deadline="2025-07-05T17:00:00Z" />
+          <CountdownTimer deadline="2025-09-05T17:00:00Z" />
           <div className="flex flex-col sm:flex-row gap-4 mt-4 justify-center">
             <motion.a
               href="tel:+12025550123"

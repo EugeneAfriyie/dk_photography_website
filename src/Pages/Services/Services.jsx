@@ -2,6 +2,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import Header from '../Home/Components/Header';
 import Footer from '../../Components/Footer';
+import ExclusiveOffer from '../Home/Components/ExclusiveOffer';
 
 // Export packages (same as in Contact.jsx for consistency)
 export const packages = [
@@ -286,6 +287,8 @@ const Services = () => {
           </div>
         </motion.section>
       </div>
+
+                <ExclusiveOffer />
 
       <Footer />
 
