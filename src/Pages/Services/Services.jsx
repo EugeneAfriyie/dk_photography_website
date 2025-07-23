@@ -222,85 +222,50 @@ const Services = () => {
 
 
         {/* Packages Grid */}
-      {/* Packages Horizontal Scroll Section */}
-<motion.section
-  className="mb-12"
-  initial={{ opacity: 0, y: 50 }}
-  whileInView={{ opacity: 1, y: 0 }}
-  transition={{ duration: 1, ease: "easeOut", delay: 0.2 }}
-  viewport={{ once: true }}
->
+      <section className="mb-12">
   <h2 className="text-3xl sm:text-4xl font-bold text-center mb-10">Photography Packages</h2>
-  
-  <div
-    className="relative overflow-x-auto scrollbar-hide"
-    style={{ WebkitOverflowScrolling: "touch" }}
-  >
-    <div
-      className="flex space-x-6 animate-scroll px-4"
-      onMouseEnter={(e) => e.currentTarget.classList.remove('animate-scroll')}
-      onMouseLeave={(e) => e.currentTarget.classList.add('animate-scroll')}
-    >
-      {packages.map((pkg, index) => (
-        <motion.div
-          key={pkg.title}
-          className={`min-w-[300px] sm:min-w-[350px] flex-shrink-0 group flex flex-col justify-between bg-gray-800 p-6 rounded-lg shadow-lg ${
+
+  <div className="scroll-wrapper">
+    <div className="scroll-track">
+      {[...packages, ...packages].map((pkg, index) => (
+        <div
+          key={index}
+          className={`min-w-[300px] sm:min-w-[350px] flex-shrink-0 group flex flex-col justify-between bg-gray-800 p-6 rounded-lg shadow-lg mx-2 ${
             pkg.isPopular ? 'border-2 border-amber-500' : ''
-          } hover:border-2 hover:border-amber-300 transition duration-300`}
-          initial={{ opacity: 0, y: 50 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: index * 0.1 }}
-          viewport={{ once: true }}
+          }`}
         >
           {pkg.isPopular && (
             <span className="inline-block bg-amber-500 text-white text-xs font-semibold px-2 py-1 rounded-full mb-4">
               Popular
             </span>
           )}
-          <motion.img
+          <img
             src={pkg.icon}
             alt={`${pkg.title} Icon`}
             className="w-full h-48 object-cover rounded-t-lg mb-4"
-            initial={{ scale: 1.1, opacity: 0 }}
-            whileInView={{ scale: 1, opacity: 1 }}
-            transition={{ duration: 0.5 }}
-            viewport={{ once: true }}
           />
-          <div className="flex flex-col flex-grow space-y-4">
-            <h3 className="text-xl font-bold mb-2">{pkg.title}</h3>
-            <p className="text-amber-300 text-lg mb-2">{pkg.price}</p>
-            <ul className="text-gray-300 text-sm space-y-2 mb-4">
-              <li><strong>Coverage:</strong> {pkg.coverageHours}</li>
-              <li><strong>Photographers:</strong> {pkg.photographers}</li>
-              <li><strong>Edited Photos:</strong> {pkg.editedPhotos}</li>
-              <li><strong>Delivery:</strong> {pkg.deliveryTime}</li>
-              <li><strong>Extras:</strong> {pkg.extras}</li>
-              <li><strong>Location:</strong> {pkg.sessionLocation}</li>
-            </ul>
-            <p className="text-gray-400 text-sm mb-4">{pkg.description}</p>
-            <div className="mt-auto">
-              <motion.a
-                href="/contact"
-                className="group-hover:animate-bounce inline-block bg-amber-500 text-white font-medium px-4 py-2 rounded-xl transition duration-300"
-                whileHover={{
-                  scale: [1, 1.1, 1],
-                  transition: {
-                    duration: 0.4,
-                    repeat: Infinity,
-                    repeatType: "loop",
-                    ease: "easeInOut"
-                  }
-                }}
-              >
-                Book Now
-              </motion.a>
-            </div>
-          </div>
-        </motion.div>
+          <h3 className="text-xl font-bold mb-2">{pkg.title}</h3>
+          <p className="text-amber-300 text-lg mb-2">{pkg.price}</p>
+          <ul className="text-gray-300 text-sm space-y-2 mb-4">
+            <li><strong>Coverage:</strong> {pkg.coverageHours}</li>
+            <li><strong>Photographers:</strong> {pkg.photographers}</li>
+            <li><strong>Edited Photos:</strong> {pkg.editedPhotos}</li>
+            <li><strong>Delivery:</strong> {pkg.deliveryTime}</li>
+            <li><strong>Extras:</strong> {pkg.extras}</li>
+            <li><strong>Location:</strong> {pkg.sessionLocation}</li>
+          </ul>
+          <p className="text-gray-400 text-sm mb-4">{pkg.description}</p>
+          <a
+            href="/contact"
+            className="bg-amber-500 text-white font-medium px-4 py-2 rounded-xl mt-auto text-center"
+          >
+            Book Now
+          </a>
+        </div>
       ))}
     </div>
   </div>
-</motion.section>
+</section>
 
 
 

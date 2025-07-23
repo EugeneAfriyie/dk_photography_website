@@ -26,3 +26,27 @@ body{
     right: 1rem;
   }
 }
+
+@keyframes scroll-horizontal {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.scroll-wrapper {
+  overflow: hidden;
+  position: relative;
+}
+
+.scroll-track {
+  display: flex;
+  width: max-content;
+  animation: scroll-horizontal 40s linear infinite;
+}
+
+.scroll-track:hover {
+  animation-play-state: paused;
+}
