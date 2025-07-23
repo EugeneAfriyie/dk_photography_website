@@ -224,48 +224,64 @@ const Services = () => {
           <h2 className="text-3xl sm:text-4xl font-bold text-center mb-10">Photography Packages</h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {packages.map((pkg, index) => (
-              <motion.div
-                key={pkg.title}
-                className={`bg-gray-800 p-6 rounded-lg shadow-lg ${pkg.isPopular ? 'border-2 border-amber-500' : ''}`}
-                initial={{ opacity: 0, y: 50 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
-                viewport={{ once: true }}
-              >
-                {pkg.isPopular && (
-                  <span className="inline-block bg-amber-500 text-white text-xs font-semibold px-2 py-1 rounded-full mb-4">
-                    Popular
-                  </span>
-                )}
-                <motion.img
-                  src={pkg.icon}
-                  alt={`${pkg.title} Icon`}
-                  className="w-full h-48 object-cover rounded-t-lg mb-4"
-                  initial={{ scale: 1.1, opacity: 0 }}
-                  whileInView={{ scale: 1, opacity: 1 }}
-                  transition={{ duration: 0.5 }}
-                  viewport={{ once: true }}
-                />
-                <h3 className="text-xl font-bold mb-2">{pkg.title}</h3>
-                <p className="text-amber-300 text-lg mb-4">{pkg.price}</p>
-                <ul className="text-gray-300 text-sm space-y-2 mb-4">
-                  <li><strong>Coverage:</strong> {pkg.coverageHours}</li>
-                  <li><strong>Photographers:</strong> {pkg.photographers}</li>
-                  <li><strong>Edited Photos:</strong> {pkg.editedPhotos}</li>
-                  <li><strong>Delivery:</strong> {pkg.deliveryTime}</li>
-                  <li><strong>Extras:</strong> {pkg.extras}</li>
-                  <li><strong>Location:</strong> {pkg.sessionLocation}</li>
-                </ul>
-                <p className="text-gray-400 text-sm mb-4">{pkg.description}</p>
-                <motion.a
-                  href="/contact"
-                  className="inline-block bg-amber-500 hover:bg-amber-600 text-white font-medium px-4 py-2 rounded-xl transition duration-300"
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                >
-                  Book Now
-                </motion.a>
-              </motion.div>
+            <motion.div
+  key={pkg.title}
+  className={`flex flex-col justify-between bg-gray-800 p-6 rounded-lg shadow-lg ${
+    pkg.isPopular ? 'border-2 border-amber-500' : ''
+  } hover:border-2 hover:border-amber-300 transition duration-300`}
+  initial={{ opacity: 0, y: 50 }}
+  whileInView={{ opacity: 1, y: 0 }}
+  transition={{ duration: 0.6, delay: index * 0.1 }}
+  viewport={{ once: true }}
+>
+  {pkg.isPopular && (
+    <span className="inline-block bg-amber-500 text-white text-xs font-semibold px-2 py-1 rounded-full mb-4">
+      Popular
+    </span>
+  )}
+  <motion.img
+    src={pkg.icon}
+    alt={`${pkg.title} Icon`}
+    className="w-full h-48 object-cover rounded-t-lg mb-4"
+    initial={{ scale: 1.1, opacity: 0 }}
+    whileInView={{ scale: 1, opacity: 1 }}
+    transition={{ duration: 0.5 }}
+    viewport={{ once: true }}
+  />
+  <div className="flex flex-col flex-grow space-y-4">
+    <h3 className="text-xl font-bold mb-2">{pkg.title}</h3>
+    <p className="text-amber-300 text-lg mb-2">{pkg.price}</p>
+    <ul className="text-gray-300 text-sm space-y-2 mb-4">
+      <li><strong>Coverage:</strong> {pkg.coverageHours}</li>
+      <li><strong>Photographers:</strong> {pkg.photographers}</li>
+      <li><strong>Edited Photos:</strong> {pkg.editedPhotos}</li>
+      <li><strong>Delivery:</strong> {pkg.deliveryTime}</li>
+      <li><strong>Extras:</strong> {pkg.extras}</li>
+      <li><strong>Location:</strong> {pkg.sessionLocation}</li>
+    </ul>
+    <p className="text-gray-400 text-sm mb-4">{pkg.description}</p>
+    <div className="mt-auto">
+ <motion.a
+  href="/contact"
+  className="inline-block bg-amber-500 text-white font-medium px-4 py-2 rounded-xl transition duration-300"
+  whileHover={{
+    scale: [1, 1.1, 1],
+    transition: {
+      duration: 0.4,
+      repeat: Infinity,
+      repeatType: "loop",
+      ease: "easeInOut"
+    }
+  }}
+>
+  Book Now
+</motion.a>
+
+
+    </div>
+  </div>
+</motion.div>
+
             ))}
           </div>
         </motion.section>
