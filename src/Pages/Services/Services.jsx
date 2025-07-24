@@ -137,6 +137,10 @@ export const packages = [
 
 const Services = () => {
   const [isVisible, setIsVisible] = React.useState(false);
+  const scrollTrackRef = React.useRef(null);
+  const [isDragging, setIsDragging] = React.useState(false);
+  const [startX, setStartX] = React.useState(0);
+  const [scrollLeft, setScrollLeft] = React.useState(0);
 
   React.useEffect(() => {
     const handleScroll = () => {
@@ -153,6 +157,26 @@ const Services = () => {
 
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  const handleMouseDown = (e) => {
+    if (scrollTrackRef.current) {
+      setIsDragging(true);
+      setStartX(e.pageX - scrollTrackRef.current.offsetLeft);
+      setScrollLeft(scrollTrackRef.current.scrollLeft);
+    }
+  };
+
+  const handleMouseMove = (e) => {
+    if (!isDragging || !scrollTrackRef.current) return;
+    e.preventDefault();
+    const x = e.pageX - scrollTrackRef.current.offsetLeft;
+    const walk = (x - startX) * 2; // Adjust scroll speed with multiplier
+    scrollTrackRef.current.scrollLeft = scrollLeft - walk;
+  };
+
+  const handleMouseUp = () => {
+    setIsDragging(false);
   };
 
   return (
@@ -240,11 +264,18 @@ const Services = () => {
                 }
               `}
             </style>
-            <div className="scroll-track">
+            <div
+              className="scroll-track"
+              ref={scrollTrackRef}
+              onMouseDown={handleMouseDown}
+              onMouseMove={handleMouseMove}
+              onMouseUp={handleMouseUp}
+              onMouseLeave={handleMouseUp}
+            >
               {[...packages, ...packages].map((pkg, index) => (
                 <div
                   key={`${pkg.title}-${index}`}
-                  className={`min-w-[300px] sm:w-[350px] flex-shrink-0 group flex flex-col justify-between bg-gray-800 p-6 rounded-lg shadow-lg mx-4 ${
+                  className={`w-[300px] sm:w-[350px] flex-shrink-0 group flex flex-col justify-between bg-gray-800 p-6 rounded-lg shadow-lg mx-4 ${
                     pkg.isPopular ? 'border-2 border-amber-500' : ''
                   } hover:border-amber-300 transition duration-300`}
                 >
