@@ -137,7 +137,6 @@ export const packages = [
 
 const Services = () => {
   const [isVisible, setIsVisible] = React.useState(false);
-  const [isScrollingPaused, setIsScrollingPaused] = React.useState(false);
 
   React.useEffect(() => {
     const handleScroll = () => {
@@ -224,11 +223,23 @@ const Services = () => {
             Photography Packages
           </h2>
 
-          <div
-            className="scroll-wrapper overflow-hidden"
-            onMouseEnter={() => setIsScrollingPaused(true)}
-            onMouseLeave={() => setIsScrollingPaused(false)}
-          >
+          <div className="scroll-wrapper overflow-hidden">
+            <style>
+              {`
+                @keyframes scroll-horizontal {
+                  0% { transform: translateX(0%); }
+                  100% { transform: translateX(-50%); }
+                }
+                .scroll-track {
+                  display: flex;
+                  width: max-content;
+                  animation: scroll-horizontal 300s linear infinite;
+                }
+                .scroll-wrapper:hover .scroll-track {
+                  animation-play-state: paused;
+                }
+              `}
+            </style>
             <div className="scroll-track">
               {[...packages, ...packages].map((pkg, index) => (
                 <div
@@ -261,6 +272,7 @@ const Services = () => {
                   <a
                     href="/contact"
                     className="bg-amber-500 text-white font-medium px-4 py-2 rounded-xl mt-auto text-center"
+                    onMouseEnter={scrollToTop}
                   >
                     Book Now
                   </a>

@@ -26,22 +26,4 @@ body{
     right: 1rem;
   }
 }
-@keyframes scroll-horizontal {
-  0% {
-    transform: translateX(0%);
-  }
-  100% {
-    transform: translateX(-50%);
-  }
-}
-
-.scroll-track {
-  display: flex;
-  width: max-content;
-  animation: scroll-horizontal 300s linear infinite;
-}
-
-.scroll-wrapper:hover .scroll-track {
-  animation-play-state: paused;
-}
 
