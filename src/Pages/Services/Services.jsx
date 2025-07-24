@@ -275,7 +275,7 @@ const Services = () => {
               {[...packages, ...packages].map((pkg, index) => (
                 <div
                   key={`${pkg.title}-${index}`}
-                  className={`w-[300px] sm:w-[350px] flex-shrink-0 group flex flex-col justify-between bg-gray-800 p-6 rounded-lg shadow-lg mx-4 ${
+                  className={`w-[200px] sm:w-[350px] flex-shrink-0 group flex flex-col justify-between bg-gray-800 p-6 rounded-lg shadow-lg mx-4 ${
                     pkg.isPopular ? 'border-2 border-amber-500' : ''
                   } hover:border-amber-300 transition duration-300`}
                 >
