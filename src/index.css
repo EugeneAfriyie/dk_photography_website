@@ -26,7 +26,6 @@ body{
     right: 1rem;
   }
 }
-
 @keyframes scroll-horizontal {
   0% {
     transform: translateX(0%);
@@ -36,17 +35,13 @@ body{
   }
 }
 
-.scroll-wrapper {
-  overflow: hidden;
-  position: relative;
-}
-
 .scroll-track {
   display: flex;
   width: max-content;
-  animation: scroll-horizontal 150s linear infinite;
+  animation: scroll-horizontal 300s linear infinite;
 }
 
-.scroll-track:hover {
+.scroll-wrapper:hover .scroll-track {
   animation-play-state: paused;
 }
+
