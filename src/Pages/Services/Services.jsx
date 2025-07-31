@@ -179,6 +179,18 @@ const Services = () => {
     setIsDragging(false);
   };
 
+  const scrollLeftClick = () => {
+    if (scrollTrackRef.current) {
+      scrollTrackRef.current.scrollBy({ left: -300, behavior: 'smooth' }); // Smooth scroll left by 300px
+    }
+  };
+
+  const scrollRightClick = () => {
+    if (scrollTrackRef.current) {
+      scrollTrackRef.current.scrollBy({ left: 300, behavior: 'smooth' }); // Smooth scroll right by 300px
+    }
+  };
+
   return (
     <div className="min-h-screen bg-black text-white py-20 px-4 overflow-hidden">
       <Header />
@@ -247,7 +259,7 @@ const Services = () => {
             Photography Packages
           </h2>
 
-          <div className="scroll-wrapper overflow-hidden">
+          <div className="scroll-wrapper overflow-hidden relative">
             <style>
               {`
                 @keyframes scroll-horizontal {
@@ -262,8 +274,32 @@ const Services = () => {
                 .scroll-wrapper:hover .scroll-track {
                   animation-play-state: paused;
                 }
+                .scroll-button {
+                  position: absolute;
+                  top: 50%;
+                  transform: translateY(-50%);
+                  background-color: rgba(0, 0, 0, 0.5);
+                  color: white;
+                  border: none;
+                  padding: 10px;
+                  cursor: pointer;
+                  font-size: 18px;
+                  z-index: 10;
+                }
+                .scroll-button:hover {
+                  background-color: rgba(0, 0, 0, 0.7);
+                }
+                .scroll-left {
+                  left: 0;
+                }
+                .scroll-right {
+                  right: 0;
+                }
               `}
             </style>
+            <button className="scroll-button scroll-left" onClick={scrollLeftClick}>
+              &lt;
+            </button>
             <div
               className="scroll-track"
               ref={scrollTrackRef}
@@ -275,7 +311,7 @@ const Services = () => {
               {[...packages, ...packages].map((pkg, index) => (
                 <div
                   key={`${pkg.title}-${index}`}
-                  className={`w-[250px] sm:w-[350px] flex-shrink-0 group flex flex-col justify-between bg-gray-800  p-6 px-3 sm:p-6 rounded-lg shadow-lg mx-4 ${
+                  className={`w-[250px] sm:w-[350px] flex-shrink-0 group flex flex-col justify-between bg-gray-800 p-6 px-3 sm:p-6 rounded-lg shadow-lg mx-4 ${
                     pkg.isPopular ? 'border-2 border-amber-500' : ''
                   } hover:border-amber-300 transition duration-300`}
                 >
@@ -291,7 +327,7 @@ const Services = () => {
                   />
                   <h3 className="text-xl font-bold mb-1">{pkg.title}</h3>
                   <p className="text-amber-300 text-lg mb-1">{pkg.price}</p>
-                  <ul className="text-gray-300 text-[.76rem] space-y- mb-1">
+                  <ul className="text-gray-300 text-[.76rem] space-y-1 mb-1">
                     <li><strong>Coverage:</strong> {pkg.coverageHours}</li>
                     <li><strong>Photographers:</strong> {pkg.photographers}</li>
                     <li><strong>Edited Photos:</strong> {pkg.editedPhotos}</li>
@@ -303,12 +339,16 @@ const Services = () => {
                   <a
                     href="/contact"
                     className="bg-amber-500 text-white font-medium px-4 py-2 rounded-xl mt-auto text-center"
+                    onMouseEnter={scrollToTop}
                   >
                     Book Now
                   </a>
                 </div>
               ))}
             </div>
+            <button className="scroll-button scroll-right" onClick={scrollRightClick}>
+              &gt;
+            </button>
           </div>
         </section>
 
