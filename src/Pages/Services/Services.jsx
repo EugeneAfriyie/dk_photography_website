@@ -257,7 +257,7 @@ const Services = () => {
                 .scroll-track {
                   display: flex;
                   width: max-content;
-                  animation: scroll-horizontal 300s linear infinite;
+                  animation: scroll-horizontal 200s linear infinite;
                 }
                 .scroll-wrapper:hover .scroll-track {
                   animation-play-state: paused;
@@ -275,7 +275,7 @@ const Services = () => {
               {[...packages, ...packages].map((pkg, index) => (
                 <div
                   key={`${pkg.title}-${index}`}
-                  className={`w-[250px] sm:w-[350px] flex-shrink-0 group flex flex-col justify-between bg-gray-800  p-6 px-2 sm:p-6 rounded-lg shadow-lg mx-4 ${
+                  className={`w-[250px] sm:w-[350px] flex-shrink-0 group flex flex-col justify-between bg-gray-800  p-6 px-3 sm:p-6 rounded-lg shadow-lg mx-4 ${
                     pkg.isPopular ? 'border-2 border-amber-500' : ''
                   } hover:border-amber-300 transition duration-300`}
                 >
@@ -287,11 +287,11 @@ const Services = () => {
                   <img
                     src={pkg.icon}
                     alt={`${pkg.title} Icon`}
-                    className="w-full h-48 object-cover rounded-t-lg mb-4"
+                    className="w-full sm:h-48 h-36 object-cover rounded-t-lg mb-2 object-top"
                   />
-                  <h3 className="text-xl font-bold mb-2">{pkg.title}</h3>
-                  <p className="text-amber-300 text-lg mb-2">{pkg.price}</p>
-                  <ul className="text-gray-300 text-sm space-y-2 mb-4">
+                  <h3 className="text-xl font-bold mb-1">{pkg.title}</h3>
+                  <p className="text-amber-300 text-lg mb-1">{pkg.price}</p>
+                  <ul className="text-gray-300 text-[.76rem] space-y- mb-1">
                     <li><strong>Coverage:</strong> {pkg.coverageHours}</li>
                     <li><strong>Photographers:</strong> {pkg.photographers}</li>
                     <li><strong>Edited Photos:</strong> {pkg.editedPhotos}</li>
@@ -299,11 +299,10 @@ const Services = () => {
                     <li><strong>Extras:</strong> {pkg.extras}</li>
                     <li><strong>Location:</strong> {pkg.sessionLocation}</li>
                   </ul>
-                  <p className="text-gray-400 text-sm mb-4">{pkg.description}</p>
+                  <p className="text-gray-400 text-[.8rem] mb-4">{pkg.description}</p>
                   <a
                     href="/contact"
                     className="bg-amber-500 text-white font-medium px-4 py-2 rounded-xl mt-auto text-center"
-                    onMouseEnter={scrollToTop}
                   >
                     Book Now
                   </a>
