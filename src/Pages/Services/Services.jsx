@@ -10,6 +10,7 @@ import { packages } from '../Home/data';
 const Services = () => {
   const [isVisible, setIsVisible] = React.useState(false);
   const [isPaused, setIsPaused] = React.useState(false);
+  const [selectedPackage, setSelectedPackage] = React.useState(null);
   const scrollContainerRef = React.useRef(null);
 
   // Throttled scroll handler for scroll-to-top button
@@ -24,7 +25,7 @@ const Services = () => {
 
   // Smooth auto-scroll effect (pixel-by-pixel)
   React.useEffect(() => {
-    if (isPaused) return;
+    if (isPaused || selectedPackage) return;
 
     let animationFrame;
     const scrollSpeed = 2; // Pixels per frame (adjust for speed)
@@ -37,9 +38,8 @@ const Services = () => {
       container.scrollLeft += scrollSpeed;
       const maxScrollLeft = container.scrollWidth - container.clientWidth;
 
-      // Smoothly reset to start when reaching the end
       if (container.scrollLeft >= maxScrollLeft - 1) {
-        container.scrollTo({ left: 0, behavior: 'auto' }); // Instant reset to avoid visible jump
+        container.scrollTo({ left: 0, behavior: 'auto' });
       }
 
       animationFrame = requestAnimationFrame(autoScroll);
@@ -47,32 +47,43 @@ const Services = () => {
 
     animationFrame = requestAnimationFrame(autoScroll);
     return () => cancelAnimationFrame(animationFrame);
-  }, [isPaused]);
+  }, [isPaused, selectedPackage]);
 
-  // Handle manual scrolling (card-by-card) with smooth transitions
+  // Handle manual scrolling (card-by-card)
   const scrollByCard = (direction) => {
     const container = scrollContainerRef.current;
     if (!container || !container.querySelector('div')) return;
 
-    const cardWidth = container.querySelector('div').offsetWidth + 24; // Include gap-6 (6px * 4)
+    const cardWidth = container.querySelector('div').offsetWidth + 24;
     const scrollAmount = direction * cardWidth;
     container.scrollBy({ left: scrollAmount, behavior: 'smooth' });
 
-    // Check scroll position after smooth scroll completes
     setTimeout(() => {
       const maxScrollLeft = container.scrollWidth - container.clientWidth;
       if (container.scrollLeft >= maxScrollLeft - 1) {
-        container.scrollTo({ left: 0, behavior: 'auto' }); // Instant reset for seamless loop
+        container.scrollTo({ left: 0, behavior: 'auto' });
       } else if (container.scrollLeft <= 1 && direction < 0) {
-        container.scrollTo({ left: maxScrollLeft, behavior: 'auto' }); // Instant reset
+        container.scrollTo({ left: maxScrollLeft, behavior: 'auto' });
       }
-    }, 400); // Match smooth scroll duration
+    }, 400);
   };
 
   // Pause auto-scroll during manual interaction
   const handleManualScroll = () => {
     setIsPaused(true);
-    setTimeout(() => setIsPaused(false), 5000); // Resume after 5 seconds
+    setTimeout(() => setIsPaused(false), 5000);
+  };
+
+  // Handle Info icon click to show modal
+  const handleInfoClick = (pkg) => {
+    setSelectedPackage(pkg);
+    setIsPaused(true); // Pause auto-scroll when modal is open
+  };
+
+  // Close modal
+  const closeModal = () => {
+    setSelectedPackage(null);
+    setIsPaused(false); // Resume auto-scroll
   };
 
   const scrollToTop = () => {
@@ -196,7 +207,7 @@ const Services = () => {
 
             {/* Scrollable Container */}
             <div
-              className="scroll-container overflow-x-auto whitespae-nowrap flex hide-scrollbar scroll-smooth"
+              className="scroll-container overflow-x-auto whitespace-nowrap flex hide-scrollbar scroll-smooth"
               ref={scrollContainerRef}
               role="region"
               aria-label="Photography packages carousel"
@@ -234,19 +245,73 @@ const Services = () => {
                       <li><strong>Extras:</strong> {pkg.extras}</li>
                       <li><strong>Location:</strong> {pkg.sessionLocation}</li>
                     </ul>
-                    <p className="text-gray-400 text-sm mb-4">{pkg.description}</p>
-                    <a
-                      href="/contact"
-                      className="bg-amber-500 text-white font-medium px-4 py-2 rounded-xl mt-auto text-center"
-                    >
-                      Book Now
-                    </a>
+                    <div className="flex gap-2 mt-auto">
+                      <button
+                        className="bg-gray-600 hover:bg-gray-500 text-white p-2 rounded-xl flex items-center justify-center"
+                        onClick={() => handleInfoClick(pkg)}
+                        aria-label={`View details for ${pkg.title}`}
+                      >
+                        <svg
+                          className="w-5 h-5"
+                          fill="none"
+                          stroke="currentColor"
+                          viewBox="0 0 24 24"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth="2"
+                            d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                          />
+                        </svg>
+                      </button>
+                      <a
+                        href="/contact"
+                        className="bg-amber-500 hover:bg-amber-600 text-white font-medium px-4 py-2 rounded-xl flex-1 text-center"
+                      >
+                        Book Now
+                      </a>
+                    </div>
                   </div>
                 ))}
               </div>
             </div>
           </div>
         </section>
+
+        {/* Modal for Package Description */}
+        {selectedPackage && (
+          <motion.div
+            className="fixed inset-0 bg-black/70 flex items-center justify-center z-50 p-4"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            onClick={closeModal}
+            role="dialog"
+            aria-modal="true"
+            aria-label="Package details modal"
+          >
+            <motion.div
+              className="bg-gray-800 p-6 rounded-lg max-w-md w-full modal-content"
+              initial={{ scale: 0.8, y: 50 }}
+              animate={{ scale: 1, y: 0 }}
+              exit={{ scale: 0.8, y: 50 }}
+              transition={{ duration: 0.3 }}
+              onClick={(e) => e.stopPropagation()}
+            >
+              <h3 className="text-xl font-bold mb-4">{selectedPackage.title}</h3>
+              <p className="text-gray-300 text-sm mb-6">{selectedPackage.description}</p>
+              <button
+                className="bg-amber-500 hover:bg-amber-600 text-white font-medium px-4 py-2 rounded-xl w-full"
+                onClick={closeModal}
+                aria-label="Close package details"
+              >
+                Close
+              </button>
+            </motion.div>
+          </motion.div>
+        )}
 
         {/* Contact CTA */}
         <motion.section
