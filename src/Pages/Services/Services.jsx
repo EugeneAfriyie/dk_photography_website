@@ -219,7 +219,7 @@ const Services = () => {
                 {packages.map((pkg, index) => (
                   <div
                     key={`${pkg.title}-${index}`}
-                    className={`relative min-w-[250px] sm:min-w-[300px] md:w-[350px] flex-shrink-0 group flex flex-col justify-between bg-gray-800 p-4 sm:p-6 rounded-lg shadow-lg ${
+                    className={`relative w-[200px] sm:min-w-[300px] md:w-[350px] flex-shrink-0 group flex flex-col justify-between bg-gray-800 p-4 sm:p-6 rounded-lg shadow-lg ${
                       pkg.isPopular ? 'border-2 border-amber-500' : ''
                     } hover:border-amber-300 transition duration-300`}
                     tabIndex={0}
@@ -258,7 +258,7 @@ const Services = () => {
                       </a>
                      
                     </div>
-                    <div className="">
+                    <div className="mt-2 sm:mt-3">
                         <button
                         className="absolute bottom-0 right-0 text-gray-400 cursor-pointer hover:text-amber-400 transition-colors duration-300 opacity-100 p-2 rounded-full info-icon"
                         onClick={() => handleInfoClick(pkg)}
