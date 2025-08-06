@@ -231,7 +231,7 @@ const Services = () => {
           100% { transform: translateX(-50%); }
         }
         .auto-scroll {
-          animation: scroll-horizontal 300s linear infinite;
+          animation: scroll-horizontal 10s linear infinite;
         }
         .scroll-container:hover .auto-scroll {
           animation-play-state: paused;
@@ -261,12 +261,12 @@ const Services = () => {
     </button>
 
     {/* Scrollable Container */}
-    <div className="scroll-container overflow-x-auto whitespace-nowrap flex hide-scrollbar scroll-smooth">
+    <div className="scroll-container overflow-x-auto whitespace-nowrp flex hide-scrollbar scroll-smooth">
       <div className="auto-scroll flex gap-6 px-4">
         {[...packages, ...packages].map((pkg, index) => (
           <div
             key={`${pkg.title}-${index}`}
-            className={`min-w-[300px] sm:w-[350px] flex-shrink-0 group flex flex-col justify-between bg-gray-800 p-6 rounded-lg shadow-lg ${
+            className={`min-w-[300px] sm:w-[350px] flex-shrink-0 group flex flex-col justify-between  bg-gray-800 p-6 rounded-lg shadow-lg ${
               pkg.isPopular ? 'border-2 border-amber-500' : ''
             } hover:border-amber-300 transition duration-300`}
           >
