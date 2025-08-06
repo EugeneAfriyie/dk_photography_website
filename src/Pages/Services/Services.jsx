@@ -196,7 +196,7 @@ const Services = () => {
 
             {/* Scrollable Container */}
             <div
-              className="scroll-container overflow-x-auto whitespace-nowrap flex hide-scrollbar scroll-smooth"
+              className="scroll-container overflow-x-auto whitespae-nowrap flex hide-scrollbar scroll-smooth"
               ref={scrollContainerRef}
               role="region"
               aria-label="Photography packages carousel"
