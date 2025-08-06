@@ -101,7 +101,7 @@ const Services = () => {
   };
 
   return (
-    <div className="min-h-screen bg-black text-white py-10 sm:py-20 px-4 overflow-hidden">
+    <div className="min-h-screen bg-black text-white pt-10 sm:pt-20 pb-0 sm:px-4 overflow-hidden">
       <Header />
       <div className="max-w-7xl mx-auto">
         {/* Services Banner */}
@@ -171,7 +171,7 @@ const Services = () => {
 
           <div className="relative group">
             {/* Pause/Play Button */}
-         \
+         
             {/* Scroll Buttons */}
             <button
               className="absolute left-0 top-1/2 -translate-y-1/2 bg-black/60 text-white px-2 sm:px-3 py-1 sm:py-2 rounded-r z-10 sm:hidden group-hover:block"
