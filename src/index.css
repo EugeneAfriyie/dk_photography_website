@@ -26,17 +26,9 @@ body{
     right: 1rem;
   }
 }
-/* 
-@keyframes scroll-horizontal {
-  0% { transform: translateX(0%); }
-  100% { transform: translateX(-50%); }
-}
-.auto-scroll {
-  animation: scroll-horizontal 10s linear infinite;
-}
-.scroll-container:hover .auto-scroll {
-  animation-play-state: paused;
-}
 .hide-scrollbar::-webkit-scrollbar {
   display: none;
-} */
+}
+.scroll-container {
+  scroll-behavior: smooth;
+}
