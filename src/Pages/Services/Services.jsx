@@ -68,7 +68,7 @@ const Services = () => {
     }, 400);
   };
 
-  // Pause auto-scroll during touch/swipe interactions (not button clicks)
+  // Pause auto-scroll during touch/swipe interactions
   const handleManualScroll = () => {
     setIsPaused(true);
     setTimeout(() => setIsPaused(false), 5000);
@@ -101,17 +101,17 @@ const Services = () => {
   };
 
   return (
-    <div className="min-h-screen bg-black text-white py-20 px-4 overflow-hidden">
+    <div className="min-h-screen bg-black text-white py-10 sm:py-20 px-4 overflow-hidden">
       <Header />
       <div className="max-w-7xl mx-auto">
         {/* Services Banner */}
         <motion.section
-          className="relative rounded-lg mb-12 overflow-hidden"
+          className="relative rounded-lg mb-8 sm:mb-12 overflow-hidden"
           initial={{ opacity: 0, y: 50, scale: 0.95 }}
           whileInView={{ opacity: 1, y: 0, scale: 1 }}
           transition={{ duration: 1.2, ease: 'easeOut', delay: 0.2 }}
           viewport={{ once: true }}
-          style={{ height: '400px', minHeight: '250px', position: 'relative' }}
+          style={{ height: '250px sm:400px', minHeight: '200px', position: 'relative' }}
         >
           <motion.img
             src="https://picsum.photos/800/400"
@@ -126,7 +126,7 @@ const Services = () => {
           />
           <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/50 to-transparent"></div>
           <motion.div
-            className="relative z-10 h-full flex items-center justify-center text-center px-4 py-8"
+            className="relative z-10 h-full flex items-center justify-center text-center px-4 py-6 sm:py-8"
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, ease: 'easeOut', delay: 0.4 }}
@@ -140,7 +140,7 @@ const Services = () => {
               viewport={{ once: true }}
             >
               <motion.h1
-                className="text-4xl sm:text-5xl md:text-6xl font-bold mb-4 text-white drop-shadow-lg"
+                className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 text-white drop-shadow-lg"
                 initial={{ y: 20, opacity: 0 }}
                 whileInView={{ y: 0, opacity: 1 }}
                 transition={{ duration: 0.6, delay: 0.8 }}
@@ -149,7 +149,7 @@ const Services = () => {
                 Our Services
               </motion.h1>
               <motion.p
-                className="text-gray-200 text-lg sm:text-xl md:text-2xl drop-shadow-md"
+                className="text-gray-200 text-base sm:text-lg md:text-xl drop-shadow-md"
                 initial={{ y: 30, opacity: 0 }}
                 whileInView={{ y: 0, opacity: 1 }}
                 transition={{ duration: 0.6, delay: 1 }}
@@ -164,15 +164,15 @@ const Services = () => {
         <ExclusiveOffer />
 
         {/* Packages Grid */}
-        <section className="mb-12">
-          <h2 className="text-3xl sm:text-4xl font-bold text-center mb-10">
+        <section className="mb-8 sm:mb-12">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-center mb-6 sm:mb-10">
             Photography Packages
           </h2>
 
           <div className="relative group">
             {/* Pause/Play Button */}
             <button
-              className="absolute top-0 right-0 bg-black/60 text-white px-3 py-2 rounded-b z-10"
+              className="absolute top-0 right-0 bg-black/60 text-white px-2 sm:px-3 py-1 sm:py-2 rounded-b z-10"
               onClick={() => setIsPaused(!isPaused)}
               aria-label={isPaused ? 'Resume auto-scroll' : 'Pause auto-scroll'}
             >
@@ -181,9 +181,9 @@ const Services = () => {
 
             {/* Scroll Buttons */}
             <button
-              className="absolute left-0 top-1/2 -translate-y-1/2 bg-black/60 text-white px-3 py-2 rounded-r z-10 sm:hidden group-hover:block"
+              className="absolute left-0 top-1/2 -translate-y-1/2 bg-black/60 text-white px-2 sm:px-3 py-1 sm:py-2 rounded-r z-10 sm:hidden group-hover:block"
               tabIndex={0}
-              onClick={() => scrollByCard(-1)} // No pause on button click
+              onClick={() => scrollByCard(-1)}
               onKeyDown={(e) => {
                 if (e.key === 'Enter') {
                   scrollByCard(-1);
@@ -194,9 +194,9 @@ const Services = () => {
               ←
             </button>
             <button
-              className="absolute right-0 top-1/2 -translate-y-1/2 bg-black/60 text-white px-3 py-2 rounded-l z-10 sm:hidden group-hover:block"
+              className="absolute right-0 top-1/2 -translate-y-1/2 bg-black/60 text-white px-2 sm:px-3 py-1 sm:py-2 rounded-l z-10 sm:hidden group-hover:block"
               tabIndex={0}
-              onClick={() => scrollByCard(1)} // No pause on button click
+              onClick={() => scrollByCard(1)}
               onKeyDown={(e) => {
                 if (e.key === 'Enter') {
                   scrollByCard(1);
@@ -209,17 +209,17 @@ const Services = () => {
 
             {/* Scrollable Container */}
             <div
-              className="scroll-container overflow-x-auto whitepace-nowrap flex hide-scrollbar scroll-smooth"
+              className="scroll-container overflow-x-auto whitespace-nowap flex hide-scrollbar scroll-smooth"
               ref={scrollContainerRef}
               role="region"
               aria-label="Photography packages carousel"
               onTouchStart={handleManualScroll}
             >
-              <div className="flex gap-6 px-4">
+              <div className="flex gap-4 sm:gap-6 px-2 sm:px-4">
                 {packages.map((pkg, index) => (
                   <div
                     key={`${pkg.title}-${index}`}
-                    className={`relative min-w-[min(300px, 100%)] sm:w-[350px] flex-shrink-0 group flex flex-col justify-between bg-gray-800 p-6 rounded-lg shadow-lg ${
+                    className={`relative min-w-[250px] sm:min-w-[300px] md:w-[350px] flex-shrink-0 group flex flex-col justify-between bg-gray-800 p-4 sm:p-6 rounded-lg shadow-lg ${
                       pkg.isPopular ? 'border-2 border-amber-500' : ''
                     } hover:border-amber-300 transition duration-300`}
                     tabIndex={0}
@@ -229,19 +229,19 @@ const Services = () => {
                     onMouseLeave={handleCardHoverEnd}
                   >
                     {pkg.isPopular && (
-                      <span className="inline-block bg-amber-500 text-white text-xs font-semibold px-2 py-1 rounded-full mb-4">
+                      <span className="inline-block bg-amber-500 text-white text-xs font-semibold px-2 py-1 rounded-full mb-3 sm:mb-4">
                         Popular
                       </span>
                     )}
                     <img
                       src={pkg.icon}
                       alt={`Preview of ${pkg.title}`}
-                      className="w-full h-48 object-cover rounded-t-lg mb-4"
+                      className="w-full h-36 sm:h-48 object-cover rounded-t-lg mb-3 sm:mb-4"
                       loading="lazy"
                     />
-                    <h3 className="text-xl font-bold mb-2">{pkg.title}</h3>
-                    <p className="text-amber-300 text-lg mb-2">{pkg.price}</p>
-                    <ul className="text-gray-300 text-sm space-y-2 mb-4">
+                    <h3 className="text-lg sm:text-xl font-bold mb-2">{pkg.title}</h3>
+                    <p className="text-amber-300 text-base sm:text-lg mb-2">{pkg.price}</p>
+                    <ul className="text-gray-300 text-xs sm:text-sm space-y-1 sm:space-y-2 mb-3 sm:mb-4">
                       <li><strong>Coverage:</strong> {pkg.coverageHours}</li>
                       <li><strong>Photographers:</strong> {pkg.photographers}</li>
                       <li><strong>Edited Photos:</strong> {pkg.editedPhotos}</li>
@@ -252,11 +252,11 @@ const Services = () => {
                     <div className="relative">
                       <a
                         href="/contact"
-                        className="bg-amber-500 hover:bg-amber-600 text-white font-medium px-4 py-2 rounded-xl w-full text-center block"
+                        className="bg-amber-500 hover:bg-amber-600 text-white font-medium px-3 sm:px-4 py-1.5 sm:py-2 rounded-xl w-full text-center block text-sm sm:text-base"
                       >
                         Book Now
                       </a>
-                      
+                     
                     </div>
                     <div className="">
                         <button
@@ -300,17 +300,17 @@ const Services = () => {
             aria-label="Package details modal"
           >
             <motion.div
-              className="bg-gray-800 p-6 rounded-lg max-w-md w-full modal-content"
+              className="bg-gray-800 p-4 sm:p-6 rounded-lg max-w-[90vw] sm:max-w-md w-full modal-content"
               initial={{ scale: 0.8, y: 50 }}
               animate={{ scale: 1, y: 0 }}
               exit={{ scale: 0.8, y: 50 }}
               transition={{ duration: 0.3 }}
               onClick={(e) => e.stopPropagation()}
             >
-              <h3 className="text-xl font-bold mb-4">{selectedPackage.title}</h3>
-              <p className="text-gray-300 text-sm mb-6">{selectedPackage.description}</p>
+              <h3 className="text-lg sm:text-xl font-bold mb-3 sm:mb-4">{selectedPackage.title}</h3>
+              <p className="text-gray-300 text-xs sm:text-sm mb-4 sm:mb-6">{selectedPackage.description}</p>
               <button
-                className="bg-amber-500 hover:bg-amber-600 text-white font-medium px-4 py-2 rounded-xl w-full"
+                className="bg-amber-500 hover:bg-amber-600 text-white font-medium px-3 sm:px-4 py-1.5 sm:py-2 rounded-xl w-full text-sm sm:text-base"
                 onClick={closeModal}
                 aria-label="Close package details"
               >
@@ -322,20 +322,20 @@ const Services = () => {
 
         {/* Contact CTA */}
         <motion.section
-          className="bg-gray-900 p-6 sm:p-8 rounded-lg mb-12 text-center"
+          className="bg-gray-900 p-4 sm:p-6 md:p-8 rounded-lg mb-8 sm:mb-12 text-center"
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, ease: 'easeOut', delay: 0.2 }}
           viewport={{ once: true }}
         >
-          <h2 className="text-2xl sm:text-3xl font-bold mb-6">Have Questions?</h2>
-          <p className="text-gray-300 text-lg mb-6">
+          <h2 className="text-xl sm:text-2xl md:text-3xl font-bold mb-4 sm:mb-6">Have Questions?</h2>
+          <p className="text-gray-300 text-sm sm:text-lg mb-4 sm:mb-6">
             If you have any questions or need assistance, feel free to reach out to us!
           </p>
-          <div className="flex flex-col sm:flex-row justify-center gap-4">
+          <div className="flex flex-col sm:flex-row justify-center gap-3 sm:gap-4">
             <motion.a
               href="tel:+233123456789"
-              className="bg-amber-500 hover:bg-amber-600 text-white font-medium px-6 py-3 rounded-xl transition duration-300"
+              className="bg-amber-500 hover:bg-amber-600 text-white font-medium px-4 sm:px-6 py-2 sm:py-3 rounded-xl transition duration-300 text-sm sm:text-base"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
@@ -343,7 +343,7 @@ const Services = () => {
             </motion.a>
             <motion.a
               href="https://wa.me/233123456789"
-              className="bg-emerald-500 hover:bg-emerald-600 text-white font-medium px-6 py-3 rounded-xl transition duration-300"
+              className="bg-emerald-500 hover:bg-emerald-600 text-white font-medium px-4 sm:px-6 py-2 sm:py-3 rounded-xl transition duration-300 text-sm sm:text-base"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
