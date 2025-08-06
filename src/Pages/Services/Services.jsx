@@ -217,7 +217,7 @@ const Services = () => {
                 {packages.map((pkg, index) => (
                   <div
                     key={`${pkg.title}-${index}`}
-                    className={`min-w-[min(300px, 100%)] sm:w-[350px] flex-shrink-0 group flex flex-col justify-between bg-gray-800 p-6 rounded-lg shadow-lg ${
+                    className={`relative min-w-[min(300px, 100%)] sm:w-[350px] flex-shrink-0 group flex flex-col justify-between bg-gray-800 p-6 rounded-lg shadow-lg ${
                       pkg.isPopular ? 'border-2 border-amber-500' : ''
                     } hover:border-amber-300 transition duration-300`}
                     tabIndex={0}
@@ -245,9 +245,17 @@ const Services = () => {
                       <li><strong>Extras:</strong> {pkg.extras}</li>
                       <li><strong>Location:</strong> {pkg.sessionLocation}</li>
                     </ul>
-                    <div className="flex gap-2 mt-auto">
-                      <button
-                        className="bg-gray-600 hover:bg-gray-500 text-white p-2 rounded-xl flex items-center justify-center"
+                    <div className="relative">
+                      <a
+                        href="/contact"
+                        className="bg-amber-500 hover:bg-amber-600 text-white font-medium px-4 py-2 rounded-xl w-full text-center block"
+                      >
+                        Book Now
+                      </a>
+                    </div>
+                      <div className="">
+                        <button
+                        className="absolute bottom-0 right-0 text-gray-400 cursor-pointer hover:text-amber-400 transition-colors duration-300 opacity-100 p-2 rounded-full info-icon"
                         onClick={() => handleInfoClick(pkg)}
                         aria-label={`View details for ${pkg.title}`}
                       >
@@ -266,13 +274,7 @@ const Services = () => {
                           />
                         </svg>
                       </button>
-                      <a
-                        href="/contact"
-                        className="bg-amber-500 hover:bg-amber-600 text-white font-medium px-4 py-2 rounded-xl flex-1 text-center"
-                      >
-                        Book Now
-                      </a>
-                    </div>
+                      </div>
                   </div>
                 ))}
               </div>
