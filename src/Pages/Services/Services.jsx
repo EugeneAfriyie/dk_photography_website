@@ -290,7 +290,7 @@ const Services = () => {
               <li><strong>Extras:</strong> {pkg.extras}</li>
               <li><strong>Location:</strong> {pkg.sessionLocation}</li>
             </ul>
-            <p className="text-gray-400 text-sm mb-4">{pkg.description}</p>
+            <p className="text-gray-400 text-sm mb-4 ">{pkg.description}</p>
             <a
               href="/contact"
               className="bg-amber-500 text-white font-medium px-4 py-2 rounded-xl mt-auto text-center"
