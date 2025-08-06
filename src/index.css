@@ -26,7 +26,7 @@ body{
     right: 1rem;
   }
 }
-
+/* 
 @keyframes scroll-horizontal {
   0% { transform: translateX(0%); }
   100% { transform: translateX(-50%); }
@@ -39,4 +39,4 @@ body{
 }
 .hide-scrollbar::-webkit-scrollbar {
   display: none;
-}
+} */
