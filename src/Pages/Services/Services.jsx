@@ -171,14 +171,7 @@ const Services = () => {
 
           <div className="relative group">
             {/* Pause/Play Button */}
-            <button
-              className="absolute top-0 right-0 bg-black/60 text-white px-2 sm:px-3 py-1 sm:py-2 rounded-b z-10"
-              onClick={() => setIsPaused(!isPaused)}
-              aria-label={isPaused ? 'Resume auto-scroll' : 'Pause auto-scroll'}
-            >
-              {isPaused ? 'Play' : 'Pause'}
-            </button>
-
+         \
             {/* Scroll Buttons */}
             <button
               className="absolute left-0 top-1/2 -translate-y-1/2 bg-black/60 text-white px-2 sm:px-3 py-1 sm:py-2 rounded-r z-10 sm:hidden group-hover:block"
@@ -219,7 +212,7 @@ const Services = () => {
                 {packages.map((pkg, index) => (
                   <div
                     key={`${pkg.title}-${index}`}
-                    className={`relative w-[200px] sm:min-w-[300px] md:w-[350px] flex-shrink-0 group flex flex-col justify-between bg-gray-800 p-4 sm:p-6 rounded-lg shadow-lg ${
+                    className={`relative w-[250px] sm:min-w-[300px] md:w-[350px] flex-shrink-0 group flex flex-col justify-between bg-gray-800 p-4 sm:p-6 rounded-lg shadow-lg ${
                       pkg.isPopular ? 'border-2 border-amber-500' : ''
                     } hover:border-amber-300 transition duration-300`}
                     tabIndex={0}
