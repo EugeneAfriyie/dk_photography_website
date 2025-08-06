@@ -137,10 +137,6 @@ export const packages = [
 
 const Services = () => {
   const [isVisible, setIsVisible] = React.useState(false);
-  const scrollTrackRef = React.useRef(null);
-  const [isDragging, setIsDragging] = React.useState(false);
-  const [startX, setStartX] = React.useState(0);
-  const [scrollLeft, setScrollLeft] = React.useState(0);
 
   React.useEffect(() => {
     const handleScroll = () => {
@@ -157,38 +153,6 @@ const Services = () => {
 
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
-  };
-
-  const handleMouseDown = (e) => {
-    if (scrollTrackRef.current) {
-      setIsDragging(true);
-      setStartX(e.pageX - scrollTrackRef.current.offsetLeft);
-      setScrollLeft(scrollTrackRef.current.scrollLeft);
-    }
-  };
-
-  const handleMouseMove = (e) => {
-    if (!isDragging || !scrollTrackRef.current) return;
-    e.preventDefault();
-    const x = e.pageX - scrollTrackRef.current.offsetLeft;
-    const walk = (x - startX) * 2; // Adjust scroll speed with multiplier
-    scrollTrackRef.current.scrollLeft = scrollLeft - walk;
-  };
-
-  const handleMouseUp = () => {
-    setIsDragging(false);
-  };
-
-  const scrollLeftClick = () => {
-    if (scrollTrackRef.current) {
-      scrollTrackRef.current.scrollBy({ left: -300, behavior: 'smooth' }); // Smooth scroll left by 300px
-    }
-  };
-
-  const scrollRightClick = () => {
-    if (scrollTrackRef.current) {
-      scrollTrackRef.current.scrollBy({ left: 300, behavior: 'smooth' }); // Smooth scroll right by 300px
-    }
   };
 
   return (
@@ -259,7 +223,7 @@ const Services = () => {
             Photography Packages
           </h2>
 
-          <div className="scroll-wrapper overflow-hidden relative">
+          <div className="scroll-wrapper overflow-hidden">
             <style>
               {`
                 @keyframes scroll-horizontal {
@@ -269,49 +233,18 @@ const Services = () => {
                 .scroll-track {
                   display: flex;
                   width: max-content;
-                  animation: scroll-horizontal 200s linear infinite;
+                  animation: scroll-horizontal 300s linear infinite;
                 }
                 .scroll-wrapper:hover .scroll-track {
                   animation-play-state: paused;
                 }
-                .scroll-button {
-                  position: absolute;
-                  top: 50%;
-                  transform: translateY(-50%);
-                  background-color: rgba(0, 0, 0, 0.5);
-                  color: white;
-                  border: none;
-                  padding: 10px;
-                  cursor: pointer;
-                  font-size: 18px;
-                  z-index: 10;
-                }
-                .scroll-button:hover {
-                  background-color: rgba(0, 0, 0, 0.7);
-                }
-                .scroll-left {
-                  left: 0;
-                }
-                .scroll-right {
-                  right: 0;
-                }
               `}
             </style>
-            <button className="scroll-button scroll-left" onClick={scrollLeftClick}>
-              &lt;
-            </button>
-            <div
-              className="scroll-track"
-              ref={scrollTrackRef}
-              onMouseDown={handleMouseDown}
-              onMouseMove={handleMouseMove}
-              onMouseUp={handleMouseUp}
-              onMouseLeave={handleMouseUp}
-            >
+            <div className="scroll-track">
               {[...packages, ...packages].map((pkg, index) => (
                 <div
                   key={`${pkg.title}-${index}`}
-                  className={`w-[250px] sm:w-[350px] flex-shrink-0 group flex flex-col justify-between bg-gray-800 p-6 px-3 sm:p-6 rounded-lg shadow-lg mx-4 ${
+                  className={`min-w-[300px] sm:w-[350px] flex-shrink-0 group flex flex-col justify-between bg-gray-800 p-6 rounded-lg shadow-lg mx-4 ${
                     pkg.isPopular ? 'border-2 border-amber-500' : ''
                   } hover:border-amber-300 transition duration-300`}
                 >
@@ -323,11 +256,11 @@ const Services = () => {
                   <img
                     src={pkg.icon}
                     alt={`${pkg.title} Icon`}
-                    className="w-full sm:h-48 h-36 object-cover rounded-t-lg mb-2 object-top"
+                    className="w-full h-48 object-cover rounded-t-lg mb-4"
                   />
-                  <h3 className="text-xl font-bold mb-1">{pkg.title}</h3>
-                  <p className="text-amber-300 text-lg mb-1">{pkg.price}</p>
-                  <ul className="text-gray-300 text-[.76rem] space-y-1 mb-1">
+                  <h3 className="text-xl font-bold mb-2">{pkg.title}</h3>
+                  <p className="text-amber-300 text-lg mb-2">{pkg.price}</p>
+                  <ul className="text-gray-300 text-sm space-y-2 mb-4">
                     <li><strong>Coverage:</strong> {pkg.coverageHours}</li>
                     <li><strong>Photographers:</strong> {pkg.photographers}</li>
                     <li><strong>Edited Photos:</strong> {pkg.editedPhotos}</li>
@@ -335,7 +268,7 @@ const Services = () => {
                     <li><strong>Extras:</strong> {pkg.extras}</li>
                     <li><strong>Location:</strong> {pkg.sessionLocation}</li>
                   </ul>
-                  <p className="text-gray-400 text-[.8rem] mb-4">{pkg.description}</p>
+                  <p className="text-gray-400 text-sm mb-4">{pkg.description}</p>
                   <a
                     href="/contact"
                     className="bg-amber-500 text-white font-medium px-4 py-2 rounded-xl mt-auto text-center"
@@ -346,9 +279,6 @@ const Services = () => {
                 </div>
               ))}
             </div>
-            <button className="scroll-button scroll-right" onClick={scrollRightClick}>
-              &gt;
-            </button>
           </div>
         </section>
 
