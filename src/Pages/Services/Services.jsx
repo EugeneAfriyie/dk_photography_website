@@ -68,10 +68,20 @@ const Services = () => {
     }, 400);
   };
 
-  // Pause auto-scroll during manual interaction
+  // Pause auto-scroll during touch/swipe interactions (not button clicks)
   const handleManualScroll = () => {
     setIsPaused(true);
     setTimeout(() => setIsPaused(false), 5000);
+  };
+
+  // Pause auto-scroll on card hover
+  const handleCardHover = () => {
+    setIsPaused(true);
+  };
+
+  // Resume auto-scroll when hover ends
+  const handleCardHoverEnd = () => {
+    setIsPaused(false);
   };
 
   // Handle Info icon click to show modal
@@ -173,14 +183,10 @@ const Services = () => {
             <button
               className="absolute left-0 top-1/2 -translate-y-1/2 bg-black/60 text-white px-3 py-2 rounded-r z-10 sm:hidden group-hover:block"
               tabIndex={0}
-              onClick={() => {
-                scrollByCard(-1);
-                handleManualScroll();
-              }}
+              onClick={() => scrollByCard(-1)} // No pause on button click
               onKeyDown={(e) => {
                 if (e.key === 'Enter') {
                   scrollByCard(-1);
-                  handleManualScroll();
                 }
               }}
               aria-label="Scroll package grid left"
@@ -190,14 +196,10 @@ const Services = () => {
             <button
               className="absolute right-0 top-1/2 -translate-y-1/2 bg-black/60 text-white px-3 py-2 rounded-l z-10 sm:hidden group-hover:block"
               tabIndex={0}
-              onClick={() => {
-                scrollByCard(1);
-                handleManualScroll();
-              }}
+              onClick={() => scrollByCard(1)} // No pause on button click
               onKeyDown={(e) => {
                 if (e.key === 'Enter') {
                   scrollByCard(1);
-                  handleManualScroll();
                 }
               }}
               aria-label="Scroll package grid right"
@@ -207,7 +209,7 @@ const Services = () => {
 
             {/* Scrollable Container */}
             <div
-              className="scroll-container overflow-x-auto whitespace-nowrap flex hide-scrollbar scroll-smooth"
+              className="scroll-container overflow-x-auto whitepace-nowrap flex hide-scrollbar scroll-smooth"
               ref={scrollContainerRef}
               role="region"
               aria-label="Photography packages carousel"
@@ -223,6 +225,8 @@ const Services = () => {
                     tabIndex={0}
                     onFocus={() => setIsPaused(true)}
                     onBlur={() => setIsPaused(false)}
+                    onMouseEnter={handleCardHover}
+                    onMouseLeave={handleCardHoverEnd}
                   >
                     {pkg.isPopular && (
                       <span className="inline-block bg-amber-500 text-white text-xs font-semibold px-2 py-1 rounded-full mb-4">
@@ -252,8 +256,9 @@ const Services = () => {
                       >
                         Book Now
                       </a>
+                      
                     </div>
-                      <div className="">
+                    <div className="">
                         <button
                         className="absolute bottom-0 right-0 text-gray-400 cursor-pointer hover:text-amber-400 transition-colors duration-300 opacity-100 p-2 rounded-full info-icon"
                         onClick={() => handleInfoClick(pkg)}
@@ -274,7 +279,7 @@ const Services = () => {
                           />
                         </svg>
                       </button>
-                      </div>
+                    </div>
                   </div>
                 ))}
               </div>
