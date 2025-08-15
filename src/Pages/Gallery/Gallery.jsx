@@ -1,12 +1,12 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { throttle } from 'lodash';
-import { packages } from '../data/packages';
+import { packages } from '../Home/data';
+
 import Header from '../Home/Components/Header';
 import Footer from '../../Components/Footer';
 import ExclusiveOffer from '../Home/Components/ExclusiveOffer';
 import BookingPrompt from '../Home/Components/BookingPrompt';
-import '../styles/gallery.css';
 
 const Gallery = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -14,7 +14,7 @@ const Gallery = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
 
   // Scroll-to-top button visibility
-  React.useEffect(() => {
+  useEffect(() => {
     const handleScroll = throttle(() => {
       setIsVisible(window.scrollY > 300);
     }, 100);
@@ -30,12 +30,14 @@ const Gallery = () => {
   const openLightbox = (image, index) => {
     setSelectedImage(image);
     setCurrentIndex(index);
+    document.body.style.overflow = 'hidden'; // Prevent background scroll
   };
 
   // Close lightbox
   const closeLightbox = () => {
     setSelectedImage(null);
     setCurrentIndex(0);
+    document.body.style.overflow = 'auto';
   };
 
   // Navigate to previous/next image
@@ -50,11 +52,12 @@ const Gallery = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
-  // Use package icons as gallery images, or define a custom gallery array
+  // Use package icons as gallery images, or switch to gallery.js
   const galleryImages = packages.map((pkg) => ({
     src: pkg.icon,
     alt: `Gallery image for ${pkg.title}`,
     title: pkg.title,
+    description: pkg.description,
   }));
 
   return (
@@ -111,7 +114,7 @@ const Gallery = () => {
                 transition={{ duration: 0.6, delay: 1 }}
                 viewport={{ once: true }}
               >
-                Browse our collection of stunning photography and videography moments.
+                Explore our stunning photography and videography moments.
               </motion.p>
             </motion.div>
           </motion.div>
@@ -124,14 +127,14 @@ const Gallery = () => {
           <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-center mb-6 sm:mb-10">
             Photo Gallery
           </h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6 px-2 sm:px-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-1">
             {galleryImages.map((image, index) => (
               <motion.div
                 key={`${image.title}-${index}`}
-                className="relative min-w-[250px] sm:min-w-[300px] md:w-[350px] flex-shrink-0 rounded-lg shadow-lg overflow-hidden cursor-pointer group"
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
+                className="relative aspect-square overflow-hidden cursor-pointer group"
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
+                transition={{ duration: 0.5, delay: index * 0.05 }}
                 viewport={{ once: true }}
                 onClick={() => openLightbox(image, index)}
                 tabIndex={0}
@@ -142,21 +145,21 @@ const Gallery = () => {
                 <img
                   src={image.src}
                   alt={image.alt}
-                  className="w-full h-36 sm:h-48 object-cover group-hover:scale-105 transition-transform duration-300"
+                  className="w-full h-full object-cover group-hover:brightness-75 transition-brightness duration-200"
                   loading="lazy"
                 />
-                <div className="absolute inset-0 bg-black/30 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                  <span className="text-white text-sm sm:text-base font-medium">{image.title}</span>
+                <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-200 flex items-center justify-center">
+                  <span className="text-white text-sm font-medium">{image.title}</span>
                 </div>
               </motion.div>
             ))}
           </div>
         </section>
 
-        {/* Lightbox Modal */}
+        {/* Instagram-style Lightbox Modal */}
         {selectedImage && (
           <motion.div
-            className="fixed inset-0 bg-black/90 flex items-center justify-center z-50 p-4"
+            className="fixed inset-0 bg-black/90 flex items-center justify-center z-50 p-4 sm:p-6"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
@@ -166,18 +169,37 @@ const Gallery = () => {
             aria-label="Image lightbox"
           >
             <motion.div
-              className="relative max-w-[90vw] max-h-[90vh] w-full h-full flex items-center justify-center"
-              initial={{ scale: 0.8, y: 50 }}
-              animate={{ scale: 1, y: 0 }}
-              exit={{ scale: 0.8, y: 50 }}
+              className="relative w-full max-w-4xl flex flex-col sm:flex-row bg-black rounded-lg overflow-hidden"
+              initial={{ scale: 0.9, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.9, opacity: 0 }}
               transition={{ duration: 0.3 }}
               onClick={(e) => e.stopPropagation()}
             >
-              <img
-                src={selectedImage.src}
-                alt={selectedImage.alt}
-                className="max-w-full max-h-[80vh] object-contain rounded-lg"
-              />
+              {/* Image */}
+              <div className="w-full sm:w-2/3 h-[50vh] sm:h-[70vh] flex items-center justify-center">
+                <img
+                  src={selectedImage.src}
+                  alt={selectedImage.alt}
+                  className="max-w-full max-h-full object-contain"
+                />
+              </div>
+              {/* Caption and Controls */}
+              <div className="w-full sm:w-1/3 p-4 sm:p-6 flex flex-col justify-between bg-black">
+                <div>
+                  <h3 className="text-lg sm:text-xl font-semibold text-white mb-2">{selectedImage.title}</h3>
+                  <p className="text-gray-300 text-sm">{selectedImage.description}</p>
+                </div>
+                <div className="flex gap-4 mt-4">
+                  <a
+                    href="/contact"
+                    className="bg-amber-500 hover:bg-amber-600 text-white font-medium px-4 py-2 rounded-lg text-sm"
+                  >
+                    Book Now
+                  </a>
+                </div>
+              </div>
+              {/* Close Button */}
               <button
                 className="absolute top-2 right-2 bg-gray-800 hover:bg-gray-700 text-white p-2 rounded-full"
                 onClick={closeLightbox}
@@ -198,23 +220,47 @@ const Gallery = () => {
                   />
                 </svg>
               </button>
+              {/* Navigation Buttons */}
               <button
-                className="absolute left-2 top-1/2 -translate-y-1/2 bg-gray-800 hover:bg-gray-700 text-white p-2 rounded-full"
+                className="absolute left-2 top-1/2 -translate-y-1/2 bg-gray-800 hover:bg-gray-700 text-white p-3 rounded-full"
                 onClick={() => navigateImage(-1)}
                 aria-label="Previous image"
               >
-                ←
+                <svg
+                  className="w-5 h-5"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
+                    d="M15 19l-7-7 7-7"
+                  />
+                </svg>
               </button>
               <button
-                className="absolute right-2 top-1/2 -translate-y-1/2 bg-gray-800 hover:bg-gray-700 text-white p-2 rounded-full"
+                className="absolute right-2 top-1/2 -translate-y-1/2 bg-gray-800 hover:bg-gray-700 text-white p-3 rounded-full"
                 onClick={() => navigateImage(1)}
                 aria-label="Next image"
               >
-                →
+                <svg
+                  className="w-5 h-5"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
+                    d="M9 5l7 7-7 7"
+                  />
+                </svg>
               </button>
-              <div className="absolute bottom-2 text-white text-sm sm:text-base bg-black/50 px-2 py-1 rounded">
-                {selectedImage.title}
-              </div>
             </motion.div>
           </motion.div>
         )}
