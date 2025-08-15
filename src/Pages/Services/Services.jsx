@@ -1,107 +1,78 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import { throttle } from 'lodash';
+import { packages } from '../data/packages';
 import Header from '../Home/Components/Header';
 import Footer from '../../Components/Footer';
 import ExclusiveOffer from '../Home/Components/ExclusiveOffer';
 import BookingPrompt from '../Home/Components/BookingPrompt';
-import { packages } from '../Home/data';
+import '../styles/scroll.css';
 
 const Services = () => {
-  const [isVisible, setIsVisible] = React.useState(false);
-  const [isPaused, setIsPaused] = React.useState(false);
-  const [selectedPackage, setSelectedPackage] = React.useState(null);
-  const scrollContainerRef = React.useRef(null);
+  const [isVisible, setIsVisible] = useState(false);
+  const [selectedPackage, setSelectedPackage] = useState(null);
 
-  // Throttled scroll handler for scroll-to-top button
-  React.useEffect(() => {
+  // Scroll-to-top button visibility
+  useEffect(() => {
     const handleScroll = throttle(() => {
       setIsVisible(window.scrollY > 300);
     }, 100);
 
     window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      handleScroll.cancel();
+    };
   }, []);
 
-  // Smooth auto-scroll effect (pixel-by-pixel)
-  React.useEffect(() => {
-    if (isPaused || selectedPackage) return;
-
-    let animationFrame;
-    const scrollSpeed = 2; // Pixels per frame (adjust for speed)
-    const frameRate = 1000 / 60; // ~60fps
-
-    const autoScroll = () => {
-      const container = scrollContainerRef.current;
-      if (!container) return;
-
-      container.scrollLeft += scrollSpeed;
-      const maxScrollLeft = container.scrollWidth - container.clientWidth;
-
-      if (container.scrollLeft >= maxScrollLeft - 1) {
-        container.scrollTo({ left: 0, behavior: 'auto' });
-      }
-
-      animationFrame = requestAnimationFrame(autoScroll);
-    };
-
-    animationFrame = requestAnimationFrame(autoScroll);
-    return () => cancelAnimationFrame(animationFrame);
-  }, [isPaused, selectedPackage]);
-
-  // Handle manual scrolling (card-by-card)
-  const scrollByCard = (direction) => {
-    const container = scrollContainerRef.current;
-    if (!container || !container.querySelector('div')) return;
-
-    const cardWidth = container.querySelector('div').offsetWidth + 24;
-    const scrollAmount = direction * cardWidth;
-    container.scrollBy({ left: scrollAmount, behavior: 'smooth' });
-
-    setTimeout(() => {
-      const maxScrollLeft = container.scrollWidth - container.clientWidth;
-      if (container.scrollLeft >= maxScrollLeft - 1) {
-        container.scrollTo({ left: 0, behavior: 'auto' });
-      } else if (container.scrollLeft <= 1 && direction < 0) {
-        container.scrollTo({ left: maxScrollLeft, behavior: 'auto' });
-      }
-    }, 400);
-  };
-
-  // Pause auto-scroll during touch/swipe interactions
-  const handleManualScroll = () => {
-    setIsPaused(true);
-    setTimeout(() => setIsPaused(false), 5000);
-  };
-
-  // Pause auto-scroll on card hover
-  const handleCardHover = () => {
-    setIsPaused(true);
-  };
-
-  // Resume auto-scroll when hover ends
-  const handleCardHoverEnd = () => {
-    setIsPaused(false);
-  };
-
-  // Handle Info icon click to show modal
+  // Handle info icon click for modal
   const handleInfoClick = (pkg) => {
     setSelectedPackage(pkg);
-    setIsPaused(true); // Pause auto-scroll when modal is open
   };
 
   // Close modal
   const closeModal = () => {
     setSelectedPackage(null);
-    setIsPaused(false); // Resume auto-scroll
   };
 
+  // Scroll to top
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
+  // Scroll carousel by one card
+  const scrollByCard = (direction) => {
+    const container = document.querySelector('.scroll-container');
+    const track = document.querySelector('.carousel-track');
+    if (!container || !track || !container.querySelector('div')) return;
+
+    // Get card width including gap
+    const card = container.querySelector('div');
+    const cardWidth = card.getBoundingClientRect().width + (window.innerWidth >= 640 ? 24 : 16);
+    const maxScroll = container.scrollWidth / 2; // Half the track (duplicated cards)
+    let newScrollLeft = container.scrollLeft + direction * cardWidth;
+
+    // Handle infinite scroll
+    if (newScrollLeft >= maxScroll) {
+      container.scrollLeft = newScrollLeft - maxScroll; // Reset to mirrored position
+    } else if (newScrollLeft < 0) {
+      container.scrollLeft = maxScroll + newScrollLeft; // Jump to mirrored position
+    } else {
+      // Temporarily pause animation
+      track.style.animationPlayState = 'paused';
+      container.scrollBy({ left: direction * cardWidth, behavior: 'smooth' });
+      // Resume animation after scroll
+      setTimeout(() => {
+        track.style.animationPlayState = 'running';
+      }, 500);
+    }
+  };
+
+  // Duplicate packages for infinite scroll effect
+  const duplicatedPackages = [...packages, ...packages];
+
   return (
-    <div className="min-h-screen bg-black text-white pt-10 sm:pt-20 pb-0 sm:px-4 overflow-hidden">
+    <div className={`min-h-screen bg-black text-white py-10 sm:py-20 px-4 overflow-hidden ${selectedPackage ? 'pause-animation' : ''}`}>
       <Header />
       <div className="max-w-7xl mx-auto">
         {/* Services Banner */}
@@ -111,7 +82,6 @@ const Services = () => {
           whileInView={{ opacity: 1, y: 0, scale: 1 }}
           transition={{ duration: 1.2, ease: 'easeOut', delay: 0.2 }}
           viewport={{ once: true }}
-          style={{ height: '250px sm:400px', minHeight: '200px', position: 'relative' }}
         >
           <motion.img
             src="https://picsum.photos/800/400"
@@ -169,57 +139,34 @@ const Services = () => {
             Photography Packages
           </h2>
 
-          <div className="relative group">
-            {/* Pause/Play Button */}
-         
+          <div className="relative group carousel-wrapper">
             {/* Scroll Buttons */}
             <button
-              className="absolute left-0 top-1/2 -translate-y-1/2 bg-black/60 text-white px-2 sm:px-3 py-1 sm:py-2 rounded-r z-10 sm:hidden group-hover:block"
-              tabIndex={0}
               onClick={() => scrollByCard(-1)}
-              onKeyDown={(e) => {
-                if (e.key === 'Enter') {
-                  scrollByCard(-1);
-                }
-              }}
-              aria-label="Scroll package grid left"
+              className="absolute left-0 top-1/2 -translate-y-1/2 bg-black/60 text-white px-2 sm:px-3 py-1 sm:py-2 rounded-r z-20 sm:hidden group-hover:block cursor-pointer"
+              aria-label="Scroll to previous package"
             >
               ←
             </button>
             <button
-              className="absolute right-0 top-1/2 -translate-y-1/2 bg-black/60 text-white px-2 sm:px-3 py-1 sm:py-2 rounded-l z-10 sm:hidden group-hover:block"
-              tabIndex={0}
               onClick={() => scrollByCard(1)}
-              onKeyDown={(e) => {
-                if (e.key === 'Enter') {
-                  scrollByCard(1);
-                }
-              }}
-              aria-label="Scroll package grid right"
+              className="absolute right-0 top-1/2 -translate-y-1/2 bg-black/60 text-white px-2 sm:px-3 py-1 sm:py-2 rounded-l z-20 sm:hidden group-hover:block cursor-pointer"
+              aria-label="Scroll to next package"
             >
               →
             </button>
 
             {/* Scrollable Container */}
-            <div
-              className="scroll-container overflow-x-auto whitespace-nowap flex hide-scrollbar scroll-smooth"
-              ref={scrollContainerRef}
-              role="region"
-              aria-label="Photography packages carousel"
-              onTouchStart={handleManualScroll}
-            >
-              <div className="flex gap-4 sm:gap-6 px-2 sm:px-4">
-                {packages.map((pkg, index) => (
+            <div className="scroll-container overflow-x-auto whitespace-nowrap flex hide-scrollbar scroll-smooth snap-x snap-mandatory">
+              <div className="flex gap-4 sm:gap-6 px-2 sm:px-4 carousel-track">
+                {duplicatedPackages.map((pkg, index) => (
                   <div
                     key={`${pkg.title}-${index}`}
-                    className={`relative w-[250px] sm:min-w-[300px] md:w-[350px] flex-shrink-0 group flex flex-col justify-between bg-gray-800 p-4 sm:p-6 rounded-lg shadow-lg ${
+                    id={`card-${index}`}
+                    className={`relative min-w-[250px] sm:min-w-[300px] md:w-[350px] flex-shrink-0 snap-start group flex flex-col justify-between bg-gray-800 p-4 sm:p-6 rounded-lg shadow-lg ${
                       pkg.isPopular ? 'border-2 border-amber-500' : ''
                     } hover:border-amber-300 transition duration-300`}
                     tabIndex={0}
-                    onFocus={() => setIsPaused(true)}
-                    onBlur={() => setIsPaused(false)}
-                    onMouseEnter={handleCardHover}
-                    onMouseLeave={handleCardHoverEnd}
                   >
                     {pkg.isPopular && (
                       <span className="inline-block bg-amber-500 text-white text-xs font-semibold px-2 py-1 rounded-full mb-3 sm:mb-4">
@@ -249,16 +196,13 @@ const Services = () => {
                       >
                         Book Now
                       </a>
-                     
-                    </div>
-                    <div className="mt-2 sm:mt-3">
-                        <button
-                        className="absolute bottom-0 right-0 text-gray-400 cursor-pointer hover:text-amber-400 transition-colors duration-300 opacity-100 p-2 rounded-full info-icon"
+                      <button
+                        className="absolute bottom-0 right-0 bg-gray-600 hover:bg-gray-500 text-white p-1.5 sm:p-2 rounded-full info-icon"
                         onClick={() => handleInfoClick(pkg)}
                         aria-label={`View details for ${pkg.title}`}
                       >
                         <svg
-                          className="w-5 h-5"
+                          className="w-4 sm:w-5 h-4 sm:h-5"
                           fill="none"
                           stroke="currentColor"
                           viewBox="0 0 24 24"
@@ -280,7 +224,6 @@ const Services = () => {
           </div>
         </section>
 
-        {/* Modal for Package Description */}
         {selectedPackage && (
           <motion.div
             className="fixed inset-0 bg-black/70 flex items-center justify-center z-50 p-4"
@@ -313,7 +256,6 @@ const Services = () => {
           </motion.div>
         )}
 
-        {/* Contact CTA */}
         <motion.section
           className="bg-gray-900 p-4 sm:p-6 md:p-8 rounded-lg mb-8 sm:mb-12 text-center"
           initial={{ opacity: 0, y: 50 }}

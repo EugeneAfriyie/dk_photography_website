@@ -17,7 +17,7 @@ body{
       box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px !important; 
 }
 
-
+/* 
 @media (max-width: 380px) {
   .sm-size{
     width: 250px;
@@ -33,4 +33,71 @@ body{
 }
 .scroll-container {
   scroll-behavior: smooth;
+} */
+
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.scroll-container {
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  scroll-snap-type: x mandatory;
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+
+.carousel-track {
+  display: flex;
+  gap: 16px; /* gap-4 */
+  animation: autoScroll 60s linear infinite; /* Adjust duration for speed */
+}
+
+@media (min-width: 640px) {
+  .carousel-track {
+    gap: 24px; /* gap-6 */
+  }
+}
+
+.carousel-track:hover,
+.pause-animation .carousel-track {
+  animation-play-state: paused;
+}
+
+@keyframes autoScroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(calc(-100% / 2)); /* Move half the track (duplicated cards) */
+  }
+}
+
+.info-icon {
+  position: absolute;
+  bottom: -2rem;
+  right: 0;
+  transform: translateY(0);
+}
+
+@media (min-width: 640px) {
+  .info-icon {
+    bottom: -2.5rem;
+  }
+}
+
+.scroll-container > .carousel-track > div {
+  scroll-snap-align: start;
+}
+
+/* Ensure buttons are clickable */
+.carousel-wrapper {
+  position: relative;
+}
+
+button[aria-label="Scroll to previous package"],
+button[aria-label="Scroll to next package"] {
+  cursor: pointer;
+  z-index: 20;
+  pointer-events: auto;
 }
