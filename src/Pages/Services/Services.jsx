@@ -76,13 +76,36 @@ const scrollByCard = (direction) => {
     container.scrollTo({ left: newScrollLeft, behavior: 'smooth' });
   }
 
-  // Resume animation without shaking
+  // Resume animation smoothly after 3s delay
   resumeTimerRef.current = setTimeout(() => {
-    track.style.animation = 'none';      // fully remove animation
-    void track.offsetWidth;              // force browser reflow
-    track.style.animation = '';          // restore original animation
-  }, 700);
+    track.style.animationPlayState = 'running';
+  }, 3000);
 };
+
+useEffect(() => {
+  const track = trackRef.current;
+  if (!track) return;
+
+  // Pause animation on hover over any card
+  const handleMouseEnter = () => {
+    track.style.animationPlayState = 'paused';
+    clearTimeout(resumeTimerRef.current); // cancel any pending resume
+  };
+
+  // Resume animation when mouse leaves the track
+  const handleMouseLeave = () => {
+    track.style.animationPlayState = 'running';
+  };
+
+  track.addEventListener('mouseenter', handleMouseEnter);
+  track.addEventListener('mouseleave', handleMouseLeave);
+
+  return () => {
+    track.removeEventListener('mouseenter', handleMouseEnter);
+    track.removeEventListener('mouseleave', handleMouseLeave);
+  };
+}, []);
+
 
 
 // Duplicate packages for infinite scroll effect
