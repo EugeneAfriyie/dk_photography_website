@@ -200,13 +200,13 @@ const duplicatedPackages = [...packages, ...packages];
             </button>
 
             {/* Scrollable Container */}
-            <div className="scroll-container overflow-x-auto whiespace-nowrap flex hide-scrollbar scroll-smooth snap-x snap-mandatory" ref={containerRef}>
+            <div className="scroll-container overflow-x-auto whiespae-nowrap flex hide-scrollbar scroll-smooth snap-x snap-mandatory" ref={containerRef}>
               <div className="flex gap-4 sm:gap-6 px-2 sm:px-4 carousel-track" ref={trackRef}>
                 {duplicatedPackages.map((pkg, index) => (
                   <div
                     key={`${pkg.title}-${index}`}
                     id={`card-${index}`}
-                    className={`relative min-w-[250px] sm:min-w-[300px] md:w-[350px] flex-shrink-0 snap-start group flex flex-col justify-between bg-gray-800 p-4 sm:p-6 rounded-lg shadow-lg ${
+                    className={`relative max-w-[250px] sm:min-w-[300px] md:w-[350px] flex-shrink-0 snap-start group flex flex-col justify-between bg-gray-800 p-4 sm:p-6 rounded-lg shadow-lg ${
                       pkg.isPopular ? 'border-2 border-amber-500' : ''
                     } hover:border-amber-300 transition duration-300`}
                     tabIndex={0}
