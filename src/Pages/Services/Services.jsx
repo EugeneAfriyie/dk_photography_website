@@ -1,16 +1,27 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { motion } from 'framer-motion';
 import { throttle } from 'lodash';
-import { packages } from '../data/packages';
 import Header from '../Home/Components/Header';
 import Footer from '../../Components/Footer';
 import ExclusiveOffer from '../Home/Components/ExclusiveOffer';
 import BookingPrompt from '../Home/Components/BookingPrompt';
-import '../styles/scroll.css';
+import { packages } from '../Home/data';
 
 const Services = () => {
   const [isVisible, setIsVisible] = useState(false);
   const [selectedPackage, setSelectedPackage] = useState(null);
+  // Eugene Afriyie UEB3502023
+const containerRef = useRef(null);
+const trackRef = useRef(null);
+const resumeTimerRef = useRef(null);
+
+useEffect(() => {
+  if (trackRef.current) {
+    trackRef.current.style.animationPlayState = 'running';
+  }
+}, []);
+
+
 
   // Scroll-to-top button visibility
   useEffect(() => {
@@ -40,33 +51,45 @@ const Services = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
-  // Scroll carousel by one card
-  const scrollByCard = (direction) => {
-    const container = document.querySelector('.scroll-container');
-    const track = document.querySelector('.carousel-track');
-    if (!container || !track || !container.querySelector('div')) return;
+const scrollByCard = (direction) => {
+  const container = containerRef.current;
+  const track = trackRef.current;
 
-    // Get card width including gap
-    const card = container.querySelector('div');
-    const cardWidth = card.getBoundingClientRect().width + (window.innerWidth >= 640 ? 24 : 16);
-    const maxScroll = container.scrollWidth / 2; // Half the track (duplicated cards)
-    let newScrollLeft = container.scrollLeft + direction * cardWidth;
+  // Inside scrollByCard
+track.style.animationPlayState = 'paused';
+clearTimeout(resumeTimerRef.current);
 
-    // Handle infinite scroll
-    if (newScrollLeft >= maxScroll) {
-      container.scrollLeft = newScrollLeft - maxScroll; // Reset to mirrored position
-    } else if (newScrollLeft < 0) {
-      container.scrollLeft = maxScroll + newScrollLeft; // Jump to mirrored position
-    } else {
-      // Temporarily pause animation
-      track.style.animationPlayState = 'paused';
-      container.scrollBy({ left: direction * cardWidth, behavior: 'smooth' });
-      // Resume animation after scroll
-      setTimeout(() => {
-        track.style.animationPlayState = 'running';
-      }, 500);
-    }
-  };
+  if (!container || !track) return;
+
+  const firstCard = track.firstElementChild;
+  if (!firstCard) return;
+
+  const gap = parseFloat(getComputedStyle(track).gap) || (window.innerWidth >= 640 ? 24 : 16);
+  const cardWidth = firstCard.getBoundingClientRect().width + gap;
+  const halfTrackWidth = track.scrollWidth / 2;
+
+  let newScrollLeft = container.scrollLeft + direction * cardWidth;
+
+  // Pause animation
+  track.style.animationPlayState = 'paused';
+  clearTimeout(resumeTimerRef.current);
+
+  // Handle wrap-around
+  if (newScrollLeft >= halfTrackWidth) {
+    container.scrollLeft = newScrollLeft - halfTrackWidth;
+  } else if (newScrollLeft < 0) {
+    container.scrollLeft = halfTrackWidth + newScrollLeft;
+  } else {
+    container.scrollTo({ left: newScrollLeft, behavior: 'smooth' });
+  }
+
+  // Resume animation after manual scroll finishes
+ resumeTimerRef.current = setTimeout(() => {
+  track.style.animationPlayState = 'running';
+}, 600);
+};
+
+
 
   // Duplicate packages for infinite scroll effect
   const duplicatedPackages = [...packages, ...packages];
@@ -157,8 +180,8 @@ const Services = () => {
             </button>
 
             {/* Scrollable Container */}
-            <div className="scroll-container overflow-x-auto whitespace-nowrap flex hide-scrollbar scroll-smooth snap-x snap-mandatory">
-              <div className="flex gap-4 sm:gap-6 px-2 sm:px-4 carousel-track">
+            <div className="scroll-container overflow-x-auto whitespace-nowrap flex hide-scrollbar scroll-smooth snap-x snap-mandatory" ref={containerRef}>
+              <div className="flex gap-4 sm:gap-6 px-2 sm:px-4 carousel-track" ref={trackRef}>
                 {duplicatedPackages.map((pkg, index) => (
                   <div
                     key={`${pkg.title}-${index}`}
