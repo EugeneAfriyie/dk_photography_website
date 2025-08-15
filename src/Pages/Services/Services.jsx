@@ -8,9 +8,10 @@ import BookingPrompt from '../Home/Components/BookingPrompt';
 import { packages } from '../Home/data';
 
 const Services = () => {
-  const [isVisible, setIsVisible] = useState(false);
-  const [selectedPackage, setSelectedPackage] = useState(null);
-  // Eugene Afriyie UEB3502023
+// State and refs
+const [isVisible, setIsVisible] = useState(false);
+const [selectedPackage, setSelectedPackage] = useState(null);
+// Eugene Afriyie UEB3502023
 const containerRef = useRef(null);
 const trackRef = useRef(null);
 const resumeTimerRef = useRef(null);
@@ -21,44 +22,36 @@ useEffect(() => {
   }
 }, []);
 
+// Scroll-to-top button visibility
+useEffect(() => {
+  const handleScroll = throttle(() => {
+    setIsVisible(window.scrollY > 300);
+  }, 100);
 
-
-  // Scroll-to-top button visibility
-  useEffect(() => {
-    const handleScroll = throttle(() => {
-      setIsVisible(window.scrollY > 300);
-    }, 100);
-
-    window.addEventListener('scroll', handleScroll);
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-      handleScroll.cancel();
-    };
-  }, []);
-
-  // Handle info icon click for modal
-  const handleInfoClick = (pkg) => {
-    setSelectedPackage(pkg);
+  window.addEventListener('scroll', handleScroll);
+  return () => {
+    window.removeEventListener('scroll', handleScroll);
+    handleScroll.cancel();
   };
+}, []);
 
-  // Close modal
-  const closeModal = () => {
-    setSelectedPackage(null);
-  };
+// Handle info icon click for modal
+const handleInfoClick = (pkg) => {
+  setSelectedPackage(pkg);
+};
 
-  // Scroll to top
-  const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  };
+// Close modal
+const closeModal = () => {
+  setSelectedPackage(null);
+};
 
+// Scroll to top
+const scrollToTop = () => {
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+};
 const scrollByCard = (direction) => {
   const container = containerRef.current;
   const track = trackRef.current;
-
-  // Inside scrollByCard
-track.style.animationPlayState = 'paused';
-clearTimeout(resumeTimerRef.current);
-
   if (!container || !track) return;
 
   const firstCard = track.firstElementChild;
@@ -68,11 +61,11 @@ clearTimeout(resumeTimerRef.current);
   const cardWidth = firstCard.getBoundingClientRect().width + gap;
   const halfTrackWidth = track.scrollWidth / 2;
 
-  let newScrollLeft = container.scrollLeft + direction * cardWidth;
-
   // Pause animation
   track.style.animationPlayState = 'paused';
   clearTimeout(resumeTimerRef.current);
+
+  let newScrollLeft = container.scrollLeft + direction * cardWidth;
 
   // Handle wrap-around
   if (newScrollLeft >= halfTrackWidth) {
@@ -83,16 +76,20 @@ clearTimeout(resumeTimerRef.current);
     container.scrollTo({ left: newScrollLeft, behavior: 'smooth' });
   }
 
-  // Resume animation after manual scroll finishes
- resumeTimerRef.current = setTimeout(() => {
-  track.style.animationPlayState = 'running';
-}, 600);
+  // Resume animation without shaking
+  resumeTimerRef.current = setTimeout(() => {
+    track.style.animation = 'none';      // fully remove animation
+    void track.offsetWidth;              // force browser reflow
+    track.style.animation = '';          // restore original animation
+  }, 700);
 };
 
 
+// Duplicate packages for infinite scroll effect
+const duplicatedPackages = [...packages, ...packages];
 
-  // Duplicate packages for infinite scroll effect
-  const duplicatedPackages = [...packages, ...packages];
+
+
 
   return (
     <div className={`min-h-screen bg-black text-white py-10 sm:py-20 px-4 overflow-hidden ${selectedPackage ? 'pause-animation' : ''}`}>
@@ -180,7 +177,7 @@ clearTimeout(resumeTimerRef.current);
             </button>
 
             {/* Scrollable Container */}
-            <div className="scroll-container overflow-x-auto whitespace-nowrap flex hide-scrollbar scroll-smooth snap-x snap-mandatory" ref={containerRef}>
+            <div className="scroll-container overflow-x-auto whiespace-nowrap flex hide-scrollbar scroll-smooth snap-x snap-mandatory" ref={containerRef}>
               <div className="flex gap-4 sm:gap-6 px-2 sm:px-4 carousel-track" ref={trackRef}>
                 {duplicatedPackages.map((pkg, index) => (
                   <div

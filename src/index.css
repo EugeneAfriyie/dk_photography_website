@@ -31,21 +31,15 @@ body{
 .hide-scrollbar::-webkit-scrollbar {
   display: none;
 }
-.scroll-container {
+/* .scroll-container {
   scroll-behavior: smooth;
-}
+} */
 
 .carousel-track {
-  display: flex;
-  gap: 16px;
-  animation: autoScroll 60s linear infinite;
-  animation-play-state: running; /* ✅ Force default running state */
+  animation: scroll-left 30s linear infinite;
 }
 
-
-.carousel-track:hover,
-.pause-animation .carousel-track {
-  animation-play-state: paused;
+@keyframes scroll-left {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
 }
-
-
