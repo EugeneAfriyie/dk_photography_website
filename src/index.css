@@ -70,6 +70,7 @@ body{
 .grid > div .absolute:not(.album-icon) {
   transition: opacity 0.2s ease;
   opacity: 0;
+  z-index: 5; /* Title overlay */
 }
 
 .grid > div:hover .absolute:not(.album-icon) {
@@ -87,6 +88,35 @@ body{
   display: flex;
   align-items: center;
   justify-content: center;
+  z-index: 10; /* Above title overlay */
+}
+
+/* Mobile icon size */
+@media (max-width: 640px) {
+  .album-icon svg {
+    width: 20px;
+    height: 20px;
+  }
+}
+
+/* Carousel dots */
+.carousel-dots {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  padding: 8px 0;
+}
+
+.dot {
+  width: 8px;
+  height: 8px;
+  background: #9ca3af; /* gray-400 */
+  border-radius: 50%;
+  transition: background-color 0.3s ease;
+}
+
+.dot.active {
+  background: #f59e0b; /* amber-500 */
 }
 
 /* Lightbox */
@@ -141,5 +171,12 @@ body{
   .lightbox img,
   .lightbox video {
     height: 50vh;
+  }
+  .carousel-dots {
+    padding: 4px 0;
+  }
+  .dot {
+    width: 6px;
+    height: 6px;
   }
 }

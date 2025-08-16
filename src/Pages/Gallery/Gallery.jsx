@@ -2,12 +2,11 @@ import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { throttle } from 'lodash';
 import { FaImages, FaImage, FaVideo } from 'react-icons/fa';
-import { galleryImage } from '../Home/data';
+import { galleryImage} from '../Home/data';
 import Header from '../Home/Components/Header';
 import Footer from '../../Components/Footer';
 import ExclusiveOffer from '../Home/Components/ExclusiveOffer';
 import BookingPrompt from '../Home/Components/BookingPrompt';
-import { IoMdAlbums } from "react-icons/io";
 
 const Gallery = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -48,6 +47,11 @@ const Gallery = () => {
     setCurrentMediaIndex(newIndex);
   };
 
+  // Navigate to specific media item
+  const goToMedia = (index) => {
+    setCurrentMediaIndex(index);
+  };
+
   // Scroll to top
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -57,7 +61,7 @@ const Gallery = () => {
   const getAlbumIcon = (albumType) => {
     switch (albumType) {
       case 'mixed':
-        return <IoMdAlbums className="text-white w-5 h-5" />;
+        return <FaImages className="text-white w-5 h-5" />;
       case 'images':
         return <FaImage className="text-white w-5 h-5" />;
       case 'videos':
@@ -136,7 +140,7 @@ const Gallery = () => {
           </h2>
           <div className="grid grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-1 sm:gap-2">
             {galleryImage.map((album, index) => {
-              console.log(album.title, album.type, album.albumType); // Debug log
+              console.log(album.title, album.type, album.albumType); // Debug log for icons
               return (
                 <motion.div
                   key={`${album.title}-${index}`}
@@ -197,7 +201,7 @@ const Gallery = () => {
               onClick={(e) => e.stopPropagation()}
             >
               {/* Media Display */}
-              <div className="w-full sm:w-2/3 h-[50vh] sm:h-[70vh] flex items-center justify-center">
+              <div className="w-full sm:w-2/3 h-[50vh] sm:h-[70vh] flex flex-col items-center justify-center">
                 {selectedAlbum.media[currentMediaIndex].type === 'image' ? (
                   <img
                     src={selectedAlbum.media[currentMediaIndex].src}
@@ -214,6 +218,19 @@ const Gallery = () => {
                     loop
                     muted
                   />
+                )}
+                {/* Carousel Dots for Albums with Multiple Items */}
+                {selectedAlbum.type === 'album' && selectedAlbum.media.length > 1 && (
+                  <div className="carousel-dots mt-4 flex justify-center gap-2">
+                    {selectedAlbum.media.map((_, index) => (
+                      <button
+                        key={index}
+                        className={`dot w-2 h-2 sm:w-3 sm:h-3 rounded-full ${index === currentMediaIndex ? 'bg-amber-500' : 'bg-gray-400'} z-50`}
+                        onClick={() => goToMedia(index)}
+                        aria-label={`View media item ${index + 1} of ${selectedAlbum.media.length}`}
+                      />
+                    ))}
+                  </div>
                 )}
               </div>
               {/* Caption and Controls */}
