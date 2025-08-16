@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
+import { useSwipeable } from 'react-swipeable';
 import { throttle } from 'lodash';
 import { FaImages, FaImage, FaVideo } from 'react-icons/fa';
 import { galleryImage } from '../Home/data';
-// import Header from '../Home/Components/Header';
+import Header from '../Home/Components/Header';
 import Footer from '../../Components/Footer';
 import ExclusiveOffer from '../Home/Components/ExclusiveOffer';
 import BookingPrompt from '../Home/Components/BookingPrompt';
@@ -12,6 +13,7 @@ const Gallery = () => {
   const [isVisible, setIsVisible] = useState(false);
   const [selectedAlbum, setSelectedAlbum] = useState(null);
   const [currentMediaIndex, setCurrentMediaIndex] = useState(0);
+  const [direction, setDirection] = useState(0); // For swipe animation direction
 
   // Scroll-to-top button visibility
   useEffect(() => {
@@ -37,6 +39,7 @@ const Gallery = () => {
   const closeLightbox = () => {
     setSelectedAlbum(null);
     setCurrentMediaIndex(0);
+    setDirection(0);
     document.body.style.overflow = 'auto';
   };
 
@@ -45,11 +48,29 @@ const Gallery = () => {
     if (!selectedAlbum) return;
     const newIndex = (currentMediaIndex + direction + selectedAlbum.media.length) % selectedAlbum.media.length;
     setCurrentMediaIndex(newIndex);
+    setDirection(direction);
   };
 
   // Navigate to specific media item
   const goToMedia = (index) => {
+    setDirection(index > currentMediaIndex ? 1 : -1);
     setCurrentMediaIndex(index);
+  };
+
+  // Swipe handlers
+  const swipeHandlers = useSwipeable({
+    onSwipedLeft: () => navigateMedia(1),
+    onSwipedRight: () => navigateMedia(-1),
+    delta: 10, // Minimum swipe distance
+    preventDefaultTouchmoveEvent: true,
+    trackMouse: false, // Mobile only
+  });
+
+  // Keyboard navigation
+  const handleKeyDown = (e) => {
+    if (!selectedAlbum) return;
+    if (e.key === 'ArrowLeft') navigateMedia(-1);
+    if (e.key === 'ArrowRight') navigateMedia(1);
   };
 
   // Scroll to top
@@ -72,7 +93,13 @@ const Gallery = () => {
   };
 
   return (
-    <div className={`min-h-screen bg-black text-white py-10 sm:py-20 px-4 overflow-hidden ${selectedAlbum ? 'pause-animation' : ''}`}>
+    <div
+      className={`min-h-screen bg-black text-white py-10 sm:py-20 px-4 overflow-hidden ${
+        selectedAlbum ? 'pause-animation' : ''
+      }`}
+      onKeyDown={handleKeyDown}
+      tabIndex={0}
+    >
       {/* <Header /> */}
       <div className="max-w-7xl mx-auto">
         {/* Gallery Banner */}
@@ -131,7 +158,7 @@ const Gallery = () => {
           </motion.div>
         </motion.section>
 
-        <ExclusiveOffer />
+        {/* <ExclusiveOffer /> */}
 
         {/* Image Grid */}
         <section className="mb-8 sm:mb-12">
@@ -193,32 +220,62 @@ const Gallery = () => {
             aria-label={`${selectedAlbum.title} lightbox`}
           >
             <motion.div
-              className="relative w-full max-w-4xl flex flex-col sm:flex-row bg-black rounded-lg max-h-[100vh] sm:max-h-[80vh]"
+              className="relative w-full max-w-4xl flex flex-col sm:flex-row bg-black rounded-lg max-h-[100vh] sm:max-h-[80vh] overflow-auto pb-4"
               initial={{ scale: 0.9, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               exit={{ scale: 0.9, opacity: 0 }}
               transition={{ duration: 0.3 }}
               onClick={(e) => e.stopPropagation()}
             >
-              {/* Media Display */}
-              <div className="w-full sm:w-2/3 flex flex-col items-center justify-start sm:justify-center">
-                {selectedAlbum.media[currentMediaIndex].type === 'image' ? (
-                  <img
-                    src={selectedAlbum.media[currentMediaIndex].src}
-                    alt={selectedAlbum.media[currentMediaIndex].alt}
-                    className="w-full h-[90vh] sm:h-[70vh] object-contain"
-                  />
-                ) : (
-                  <video
-                    src={selectedAlbum.media[currentMediaIndex].src}
-                    alt={selectedAlbum.media[currentMediaIndex].alt}
-                    className="w-full h-[90vh] sm:h-[70vh] object-contain"
-                    controls
-                    autoPlay
-                    loop
-                    muted
-                  />
-                )}
+              {/* Media Display with Swipe */}
+              <div
+                className="w-full sm:w-2/3 flex flex-col items-center justify-start sm:justify-center swipe-container"
+                {...swipeHandlers}
+                tabIndex={0}
+                aria-label="Swipe or use arrow keys to navigate media"
+              >
+                <div className="relative w-full h-[90vh] sm:h-[70vh] overflow-x-hidden">
+                  <AnimatePresence initial={false} custom={direction}>
+                    <motion.div
+                      key={currentMediaIndex}
+                      custom={direction}
+                      variants={{
+                        enter: (dir) => ({
+                          x: dir > 0 ? '100%' : '-100%',
+                          opacity: 0,
+                        }),
+                        center: { x: 0, opacity: 1 },
+                        exit: (dir) => ({
+                          x: dir > 0 ? '-100%' : '100%',
+                          opacity: 0,
+                        }),
+                      }}
+                      initial="enter"
+                      animate="center"
+                      exit="exit"
+                      transition={{ duration: 0.3, ease: 'easeOut' }}
+                      className="absolute w-full h-full"
+                    >
+                      {selectedAlbum.media[currentMediaIndex].type === 'image' ? (
+                        <img
+                          src={selectedAlbum.media[currentMediaIndex].src}
+                          alt={selectedAlbum.media[currentMediaIndex].alt}
+                          className="w-full h-full object-contain"
+                        />
+                      ) : (
+                        <video
+                          src={selectedAlbum.media[currentMediaIndex].src}
+                          alt={selectedAlbum.media[currentMediaIndex].alt}
+                          className="w-full h-full object-contain"
+                          controls
+                          autoPlay
+                          loop
+                          muted
+                        />
+                      )}
+                    </motion.div>
+                  </AnimatePresence>
+                </div>
                 {/* Dot Indicators for Albums */}
                 {selectedAlbum.type === 'album' && selectedAlbum.media.length > 1 && (
                   <div className="flex gap-2 mt-4">

@@ -119,6 +119,11 @@ body{
   max-height: 100vh; /* Ensure content fits */
 }
 
+.lightbox .swipe-container {
+  position: relative;
+  overflow-x: hidden; /* Prevent horizontal scroll */
+}
+
 .lightbox img,
 .lightbox video {
   width: 100%;
