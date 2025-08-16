@@ -433,11 +433,11 @@ export const testimonials = [
     },
   ];
 
-
 export const galleryImage = [
   {
     type: 'album',
     title: 'Wedding Bliss Album',
+    albumType: 'mixed', // Images + videos
     media: [
       { src: 'https://res.cloudinary.com/djeorsh5d/image/upload/v1751247125/BRIDE1_kjfo1p.jpg', type: 'image', alt: 'Bride in white dress', description: 'Bride walking down the aisle.' },
       { src: 'https://res.cloudinary.com/djeorsh5d/video/upload/v1751247127/wedding_dance.mp4', type: 'video', alt: 'Wedding dance video', description: 'First dance at the reception.' },
@@ -447,6 +447,7 @@ export const galleryImage = [
   {
     type: 'album',
     title: 'Family Legacy Album',
+    albumType: 'images', // Only images
     media: [
       { src: 'https://res.cloudinary.com/djeorsh5d/image/upload/v1751247111/FAM1_wdqml7.jpg', type: 'image', alt: 'Family portrait', description: 'Family in studio.' },
       { src: 'https://res.cloudinary.com/djeorsh5d/image/upload/v1751247111/FAM2_xkjm3q.jpg', type: 'image', alt: 'Family outdoors', description: 'Outdoor family photo.' },
@@ -460,6 +461,7 @@ export const galleryImage = [
   {
     type: 'album',
     title: 'Graduation Moments',
+    albumType: 'mixed',
     media: [
       { src: 'https://res.cloudinary.com/djeorsh5d/image/upload/v1751247115/GRAD1_zkp4rt.jpg', type: 'image', alt: 'Graduate in cap', description: 'Graduate tossing cap.' },
       { src: 'https://res.cloudinary.com/djeorsh5d/video/upload/v1751247115/grad_walk.mp4', type: 'video', alt: 'Graduation walk video', description: 'Walking across stage.' },
@@ -475,6 +477,7 @@ export const galleryImage = [
   {
     type: 'album',
     title: 'Engagement Session',
+    albumType: 'images',
     media: [
       { src: 'https://res.cloudinary.com/djeorsh5d/image/upload/v1751247120/ENG1_pqlm8u.jpg', type: 'image', alt: 'Engagement photo', description: 'Couple in park.' },
       { src: 'https://res.cloudinary.com/djeorsh5d/image/upload/v1751247120/ENG2_wxtn9v.jpg', type: 'image', alt: 'Ring close-up', description: 'Close-up of engagement ring.' },
@@ -488,6 +491,7 @@ export const galleryImage = [
   {
     type: 'album',
     title: 'Baby Shower Memories',
+    albumType: 'mixed',
     media: [
       { src: 'https://picsum.photos/800/800?random=4', type: 'image', alt: 'Baby shower decor', description: 'Decorated venue.' },
       { src: 'https://res.cloudinary.com/djeorsh5d/video/upload/v1751247124/baby_shower_speech.mp4', type: 'video', alt: 'Baby shower speech', description: 'Guest speech.' },
@@ -497,6 +501,7 @@ export const galleryImage = [
   {
     type: 'album',
     title: 'Corporate Event',
+    albumType: 'mixed',
     media: [
       { src: 'https://res.cloudinary.com/djeorsh5d/image/upload/v1751247126/CORP1_klmn7y.jpg', type: 'image', alt: 'Conference speaker', description: 'Keynote speaker.' },
       { src: 'https://res.cloudinary.com/djeorsh5d/image/upload/v1751247126/CORP2_zxwv8u.jpg', type: 'image', alt: 'Networking session', description: 'Attendees networking.' },
@@ -511,6 +516,7 @@ export const galleryImage = [
   {
     type: 'album',
     title: 'Anniversary Celebration',
+    albumType: 'mixed',
     media: [
       { src: 'https://picsum.photos/800/800?random=7', type: 'image', alt: 'Anniversary couple', description: 'Couple celebrating milestone.' },
       { src: 'https://res.cloudinary.com/djeorsh5d/video/upload/v1751247128/anniversary_toast.mp4', type: 'video', alt: 'Anniversary toast', description: 'Toast at anniversary party.' },
@@ -519,6 +525,7 @@ export const galleryImage = [
   {
     type: 'album',
     title: 'Fashion Shoot',
+    albumType: 'images',
     media: [
       { src: 'https://res.cloudinary.com/djeorsh5d/image/upload/v1751247129/FASH1_mnbv9x.jpg', type: 'image', alt: 'Fashion model', description: 'Model in studio.' },
       { src: 'https://picsum.photos/800/800?random=8', type: 'image', alt: 'Fashion pose', description: 'Model in outdoor shoot.' },
@@ -533,6 +540,7 @@ export const galleryImage = [
   {
     type: 'album',
     title: 'Travel Adventure',
+    albumType: 'mixed',
     media: [
       { src: 'https://picsum.photos/800/800?random=9', type: 'image', alt: 'Mountain view', description: 'Scenic mountain landscape.' },
       { src: 'https://picsum.photos/800/800?random=10', type: 'image', alt: 'Beach sunset', description: 'Sunset on tropical beach.' },
@@ -543,9 +551,10 @@ export const galleryImage = [
   {
     type: 'album',
     title: 'Pet Photography',
+    albumType: 'mixed',
     media: [
       { src: 'https://picsum.photos/800/800?random=12', type: 'image', alt: 'Pet dog', description: 'Dog playing in park.' },
-      { src: 'https://res.cloudinary.com/djeorsh5d/image/upload/v1751247132/pet_video.mp4', type: 'video', alt: 'Pet video', description: 'Cat chasing toy.' },
+      { src: 'https://res.cloudinary.com/djeorsh5d/video/upload/v1751247132/pet_video.mp4', type: 'video', alt: 'Pet video', description: 'Cat chasing toy.' },
     ],
   },
 ];

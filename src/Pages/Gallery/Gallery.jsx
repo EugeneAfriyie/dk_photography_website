@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { throttle } from 'lodash';
+import { FaImages, FaImage, FaVideo } from 'react-icons/fa';
 import { galleryImage } from '../Home/data';
 import Header from '../Home/Components/Header';
 import Footer from '../../Components/Footer';
 import ExclusiveOffer from '../Home/Components/ExclusiveOffer';
 import BookingPrompt from '../Home/Components/BookingPrompt';
-import { FaImage, FaImages, FaVideo } from 'react-icons/fa';
+import { IoMdAlbums } from "react-icons/io";
 
 const Gallery = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -56,7 +57,7 @@ const Gallery = () => {
   const getAlbumIcon = (albumType) => {
     switch (albumType) {
       case 'mixed':
-        return <FaImages className="text-white w-5 h-5 z-40" />;
+        return <IoMdAlbums className="text-white w-5 h-5" />;
       case 'images':
         return <FaImage className="text-white w-5 h-5" />;
       case 'videos':
@@ -134,41 +135,44 @@ const Gallery = () => {
             Photo & Video Gallery
           </h2>
           <div className="grid grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-1 sm:gap-2">
-            {galleryImage.map((album, index) => (
-              <motion.div
-                key={`${album.title}-${index}`}
-                className="relative aspect-square overflow-hidden cursor-pointer group"
-                initial={{ opacity: 0 }}
-                whileInView={{ opacity: 1 }}
-                transition={{ duration: 0.5, delay: index * 0.05 }}
-                viewport={{ once: true }}
-                onClick={() => openLightbox(album, 0)}
-                tabIndex={0}
-                role="button"
-                aria-label={`View ${album.title} ${album.type === 'album' ? 'album' : 'media'} in lightbox`}
-                onKeyDown={(e) => e.key === 'Enter' && openLightbox(album, 0)}
-              >
-                <img
-                  src={album.media[0].src}
-                  alt={album.media[0].alt}
-                  className="w-full h-full object-cover group-hover:brightness-75 transition-brightness duration-200"
-                  loading="lazy"
-                />
-                <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-200 flex items-center justify-center">
-                  <span className="text-white text-sm font-medium">
-                    {album.title} {album.type === 'album' ? `(${album.media.length})` : ''}
-                  </span>
-                </div>
-                {album.type === 'album' && (
-                  <div
-                    className="absolute top-2 right-2 bg-black/60 p-1 rounded-full"
-                    aria-label={`Album contains ${album.albumType} content`}
-                  >
-                    {getAlbumIcon(album.albumType)}
+            {galleryImage.map((album, index) => {
+              console.log(album.title, album.type, album.albumType); // Debug log
+              return (
+                <motion.div
+                  key={`${album.title}-${index}`}
+                  className="relative aspect-square overflow-hidden cursor-pointer group"
+                  initial={{ opacity: 0 }}
+                  whileInView={{ opacity: 1 }}
+                  transition={{ duration: 0.5, delay: index * 0.05 }}
+                  viewport={{ once: true }}
+                  onClick={() => openLightbox(album, 0)}
+                  tabIndex={0}
+                  role="button"
+                  aria-label={`View ${album.title} ${album.type === 'album' ? 'album' : 'media'} in lightbox`}
+                  onKeyDown={(e) => e.key === 'Enter' && openLightbox(album, 0)}
+                >
+                  <img
+                    src={album.media[0].src}
+                    alt={album.media[0].alt}
+                    className="w-full h-full object-cover group-hover:brightness-75 transition-brightness duration-200"
+                    loading="lazy"
+                  />
+                  <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-200 flex items-center justify-center">
+                    <span className="text-white text-sm font-medium">
+                      {album.title} {album.type === 'album' ? `(${album.media.length})` : ''}
+                    </span>
                   </div>
-                )}
-              </motion.div>
-            ))}
+                  {album.type === 'album' && (
+                    <div
+                      className="absolute top-2 right-2 bg-black/60 p-1 rounded-full album-icon"
+                      aria-label={`Album contains ${album.albumType} content`}
+                    >
+                      {getAlbumIcon(album.albumType)}
+                    </div>
+                  )}
+                </motion.div>
+              );
+            })}
           </div>
         </section>
 
