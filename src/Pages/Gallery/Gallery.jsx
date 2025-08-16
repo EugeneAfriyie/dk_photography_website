@@ -28,6 +28,7 @@ const Gallery = () => {
 
   // Open lightbox
   const openLightbox = (album, index) => {
+    console.log('Opening lightbox:', album.title, album.type, album.media.length); // Debug
     setSelectedAlbum(album);
     setCurrentMediaIndex(index);
     document.body.style.overflow = 'hidden';
@@ -44,11 +45,13 @@ const Gallery = () => {
   const navigateMedia = (direction) => {
     if (!selectedAlbum) return;
     const newIndex = (currentMediaIndex + direction + selectedAlbum.media.length) % selectedAlbum.media.length;
+    console.log('Navigating to media index:', newIndex); // Debug
     setCurrentMediaIndex(newIndex);
   };
 
   // Navigate to specific media item
   const goToMedia = (index) => {
+    console.log('Going to media index:', index); // Debug
     setCurrentMediaIndex(index);
   };
 
@@ -61,11 +64,11 @@ const Gallery = () => {
   const getAlbumIcon = (albumType) => {
     switch (albumType) {
       case 'mixed':
-        return <FaImages className="text-white w-5 h-5" />;
+        return <FaImages className="text-white w-6 h-6" />;
       case 'images':
-        return <FaImage className="text-white w-5 h-5" />;
+        return <FaImage className="text-white w-6 h-6" />;
       case 'videos':
-        return <FaVideo className="text-white w-5 h-5" />;
+        return <FaVideo className="text-white w-6 h-6" />;
       default:
         return null;
     }
@@ -140,7 +143,7 @@ const Gallery = () => {
           </h2>
           <div className="grid grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-1 sm:gap-2">
             {galleryImage.map((album, index) => {
-              console.log(album.title, album.type, album.albumType); // Debug log for icons
+              console.log('Grid item:', album.title, album.type, album.albumType); // Debug
               return (
                 <motion.div
                   key={`${album.title}-${index}`}
@@ -161,7 +164,7 @@ const Gallery = () => {
                     className="w-full h-full object-cover group-hover:brightness-75 transition-brightness duration-200"
                     loading="lazy"
                   />
-                  <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-200 flex items-center justify-center">
+                  <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-200 flex items-center justify-center z-5">
                     <span className="text-white text-sm font-medium">
                       {album.title} {album.type === 'album' ? `(${album.media.length})` : ''}
                     </span>
@@ -221,11 +224,11 @@ const Gallery = () => {
                 )}
                 {/* Carousel Dots for Albums with Multiple Items */}
                 {selectedAlbum.type === 'album' && selectedAlbum.media.length > 1 && (
-                  <div className="carousel-dots mt-4 flex justify-center gap-2">
+                  <div className="carousel-dots mt-4 flex justify-center gap-2 z-10">
                     {selectedAlbum.media.map((_, index) => (
                       <button
                         key={index}
-                        className={`dot w-2 h-2 sm:w-3 sm:h-3 rounded-full ${index === currentMediaIndex ? 'bg-amber-500' : 'bg-gray-400'} z-50`}
+                        className={`dot w-3 h-3 sm:w-4 sm:h-4 rounded-full ${index === currentMediaIndex ? 'bg-amber-500' : 'bg-gray-400'}`}
                         onClick={() => goToMedia(index)}
                         aria-label={`View media item ${index + 1} of ${selectedAlbum.media.length}`}
                       />
@@ -250,7 +253,7 @@ const Gallery = () => {
               </div>
               {/* Close Button */}
               <button
-                className="absolute top-2 right-2 bg-gray-800 hover:bg-gray-700 text-white p-2 rounded-full"
+                className="absolute top-2 right-2 bg-gray-800 hover:bg-gray-700 text-white p-2 rounded-full z-60"
                 onClick={closeLightbox}
                 aria-label="Close lightbox"
               >
@@ -273,7 +276,7 @@ const Gallery = () => {
               {selectedAlbum.media.length > 1 && (
                 <>
                   <button
-                    className="absolute left-2 top-1/2 -translate-y-1/2 bg-gray-800 hover:bg-gray-700 text-white p-3 rounded-full"
+                    className="absolute left-2 top-1/2 -translate-y-1/2 bg-gray-800 hover:bg-gray-700 text-white p-3 rounded-full z-60"
                     onClick={() => navigateMedia(-1)}
                     aria-label="Previous media"
                   >
@@ -293,7 +296,7 @@ const Gallery = () => {
                     </svg>
                   </button>
                   <button
-                    className="absolute right-2 top-1/2 -translate-y-1/2 bg-gray-800 hover:bg-gray-700 text-white p-3 rounded-full"
+                    className="absolute right-2 top-1/2 -translate-y-1/2 bg-gray-800 hover:bg-gray-700 text-white p-3 rounded-full z-60"
                     onClick={() => navigateMedia(1)}
                     aria-label="Next media"
                   >

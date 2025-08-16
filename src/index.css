@@ -82,34 +82,35 @@ body{
   position: absolute;
   top: 8px;
   right: 8px;
-  background: rgba(0, 0, 0, 0.6);
-  padding: 4px;
+  background: rgba(0, 0, 0, 0.7);
+  padding: 6px;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  z-index: 10; /* Above title overlay */
+  z-index: 20; /* Above all */
 }
 
 /* Mobile icon size */
 @media (max-width: 640px) {
   .album-icon svg {
-    width: 20px;
-    height: 20px;
+    width: 24px;
+    height: 24px;
   }
 }
 
 /* Carousel dots */
 .carousel-dots {
-  display: flex;
+  display: flex !important;
   justify-content: center;
   gap: 8px;
   padding: 8px 0;
+  z-index: 10; /* Above media */
 }
 
 .dot {
-  width: 8px;
-  height: 8px;
+  width: 10px;
+  height: 10px;
   background: #9ca3af; /* gray-400 */
   border-radius: 50%;
   transition: background-color 0.3s ease;
@@ -117,6 +118,10 @@ body{
 
 .dot.active {
   background: #f59e0b; /* amber-500 */
+}
+
+.dot:hover {
+  background: #f59e0b; /* amber-500 on hover */
 }
 
 /* Lightbox */
@@ -176,7 +181,7 @@ body{
     padding: 4px 0;
   }
   .dot {
-    width: 6px;
-    height: 6px;
+    width: 8px;
+    height: 8px;
   }
 }
