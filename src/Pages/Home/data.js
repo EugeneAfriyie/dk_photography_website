@@ -432,3 +432,120 @@ export const testimonials = [
       category: 'Children',
     },
   ];
+
+
+export const galleryImage = [
+  {
+    type: 'album',
+    title: 'Wedding Bliss Album',
+    media: [
+      { src: 'https://res.cloudinary.com/djeorsh5d/image/upload/v1751247125/BRIDE1_kjfo1p.jpg', type: 'image', alt: 'Bride in white dress', description: 'Bride walking down the aisle.' },
+      { src: 'https://res.cloudinary.com/djeorsh5d/video/upload/v1751247127/wedding_dance.mp4', type: 'video', alt: 'Wedding dance video', description: 'First dance at the reception.' },
+      { src: 'https://res.cloudinary.com/djeorsh5d/image/upload/v1751247127/WED1_c0gp9p.jpg', type: 'image', alt: 'Wedding ceremony', description: 'Exchange of vows.' },
+    ],
+  },
+  {
+    type: 'album',
+    title: 'Family Legacy Album',
+    media: [
+      { src: 'https://res.cloudinary.com/djeorsh5d/image/upload/v1751247111/FAM1_wdqml7.jpg', type: 'image', alt: 'Family portrait', description: 'Family in studio.' },
+      { src: 'https://res.cloudinary.com/djeorsh5d/image/upload/v1751247111/FAM2_xkjm3q.jpg', type: 'image', alt: 'Family outdoors', description: 'Outdoor family photo.' },
+    ],
+  },
+  {
+    type: 'single',
+    title: 'Sunset Portrait',
+    media: [{ src: 'https://picsum.photos/800/800?random=1', type: 'image', alt: 'Sunset portrait', description: 'Portrait at golden hour.' }],
+  },
+  {
+    type: 'album',
+    title: 'Graduation Moments',
+    media: [
+      { src: 'https://res.cloudinary.com/djeorsh5d/image/upload/v1751247115/GRAD1_zkp4rt.jpg', type: 'image', alt: 'Graduate in cap', description: 'Graduate tossing cap.' },
+      { src: 'https://res.cloudinary.com/djeorsh5d/video/upload/v1751247115/grad_walk.mp4', type: 'video', alt: 'Graduation walk video', description: 'Walking across stage.' },
+      { src: 'https://res.cloudinary.com/djeorsh5d/image/upload/v1751247115/GRAD2_hjmn5t.jpg', type: 'image', alt: 'Graduate with family', description: 'Family celebration.' },
+      { src: 'https://picsum.photos/800/800?random=2', type: 'image', alt: 'Graduate portrait', description: 'Solo graduate portrait.' },
+    ],
+  },
+  {
+    type: 'single',
+    title: 'Beach Wedding Shot',
+    media: [{ src: 'https://picsum.photos/800/800?random=3', type: 'image', alt: 'Beach wedding', description: 'Couple on beach at sunset.' }],
+  },
+  {
+    type: 'album',
+    title: 'Engagement Session',
+    media: [
+      { src: 'https://res.cloudinary.com/djeorsh5d/image/upload/v1751247120/ENG1_pqlm8u.jpg', type: 'image', alt: 'Engagement photo', description: 'Couple in park.' },
+      { src: 'https://res.cloudinary.com/djeorsh5d/image/upload/v1751247120/ENG2_wxtn9v.jpg', type: 'image', alt: 'Ring close-up', description: 'Close-up of engagement ring.' },
+    ],
+  },
+  {
+    type: 'single',
+    title: 'Event Highlight Video',
+    media: [{ src: 'https://res.cloudinary.com/djeorsh5d/video/upload/v1751247123/event_highlight.mp4', type: 'video', alt: 'Event highlight video', description: 'Corporate event highlights.' }],
+  },
+  {
+    type: 'album',
+    title: 'Baby Shower Memories',
+    media: [
+      { src: 'https://picsum.photos/800/800?random=4', type: 'image', alt: 'Baby shower decor', description: 'Decorated venue.' },
+      { src: 'https://res.cloudinary.com/djeorsh5d/video/upload/v1751247124/baby_shower_speech.mp4', type: 'video', alt: 'Baby shower speech', description: 'Guest speech.' },
+      { src: 'https://picsum.photos/800/800?random=5', type: 'image', alt: 'Expecting parents', description: 'Parents-to-be smiling.' },
+    ],
+  },
+  {
+    type: 'album',
+    title: 'Corporate Event',
+    media: [
+      { src: 'https://res.cloudinary.com/djeorsh5d/image/upload/v1751247126/CORP1_klmn7y.jpg', type: 'image', alt: 'Conference speaker', description: 'Keynote speaker.' },
+      { src: 'https://res.cloudinary.com/djeorsh5d/image/upload/v1751247126/CORP2_zxwv8u.jpg', type: 'image', alt: 'Networking session', description: 'Attendees networking.' },
+      { src: 'https://res.cloudinary.com/djeorsh5d/video/upload/v1751247126/corp_promo.mp4', type: 'video', alt: 'Event promo video', description: 'Event promotional clip.' },
+    ],
+  },
+  {
+    type: 'single',
+    title: 'Cityscape Portrait',
+    media: [{ src: 'https://picsum.photos/800/800?random=6', type: 'image', alt: 'Cityscape portrait', description: 'Portrait with city skyline.' }],
+  },
+  {
+    type: 'album',
+    title: 'Anniversary Celebration',
+    media: [
+      { src: 'https://picsum.photos/800/800?random=7', type: 'image', alt: 'Anniversary couple', description: 'Couple celebrating milestone.' },
+      { src: 'https://res.cloudinary.com/djeorsh5d/video/upload/v1751247128/anniversary_toast.mp4', type: 'video', alt: 'Anniversary toast', description: 'Toast at anniversary party.' },
+    ],
+  },
+  {
+    type: 'album',
+    title: 'Fashion Shoot',
+    media: [
+      { src: 'https://res.cloudinary.com/djeorsh5d/image/upload/v1751247129/FASH1_mnbv9x.jpg', type: 'image', alt: 'Fashion model', description: 'Model in studio.' },
+      { src: 'https://picsum.photos/800/800?random=8', type: 'image', alt: 'Fashion pose', description: 'Model in outdoor shoot.' },
+      { src: 'https://res.cloudinary.com/djeorsh5d/image/upload/v1751247129/FASH2_pqrt0z.jpg', type: 'image', alt: 'Fashion close-up', description: 'Close-up of outfit.' },
+    ],
+  },
+  {
+    type: 'single',
+    title: 'Concert Video',
+    media: [{ src: 'https://res.cloudinary.com/djeorsh5d/video/upload/v1751247130/concert_clip.mp4', type: 'video', alt: 'Concert performance', description: 'Live concert footage.' }],
+  },
+  {
+    type: 'album',
+    title: 'Travel Adventure',
+    media: [
+      { src: 'https://picsum.photos/800/800?random=9', type: 'image', alt: 'Mountain view', description: 'Scenic mountain landscape.' },
+      { src: 'https://picsum.photos/800/800?random=10', type: 'image', alt: 'Beach sunset', description: 'Sunset on tropical beach.' },
+      { src: 'https://res.cloudinary.com/djeorsh5d/video/upload/v1751247131/travel_vlog.mp4', type: 'video', alt: 'Travel vlog', description: 'Exploring a new city.' },
+      { src: 'https://picsum.photos/800/800?random=11', type: 'image', alt: 'City street', description: 'Busy city street.' },
+    ],
+  },
+  {
+    type: 'album',
+    title: 'Pet Photography',
+    media: [
+      { src: 'https://picsum.photos/800/800?random=12', type: 'image', alt: 'Pet dog', description: 'Dog playing in park.' },
+      { src: 'https://res.cloudinary.com/djeorsh5d/image/upload/v1751247132/pet_video.mp4', type: 'video', alt: 'Pet video', description: 'Cat chasing toy.' },
+    ],
+  },
+];

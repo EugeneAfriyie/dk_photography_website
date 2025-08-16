@@ -1,16 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { throttle } from 'lodash';
-import { packages } from '../Home/data';
 import Header from '../Home/Components/Header';
 import Footer from '../../Components/Footer';
 import ExclusiveOffer from '../Home/Components/ExclusiveOffer';
 import BookingPrompt from '../Home/Components/BookingPrompt';
+import { galleryImage } from '../Home/data';
 
 const Gallery = () => {
   const [isVisible, setIsVisible] = useState(false);
-  const [selectedImage, setSelectedImage] = useState(null);
-  const [currentIndex, setCurrentIndex] = useState(0);
+  const [selectedAlbum, setSelectedAlbum] = useState(null);
+  const [currentMediaIndex, setCurrentMediaIndex] = useState(0);
 
   // Scroll-to-top button visibility
   useEffect(() => {
@@ -26,24 +26,24 @@ const Gallery = () => {
   }, []);
 
   // Open lightbox
-  const openLightbox = (image, index) => {
-    setSelectedImage(image);
-    setCurrentIndex(index);
-    document.body.style.overflow = 'hidden'; // Prevent background scroll
+  const openLightbox = (album, index) => {
+    setSelectedAlbum(album);
+    setCurrentMediaIndex(index);
+    document.body.style.overflow = 'hidden';
   };
 
   // Close lightbox
   const closeLightbox = () => {
-    setSelectedImage(null);
-    setCurrentIndex(0);
+    setSelectedAlbum(null);
+    setCurrentMediaIndex(0);
     document.body.style.overflow = 'auto';
   };
 
-  // Navigate to previous/next image
-  const navigateImage = (direction) => {
-    const newIndex = (currentIndex + direction + galleryImages.length) % galleryImages.length;
-    setCurrentIndex(newIndex);
-    setSelectedImage(galleryImages[newIndex]);
+  // Navigate to previous/next media
+  const navigateMedia = (direction) => {
+    if (!selectedAlbum) return;
+    const newIndex = (currentMediaIndex + direction + selectedAlbum.media.length) % selectedAlbum.media.length;
+    setCurrentMediaIndex(newIndex);
   };
 
   // Scroll to top
@@ -51,16 +51,8 @@ const Gallery = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
-  // Use package icons as gallery images, or switch to gallery.js
-  const galleryImages = packages.map((pkg) => ({
-    src: pkg.icon,
-    alt: `Gallery image for ${pkg.title}`,
-    title: pkg.title,
-    description: pkg.description,
-  }));
-
   return (
-    <div className={`min-h-screen bg-black text-white py-10 sm:py-20 px-4 overflow-hidden ${selectedImage ? 'pause-animation' : ''}`}>
+    <div className={`min-h-screen bg-black text-white py-10 sm:py-20 px-4 overflow-hidden ${selectedAlbum ? 'pause-animation' : ''}`}>
       <Header />
       <div className="max-w-7xl mx-auto">
         {/* Gallery Banner */}
@@ -124,31 +116,33 @@ const Gallery = () => {
         {/* Image Grid */}
         <section className="mb-8 sm:mb-12">
           <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-center mb-6 sm:mb-10">
-            Photo Gallery
+            Photo & Video Gallery
           </h2>
-          <div className="grid grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-1">
-            {galleryImages.map((image, index) => (
+          <div className="grid grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-1 sm:gap-2">
+            {galleryImage.map((album, index) => (
               <motion.div
-                key={`${image.title}-${index}`}
+                key={`${album.title}-${index}`}
                 className="relative aspect-square overflow-hidden cursor-pointer group"
                 initial={{ opacity: 0 }}
                 whileInView={{ opacity: 1 }}
                 transition={{ duration: 0.5, delay: index * 0.05 }}
                 viewport={{ once: true }}
-                onClick={() => openLightbox(image, index)}
+                onClick={() => openLightbox(album, 0)}
                 tabIndex={0}
                 role="button"
-                aria-label={`View ${image.alt} in lightbox`}
-                onKeyDown={(e) => e.key === 'Enter' && openLightbox(image, index)}
+                aria-label={`View ${album.title} ${album.type === 'album' ? 'album' : 'media'} in lightbox`}
+                onKeyDown={(e) => e.key === 'Enter' && openLightbox(album, 0)}
               >
                 <img
-                  src={image.src}
-                  alt={image.alt}
+                  src={album.media[0].src}
+                  alt={album.media[0].alt}
                   className="w-full h-full object-cover group-hover:brightness-75 transition-brightness duration-200"
                   loading="lazy"
                 />
                 <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-200 flex items-center justify-center">
-                  <span className="text-white text-sm font-medium">{image.title}</span>
+                  <span className="text-white text-sm font-medium">
+                    {album.title} {album.type === 'album' ? `(${album.media.length})` : ''}
+                  </span>
                 </div>
               </motion.div>
             ))}
@@ -156,7 +150,7 @@ const Gallery = () => {
         </section>
 
         {/* Instagram-style Lightbox Modal */}
-        {selectedImage && (
+        {selectedAlbum && (
           <motion.div
             className="fixed inset-0 bg-black/90 flex items-center justify-center z-50 p-4 sm:p-6"
             initial={{ opacity: 0 }}
@@ -165,7 +159,7 @@ const Gallery = () => {
             onClick={closeLightbox}
             role="dialog"
             aria-modal="true"
-            aria-label="Image lightbox"
+            aria-label={`${selectedAlbum.title} lightbox`}
           >
             <motion.div
               className="relative w-full max-w-4xl flex flex-col sm:flex-row bg-black rounded-lg overflow-hidden"
@@ -175,19 +169,31 @@ const Gallery = () => {
               transition={{ duration: 0.3 }}
               onClick={(e) => e.stopPropagation()}
             >
-              {/* Image */}
+              {/* Media Display */}
               <div className="w-full sm:w-2/3 h-[50vh] sm:h-[70vh] flex items-center justify-center">
-                <img
-                  src={selectedImage.src}
-                  alt={selectedImage.alt}
-                  className="max-w-full max-h-full object-contain"
-                />
+                {selectedAlbum.media[currentMediaIndex].type === 'image' ? (
+                  <img
+                    src={selectedAlbum.media[currentMediaIndex].src}
+                    alt={selectedAlbum.media[currentMediaIndex].alt}
+                    className="max-w-full max-h-full object-contain"
+                  />
+                ) : (
+                  <video
+                    src={selectedAlbum.media[currentMediaIndex].src}
+                    alt={selectedAlbum.media[currentMediaIndex].alt}
+                    className="max-w-full max-h-full object-contain"
+                    controls
+                    autoPlay
+                    loop
+                    muted
+                  />
+                )}
               </div>
               {/* Caption and Controls */}
               <div className="w-full sm:w-1/3 p-4 sm:p-6 flex flex-col justify-between bg-black">
                 <div>
-                  <h3 className="text-lg sm:text-xl font-semibold text-white mb-2">{selectedImage.title}</h3>
-                  <p className="text-gray-300 text-sm">{selectedImage.description}</p>
+                  <h3 className="text-lg sm:text-xl font-semibold text-white mb-2">{selectedAlbum.title}</h3>
+                  <p className="text-gray-300 text-sm">{selectedAlbum.media[currentMediaIndex].description}</p>
                 </div>
                 <div className="flex gap-4 mt-4">
                   <a
@@ -219,47 +225,51 @@ const Gallery = () => {
                   />
                 </svg>
               </button>
-              {/* Navigation Buttons */}
-              <button
-                className="absolute left-2 top-1/2 -translate-y-1/2 bg-gray-800 hover:bg-gray-700 text-white p-3 rounded-full"
-                onClick={() => navigateImage(-1)}
-                aria-label="Previous image"
-              >
-                <svg
-                  className="w-5 h-5"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2"
-                    d="M15 19l-7-7 7-7"
-                  />
-                </svg>
-              </button>
-              <button
-                className="absolute right-2 top-1/2 -translate-y-1/2 bg-gray-800 hover:bg-gray-700 text-white p-3 rounded-full"
-                onClick={() => navigateImage(1)}
-                aria-label="Next image"
-              >
-                <svg
-                  className="w-5 h-5"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2"
-                    d="M9 5l7 7-7 7"
-                  />
-                </svg>
-              </button>
+              {/* Navigation Buttons (only for albums with multiple items) */}
+              {selectedAlbum.media.length > 1 && (
+                <>
+                  <button
+                    className="absolute left-2 top-1/2 -translate-y-1/2 bg-gray-800 hover:bg-gray-700 text-white p-3 rounded-full"
+                    onClick={() => navigateMedia(-1)}
+                    aria-label="Previous media"
+                  >
+                    <svg
+                      className="w-5 h-5"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth="2"
+                        d="M15 19l-7-7 7-7"
+                      />
+                    </svg>
+                  </button>
+                  <button
+                    className="absolute right-2 top-1/2 -translate-y-1/2 bg-gray-800 hover:bg-gray-700 text-white p-3 rounded-full"
+                    onClick={() => navigateMedia(1)}
+                    aria-label="Next media"
+                  >
+                    <svg
+                      className="w-5 h-5"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth="2"
+                        d="M9 5l7 7-7 7"
+                      />
+                    </svg>
+                  </button>
+                </>
+              )}
             </motion.div>
           </motion.div>
         )}
