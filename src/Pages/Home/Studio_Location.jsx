@@ -21,7 +21,7 @@ const Studio_Location = ({locations}) => {
             </p>
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
               {/* Interactive Map */}
-              <div className="h-[400px] rounded-lg overflow-hidden">
+              <div className="h-[400px] w-full rounded-lg overflow-hidden">
                 <MapContainer
                   center={[6.690112573887113, -1.6095430126993149]} 
                   zoom={10}

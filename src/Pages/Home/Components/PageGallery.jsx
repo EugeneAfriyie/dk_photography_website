@@ -54,7 +54,7 @@ const GalleryPreview = ({galleryImages}) => {
         >
           Discover a collection of our finest moments captured through the lens.
         </motion.p>
-        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
+        <div className="grid grid-cols-3 sm:grid-cols-3 lg:grid-cols-4 gap-4">
           {galleryImages.map((image, index) => (
             <motion.div
               key={index}
