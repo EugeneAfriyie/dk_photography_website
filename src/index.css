@@ -67,13 +67,26 @@ body{
   brightness: 0.75; /* Dim on hover */
 }
 
-.grid > div .absolute {
+.grid > div .absolute:not(.album-icon) {
   transition: opacity 0.2s ease;
   opacity: 0;
 }
 
-.grid > div:hover .absolute {
+.grid > div:hover .absolute:not(.album-icon) {
   opacity: 1;
+}
+
+/* Album icon */
+.album-icon {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  background: rgba(0, 0, 0, 0.6);
+  padding: 4px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 /* Lightbox */

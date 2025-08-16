@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { throttle } from 'lodash';
+import { galleryImage } from '../Home/data';
 import Header from '../Home/Components/Header';
 import Footer from '../../Components/Footer';
 import ExclusiveOffer from '../Home/Components/ExclusiveOffer';
 import BookingPrompt from '../Home/Components/BookingPrompt';
-import { galleryImage } from '../Home/data';
+import { FaImage, FaImages, FaVideo } from 'react-icons/fa';
 
 const Gallery = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -49,6 +50,20 @@ const Gallery = () => {
   // Scroll to top
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  // Get icon based on albumType
+  const getAlbumIcon = (albumType) => {
+    switch (albumType) {
+      case 'mixed':
+        return <FaImages className="text-white w-5 h-5 z-40" />;
+      case 'images':
+        return <FaImage className="text-white w-5 h-5" />;
+      case 'videos':
+        return <FaVideo className="text-white w-5 h-5" />;
+      default:
+        return null;
+    }
   };
 
   return (
@@ -144,6 +159,14 @@ const Gallery = () => {
                     {album.title} {album.type === 'album' ? `(${album.media.length})` : ''}
                   </span>
                 </div>
+                {album.type === 'album' && (
+                  <div
+                    className="absolute top-2 right-2 bg-black/60 p-1 rounded-full"
+                    aria-label={`Album contains ${album.albumType} content`}
+                  >
+                    {getAlbumIcon(album.albumType)}
+                  </div>
+                )}
               </motion.div>
             ))}
           </div>
