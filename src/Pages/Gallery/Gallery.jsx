@@ -209,7 +209,7 @@ const Gallery = () => {
           {filteredImages.length === 0 ? (
             <p className="text-center text-gray-300">No media available for this category.</p>
           ) : (
-            <div className="grid grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-1 sm:gap-2">
+            <div className="grid grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-1 sm:gap-2 ">
               {filteredImages.map((album, index) => {
                 console.log(album.title, album.type, album.albumType, album.category); // Debug log
                 return (
