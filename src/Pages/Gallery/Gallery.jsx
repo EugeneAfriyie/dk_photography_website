@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { throttle } from 'lodash';
 import { packages } from '../Home/data';
-
 import Header from '../Home/Components/Header';
 import Footer from '../../Components/Footer';
 import ExclusiveOffer from '../Home/Components/ExclusiveOffer';
@@ -127,7 +126,7 @@ const Gallery = () => {
           <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-center mb-6 sm:mb-10">
             Photo Gallery
           </h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-1">
+          <div className="grid grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-1">
             {galleryImages.map((image, index) => (
               <motion.div
                 key={`${image.title}-${index}`}
