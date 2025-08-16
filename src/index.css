@@ -82,46 +82,21 @@ body{
   position: absolute;
   top: 8px;
   right: 8px;
-  background: rgba(0, 0, 0, 0.7);
-  padding: 6px;
+  background: rgba(0, 0, 0, 0.6);
+  padding: 4px;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  z-index: 20; /* Above all */
+  z-index: 10; /* Above title overlay */
 }
 
 /* Mobile icon size */
 @media (max-width: 640px) {
   .album-icon svg {
-    width: 24px;
-    height: 24px;
+    width: 20px;
+    height: 20px;
   }
-}
-
-/* Carousel dots */
-.carousel-dots {
-  display: flex !important;
-  justify-content: center;
-  gap: 8px;
-  padding: 8px 0;
-  z-index: 10; /* Above media */
-}
-
-.dot {
-  width: 10px;
-  height: 10px;
-  background: #9ca3af; /* gray-400 */
-  border-radius: 50%;
-  transition: background-color 0.3s ease;
-}
-
-.dot.active {
-  background: #f59e0b; /* amber-500 */
-}
-
-.dot:hover {
-  background: #f59e0b; /* amber-500 on hover */
 }
 
 /* Lightbox */
@@ -168,6 +143,29 @@ body{
   stroke-width: 2.5; /* Thicker icons for Instagram style */
 }
 
+/* Dot indicators */
+.dot-indicators {
+  display: flex;
+  gap: 8px;
+  margin-top: 16px;
+}
+
+.dot-indicators button {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #6b7280; /* gray-500 */
+  transition: background-color 0.2s ease;
+}
+
+.dot-indicators button.active {
+  background: #ffffff; /* white */
+}
+
+.dot-indicators button:hover {
+  background: #d1d5db; /* gray-300 */
+}
+
 /* Mobile adjustments */
 @media (max-width: 640px) {
   .lightbox .relative {
@@ -177,11 +175,8 @@ body{
   .lightbox video {
     height: 50vh;
   }
-  .carousel-dots {
-    padding: 4px 0;
-  }
-  .dot {
-    width: 8px;
-    height: 8px;
+  .dot-indicators button {
+    width: 10px;
+    height: 10px;
   }
 }
