@@ -14,18 +14,18 @@ const Services = ({servicesData}) => {
                   >
                     Our Services
                   </motion.h2>
-                  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 h-full">
                     {servicesData.map((service, i) => (
                       <motion.div
                         key={service.title}
-                        className="bg-gray-800 p-8 rounded-xl shadow-md hover:shadow-lg transition-all duration-300 flex flex-col min-h-full"
+                        className="bg-gray-800 p-4 rounded-xl shadow-md hover:shadow-lg transition-all duration-300 flex flex-col min-h-full"
                         initial={{ opacity: 0, y: 50 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         transition={{ delay: i * 0.2, duration: 0.1, ease: 'easeInOut', type: 'spring' }}
                         viewport={{ once: true }}
                         whileHover={{ scale: 1.05 }}
                       >
-                        <motion.div className="w-full h-40 bg-gray-700 overflow-hidden aspect-[4/2]">
+                        <motion.div className="w-full h-40 bg-gray-700 overflow-hidden ">
                           <motion.img
                             initial={{ scale: 1 }}
                             whileHover={{ scale: 1.05 }}
