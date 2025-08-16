@@ -13,7 +13,11 @@ const Gallery = () => {
   const [isVisible, setIsVisible] = useState(false);
   const [selectedAlbum, setSelectedAlbum] = useState(null);
   const [currentMediaIndex, setCurrentMediaIndex] = useState(0);
-  const [direction, setDirection] = useState(0); // For swipe animation direction
+  const [direction, setDirection] = useState(0);
+  const [activeFilter, setActiveFilter] = useState('all');
+
+  // Filter options
+  const filters = ['all', 'wedding', 'children', 'couple', 'birthday', 'graduation'];
 
   // Scroll-to-top button visibility
   useEffect(() => {
@@ -61,9 +65,9 @@ const Gallery = () => {
   const swipeHandlers = useSwipeable({
     onSwipedLeft: () => navigateMedia(1),
     onSwipedRight: () => navigateMedia(-1),
-    delta: 10, // Minimum swipe distance
+    delta: 10,
     preventDefaultTouchmoveEvent: true,
-    trackMouse: false, // Mobile only
+    trackMouse: false,
   });
 
   // Keyboard navigation
@@ -72,6 +76,17 @@ const Gallery = () => {
     if (e.key === 'ArrowLeft') navigateMedia(-1);
     if (e.key === 'ArrowRight') navigateMedia(1);
   };
+
+  // Filter handler
+  const handleFilter = (filter) => {
+    setActiveFilter(filter);
+    setSelectedAlbum(null); // Close lightbox on filter change
+  };
+
+  // Filtered images
+  const filteredImages = activeFilter === 'all'
+    ? galleryImage
+    : galleryImage.filter((album) => album.category === activeFilter);
 
   // Scroll to top
   const scrollToTop = () => {
@@ -100,7 +115,7 @@ const Gallery = () => {
       onKeyDown={handleKeyDown}
       tabIndex={0}
     >
-      {/* <Header /> */}
+      <Header />
       <div className="max-w-7xl mx-auto">
         {/* Gallery Banner */}
         <motion.section
@@ -158,53 +173,83 @@ const Gallery = () => {
           </motion.div>
         </motion.section>
 
-        {/* <ExclusiveOffer /> */}
+        <ExclusiveOffer />
+
+        {/* Filter Bar */}
+        <section className="mb-6 sm:mb-8">
+          <div className="flex gap-2 sm:gap-4 overflow-x-auto sm:flex-wrap pb-2 sm:pb-0 filter-bar">
+            {filters.map((filter) => (
+              <motion.button
+                key={filter}
+                className={`px-4 py-2 rounded-full text-sm sm:text-base font-medium capitalize whitespace-nowrap ${
+                  activeFilter === filter
+                    ? 'bg-amber-500 text-white'
+                    : 'bg-gray-800 text-gray-300 hover:bg-gray-700'
+                }`}
+                onClick={() => handleFilter(filter)}
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                role="tab"
+                aria-label={`Filter by ${filter} category`}
+                aria-selected={activeFilter === filter}
+                tabIndex={0}
+                onKeyDown={(e) => e.key === 'Enter' && handleFilter(filter)}
+              >
+                {filter}
+              </motion.button>
+            ))}
+          </div>
+        </section>
 
         {/* Image Grid */}
         <section className="mb-8 sm:mb-12">
           <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-center mb-6 sm:mb-10">
             Photo & Video Gallery
           </h2>
-          <div className="grid grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-1 sm:gap-2">
-            {galleryImage.map((album, index) => {
-              console.log(album.title, album.type, album.albumType); // Debug log
-              return (
-                <motion.div
-                  key={`${album.title}-${index}`}
-                  className="relative aspect-square overflow-hidden cursor-pointer group"
-                  initial={{ opacity: 0 }}
-                  whileInView={{ opacity: 1 }}
-                  transition={{ duration: 0.5, delay: index * 0.05 }}
-                  viewport={{ once: true }}
-                  onClick={() => openLightbox(album, 0)}
-                  tabIndex={0}
-                  role="button"
-                  aria-label={`View ${album.title} ${album.type === 'album' ? 'album' : 'media'} in lightbox`}
-                  onKeyDown={(e) => e.key === 'Enter' && openLightbox(album, 0)}
-                >
-                  <img
-                    src={album.media[0].src}
-                    alt={album.media[0].alt}
-                    className="w-full h-full object-cover group-hover:brightness-75 transition-brightness duration-200"
-                    loading="lazy"
-                  />
-                  <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-200 flex items-center justify-center">
-                    <span className="text-white text-sm font-medium">
-                      {album.title} {album.type === 'album' ? `(${album.media.length})` : ''}
-                    </span>
-                  </div>
-                  {album.type === 'album' && (
-                    <div
-                      className="absolute top-2 right-2 bg-black/60 p-1 rounded-full album-icon"
-                      aria-label={`Album contains ${album.albumType} content`}
-                    >
-                      {getAlbumIcon(album.albumType)}
+          {filteredImages.length === 0 ? (
+            <p className="text-center text-gray-300">No media available for this category.</p>
+          ) : (
+            <div className="grid grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-1 sm:gap-2">
+              {filteredImages.map((album, index) => {
+                console.log(album.title, album.type, album.albumType, album.category); // Debug log
+                return (
+                  <motion.div
+                    key={`${album.title}-${index}`}
+                    className="relative aspect-square overflow-hidden cursor-pointer group"
+                    initial={{ opacity: 0 }}
+                    whileInView={{ opacity: 1 }}
+                    transition={{ duration: 0.5, delay: index * 0.05 }}
+                    viewport={{ once: true }}
+                    onClick={() => openLightbox(album, 0)}
+                    tabIndex={0}
+                    role="button"
+                    aria-label={`View ${album.title} ${album.type === 'album' ? 'album' : 'media'} in lightbox`}
+                    onKeyDown={(e) => e.key === 'Enter' && openLightbox(album, 0)}
+                  >
+                    <img
+                      src={album.media[0].src}
+                      alt={album.media[0].alt}
+                      className="w-full h-full object-cover group-hover:brightness-75 transition-brightness duration-200"
+                      loading="lazy"
+                    />
+                    <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-200 flex items-center justify-center">
+                      <span className="text-white text-sm font-medium">
+                        {album.title} {album.type === 'album' ? `(${album.media.length})` : ''}
+                      </span>
                     </div>
-                  )}
-                </motion.div>
-              );
-            })}
-          </div>
+                    {album.type === 'album' && (
+                      <div
+                        className="absolute top-2 right-2 bg-black/60 p-1 rounded-full album-icon"
+                        aria-label={`Album contains ${album.albumType} content`}
+                      >
+                        {getAlbumIcon(album.albumType)}
+                      </div>
+                    )}
+                  </motion.div>
+                );
+              })}
+            </div>
+          )}
         </section>
 
         {/* Instagram-style Lightbox Modal */}
@@ -220,7 +265,7 @@ const Gallery = () => {
             aria-label={`${selectedAlbum.title} lightbox`}
           >
             <motion.div
-              className="relative w-full max-w-4xl flex flex-col sm:flex-row bg-black rounded-lg max-h-[100vh] sm:max-h-[80vh] overflow-auto pb-4"
+              className="relative w-full max-w-4xl flex flex-col sm:flex-row bg-black rounded-lg max-h-[100vh] sm:max-h-[80vh]"
               initial={{ scale: 0.9, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               exit={{ scale: 0.9, opacity: 0 }}

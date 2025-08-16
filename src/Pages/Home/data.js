@@ -438,6 +438,7 @@ export const galleryImage = [
     type: 'album',
     title: 'Wedding Bliss Album',
     albumType: 'mixed',
+    category: 'wedding',
     media: [
       {
         src: 'https://res.cloudinary.com/djeorsh5d/image/upload/v1751247125/BRIDE1_kjfo1p.jpg',
@@ -469,6 +470,7 @@ export const galleryImage = [
     type: 'album',
     title: 'Family Legacy Album',
     albumType: 'images',
+    category: 'children',
     media: [
       {
         src: 'https://res.cloudinary.com/djeorsh5d/image/upload/v1751247111/FAM1_wdqml7.jpg',
@@ -489,6 +491,7 @@ export const galleryImage = [
   {
     type: 'single',
     title: 'Sunset Portrait',
+    category: 'couple',
     media: [
       {
         src: 'https://picsum.photos/800/800?random=1',
@@ -503,6 +506,7 @@ export const galleryImage = [
     type: 'album',
     title: 'Graduation Moments',
     albumType: 'mixed',
+    category: 'graduation',
     media: [
       {
         src: 'https://res.cloudinary.com/djeorsh5d/image/upload/v1751247115/GRAD1_zkp4rt.jpg',
@@ -537,6 +541,7 @@ export const galleryImage = [
   {
     type: 'single',
     title: 'Beach Wedding Shot',
+    category: 'wedding',
     media: [
       {
         src: 'https://picsum.photos/800/800?random=3',
@@ -554,6 +559,7 @@ export const galleryImage = [
     type: 'album',
     title: 'Engagement Session',
     albumType: 'images',
+    category: 'couple',
     media: [
       {
         src: 'https://res.cloudinary.com/djeorsh5d/image/upload/v1751247120/ENG1_pqlm8u.jpg',
@@ -574,6 +580,7 @@ export const galleryImage = [
   {
     type: 'single',
     title: 'Event Highlight Video',
+    category: 'graduation',
     media: [
       {
         src: 'https://res.cloudinary.com/djeorsh5d/video/upload/v1751247123/event_highlight.mp4',
@@ -588,6 +595,7 @@ export const galleryImage = [
     type: 'album',
     title: 'Baby Shower Memories',
     albumType: 'mixed',
+    category: 'children',
     media: [
       {
         src: 'https://picsum.photos/800/800?random=4',
@@ -616,6 +624,7 @@ export const galleryImage = [
     type: 'album',
     title: 'Corporate Event',
     albumType: 'mixed',
+    category: 'graduation',
     media: [
       {
         src: 'https://res.cloudinary.com/djeorsh5d/image/upload/v1751247126/CORP1_klmn7y.jpg',
@@ -643,6 +652,7 @@ export const galleryImage = [
   {
     type: 'single',
     title: 'Cityscape Portrait',
+    category: 'couple',
     media: [
       {
         src: 'https://picsum.photos/800/800?random=6',
@@ -657,6 +667,7 @@ export const galleryImage = [
     type: 'album',
     title: 'Anniversary Celebration',
     albumType: 'mixed',
+    category: 'couple',
     media: [
       {
         src: 'https://picsum.photos/800/800?random=7',
@@ -678,6 +689,7 @@ export const galleryImage = [
     type: 'album',
     title: 'Fashion Shoot',
     albumType: 'images',
+    category: 'couple',
     media: [
       {
         src: 'https://res.cloudinary.com/djeorsh5d/image/upload/v1751247129/FASH1_mnbv9x.jpg',
@@ -705,6 +717,7 @@ export const galleryImage = [
   {
     type: 'single',
     title: 'Concert Video',
+    category: 'graduation',
     media: [
       {
         src: 'https://res.cloudinary.com/djeorsh5d/video/upload/v1751247130/concert_clip.mp4',
@@ -719,6 +732,7 @@ export const galleryImage = [
     type: 'album',
     title: 'Travel Adventure',
     albumType: 'mixed',
+    category: 'couple',
     media: [
       {
         src: 'https://picsum.photos/800/800?random=9',
@@ -754,6 +768,7 @@ export const galleryImage = [
     type: 'album',
     title: 'Pet Photography',
     albumType: 'mixed',
+    category: 'children',
     media: [
       {
         src: 'https://picsum.photos/800/800?random=12',

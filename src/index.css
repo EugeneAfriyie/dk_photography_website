@@ -99,6 +99,34 @@ body{
   }
 }
 
+/* Filter bar */
+.filter-bar {
+  display: flex;
+  gap: 8px;
+  overflow-x: auto;
+  padding-bottom: 8px;
+  -webkit-overflow-scrolling: touch; /* Smooth scrolling on mobile */
+  scrollbar-width: none; /* Hide scrollbar Firefox */
+}
+
+.filter-bar::-webkit-scrollbar {
+  display: none; /* Hide scrollbar Chrome/Safari */
+}
+
+.filter-bar button {
+  transition: background-color 0.2s ease, transform 0.2s ease;
+  cursor: pointer;
+}
+
+.filter-bar button:hover {
+  background-color: #374151; /* gray-700 */
+}
+
+.filter-bar button[aria-selected="true"] {
+  background-color: #f59e0b; /* amber-500 */
+  color: #ffffff;
+}
+
 /* Lightbox */
 .lightbox {
   position: fixed;
@@ -195,6 +223,11 @@ body{
   .lightbox img,
   .lightbox video {
     height: 70vh; /* Desktop height */
+  }
+  .filter-bar {
+    flex-wrap: wrap;
+    overflow-x: visible;
+    justify-content: center;
   }
 }
 
