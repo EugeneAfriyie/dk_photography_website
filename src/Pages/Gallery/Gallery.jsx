@@ -279,7 +279,7 @@ const Gallery = () => {
                 tabIndex={0}
                 aria-label="Swipe or use arrow keys to navigate media"
               >
-                <div className="relative w-full h-[90vh] sm:h-[70vh] overflow-x-hidden border-amber-500 border">
+                <div className="relative w-full h-[70vh] sm:h-[70vh] overflow-x-hidden border-amber-500 border">
                   <AnimatePresence initial={false} custom={direction}>
                     <motion.div
                       key={currentMediaIndex}
