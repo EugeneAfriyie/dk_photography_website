@@ -115,7 +115,7 @@ const Gallery = () => {
       onKeyDown={handleKeyDown}
       tabIndex={0}
     >
-      <Header />
+      {/* <Header /> */}
       <div className="max-w-7xl mx-auto">
         {/* Gallery Banner */}
         <motion.section
@@ -173,7 +173,7 @@ const Gallery = () => {
           </motion.div>
         </motion.section>
 
-        <ExclusiveOffer />
+        {/* <ExclusiveOffer /> */}
 
         {/* Filter Bar */}
         <section className="mb-6 sm:mb-8">
@@ -215,7 +215,7 @@ const Gallery = () => {
                 return (
                   <motion.div
                     key={`${album.title}-${index}`}
-                    className="relative aspect-square overflow-hidden cursor-pointer group"
+                    className="relative aspect-3/4 overflow-hidden cursor-pointer group border border-gray-700 hover:border-amber-400 transition-colors duration-300 rounded-lg"
                     initial={{ opacity: 0 }}
                     whileInView={{ opacity: 1 }}
                     transition={{ duration: 0.5, delay: index * 0.05 }}
@@ -229,10 +229,10 @@ const Gallery = () => {
                     <img
                       src={album.media[0].src}
                       alt={album.media[0].alt}
-                      className="w-full h-full object-cover group-hover:brightness-75 transition-brightness duration-200"
+                      className="w-full h-full object-cover group-hover:brightness-75 transition-brightness duration-200 "
                       loading="lazy"
                     />
-                    <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-200 flex items-center justify-center">
+                    <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-200 flex items-center justify-center ">
                       <span className="text-white text-sm font-medium">
                         {album.title} {album.type === 'album' ? `(${album.media.length})` : ''}
                       </span>
@@ -265,7 +265,7 @@ const Gallery = () => {
             aria-label={`${selectedAlbum.title} lightbox`}
           >
             <motion.div
-              className="relative w-full max-w-4xl flex flex-col sm:flex-row bg-black rounded-lg max-h-[100vh] sm:max-h-[80vh]"
+              className="relative w-full max-w-4xl flex flex-col sm:flex-row bg-black rounded-lg max-h-[100vh] sm:max-h-[80vh] overflow-auto"
               initial={{ scale: 0.9, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               exit={{ scale: 0.9, opacity: 0 }}
