@@ -279,7 +279,7 @@ const Gallery = () => {
                 tabIndex={0}
                 aria-label="Swipe or use arrow keys to navigate media"
               >
-                <div className="relative w-full h-[90vh] sm:h-[70vh] overflow-x-hidden">
+                <div className="relative w-full h-[90vh] sm:h-[70vh] overflow-x-hidden border-amber-500 border">
                   <AnimatePresence initial={false} custom={direction}>
                     <motion.div
                       key={currentMediaIndex}
@@ -323,7 +323,7 @@ const Gallery = () => {
                 </div>
                 {/* Dot Indicators for Albums */}
                 {selectedAlbum.type === 'album' && selectedAlbum.media.length > 1 && (
-                  <div className="flex gap-2 mt-4">
+                  <div className="flex gap-2 mt-1">
                     {selectedAlbum.media.map((_, index) => (
                       <button
                         key={index}
