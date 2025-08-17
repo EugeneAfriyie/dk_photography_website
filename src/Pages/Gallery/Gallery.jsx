@@ -17,12 +17,19 @@ const Gallery = () => {
   const [direction, setDirection] = useState(0);
   const [activeFilter, setActiveFilter] = useState('all');
   const [carouselIndex, setCarouselIndex] = useState(0);
+  const [isPaused, setIsPaused] = useState(false);
+  const [countdown, setCountdown] = useState({
+    days: 0,
+    hours: 0,
+    minutes: 0,
+    seconds: 0,
+  });
 
   // Filter options
   const filters = ['all', 'wedding', 'children', 'couple', 'birthday', 'graduation'];
 
-  // Carousel items
-  const carouselItems = [
+  // Carousel slides
+  const carouselSlides = [
     {
       image: 'https://picsum.photos/800/400',
       srcSet: 'https://picsum.photos/400/200 400w, https://picsum.photos/800/400 800w, https://picsum.photos/1200/600 1200w',
@@ -30,72 +37,64 @@ const Gallery = () => {
       alt: 'Gallery banner showcasing photography',
       title: 'Our Gallery',
       description: 'Explore our stunning photography and videography moments.',
-    },
-    {
-      image: 'https://picsum.photos/800/400?random=12',
-      srcSet: 'https://picsum.photos/400/200?random=12 400w, https://picsum.photos/800/400?random=12 800w, https://picsum.photos/1200/600?random=12 1200w',
-      sizes: '(max-width: 640px) 400px, (max-width: 1280px) 800px, 1200px',
-      alt: 'Special booking offer countdown',
-      title: 'Limited Time Offer!',
-      description: 'Book now and save big on your next session. Offer ends soon!',
-      isCountdown: true,
+      cta: null,
     },
     {
       image: 'https://picsum.photos/800/400?random=13',
       srcSet: 'https://picsum.photos/400/200?random=13 400w, https://picsum.photos/800/400?random=13 800w, https://picsum.photos/1200/600?random=13 1200w',
       sizes: '(max-width: 640px) 400px, (max-width: 1280px) 800px, 1200px',
-      alt: 'Capture your moments banner',
-      title: 'Capture Your Moments with Us!',
-      description: 'Let us turn your special occasions into lasting memories with our expert photography and videography.',
-      ctaText: 'Explore Packages',
-      ctaLink: '/services',
+      alt: 'Special booking offer banner',
+      title: 'Limited Time Offer',
+      description: 'Book by August 31, 2025, for 20% off your session!',
+      cta: { text: 'Book Now', href: '/contact' },
+    },
+    {
+      image: 'https://picsum.photos/800/400?random=14',
+      srcSet: 'https://picsum.photos/400/200?random=14 400w, https://picsum.photos/800/400?random=14 800w, https://picsum.photos/1200/600?random=14 1200w',
+      sizes: '(max-width: 640px) 400px, (max-width: 1280px) 800px, 1200px',
+      alt: 'Featured romantic sunset portraits',
+      title: 'Featured Shoot: Sunset Portraits',
+      description: 'Capture your love story with our breathtaking sunset sessions.',
+      cta: { text: 'Learn More', href: '/services' },
     },
   ];
 
   // Countdown timer
-  const [timeLeft, setTimeLeft] = useState({
-    days: 0,
-    hours: 0,
-    minutes: 0,
-    seconds: 0,
-  });
-
   useEffect(() => {
-    const endDate = dayjs('2025-08-24T23:59:00Z');
+    const targetDate = dayjs('2025-08-31T23:59:59');
     const updateCountdown = () => {
       const now = dayjs();
-      const diff = endDate.diff(now);
-      if (diff <= 0) {
-        setTimeLeft({ days: 0, hours: 0, minutes: 0, seconds: 0 });
+      const duration = targetDate.diff(now);
+      if (duration <= 0) {
+        setCountdown({ days: 0, hours: 0, minutes: 0, seconds: 0 });
         return;
       }
-      const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-      const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-      const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-      const seconds = Math.floor((diff % (1000 * 60)) / 1000);
-      setTimeLeft({ days, hours, minutes, seconds });
+      const days = Math.floor(duration / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((duration % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((duration % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((duration % (1000 * 60)) / 1000);
+      setCountdown({ days, hours, minutes, seconds });
     };
-
     updateCountdown();
-    const timer = setInterval(updateCountdown, 1000);
-    return () => clearInterval(timer);
+    const interval = setInterval(updateCountdown, 1000);
+    return () => clearInterval(interval);
   }, []);
 
-  // Carousel auto-advance
+  // Carousel auto-rotation
   useEffect(() => {
-    if (selectedAlbum) return; // Pause when lightbox is open
-    const autoAdvance = setInterval(() => {
-      setCarouselIndex((prev) => (prev + 1) % carouselItems.length);
+    if (isPaused) return;
+    const interval = setInterval(() => {
+      setCarouselIndex((prev) => (prev + 1) % carouselSlides.length);
+      setDirection(1);
     }, 5000);
-    return () => clearInterval(autoAdvance);
-  }, [selectedAlbum]);
+    return () => clearInterval(interval);
+  }, [isPaused]);
 
   // Scroll-to-top button visibility
   useEffect(() => {
     const handleScroll = throttle(() => {
       setIsVisible(window.scrollY > 300);
     }, 100);
-
     window.addEventListener('scroll', handleScroll);
     return () => {
       window.removeEventListener('scroll', handleScroll);
@@ -118,7 +117,7 @@ const Gallery = () => {
     document.body.style.overflow = 'auto';
   };
 
-  // Navigate to previous/next media (lightbox)
+  // Navigate to previous/next media
   const navigateMedia = (direction) => {
     if (!selectedAlbum) return;
     const newIndex = (currentMediaIndex + direction + selectedAlbum.media.length) % selectedAlbum.media.length;
@@ -126,7 +125,7 @@ const Gallery = () => {
     setDirection(direction);
   };
 
-  // Navigate to specific media item (lightbox)
+  // Navigate to specific media item
   const goToMedia = (index) => {
     setDirection(index > currentMediaIndex ? 1 : -1);
     setCurrentMediaIndex(index);
@@ -134,18 +133,30 @@ const Gallery = () => {
 
   // Navigate carousel
   const navigateCarousel = (direction) => {
-    setCarouselIndex((prev) => (prev + direction + carouselItems.length) % carouselItems.length);
+    const newIndex = (carouselIndex + direction + carouselSlides.length) % carouselSlides.length;
+    setCarouselIndex(newIndex);
+    setDirection(direction);
   };
 
-  // Go to specific carousel item
-  const goToCarouselItem = (index) => {
+  // Go to specific carousel slide
+  const goToCarouselSlide = (index) => {
+    setDirection(index > carouselIndex ? 1 : -1);
     setCarouselIndex(index);
   };
 
-  // Swipe handlers (carousel and lightbox)
-  const swipeHandlers = useSwipeable({
-    onSwipedLeft: () => (selectedAlbum ? navigateMedia(1) : navigateCarousel(1)),
-    onSwipedRight: () => (selectedAlbum ? navigateMedia(-1) : navigateCarousel(-1)),
+  // Swipe handlers for carousel
+  const carouselSwipeHandlers = useSwipeable({
+    onSwipedLeft: () => navigateCarousel(1),
+    onSwipedRight: () => navigateCarousel(-1),
+    delta: 10,
+    preventDefaultTouchmoveEvent: true,
+    trackMouse: false,
+  });
+
+  // Swipe handlers for lightbox
+  const lightboxSwipeHandlers = useSwipeable({
+    onSwipedLeft: () => navigateMedia(1),
+    onSwipedRight: () => navigateMedia(-1),
     delta: 10,
     preventDefaultTouchmoveEvent: true,
     trackMouse: false,
@@ -165,7 +176,7 @@ const Gallery = () => {
   // Filter handler
   const handleFilter = (filter) => {
     setActiveFilter(filter);
-    setSelectedAlbum(null); // Close lightbox on filter change
+    setSelectedAlbum(null);
   };
 
   // Filtered images
@@ -202,89 +213,101 @@ const Gallery = () => {
       <div className="max-w-7xl mx-auto">
         {/* Carousel Banner */}
         <motion.section
-          className="relative rounded-lg mb-8 sm:mb-12 overflow-hidden h-64 sm:h-80 md:h-96"
+          className="relative rounded-lg mb-8 sm:mb-12 overflow-hidden h-64 sm:h-96"
+          initial={{ opacity: 0, y: 50 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1, ease: 'ease-out' }}
           viewport={{ once: true }}
-          aria-label="Gallery banner carousel"
+          onMouseEnter={() => setIsPaused(true)}
+          onMouseLeave={() => setIsPaused(false)}
         >
-          <div className="relative w-full h-full" {...swipeHandlers}>
-            <AnimatePresence initial={false}>
+          <div className="relative w-full h-full" {...carouselSwipeHandlers}>
+            <AnimatePresence initial={false} custom={direction}>
               <motion.div
                 key={carouselIndex}
-                className="absolute w-full h-full"
-                initial={{ x: direction > 0 ? '100%' : '-100%', opacity: 0 }}
-                animate={{ x: 0, opacity: 1 }}
-                exit={{ x: direction > 0 ? '-100%' : '100%', opacity: 0 }}
+                custom={direction}
+                variants={{
+                  enter: (dir) => ({ x: dir > 0 ? '100%' : '-100%', opacity: 0 }),
+                  center: { x: 0, opacity: 1 },
+                  exit: (dir) => ({ x: dir > 0 ? '-100%' : '100%', opacity: 0 }),
+                }}
+                initial="enter"
+                animate="center"
+                exit="exit"
                 transition={{ duration: 0.5, ease: 'ease-out' }}
+                className="absolute w-full h-full"
               >
                 <img
-                  src={carouselItems[carouselIndex].image}
-                  srcSet={carouselItems[carouselIndex].srcSet}
-                  sizes={carouselItems[carouselIndex].sizes}
-                  alt={carouselItems[carouselIndex].alt}
+                  src={carouselSlides[carouselIndex].image}
+                  srcSet={carouselSlides[carouselIndex].srcSet}
+                  sizes={carouselSlides[carouselIndex].sizes}
+                  alt={carouselSlides[carouselIndex].alt}
                   className="w-full h-full object-cover"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/50 to-transparent"></div>
-                <div className="relative z-10 h-full flex items-center justify-center text-center px-4 py-6 sm:py-8">
+                <div className="absolute inset-0 flex items-center justify-center text-center px-4 py-6 sm:py-8">
                   <div className="max-w-2xl">
                     <motion.h1
-                      className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4 text-white drop-shadow-lg"
+                      className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 text-white drop-shadow-lg"
                       initial={{ y: 20, opacity: 0 }}
-                      animate={{ y: 0, opacity: 1 }}
+                      whileInView={{ y: 0, opacity: 1 }}
                       transition={{ duration: 0.6, delay: 0.2 }}
+                      viewport={{ once: true }}
                     >
-                      {carouselItems[carouselIndex].title}
+                      {carouselSlides[carouselIndex].title}
                     </motion.h1>
-                    {carouselItems[carouselIndex].isCountdown ? (
-                      <div className="grid grid-cols-4 gap-2 sm:gap-4 text-center">
-                        {['days', 'hours', 'minutes', 'seconds'].map((unit) => (
-                          <div key={unit} className="bg-gray-800 rounded-lg p-2 sm:p-4">
-                            <div className="text-xl sm:text-2xl md:text-3xl font-bold text-amber-500">
-                              {timeLeft[unit].toString().padStart(2, '0')}
-                            </div>
-                            <div className="text-xs sm:text-sm text-gray-300 capitalize">{unit}</div>
-                          </div>
-                        ))}
-                        <div className="col-span-4 mt-4">
-                          <a
-                            href="/contact"
-                            className="bg-amber-500 hover:bg-amber-600 text-white font-medium px-4 py-2 rounded-lg text-sm sm:text-base"
-                          >
-                            Book Now
-                          </a>
-                        </div>
-                      </div>
-                    ) : (
-                      <>
-                        <motion.p
-                          className="text-gray-200 text-sm sm:text-base md:text-lg drop-shadow-md"
-                          initial={{ y: 20, opacity: 0 }}
-                          animate={{ y: 0, opacity: 1 }}
-                          transition={{ duration: 0.6, delay: 0.4 }}
-                        >
-                          {carouselItems[carouselIndex].description}
-                        </motion.p>
-                        {carouselItems[carouselIndex].ctaText && (
-                          <motion.a
-                            href={carouselItems[carouselIndex].ctaLink}
-                            className="mt-4 inline-block bg-amber-500 hover:bg-amber-600 text-white font-medium px-4 py-2 rounded-lg text-sm sm:text-base"
-                            initial={{ y: 20, opacity: 0 }}
-                            animate={{ y: 0, opacity: 1 }}
-                            transition={{ duration: 0.6, delay: 0.6 }}
-                            whileHover={{ scale: 1.05 }}
-                            whileTap={{ scale: 0.95 }}
-                          >
-                            {carouselItems[carouselIndex].ctaText}
-                          </motion.a>
-                        )}
-                      </>
+                    <motion.p
+                      className="text-gray-200 text-base sm:text-lg md:text-xl drop-shadow-md mb-4"
+                      initial={{ y: 20, opacity: 0 }}
+                      whileInView={{ y: 0, opacity: 1 }}
+                      transition={{ duration: 0.6, delay: 0.4 }}
+                      viewport={{ once: true }}
+                    >
+                      {carouselSlides[carouselIndex].title === 'Limited Time Offer' ? (
+                        <>
+                          {carouselSlides[carouselIndex].description}
+                          <br />
+                          <span className="text-amber-500 font-semibold">
+                            {countdown.days}d {countdown.hours}h {countdown.minutes}m {countdown.seconds}s
+                          </span>
+                        </>
+                      ) : (
+                        carouselSlides[carouselIndex].description
+                      )}
+                    </motion.p>
+                    {carouselSlides[carouselIndex].cta && (
+                      <motion.a
+                        href={carouselSlides[carouselIndex].cta.href}
+                        className="bg-amber-500 hover:bg-amber-600 text-white font-medium px-4 sm:px-6 py-2 sm:py-3 rounded-lg text-sm sm:text-base transition-colors duration-300"
+                        whileHover={{ scale: 1.05 }}
+                        whileTap={{ scale: 0.95 }}
+                        aria-label={carouselSlides[carouselIndex].cta.text}
+                      >
+                        {carouselSlides[carouselIndex].cta.text}
+                      </motion.a>
                     )}
                   </div>
                 </div>
               </motion.div>
             </AnimatePresence>
-            {/* Carousel Navigation Buttons */}
+            {/* Carousel Dots */}
+            <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2">
+              {carouselSlides.map((_, index) => (
+                <button
+                  key={index}
+                  className={`w-2 h-2 sm:w-3 sm:h-3 rounded-full ${
+                    index === carouselIndex ? 'bg-white' : 'bg-gray-500 hover:bg-gray-300'
+                  } transition-colors duration-200`}
+                  onClick={() => goToCarouselSlide(index)}
+                  aria-label={`Go to carousel slide ${index + 1} of ${carouselSlides.length}`}
+                  tabIndex={0}
+                  onKeyDown={(e) => e.key === 'Enter' && goToCarouselSlide(index)}
+                />
+              ))}
+            </div>
+            {/* Carousel Navigation Buttons (Desktop) */}
             <button
-              className="absolute left-2 top-1/2 -translate-y-1/2 bg-gray-800 hover:bg-gray-700 text-white p-3 rounded-full z-10"
+              className="absolute left-2 top-1/2 -translate-y-1/2 bg-gray-800 hover:bg-gray-700 text-white p-3 rounded-full hidden sm:block z-10"
               onClick={() => navigateCarousel(-1)}
               aria-label="Previous carousel slide"
             >
@@ -299,7 +322,7 @@ const Gallery = () => {
               </svg>
             </button>
             <button
-              className="absolute right-2 top-1/2 -translate-y-1/2 bg-gray-800 hover:bg-gray-700 text-white p-3 rounded-full z-10"
+              className="absolute right-2 top-1/2 -translate-y-1/2 bg-gray-800 hover:bg-gray-700 text-white p-3 rounded-full hidden sm:block z-10"
               onClick={() => navigateCarousel(1)}
               aria-label="Next carousel slide"
             >
@@ -313,21 +336,6 @@ const Gallery = () => {
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M9 5l7 7-7 7" />
               </svg>
             </button>
-            {/* Carousel Dots */}
-            <div className="absolute bottom-4 left-0 right-0 flex justify-center gap-2">
-              {carouselItems.map((_, index) => (
-                <button
-                  key={index}
-                  className={`w-2 h-2 sm:w-3 sm:h-3 rounded-full ${
-                    index === carouselIndex ? 'bg-white' : 'bg-gray-500 hover:bg-gray-300'
-                  } transition-colors duration-200`}
-                  onClick={() => goToCarouselItem(index)}
-                  aria-label={`Go to carousel slide ${index + 1}`}
-                  tabIndex={0}
-                  onKeyDown={(e) => e.key === 'Enter' && goToCarouselItem(index)}
-                />
-              ))}
-            </div>
           </div>
         </motion.section>
 
@@ -433,7 +441,7 @@ const Gallery = () => {
               {/* Media Display with Swipe */}
               <div
                 className="w-full sm:w-2/3 flex flex-col items-center justify-start sm:justify-center relative overflow-x-hidden"
-                {...swipeHandlers}
+                {...lightboxSwipeHandlers}
                 tabIndex={0}
                 aria-label="Swipe or use arrow keys to navigate media"
               >
@@ -443,15 +451,9 @@ const Gallery = () => {
                       key={currentMediaIndex}
                       custom={direction}
                       variants={{
-                        enter: (dir) => ({
-                          x: dir > 0 ? '100%' : '-100%',
-                          opacity: 0,
-                        }),
+                        enter: (dir) => ({ x: dir > 0 ? '100%' : '-100%', opacity: 0 }),
                         center: { x: 0, opacity: 1 },
-                        exit: (dir) => ({
-                          x: dir > 0 ? '-100%' : '100%',
-                          opacity: 0,
-                        }),
+                        exit: (dir) => ({ x: dir > 0 ? '-100%' : '100%', opacity: 0 }),
                       }}
                       initial="enter"
                       animate="center"
