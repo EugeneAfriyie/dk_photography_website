@@ -317,7 +317,7 @@ const Gallery = () => {
             aria-label={`${selectedAlbum.title} lightbox`}
           >
             <motion.div
-              className="relative w-full max-w-4xl flex flex-col sm:flex-row bg-black rounded-lg max-h-[100vh] sm:max-h-[80vh] lg:h-[90vh] overflow-auto"
+              className="relative w-full max-w-4xl flex flex-col sm:flex-row bg-blck rounded-lg  sm:max-h-[100vh] lg:h-[95vh] overflow-aut m-auto"
               initial={{ scale: 0.9, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               exit={{ scale: 0.9, opacity: 0 }}
@@ -326,14 +326,14 @@ const Gallery = () => {
             >
               {/* Media Display with Swipe */}
               <div
-                className="w-full sm:w-2/3 flex flex-col items-center justify-start sm:justify-center swipe-container lg:h-[calc(90vh-2rem)]"
+                className="w-full sm:w-[60%] flex flex-col items-center justify-start sm:justify-center swipe-container lg:h-[calc(95vh-2rem)]"
                 onTouchStart={swipeHandlers.onTouchStart}
                 onTouchMove={swipeHandlers.onTouchMove}
                 onTouchEnd={swipeHandlers.onTouchEnd}
                 tabIndex={0}
                 aria-label="Swipe or use arrow keys to navigate media"
               >
-                <div className="relative w-full h-[70vh] sm:h-[70vh] lg:h-full overflow-x-hidden border-amber-500 border">
+                <div className="relative w-full h-[90vh] sm:h-[95vh] lg:h-full overflow-x-hidden border-amber-500 border">
                   <AnimatePresence initial={false} custom={direction}>
                     <motion.div
                       key={currentMediaIndex}
@@ -396,7 +396,7 @@ const Gallery = () => {
                 )}
               </div>
               {/* Caption and Controls */}
-              <div className="w-full sm:w-1/3 p-4 sm:p-6 flex flex-col justify-between bg-black">
+              <div className="w-full sm:w-[40%] p-4 sm:p-6 flex flex-col justify-between bg-black">
                 <div>
                   <h3 className="text-lg sm:text-xl font-semibold text-white mb-2">{selectedAlbum.title}</h3>
                   <p className="text-gray-300 text-sm">{selectedAlbum.media[currentMediaIndex].description}</p>
