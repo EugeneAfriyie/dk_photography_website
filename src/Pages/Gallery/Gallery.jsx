@@ -31,8 +31,8 @@ const Gallery = () => {
   // Carousel slides
   const carouselSlides = [
     {
-      image: '/picsum/800/400',
-      srcSet: '/picsum/400/200 400w, /picsum/800/400 800w, /picsum/1200/600 1200w',
+      image: 'https://picsum.photos/800/400',
+      srcSet: 'https://picsum.photos/400/200 400w, https://picsum.photos/800/400 800w, https://picsum.photos/1200/600 1200w',
       sizes: '(max-width: 640px) 400px, (max-width: 1280px) 800px, 1200px',
       alt: 'Gallery banner showcasing photography',
       title: 'Our Gallery',
@@ -40,8 +40,8 @@ const Gallery = () => {
       cta: null,
     },
     {
-      image: '/picsum/800/400?random=13',
-      srcSet: '/picsum/400/200?random=13 400w, /picsum/800/400?random=13 800w, /picsum/1200/600?random=13 1200w',
+      image: 'https://picsum.photos/800/400?random=13',
+      srcSet: 'https://picsum.photos/400/200?random=13 400w, https://picsum.photos/800/400?random=13 800w, https://picsum.photos/1200/600?random=13 1200w',
       sizes: '(max-width: 640px) 400px, (max-width: 1280px) 800px, 1200px',
       alt: 'Special booking offer banner',
       title: 'Limited Time Offer',
@@ -49,8 +49,8 @@ const Gallery = () => {
       cta: { text: 'Book Now', href: '/contact' },
     },
     {
-      image: '/picsum/800/400?random=14',
-      srcSet: '/picsum/400/200?random=14 400w, /picsum/800/400?random=14 800w, /picsum/1200/600?random=14 1200w',
+      image: 'https://picsum.photos/800/400?random=14',
+      srcSet: 'https://picsum.photos/400/200?random=14 400w, https://picsum.photos/800/400?random=14 800w, https://picsum.photos/1200/600?random=14 1200w',
       sizes: '(max-width: 640px) 400px, (max-width: 1280px) 800px, 1200px',
       alt: 'Featured romantic sunset portraits',
       title: 'Featured Shoot: Sunset Portraits',
