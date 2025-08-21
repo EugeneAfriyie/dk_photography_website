@@ -1,13 +1,52 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { useSwipeable } from 'react-swipeable';
 import { throttle } from 'lodash';
 import { FaImages, FaImage, FaVideo } from 'react-icons/fa';
-import { galleryImage } from '../Home/data';
+import { galleryImage } from '../Home/data'; // Using provided import
 import Header from '../Home/Components/Header';
 import Footer from '../../Components/Footer';
 import ExclusiveOffer from '../Home/Components/ExclusiveOffer';
 import BookingPrompt from '../Home/Components/BookingPrompt';
+
+// Custom swipe handler
+const useCustomSwipe = (onSwipedLeft, onSwipedRight) => {
+  const [touchStart, setTouchStart] = useState(null);
+  const [touchEnd, setTouchEnd] = useState(null);
+
+  const minSwipeDistance = 50;
+
+  const onTouchStart = (e) => {
+    setTouchEnd(null);
+    setTouchStart({ x: e.touches[0].clientX, y: e.touches[0].clientY });
+  };
+
+  const onTouchMove = (e) => {
+    setTouchEnd({ x: e.touches[0].clientX, y: e.touches[0].clientY });
+  };
+
+  const onTouchEnd = () => {
+    if (!touchStart || !touchEnd) return;
+    const distanceX = touchStart.x - touchEnd.x;
+    const distanceY = Math.abs(touchStart.y - touchEnd.y);
+    const isHorizontalSwipe = Math.abs(distanceX) > minSwipeDistance && distanceY < 50;
+
+    if (isHorizontalSwipe) {
+      if (distanceX > 0) {
+        console.log('Custom swipe: left');
+        onSwipedLeft();
+      } else {
+        console.log('Custom swipe: right');
+        onSwipedRight();
+      }
+    }
+  };
+
+  return {
+    onTouchStart,
+    onTouchMove,
+    onTouchEnd,
+  };
+};
 
 const Gallery = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -21,12 +60,14 @@ const Gallery = () => {
 
   // Scroll-to-top button visibility
   useEffect(() => {
+    console.log('Setting up scroll-to-top handler');
     const handleScroll = throttle(() => {
       setIsVisible(window.scrollY > 300);
     }, 100);
 
     window.addEventListener('scroll', handleScroll);
     return () => {
+      console.log('Cleaning up scroll-to-top handler');
       window.removeEventListener('scroll', handleScroll);
       handleScroll.cancel();
     };
@@ -34,6 +75,7 @@ const Gallery = () => {
 
   // Open lightbox
   const openLightbox = (album, index) => {
+    console.log('Opening lightbox:', album.title, index);
     setSelectedAlbum(album);
     setCurrentMediaIndex(index);
     document.body.style.overflow = 'hidden';
@@ -41,6 +83,7 @@ const Gallery = () => {
 
   // Close lightbox
   const closeLightbox = () => {
+    console.log('Closing lightbox');
     setSelectedAlbum(null);
     setCurrentMediaIndex(0);
     setDirection(0);
@@ -51,36 +94,42 @@ const Gallery = () => {
   const navigateMedia = (direction) => {
     if (!selectedAlbum) return;
     const newIndex = (currentMediaIndex + direction + selectedAlbum.media.length) % selectedAlbum.media.length;
+    console.log('Navigating media:', direction, 'New index:', newIndex);
     setCurrentMediaIndex(newIndex);
     setDirection(direction);
   };
 
   // Navigate to specific media item
   const goToMedia = (index) => {
+    console.log('Going to media index:', index);
     setDirection(index > currentMediaIndex ? 1 : -1);
     setCurrentMediaIndex(index);
   };
 
   // Swipe handlers
-  const swipeHandlers = useSwipeable({
-    onSwipedLeft: () => navigateMedia(1),
-    onSwipedRight: () => navigateMedia(-1),
-    delta: 10,
-    preventDefaultTouchmoveEvent: true,
-    trackMouse: false,
-  });
+  const swipeHandlers = useCustomSwipe(
+    () => navigateMedia(1),
+    () => navigateMedia(-1)
+  );
 
   // Keyboard navigation
   const handleKeyDown = (e) => {
     if (!selectedAlbum) return;
-    if (e.key === 'ArrowLeft') navigateMedia(-1);
-    if (e.key === 'ArrowRight') navigateMedia(1);
+    if (e.key === 'ArrowLeft') {
+      console.log('Keydown: ArrowLeft (media)');
+      navigateMedia(-1);
+    }
+    if (e.key === 'ArrowRight') {
+      console.log('Keydown: ArrowRight (media)');
+      navigateMedia(1);
+    }
   };
 
   // Filter handler
   const handleFilter = (filter) => {
+    console.log('Applying filter:', filter);
     setActiveFilter(filter);
-    setSelectedAlbum(null); // Close lightbox on filter change
+    setSelectedAlbum(null);
   };
 
   // Filtered images
@@ -90,6 +139,7 @@ const Gallery = () => {
 
   // Scroll to top
   const scrollToTop = () => {
+    console.log('Scrolling to top');
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
@@ -119,15 +169,15 @@ const Gallery = () => {
       <div className="max-w-7xl mx-auto">
         {/* Gallery Banner */}
         <motion.section
-          className="relative rounded-lg mb-8 sm:mb-12 overflow-hidden"
+          className="relative rounded-lg mb-8 sm:mb-12 overflow-hidden h-64 sm:h-96"
           initial={{ opacity: 0, y: 50, scale: 0.95 }}
           whileInView={{ opacity: 1, y: 0, scale: 1 }}
           transition={{ duration: 1.2, ease: 'easeOut', delay: 0.2 }}
           viewport={{ once: true }}
         >
           <motion.img
-            src="https://picsum.photos/800/400"
-            srcSet="https://picsum.photos/400/200 400w, https://picsum.photos/800/400 800w, https://picsum.photos/1200/600 1200w"
+            src="/cloudinary/djeorsh5d/image/upload/w_800,h_400,c_fill/v1751247136/EQ_image-2_ttqpf8.png"
+            srcSet="/cloudinary/djeorsh5d/image/upload/w_400,h_200,c_fill/v1751247136/EQ_image-2_ttqpf8.png 400w, /cloudinary/djeorsh5d/image/upload/w_800,h_400,c_fill/v1751247136/EQ_image-2_ttqpf8.png 800w, /cloudinary/djeorsh5d/image/upload/w_1200,h_600,c_fill/v1751247136/EQ_image-2_ttqpf8.png 1200w"
             sizes="(max-width: 640px) 400px, (max-width: 1280px) 800px, 1200px"
             alt="Gallery banner showcasing photography"
             className="absolute top-0 left-0 w-full h-full object-cover"
@@ -135,6 +185,7 @@ const Gallery = () => {
             whileInView={{ x: 0, opacity: 1 }}
             transition={{ duration: 1, ease: 'easeOut' }}
             viewport={{ once: true }}
+            onError={() => console.error('Failed to load banner image')}
           />
           <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/50 to-transparent"></div>
           <motion.div
@@ -173,7 +224,7 @@ const Gallery = () => {
           </motion.div>
         </motion.section>
 
-        {/* <ExclusiveOffer /> */}
+        <ExclusiveOffer />
 
         {/* Filter Bar */}
         <section className="mb-6 sm:mb-8">
@@ -209,9 +260,9 @@ const Gallery = () => {
           {filteredImages.length === 0 ? (
             <p className="text-center text-gray-300">No media available for this category.</p>
           ) : (
-            <div className="grid grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-1 sm:gap-2 ">
+            <div className="grid grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-1 sm:gap-2">
               {filteredImages.map((album, index) => {
-                console.log(album.title, album.type, album.albumType, album.category); // Debug log
+                console.log('Rendering album:', album.title, album.type, album.albumType, album.category);
                 return (
                   <motion.div
                     key={`${album.title}-${index}`}
@@ -229,10 +280,11 @@ const Gallery = () => {
                     <img
                       src={album.media[0].src}
                       alt={album.media[0].alt}
-                      className="w-full h-full object-cover group-hover:brightness-75 transition-brightness duration-200 "
+                      className="w-full h-full object-cover group-hover:brightness-75 transition-brightness duration-200"
                       loading="lazy"
+                      onError={() => console.error('Failed to load grid image:', album.media[0].src)}
                     />
-                    <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-200 flex items-center justify-center ">
+                    <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-200 flex items-center justify-center">
                       <span className="text-white text-sm font-medium">
                         {album.title} {album.type === 'album' ? `(${album.media.length})` : ''}
                       </span>
@@ -255,7 +307,7 @@ const Gallery = () => {
         {/* Instagram-style Lightbox Modal */}
         {selectedAlbum && (
           <motion.div
-            className="fixed inset-0 bg-black/90 flex items-start sm:items-center justify-center z-50 p-4 sm:px-6"
+            className="fixed inset-0 bg-black/90 flex items-center justify-center z-50 p-4 sm:p-6 lg:h-screen lg:w-screen m-auto"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
@@ -265,7 +317,7 @@ const Gallery = () => {
             aria-label={`${selectedAlbum.title} lightbox`}
           >
             <motion.div
-              className="relative w-full max-w-4xl flex flex-col sm:flex-row bg-black rounded-lg max-h-[100vh]  "
+              className="relative inline-flex w-[70%] flx flex-col sm:flex-row bg-black rounded-lg max-h-[100vh] sm:max-h-[95vh] m-auto lg:h-[95vh] overflow-ato"
               initial={{ scale: 0.9, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               exit={{ scale: 0.9, opacity: 0 }}
@@ -274,12 +326,14 @@ const Gallery = () => {
             >
               {/* Media Display with Swipe */}
               <div
-                className="w-full sm:w-2/3 flex flex-col items-center justify-start sm:justify-center swipe-container"
-                {...swipeHandlers}
+                className="w-full sm:w-[50%] flex flex-col items-center justify-start sm:justify-center swipe-container lg:h-full"
+                onTouchStart={swipeHandlers.onTouchStart}
+                onTouchMove={swipeHandlers.onTouchMove}
+                onTouchEnd={swipeHandlers.onTouchEnd}
                 tabIndex={0}
                 aria-label="Swipe or use arrow keys to navigate media"
               >
-                <div className="relative w-full h-[70vh] sm:h-[90vh] overflow-x-hidden border-amber-500 border">
+                <div className="relative w-full h-[70vh] sm:h-[70vh] lg:h-full overflow-x-hidden border-amber-500 border">
                   <AnimatePresence initial={false} custom={direction}>
                     <motion.div
                       key={currentMediaIndex}
@@ -299,23 +353,25 @@ const Gallery = () => {
                       animate="center"
                       exit="exit"
                       transition={{ duration: 0.3, ease: 'easeOut' }}
-                      className="absolute w-full h-full"
+                      className="absolute w-full h-full flex items-center justify-center"
                     >
                       {selectedAlbum.media[currentMediaIndex].type === 'image' ? (
                         <img
                           src={selectedAlbum.media[currentMediaIndex].src}
                           alt={selectedAlbum.media[currentMediaIndex].alt}
-                          className="w-full h-full object-contain"
+                          className="h-full object-contain  m-auto"
+                          onError={() => console.error('Failed to load lightbox image:', selectedAlbum.media[currentMediaIndex].src)}
                         />
                       ) : (
                         <video
                           src={selectedAlbum.media[currentMediaIndex].src}
                           alt={selectedAlbum.media[currentMediaIndex].alt}
-                          className="w-full h-full object-contain"
+                          className="h-full object-contain max-w-[40%] lg:max-w-[50%] m-auto"
                           controls
                           autoPlay
                           loop
                           muted
+                          onError={() => console.error('Failed to load lightbox video:', selectedAlbum.media[currentMediaIndex].src)}
                         />
                       )}
                     </motion.div>
@@ -340,7 +396,7 @@ const Gallery = () => {
                 )}
               </div>
               {/* Caption and Controls */}
-              <div className="w-full sm:w-1/3 p-4 sm:p-6 flex flex-col justify-between bg-black">
+              <div className="w-full h-full sm:w-[50%] p-4 sm:p-6 flex flex-col justify-between bg-black">
                 <div>
                   <h3 className="text-lg sm:text-xl font-semibold text-white mb-2">{selectedAlbum.title}</h3>
                   <p className="text-gray-300 text-sm">{selectedAlbum.media[currentMediaIndex].description}</p>
@@ -375,7 +431,7 @@ const Gallery = () => {
               </div>
               {/* Close Button */}
               <button
-                className="absolute top-2 right-2 bg-gray-800 hover:bg-gray-700 text-white p-2 rounded-full z-60"
+                className="absolute top-2 right-2 bg-gray-800 hover:bg-gray-700 text-white p-2 rounded-full z-[60]"
                 onClick={closeLightbox}
                 aria-label="Close lightbox"
               >
@@ -398,7 +454,7 @@ const Gallery = () => {
               {selectedAlbum.media.length > 1 && (
                 <>
                   <button
-                    className="absolute left-2 top-1/2 -translate-y-1/2 bg-gray-800 hover:bg-gray-700 text-white p-3 rounded-full z-60"
+                    className="absolute left-2 top-1/2 -translate-y-1/2 bg-gray-800 hover:bg-gray-700 text-white p-3 rounded-full z-[60]"
                     onClick={() => navigateMedia(-1)}
                     aria-label="Previous media"
                   >
@@ -418,7 +474,7 @@ const Gallery = () => {
                     </svg>
                   </button>
                   <button
-                    className="absolute right-2 top-1/2 -translate-y-1/2 bg-gray-800 hover:bg-gray-700 text-white p-3 rounded-full z-60"
+                    className="absolute right-2 top-1/2 -translate-y-1/2 bg-gray-800 hover:bg-gray-700 text-white p-3 rounded-full z-[60]"
                     onClick={() => navigateMedia(1)}
                     aria-label="Next media"
                   >

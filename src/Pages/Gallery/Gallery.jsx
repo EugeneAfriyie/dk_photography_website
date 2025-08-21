@@ -2,13 +2,13 @@ import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { throttle } from 'lodash';
 import { FaImages, FaImage, FaVideo } from 'react-icons/fa';
-import { galleryImage } from '../Home/data'; // Fixed import from galleryImage to galleryImage
+import { galleryImage } from '../Home/data'; // Using provided import
 import Header from '../Home/Components/Header';
 import Footer from '../../Components/Footer';
 import ExclusiveOffer from '../Home/Components/ExclusiveOffer';
 import BookingPrompt from '../Home/Components/BookingPrompt';
 
-// Custom swipe handler to replace react-swipeable
+// Custom swipe handler
 const useCustomSwipe = (onSwipedLeft, onSwipedRight) => {
   const [touchStart, setTouchStart] = useState(null);
   const [touchEnd, setTouchEnd] = useState(null);
@@ -307,7 +307,7 @@ const Gallery = () => {
         {/* Instagram-style Lightbox Modal */}
         {selectedAlbum && (
           <motion.div
-            className="fixed inset-0 bg-black/90 flex items-center justify-center z-50 p-4 sm:p-6 lg:h-screen lg:w-screen"
+            className="fixed inset-0 bg-black/90 flex items-center justify-center z-50 p-4 sm:p-6 lg:h-screen lg:w-screen m-auto"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
@@ -317,7 +317,7 @@ const Gallery = () => {
             aria-label={`${selectedAlbum.title} lightbox`}
           >
             <motion.div
-              className="relative w-full max-w-4xl flex flex-col sm:flex-row bg-blck rounded-lg  sm:max-h-[100vh] lg:h-[95vh] overflow-aut m-auto"
+              className="relative inline-flex w-[70%] flx flex-col sm:flex-row bg-black rounded-lg max-h-[100vh] sm:max-h-[95vh] m-auto lg:h-[95vh] overflow-ato"
               initial={{ scale: 0.9, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               exit={{ scale: 0.9, opacity: 0 }}
@@ -326,14 +326,14 @@ const Gallery = () => {
             >
               {/* Media Display with Swipe */}
               <div
-                className="w-full sm:w-[60%] flex flex-col items-center justify-start sm:justify-center swipe-container lg:h-[calc(95vh-2rem)]"
+                className="w-full sm:w-[50%] flex flex-col items-center justify-start sm:justify-center swipe-container lg:h-full"
                 onTouchStart={swipeHandlers.onTouchStart}
                 onTouchMove={swipeHandlers.onTouchMove}
                 onTouchEnd={swipeHandlers.onTouchEnd}
                 tabIndex={0}
                 aria-label="Swipe or use arrow keys to navigate media"
               >
-                <div className="relative w-full h-[90vh] sm:h-[95vh] lg:h-full overflow-x-hidden border-amber-500 border">
+                <div className="relative w-full h-[70vh] sm:h-[70vh] lg:h-full overflow-x-hidden border-amber-500 border">
                   <AnimatePresence initial={false} custom={direction}>
                     <motion.div
                       key={currentMediaIndex}
@@ -353,20 +353,20 @@ const Gallery = () => {
                       animate="center"
                       exit="exit"
                       transition={{ duration: 0.3, ease: 'easeOut' }}
-                      className="absolute w-full h-full"
+                      className="absolute w-full h-full flex items-center justify-center"
                     >
                       {selectedAlbum.media[currentMediaIndex].type === 'image' ? (
                         <img
                           src={selectedAlbum.media[currentMediaIndex].src}
                           alt={selectedAlbum.media[currentMediaIndex].alt}
-                          className="w-full h-full object-contain"
+                          className="h-full object-contain  m-auto"
                           onError={() => console.error('Failed to load lightbox image:', selectedAlbum.media[currentMediaIndex].src)}
                         />
                       ) : (
                         <video
                           src={selectedAlbum.media[currentMediaIndex].src}
                           alt={selectedAlbum.media[currentMediaIndex].alt}
-                          className="w-full h-full object-contain"
+                          className="h-full object-contain max-w-[40%] lg:max-w-[50%] m-auto"
                           controls
                           autoPlay
                           loop
@@ -396,7 +396,7 @@ const Gallery = () => {
                 )}
               </div>
               {/* Caption and Controls */}
-              <div className="w-full sm:w-[40%] p-4 sm:p-6 flex flex-col justify-between bg-black">
+              <div className="w-full h-full sm:w-[50%] p-4 sm:p-6 flex flex-col justify-between bg-black">
                 <div>
                   <h3 className="text-lg sm:text-xl font-semibold text-white mb-2">{selectedAlbum.title}</h3>
                   <p className="text-gray-300 text-sm">{selectedAlbum.media[currentMediaIndex].description}</p>
