@@ -209,7 +209,7 @@ const Gallery = () => {
       onKeyDown={handleKeyDown}
       tabIndex={0}
     >
-      {/* <Header /> */}
+      <Header />
       <div className="max-w-7xl mx-auto">
         {/* Carousel Banner */}
         <motion.section
@@ -339,7 +339,7 @@ const Gallery = () => {
           </div>
         </motion.section>
 
-        {/* <ExclusiveOffer /> */}
+        <ExclusiveOffer />
 
         {/* Filter Bar */}
         <section className="mb-6 sm:mb-8">
@@ -503,14 +503,7 @@ const Gallery = () => {
               <div className="w-full sm:w-1/3 p-4 sm:p-6 flex flex-col justify-between bg-black sm:mb-0 mb-4">
                 <div>
                   <h3 className="text-lg sm:text-xl font-semibold text-white mb-2">{selectedAlbum.title}</h3>
-                  <p className="text-gray-300 text-sm">
-                    {/* {selectedAlbum.media[currentMediaIndex].description} */}
-
-                    Happy Birthday to Me!
-Grateful for the journey, the lessons, the growth, and the joy that each year has brought. Today, I celebrate strength, resilience, and the incredible person I’ve become. Here’s to new adventures, deeper peace, and dreams that keep getting bigger. Cheers to this beautiful chapter ahead! 🥂✨🎉
-
-Happy birthday to me @mrdk_real
-                    </p>
+                  <p className="text-gray-300 text-sm">{selectedAlbum.media[currentMediaIndex].description}</p>
                   {selectedAlbum.media[currentMediaIndex].tags?.length > 0 && (
                     <p className="text-gray-400 text-sm sm:text-base mt-2">
                       {selectedAlbum.media[currentMediaIndex].tags.map((tag, index) => (
