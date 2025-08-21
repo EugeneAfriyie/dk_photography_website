@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { throttle } from 'lodash';
 import { FaImages, FaImage, FaVideo } from 'react-icons/fa';
-import { galleryImage } from '../Home/data'; // Using provided import
+import { galleryImage } from '../Home/data';
 import Header from '../Home/Components/Header';
 import Footer from '../../Components/Footer';
 import ExclusiveOffer from '../Home/Components/ExclusiveOffer';
@@ -165,7 +165,7 @@ const Gallery = () => {
       onKeyDown={handleKeyDown}
       tabIndex={0}
     >
-      {/* <Header /> */}
+      <Header />
       <div className="max-w-7xl mx-auto">
         {/* Gallery Banner */}
         <motion.section
@@ -307,7 +307,7 @@ const Gallery = () => {
         {/* Instagram-style Lightbox Modal */}
         {selectedAlbum && (
           <motion.div
-            className="fixed inset-0 bg-black/90 flex items-center justify-center z-50 p-4 sm:p-6 lg:h-screen lg:w-screen m-auto"
+            className="fixed inset-0 bg-black/90 flex items-center justify-center z-500 p-4 sm:p-6 lg:h-screen lg:w-screen "
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
@@ -317,7 +317,7 @@ const Gallery = () => {
             aria-label={`${selectedAlbum.title} lightbox`}
           >
             <motion.div
-              className="relative inline-flex w-[70%] flx flex-col sm:flex-row bg-black rounded-lg max-h-[100vh] sm:max-h-[95vh] m-auto lg:h-[95vh] overflow-ato"
+              className="relative inline-flex max-w-[40rem] flex flex-col sm:flex-row bg-black rounded-lg max-h-[100vh] sm:max-h-[80vh] lg:h-[95vh] overflow-auto"
               initial={{ scale: 0.9, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               exit={{ scale: 0.9, opacity: 0 }}
@@ -326,7 +326,7 @@ const Gallery = () => {
             >
               {/* Media Display with Swipe */}
               <div
-                className="w-full sm:w-[50%] flex flex-col items-center justify-start sm:justify-center swipe-container lg:h-full"
+                className="w-full sm:w-[60%] flex flex-col items-center justify-start sm:justify-center swipe-container lg:h-[calc(95vh-2rem)]"
                 onTouchStart={swipeHandlers.onTouchStart}
                 onTouchMove={swipeHandlers.onTouchMove}
                 onTouchEnd={swipeHandlers.onTouchEnd}
@@ -359,14 +359,14 @@ const Gallery = () => {
                         <img
                           src={selectedAlbum.media[currentMediaIndex].src}
                           alt={selectedAlbum.media[currentMediaIndex].alt}
-                          className="h-full object-contain  m-auto"
+                          className="w-full h-full object-contain"
                           onError={() => console.error('Failed to load lightbox image:', selectedAlbum.media[currentMediaIndex].src)}
                         />
                       ) : (
                         <video
                           src={selectedAlbum.media[currentMediaIndex].src}
                           alt={selectedAlbum.media[currentMediaIndex].alt}
-                          className="h-full object-contain max-w-[40%] lg:max-w-[50%] m-auto"
+                          className="w-full h-full object-contain"
                           controls
                           autoPlay
                           loop
@@ -376,27 +376,72 @@ const Gallery = () => {
                       )}
                     </motion.div>
                   </AnimatePresence>
-                </div>
-                {/* Dot Indicators for Albums */}
-                {selectedAlbum.type === 'album' && selectedAlbum.media.length > 1 && (
-                  <div className="flex gap-2 mt-1">
-                    {selectedAlbum.media.map((_, index) => (
+                  {/* Navigation Buttons */}
+                  {selectedAlbum.media.length > 1 && (
+                    <>
                       <button
-                        key={index}
-                        className={`w-2 h-2 rounded-full ${
-                          index === currentMediaIndex ? 'bg-white' : 'bg-gray-500'
-                        }`}
-                        onClick={() => goToMedia(index)}
-                        aria-label={`View media item ${index + 1} of ${selectedAlbum.media.length}`}
-                        tabIndex={0}
-                        onKeyDown={(e) => e.key === 'Enter' && goToMedia(index)}
-                      />
-                    ))}
-                  </div>
-                )}
+                        className="absolute left-4 top-1/2 -translate-y-1/2 bg-gray-800 hover:bg-gray-700 text-white p-3 rounded-full z-[60]"
+                        onClick={() => navigateMedia(-1)}
+                        aria-label="Previous media"
+                      >
+                        <svg
+                          className="w-5 h-5"
+                          fill="none"
+                          stroke="currentColor"
+                          viewBox="0 0 24 24"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth="2"
+                            d="M15 19l-7-7 7-7"
+                          />
+                        </svg>
+                      </button>
+                      <button
+                        className="absolute right-4 top-1/2 -translate-y-1/2 bg-gray-800 hover:bg-gray-700 text-white p-3 rounded-full z-[60]"
+                        onClick={() => navigateMedia(1)}
+                        aria-label="Next media"
+                      >
+                        <svg
+                          className="w-5 h-5"
+                          fill="none"
+                          stroke="currentColor"
+                          viewBox="0 0 24 24"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth="2"
+                            d="M9 5l7 7-7 7"
+                          />
+                        </svg>
+                      </button>
+                    </>
+                  )}
+                  {/* Dot Indicators for Albums */}
+                  {selectedAlbum.type === 'album' && selectedAlbum.media.length > 1 && (
+                    <div className="absolute bottom-4 !left-1/2 !-translate-x-1/2 flex gap-2 justify-center bg-black/50 p-1 rounded">
+                      {selectedAlbum.media.map((_, index) => (
+                        <button
+                          key={index}
+                          className={`w-2 h-2 rounded-full ${
+                            index === currentMediaIndex ? 'bg-white' : 'bg-gray-500'
+                          }`}
+                          onClick={() => goToMedia(index)}
+                          aria-label={`View media item ${index + 1} of ${selectedAlbum.media.length}`}
+                          tabIndex={0}
+                          onKeyDown={(e) => e.key === 'Enter' && goToMedia(index)}
+                        />
+                      ))}
+                    </div>
+                  )}
+                </div>
               </div>
               {/* Caption and Controls */}
-              <div className="w-full h-full sm:w-[50%] p-4 sm:p-6 flex flex-col justify-between bg-black">
+              <div className="w-full sm:w-[40%] p-4 sm:p-6 flex flex-col justify-between bg-black">
                 <div>
                   <h3 className="text-lg sm:text-xl font-semibold text-white mb-2">{selectedAlbum.title}</h3>
                   <p className="text-gray-300 text-sm">{selectedAlbum.media[currentMediaIndex].description}</p>
@@ -450,51 +495,6 @@ const Gallery = () => {
                   />
                 </svg>
               </button>
-              {/* Navigation Buttons */}
-              {selectedAlbum.media.length > 1 && (
-                <>
-                  <button
-                    className="absolute left-2 top-1/2 -translate-y-1/2 bg-gray-800 hover:bg-gray-700 text-white p-3 rounded-full z-[60]"
-                    onClick={() => navigateMedia(-1)}
-                    aria-label="Previous media"
-                  >
-                    <svg
-                      className="w-5 h-5"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth="2"
-                        d="M15 19l-7-7 7-7"
-                      />
-                    </svg>
-                  </button>
-                  <button
-                    className="absolute right-2 top-1/2 -translate-y-1/2 bg-gray-800 hover:bg-gray-700 text-white p-3 rounded-full z-[60]"
-                    onClick={() => navigateMedia(1)}
-                    aria-label="Next media"
-                  >
-                    <svg
-                      className="w-5 h-5"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth="2"
-                        d="M9 5l7 7-7 7"
-                      />
-                    </svg>
-                  </button>
-                </>
-              )}
             </motion.div>
           </motion.div>
         )}
