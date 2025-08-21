@@ -441,7 +441,7 @@ export const galleryImage = [
     category: 'wedding',
     media: [
       {
-        src: 'https://res.cloudinary.com/djeorsh5d/image/upload/v1751247136/EQ_image-2_ttqpf8.png',
+        src: 'https://res.cloudinary.com/djeorsh5d/image/upload/v1751247125/BRIDE1_kjfo1p.jpg',
         type: 'image',
         alt: 'Bride in white dress',
         description: 'Bride walking down the aisle.',
