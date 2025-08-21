@@ -441,7 +441,7 @@ export const galleryImage = [
     category: 'wedding',
     media: [
       {
-        src: 'https://res.cloudinary.com/djeorsh5d/image/upload/v1751247125/BRIDE1_kjfo1p.jpg',
+        src: 'https://res.cloudinary.com/djeorsh5d/image/upload/v1751247136/EQ_image-2_ttqpf8.png',
         type: 'image',
         alt: 'Bride in white dress',
         description: 'Bride walking down the aisle.',
@@ -451,14 +451,14 @@ export const galleryImage = [
         ],
       },
       {
-        src: 'https://res.cloudinary.com/djeorsh5d/video/upload/v1751247127/wedding_dance.mp4',
+        src: 'https://res.cloudinary.com/djeorsh5d/image/upload/v1751247136/EQ_image-2_ttqpf8.png',
         type: 'video',
         alt: 'Wedding dance video',
         description: 'First dance at the reception.',
         tags: [{ label: 'choreographer', name: 'Dance Co', handle: '@danceco' }],
       },
       {
-        src: 'https://res.cloudinary.com/djeorsh5d/image/upload/v1751247127/WED1_c0gp9p.jpg',
+        src: '/cloudinary/djeorsh5d/image/upload/v1751247127/WED1_c0gp9p.jpg',
         type: 'image',
         alt: 'Wedding ceremony',
         description: 'Exchange of vows.',
@@ -473,14 +473,14 @@ export const galleryImage = [
     category: 'children',
     media: [
       {
-        src: 'https://res.cloudinary.com/djeorsh5d/image/upload/v1751247111/FAM1_wdqml7.jpg',
+        src: 'https://res.cloudinary.com/djeorsh5d/image/upload/v1751247136/EQ_image-2_ttqpf8.png',
         type: 'image',
         alt: 'Family portrait',
         description: 'Family in studio.',
         tags: [],
       },
       {
-        src: 'https://res.cloudinary.com/djeorsh5d/image/upload/v1751247111/FAM2_xkjm3q.jpg',
+        src: '/cloudinary/djeorsh5d/image/upload/v1751247111/FAM2_xkjm3q.jpg',
         type: 'image',
         alt: 'Family outdoors',
         description: 'Outdoor family photo.',
@@ -494,7 +494,7 @@ export const galleryImage = [
     category: 'couple',
     media: [
       {
-        src: 'https://picsum.photos/800/800?random=1',
+        src: 'https://res.cloudinary.com/djeorsh5d/image/upload/v1751247136/EQ_image-2_ttqpf8.png',
         type: 'image',
         alt: 'Sunset portrait',
         description: 'Portrait at golden hour.',
@@ -509,28 +509,28 @@ export const galleryImage = [
     category: 'graduation',
     media: [
       {
-        src: 'https://res.cloudinary.com/djeorsh5d/image/upload/v1751247115/GRAD1_zkp4rt.jpg',
+        src: '/cloudinary/djeorsh5d/image/upload/v1751247115/GRAD1_zkp4rt.jpg',
         type: 'image',
         alt: 'Graduate in cap',
         description: 'Graduate tossing cap.',
         tags: [{ label: 'photographer', name: 'Alex', handle: '@alex_snaps' }],
       },
       {
-        src: 'https://res.cloudinary.com/djeorsh5d/video/upload/v1751247115/grad_walk.mp4',
+        src: '/cloudinary/djeorsh5d/video/upload/v1751247115/grad_walk.mp4',
         type: 'video',
         alt: 'Graduation walk video',
         description: 'Walking across stage.',
         tags: [],
       },
       {
-        src: 'https://res.cloudinary.com/djeorsh5d/image/upload/v1751247115/GRAD2_hjmn5t.jpg',
+        src: '/cloudinary/djeorsh5d/image/upload/v1751247115/GRAD2_hjmn5t.jpg',
         type: 'image',
         alt: 'Graduate with family',
         description: 'Family celebration.',
         tags: [],
       },
       {
-        src: 'https://picsum.photos/800/800?random=2',
+        src: '/picsum/800/800?random=2',
         type: 'image',
         alt: 'Graduate portrait',
         description: 'Solo graduate portrait.',
@@ -544,7 +544,7 @@ export const galleryImage = [
     category: 'wedding',
     media: [
       {
-        src: 'https://picsum.photos/800/800?random=3',
+        src: '/picsum/800/800?random=3',
         type: 'image',
         alt: 'Beach wedding',
         description: 'Couple on beach at sunset.',
@@ -562,14 +562,14 @@ export const galleryImage = [
     category: 'couple',
     media: [
       {
-        src: 'https://res.cloudinary.com/djeorsh5d/image/upload/v1751247120/ENG1_pqlm8u.jpg',
+        src: '/cloudinary/djeorsh5d/image/upload/v1751247120/ENG1_pqlm8u.jpg',
         type: 'image',
         alt: 'Engagement photo',
         description: 'Couple in park.',
         tags: [],
       },
       {
-        src: 'https://res.cloudinary.com/djeorsh5d/image/upload/v1751247120/ENG2_wxtn9v.jpg',
+        src: '/cloudinary/djeorsh5d/image/upload/v1751247120/ENG2_wxtn9v.jpg',
         type: 'image',
         alt: 'Ring close-up',
         description: 'Close-up of engagement ring.',
@@ -583,7 +583,7 @@ export const galleryImage = [
     category: 'graduation',
     media: [
       {
-        src: 'https://res.cloudinary.com/djeorsh5d/video/upload/v1751247123/event_highlight.mp4',
+        src: '/cloudinary/djeorsh5d/video/upload/v1751247123/event_highlight.mp4',
         type: 'video',
         alt: 'Event highlight video',
         description: 'Corporate event highlights.',
@@ -598,21 +598,21 @@ export const galleryImage = [
     category: 'children',
     media: [
       {
-        src: 'https://picsum.photos/800/800?random=4',
+        src: '/picsum/800/800?random=4',
         type: 'image',
         alt: 'Baby shower decor',
         description: 'Decorated venue.',
         tags: [{ label: 'decor', name: 'Pretty', handle: '@nan_ama' }],
       },
       {
-        src: 'https://res.cloudinary.com/djeorsh5d/video/upload/v1751247124/baby_shower_speech.mp4',
+        src: '/cloudinary/djeorsh5d/video/upload/v1751247124/baby_shower_speech.mp4',
         type: 'video',
         alt: 'Baby shower speech',
         description: 'Guest speech.',
         tags: [],
       },
       {
-        src: 'https://picsum.photos/800/800?random=5',
+        src: '/picsum/800/800?random=5',
         type: 'image',
         alt: 'Expecting parents',
         description: 'Parents-to-be smiling.',
@@ -627,21 +627,21 @@ export const galleryImage = [
     category: 'graduation',
     media: [
       {
-        src: 'https://res.cloudinary.com/djeorsh5d/image/upload/v1751247126/CORP1_klmn7y.jpg',
+        src: '/cloudinary/djeorsh5d/image/upload/v1751247126/CORP1_klmn7y.jpg',
         type: 'image',
         alt: 'Conference speaker',
         description: 'Keynote speaker.',
         tags: [],
       },
       {
-        src: 'https://res.cloudinary.com/djeorsh5d/image/upload/v1751247126/CORP2_zxwv8u.jpg',
+        src: '/cloudinary/djeorsh5d/image/upload/v1751247126/CORP2_zxwv8u.jpg',
         type: 'image',
         alt: 'Networking session',
         description: 'Attendees networking.',
         tags: [],
       },
       {
-        src: 'https://res.cloudinary.com/djeorsh5d/video/upload/v1751247126/corp_promo.mp4',
+        src: '/cloudinary/djeorsh5d/video/upload/v1751247126/corp_promo.mp4',
         type: 'video',
         alt: 'Event promo video',
         description: 'Event promotional clip.',
@@ -655,7 +655,7 @@ export const galleryImage = [
     category: 'couple',
     media: [
       {
-        src: 'https://picsum.photos/800/800?random=6',
+        src: '/picsum/800/800?random=6',
         type: 'image',
         alt: 'Cityscape portrait',
         description: 'Portrait with city skyline.',
@@ -670,14 +670,14 @@ export const galleryImage = [
     category: 'couple',
     media: [
       {
-        src: 'https://picsum.photos/800/800?random=7',
+        src: '/picsum/800/800?random=7',
         type: 'image',
         alt: 'Anniversary couple',
         description: 'Couple celebrating milestone.',
         tags: [{ label: 'decor', name: 'Pretty', handle: '@nan_ama' }],
       },
       {
-        src: 'https://res.cloudinary.com/djeorsh5d/video/upload/v1751247128/anniversary_toast.mp4',
+        src: '/cloudinary/djeorsh5d/video/upload/v1751247128/anniversary_toast.mp4',
         type: 'video',
         alt: 'Anniversary toast',
         description: 'Toast at anniversary party.',
@@ -692,21 +692,21 @@ export const galleryImage = [
     category: 'couple',
     media: [
       {
-        src: 'https://res.cloudinary.com/djeorsh5d/image/upload/v1751247129/FASH1_mnbv9x.jpg',
+        src: '/cloudinary/djeorsh5d/image/upload/v1751247129/FASH1_mnbv9x.jpg',
         type: 'image',
         alt: 'Fashion model',
         description: 'Model in studio.',
         tags: [{ label: 'stylist', name: 'Luna', handle: '@luna_style' }],
       },
       {
-        src: 'https://picsum.photos/800/800?random=8',
+        src: '/picsum/800/800?random=8',
         type: 'image',
         alt: 'Fashion pose',
         description: 'Model in outdoor shoot.',
         tags: [],
       },
       {
-        src: 'https://res.cloudinary.com/djeorsh5d/image/upload/v1751247129/FASH2_pqrt0z.jpg',
+        src: '/cloudinary/djeorsh5d/image/upload/v1751247129/FASH2_pqrt0z.jpg',
         type: 'image',
         alt: 'Fashion close-up',
         description: 'Close-up of outfit.',
@@ -720,7 +720,7 @@ export const galleryImage = [
     category: 'graduation',
     media: [
       {
-        src: 'https://res.cloudinary.com/djeorsh5d/video/upload/v1751247130/concert_clip.mp4',
+        src: '/cloudinary/djeorsh5d/video/upload/v1751247130/concert_clip.mp4',
         type: 'video',
         alt: 'Concert performance',
         description: 'Live concert footage.',
@@ -735,28 +735,28 @@ export const galleryImage = [
     category: 'couple',
     media: [
       {
-        src: 'https://picsum.photos/800/800?random=9',
+        src: '/picsum/800/800?random=9',
         type: 'image',
         alt: 'Mountain view',
         description: 'Scenic mountain landscape.',
         tags: [],
       },
       {
-        src: 'https://picsum.photos/800/800?random=10',
+        src: '/picsum/800/800?random=10',
         type: 'image',
         alt: 'Beach sunset',
         description: 'Sunset on tropical beach.',
         tags: [],
       },
       {
-        src: 'https://res.cloudinary.com/djeorsh5d/video/upload/v1751247131/travel_vlog.mp4',
+        src: '/cloudinary/djeorsh5d/video/upload/v1751247131/travel_vlog.mp4',
         type: 'video',
         alt: 'Travel vlog',
         description: 'Exploring a new city.',
         tags: [],
       },
       {
-        src: 'https://picsum.photos/800/800?random=11',
+        src: '/picsum/800/800?random=11',
         type: 'image',
         alt: 'City street',
         description: 'Busy city street.',
@@ -771,14 +771,14 @@ export const galleryImage = [
     category: 'children',
     media: [
       {
-        src: 'https://picsum.photos/800/800?random=12',
+        src: '/picsum/800/800?random=12',
         type: 'image',
         alt: 'Pet dog',
         description: 'Dog playing in park.',
         tags: [],
       },
       {
-        src: 'https://res.cloudinary.com/djeorsh5d/video/upload/v1751247132/pet_video.mp4',
+        src: '/cloudinary/djeorsh5d/video/upload/v1751247132/pet_video.mp4',
         type: 'video',
         alt: 'Pet video',
         description: 'Cat chasing toy.',
