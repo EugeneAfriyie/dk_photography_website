@@ -54,6 +54,7 @@ const Gallery = () => {
   const [currentMediaIndex, setCurrentMediaIndex] = useState(0);
   const [direction, setDirection] = useState(0);
   const [activeFilter, setActiveFilter] = useState('all');
+  const [isExpanded, setIsExpanded] = useState(false);
 
   // Filter options
   const filters = ['all', 'wedding', 'children', 'couple', 'birthday', 'graduation'];
@@ -78,6 +79,7 @@ const Gallery = () => {
     console.log('Opening lightbox:', album.title, index);
     setSelectedAlbum(album);
     setCurrentMediaIndex(index);
+    setIsExpanded(false);
     document.body.style.overflow = 'hidden';
   };
 
@@ -87,6 +89,7 @@ const Gallery = () => {
     setSelectedAlbum(null);
     setCurrentMediaIndex(0);
     setDirection(0);
+    setIsExpanded(false);
     document.body.style.overflow = 'auto';
   };
 
@@ -97,6 +100,7 @@ const Gallery = () => {
     console.log('Navigating media:', direction, 'New index:', newIndex);
     setCurrentMediaIndex(newIndex);
     setDirection(direction);
+    setIsExpanded(false);
   };
 
   // Navigate to specific media item
@@ -104,6 +108,7 @@ const Gallery = () => {
     console.log('Going to media index:', index);
     setDirection(index > currentMediaIndex ? 1 : -1);
     setCurrentMediaIndex(index);
+    setIsExpanded(false);
   };
 
   // Swipe handlers
@@ -155,6 +160,29 @@ const Gallery = () => {
       default:
         return null;
     }
+  };
+
+  // Handle "See More" / "See Less" for description
+  const renderDescription = (description) => {
+    const words = description.split(/\s+/);
+    if (words.length <= 20) {
+      return <p className="text-gray-300 text-sm">{description}</p>;
+    }
+    const collapsedText = words.slice(0, 20).join(' ') + '...';
+    return (
+      <div>
+        <p className="text-gray-300 text-sm">
+          {isExpanded ? description : collapsedText}
+        </p>
+        <button
+          className="bg-amber-500 hover:bg-amber-600 text-white font-medium px-4 py-2 rounded-lg text-sm mt-2"
+          onClick={() => setIsExpanded(!isExpanded)}
+          aria-label={isExpanded ? 'See Less' : 'See More'}
+        >
+          {isExpanded ? 'See Less' : 'See More'}
+        </button>
+      </div>
+    );
   };
 
   return (
@@ -317,7 +345,7 @@ const Gallery = () => {
             aria-label={`${selectedAlbum.title} lightbox`}
           >
             <motion.div
-              className="relative inline-flex md:w-[70%] fex flex-col sm:flex-row bg-black rounded-lg max-h-[100vh] sm:max-h-[95vh] m-auto lg:h-[95vh] overflow-y-auto"
+              className="relative inline-flex md:w-[70%] flex flex-col sm:flex-row bg-black rounded-lg max-h-[100vh] sm:max-h-[95vh] m-auto lg:h-[95vh] overflow-y-auto"
               initial={{ scale: 0.9, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               exit={{ scale: 0.9, opacity: 0 }}
@@ -423,7 +451,7 @@ const Gallery = () => {
                   )}
                   {/* Dot Indicators for Albums */}
                   {selectedAlbum.type === 'album' && selectedAlbum.media.length > 1 && (
-                    <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2">
+                    <div className="absolute bottom-4 !left-1/2 !-translate-x-1/2 flex gap-2 justify-center bg-black/50 p-1 rounded">
                       {selectedAlbum.media.map((_, index) => (
                         <button
                           key={index}
@@ -444,16 +472,15 @@ const Gallery = () => {
               <div className="w-full sm:w-[50%] p-4 sm:p-6 flex flex-col justify-between bg-black border border-amber-700 md:overflow-y-auto">
                 <div>
                   <h3 className="text-lg sm:text-xl font-semibold text-white mb-2">{selectedAlbum.title}</h3>
-                  <p className="text-gray-300 text-sm">
-                    
-                    {/* {selectedAlbum.media[currentMediaIndex].description} */}
 
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Iure, sapiente! Temporibus, debitis, voluptates non accusamus tenetur officia exercitationem soluta consequuntur sequi sint nesciunt quasi suscipit id, magni eius commodi optio?
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Iure, sapiente! Temporibus, debitis, voluptates non accusamus tenetur officia exercitationem soluta consequuntur sequi sint nesciunt quasi suscipit id, magni eius commodi optio?
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Iure, sapiente! Temporibus, debitis, voluptates non accusamus tenetur officia exercitationem soluta consequuntur sequi sint nesciunt quasi suscipit id, magni eius commodi optio?
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Iure, sapiente! Temporibus, debitis, voluptates non accusamus tenetur officia exercitationem soluta consequuntur sequi sint nesciunt quasi suscipit id, magni eius commodi optio?
+                  
+                  {renderDescription(selectedAlbum.media[currentMediaIndex].description)}
 
 
+
+
+                  <p className="text-gray-400 text-sm mt-2">
+                    Date: {selectedAlbum.media[currentMediaIndex].date || new Date().toLocaleDateString()}
                   </p>
                   {selectedAlbum.media[currentMediaIndex].tags?.length > 0 && (
                     <p className="text-gray-400 text-sm mt-2">

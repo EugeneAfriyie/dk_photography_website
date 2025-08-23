@@ -444,7 +444,7 @@ export const galleryImage = [
         src: 'https://res.cloudinary.com/djeorsh5d/image/upload/v1751247125/BRIDE1_kjfo1p.jpg',
         type: 'image',
         alt: 'Bride in white dress',
-        description: 'Bride walking down the aisle.',
+        description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Iure, sapiente! Temporibus, debitis, voluptates non accusamus tenetur officia exercitationem soluta consequuntur sequi sint nesciunt quasi suscipit id, magni eius commodi optio?                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Iure, sapiente! Temporibus, debitis, voluptates non accusamus tenetur officia exercitationem soluta consequuntur sequi sint nesciunt quasi suscipit id, magni eius commodi optio?                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Iure, sapiente! Temporibus, debitis, voluptates non accusamus tenetur officia exercitationem soluta consequuntur sequi sint nesciunt quasi suscipit id, magni eius commodi optio',
         tags: [
           { label: 'make artist', name: 'Pretty', handle: '@nana_amabbe' },
           { label: 'decor', name: 'Pretty', handle: '@nan_ama' },
