@@ -307,7 +307,7 @@ const Gallery = () => {
         {/* Instagram-style Lightbox Modal */}
         {selectedAlbum && (
           <motion.div
-            className="fixed inset-0 bg-black/90 flex items-center justify-center z-500 p-4 sm:p-6 lg:h-screen lg:w-screen "
+            className="fixed inset-0 bg-black/90 flex items-center justify-center z-500 p-4 sm:p-6 lg:h-screen lg:w-screen overflow-y-auto"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
@@ -317,7 +317,7 @@ const Gallery = () => {
             aria-label={`${selectedAlbum.title} lightbox`}
           >
             <motion.div
-              className="relative inline-flex max-w-[40rem] flex flex-col sm:flex-row bg-black rounded-lg max-h-[100vh] sm:max-h-[80vh] lg:h-[95vh] overflow-auto"
+              className="relative inline-flex md:w-[70%] fex flex-col sm:flex-row bg-black rounded-lg max-h-[100vh] sm:max-h-[95vh] m-auto lg:h-[95vh] overflow-y-auto"
               initial={{ scale: 0.9, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               exit={{ scale: 0.9, opacity: 0 }}
@@ -326,14 +326,14 @@ const Gallery = () => {
             >
               {/* Media Display with Swipe */}
               <div
-                className="w-full sm:w-[60%] flex flex-col items-center justify-start sm:justify-center swipe-container lg:h-[calc(95vh-2rem)]"
+                className="w-full sm:w-[50%] flex flex-col items-center justify-start sm:justify-center swipe-container lg:h-full"
                 onTouchStart={swipeHandlers.onTouchStart}
                 onTouchMove={swipeHandlers.onTouchMove}
                 onTouchEnd={swipeHandlers.onTouchEnd}
                 tabIndex={0}
                 aria-label="Swipe or use arrow keys to navigate media"
               >
-                <div className="relative w-full h-[70vh] sm:h-[70vh] lg:h-full overflow-x-hidden border-amber-500 border">
+                <div className="relative w-full h-[70vh] sm:h-full lg:h-full overflow-x-hidden border-amber-500 border">
                   <AnimatePresence initial={false} custom={direction}>
                     <motion.div
                       key={currentMediaIndex}
@@ -423,7 +423,7 @@ const Gallery = () => {
                   )}
                   {/* Dot Indicators for Albums */}
                   {selectedAlbum.type === 'album' && selectedAlbum.media.length > 1 && (
-                    <div className="absolute bottom-4 !left-1/2 !-translate-x-1/2 flex gap-2 justify-center bg-black/50 p-1 rounded">
+                    <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2">
                       {selectedAlbum.media.map((_, index) => (
                         <button
                           key={index}
@@ -441,10 +441,20 @@ const Gallery = () => {
                 </div>
               </div>
               {/* Caption and Controls */}
-              <div className="w-full sm:w-[40%] p-4 sm:p-6 flex flex-col justify-between bg-black">
+              <div className="w-full sm:w-[50%] p-4 sm:p-6 flex flex-col justify-between bg-black border border-amber-700 md:overflow-y-auto">
                 <div>
                   <h3 className="text-lg sm:text-xl font-semibold text-white mb-2">{selectedAlbum.title}</h3>
-                  <p className="text-gray-300 text-sm">{selectedAlbum.media[currentMediaIndex].description}</p>
+                  <p className="text-gray-300 text-sm">
+                    
+                    {/* {selectedAlbum.media[currentMediaIndex].description} */}
+
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Iure, sapiente! Temporibus, debitis, voluptates non accusamus tenetur officia exercitationem soluta consequuntur sequi sint nesciunt quasi suscipit id, magni eius commodi optio?
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Iure, sapiente! Temporibus, debitis, voluptates non accusamus tenetur officia exercitationem soluta consequuntur sequi sint nesciunt quasi suscipit id, magni eius commodi optio?
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Iure, sapiente! Temporibus, debitis, voluptates non accusamus tenetur officia exercitationem soluta consequuntur sequi sint nesciunt quasi suscipit id, magni eius commodi optio?
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Iure, sapiente! Temporibus, debitis, voluptates non accusamus tenetur officia exercitationem soluta consequuntur sequi sint nesciunt quasi suscipit id, magni eius commodi optio?
+
+
+                  </p>
                   {selectedAlbum.media[currentMediaIndex].tags?.length > 0 && (
                     <p className="text-gray-400 text-sm mt-2">
                       {selectedAlbum.media[currentMediaIndex].tags.map((tag, index) => (
@@ -476,7 +486,7 @@ const Gallery = () => {
               </div>
               {/* Close Button */}
               <button
-                className="absolute top-2 right-2 bg-gray-800 hover:bg-gray-700 text-white p-2 rounded-full z-[60]"
+                className="absolute top-2 right-2 bg-gray-800 hover:bg-amber-700 text-white p-2 rounded-full z-[60]"
                 onClick={closeLightbox}
                 aria-label="Close lightbox"
               >
