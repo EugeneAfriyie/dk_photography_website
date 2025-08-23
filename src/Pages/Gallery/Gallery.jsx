@@ -55,6 +55,8 @@ const Gallery = () => {
   const [direction, setDirection] = useState(0);
   const [activeFilter, setActiveFilter] = useState('all');
   const [isExpanded, setIsExpanded] = useState(false);
+  const [loadedCount, setLoadedCount] = useState(40);
+  const [isLoading, setIsLoading] = useState(false);
 
   // Filter options
   const filters = ['all', 'wedding', 'children', 'couple', 'birthday', 'graduation'];
@@ -135,6 +137,18 @@ const Gallery = () => {
     console.log('Applying filter:', filter);
     setActiveFilter(filter);
     setSelectedAlbum(null);
+    setLoadedCount(40); // Reset to initial load count when filter changes
+  };
+
+  // Load more albums
+  const loadMore = () => {
+    console.log('Loading more albums');
+    setIsLoading(true);
+    // Simulate loading delay
+    setTimeout(() => {
+      setLoadedCount((prev) => prev + 20);
+      setIsLoading(false);
+    }, 1000);
   };
 
   // Filtered images
@@ -333,47 +347,97 @@ const Gallery = () => {
           {filteredImages.length === 0 ? (
             <p className="text-center text-gray-300">No media available for this category.</p>
           ) : (
-            <div className="grid grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-1 sm:gap-2">
-              {filteredImages.map((album, index) => {
-                console.log('Rendering album:', album.title, album.type, album.albumType, album.category);
-                return (
-                  <motion.div
-                    key={`${album.title}-${index}`}
-                    className="relative aspect-3/4 overflow-hidden cursor-pointer group border border-gray-700 hover:border-amber-400 transition-colors duration-300 rounded-lg"
-                    initial={{ opacity: 0 }}
-                    whileInView={{ opacity: 1 }}
-                    transition={{ duration: 0.5, delay: index * 0.05 }}
-                    viewport={{ once: true }}
-                    onClick={() => openLightbox(album, 0)}
-                    tabIndex={0}
-                    role="button"
-                    aria-label={`View ${album.title} ${album.type === 'album' ? 'album' : 'media'} in lightbox`}
-                    onKeyDown={(e) => e.key === 'Enter' && openLightbox(album, 0)}
-                  >
-                    <img
-                      src={album.media[0].src}
-                      alt={album.media[0].alt}
-                      className="w-full h-full object-cover group-hover:brightness-75 transition-brightness duration-200"
-                      loading="lazy"
-                      onError={() => console.error('Failed to load grid image:', album.media[0].src)}
-                    />
-                    <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-200 flex items-center justify-center">
-                      <span className="text-white text-sm font-medium">
-                        {album.title} {album.type === 'album' ? `(${album.media.length})` : ''}
-                      </span>
-                    </div>
-                    {album.type === 'album' && (
-                      <div
-                        className="absolute top-2 right-2 bg-black/60 p-1 rounded-full album-icon"
-                        aria-label={`Album contains ${album.albumType} content`}
-                      >
-                        {getAlbumIcon(album.albumType)}
+            <>
+              <div className="grid grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-1 sm:gap-2">
+                {filteredImages.slice(0, loadedCount).map((album, index) => {
+                  console.log('Rendering album:', album.title, album.type, album.albumType, album.category);
+                  return (
+                    <motion.div
+                      key={`${album.title}-${index}`}
+                      className="relative aspect-3/4 overflow-hidden cursor-pointer group border border-gray-700 hover:border-amber-400 transition-colors duration-300 rounded-lg"
+                      initial={{ opacity: 0 }}
+                      whileInView={{ opacity: 1 }}
+                      transition={{ duration: 0.5, delay: index * 0.05 }}
+                      viewport={{ once: true }}
+                      onClick={() => openLightbox(album, 0)}
+                      tabIndex={0}
+                      role="button"
+                      aria-label={`View ${album.title} ${album.type === 'album' ? 'album' : 'media'} in lightbox`}
+                      onKeyDown={(e) => e.key === 'Enter' && openLightbox(album, 0)}
+                    >
+                      <img
+                        src={album.media[0].src}
+                        alt={album.media[0].alt}
+                        className="w-full h-full object-cover group-hover:brightness-75 transition-brightness duration-200"
+                        loading="lazy"
+                        onError={() => console.error('Failed to load grid image:', album.media[0].src)}
+                      />
+                      <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-200 flex items-center justify-center">
+                        <span className="text-white text-sm font-medium">
+                          {album.title} {album.type === 'album' ? `(${album.media.length})` : ''}
+                        </span>
                       </div>
-                    )}
+                      {album.type === 'album' && (
+                        <div
+                          className="absolute top-2 right-2 bg-black/60 p-1 rounded-full album-icon"
+                          aria-label={`Album contains ${album.albumType} content`}
+                        >
+                          {getAlbumIcon(album.albumType)}
+                        </div>
+                      )}
+                    </motion.div>
+                  );
+                })}
+              </div>
+              <AnimatePresence>
+                {isLoading && (
+                  <motion.div
+                    className="flex justify-center items-center mt-6"
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: 10 }}
+                    transition={{ duration: 0.2, ease: 'easeOut' }}
+                  >
+                    <div className="flex gap-2">
+                      {[0, 1, 2].map((i) => (
+                        <motion.div
+                          key={i}
+                          className="w-3 h-3 bg-amber-500 rounded-full"
+                          animate={{
+                            scale: [0.8, 1.2, 0.8],
+                            opacity: [0.5, 1, 0.5],
+                          }}
+                          transition={{
+                            duration: 0.6,
+                            repeat: Infinity,
+                            delay: i * 0.2,
+                            ease: 'easeInOut',
+                          }}
+                        />
+                      ))}
+                    </div>
                   </motion.div>
-                );
-              })}
-            </div>
+                )}
+              </AnimatePresence>
+              {loadedCount < filteredImages.length && !isLoading && (
+                <motion.div
+                  className="flex justify-center mt-6"
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.2, ease: 'easeOut' }}
+                >
+                  <motion.button
+                    className="bg-amber-500 hover:bg-amber-600 text-white font-medium px-6 py-3 rounded-lg text-sm"
+                    onClick={loadMore}
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                    aria-label="Load more albums"
+                  >
+                    Load More
+                  </motion.button>
+                </motion.div>
+              )}
+            </>
           )}
         </section>
 
@@ -390,7 +454,7 @@ const Gallery = () => {
             aria-label={`${selectedAlbum.title} lightbox`}
           >
             <motion.div
-              className="relative inline-flex md:w-[70%] flex flex-col lg:flex-row bg-black rounded-lg max-h-[100vh] sm:max-h-[95vh] m-auto lg:h-[95vh] overflow-y-auto"
+              className="relative inline-flex md:w-[70%] flex flex-col custom:flex-row bg-black rounded-lg max-h-[100vh] sm:max-h-[95vh] m-auto lg:h-[95vh] overflow-y-auto"
               initial={{ scale: 0.9, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               exit={{ scale: 0.9, opacity: 0 }}
