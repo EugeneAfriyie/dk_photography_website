@@ -57,6 +57,8 @@ const Gallery = () => {
   const [isExpanded, setIsExpanded] = useState(false);
   const [loadedCount, setLoadedCount] = useState(40);
   const [isLoading, setIsLoading] = useState(false);
+  const [imageLoadStatus, setImageLoadStatus] = useState({}); // Track grid image loading
+  const [isBannerLoaded, setIsBannerLoaded] = useState(false); // Track banner image loading
 
   // Filter options
   const filters = ['all', 'wedding', 'children', 'couple', 'birthday', 'graduation'];
@@ -75,6 +77,11 @@ const Gallery = () => {
       handleScroll.cancel();
     };
   }, []);
+
+  // Reset grid image load status when filter changes
+  useEffect(() => {
+    setImageLoadStatus({});
+  }, [activeFilter]);
 
   // Open lightbox
   const openLightbox = (album, index) => {
@@ -262,17 +269,33 @@ const Gallery = () => {
           transition={{ duration: 1.2, ease: 'easeOut', delay: 0.2 }}
           viewport={{ once: true }}
         >
+          <AnimatePresence>
+            {!isBannerLoaded && (
+              <motion.div
+                className="absolute inset-0 bg-gray-700"
+                initial={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.3 }}
+              />
+            )}
+          </AnimatePresence>
           <motion.img
             src="/cloudinary/djeorsh5d/image/upload/w_800,h_400,c_fill/v1751247136/EQ_image-2_ttqpf8.png"
             srcSet="/cloudinary/djeorsh5d/image/upload/w_400,h_200,c_fill/v1751247136/EQ_image-2_ttqpf8.png 400w, /cloudinary/djeorsh5d/image/upload/w_800,h_400,c_fill/v1751247136/EQ_image-2_ttqpf8.png 800w, /cloudinary/djeorsh5d/image/upload/w_1200,h_600,c_fill/v1751247136/EQ_image-2_ttqpf8.png 1200w"
             sizes="(max-width: 640px) 400px, (max-width: 1280px) 800px, 1200px"
             alt="Gallery banner showcasing photography"
-            className="absolute top-0 left-0 w-full h-full object-cover"
+            className={`absolute top-0 left-0 w-full h-full object-cover transition-opacity duration-300 ${
+              isBannerLoaded ? 'opacity-100' : 'opacity-0'
+            }`}
             initial={{ x: -100, opacity: 0 }}
-            whileInView={{ x: 0, opacity: 1 }}
+            whileInView={{ x: 0, opacity: isBannerLoaded ? 1 : 0 }}
             transition={{ duration: 1, ease: 'easeOut' }}
             viewport={{ once: true }}
-            onError={() => console.error('Failed to load banner image')}
+            onLoad={() => setIsBannerLoaded(true)}
+            onError={() => {
+              console.error('Failed to load banner image');
+              setIsBannerLoaded(true);
+            }}
           />
           <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/50 to-transparent"></div>
           <motion.div
@@ -350,10 +373,11 @@ const Gallery = () => {
             <>
               <div className="grid grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-1 sm:gap-2">
                 {filteredImages.slice(0, loadedCount).map((album, index) => {
+                  const imageKey = `${album.title}-${index}`;
                   console.log('Rendering album:', album.title, album.type, album.albumType, album.category);
                   return (
                     <motion.div
-                      key={`${album.title}-${index}`}
+                      key={imageKey}
                       className="relative aspect-3/4 overflow-hidden cursor-pointer group border border-gray-700 hover:border-amber-400 transition-colors duration-300 rounded-lg"
                       initial={{ opacity: 0 }}
                       whileInView={{ opacity: 1 }}
@@ -365,12 +389,28 @@ const Gallery = () => {
                       aria-label={`View ${album.title} ${album.type === 'album' ? 'album' : 'media'} in lightbox`}
                       onKeyDown={(e) => e.key === 'Enter' && openLightbox(album, 0)}
                     >
+                      <AnimatePresence>
+                        {!imageLoadStatus[imageKey] && (
+                          <motion.div
+                            className="absolute inset-0 bg-gray-700"
+                            initial={{ opacity: 1 }}
+                            exit={{ opacity: 0 }}
+                            transition={{ duration: 0.3 }}
+                          />
+                        )}
+                      </AnimatePresence>
                       <img
                         src={album.media[0].src}
                         alt={album.media[0].alt}
-                        className="w-full h-full object-cover group-hover:brightness-75 transition-brightness duration-200"
+                        className={`w-full h-full object-cover group-hover:brightness-75 transition-opacity duration-300 ${
+                          imageLoadStatus[imageKey] ? 'opacity-100' : 'opacity-0'
+                        }`}
                         loading="lazy"
-                        onError={() => console.error('Failed to load grid image:', album.media[0].src)}
+                        onLoad={() => setImageLoadStatus((prev) => ({ ...prev, [imageKey]: true }))}
+                        onError={() => {
+                          console.error('Failed to load grid image:', album.media[0].src);
+                          setImageLoadStatus((prev) => ({ ...prev, [imageKey]: true }));
+                        }}
                       />
                       <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-200 flex items-center justify-center">
                         <span className="text-white text-sm font-medium">
@@ -456,7 +496,7 @@ const Gallery = () => {
         {/* Instagram-style Lightbox Modal */}
         {selectedAlbum && (
           <motion.div
-            className="fixed bottom-0 inset-0 bg-black/90 flex items-center justify-center z-500 p-4 sm:p-6 lg:h-screen lg:w-screen overflow-y-auto"
+            className="fixed inset-0 bg-black/90 flex items-center justify-center z-500 p-4 sm:p-6 lg:h-screen lg:w-screen overflow-y-auto"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
