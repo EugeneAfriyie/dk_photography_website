@@ -162,25 +162,25 @@ const Gallery = () => {
     }
   };
 
-  // Handle "See More" / "See Less" for description
+  // Handle "See More" / "See Less" for description on mobile
   const renderDescription = (description) => {
     const words = description.split(/\s+/);
-    if (words.length <= 20) {
-      return <p className="text-gray-300 text-sm">{description}</p>;
-    }
     const collapsedText = words.slice(0, 20).join(' ') + '...';
     return (
       <div>
-        <p className="text-gray-300 text-sm">
-          {isExpanded ? description : collapsedText}
+        <p className="text-gray-300 text-sm hidden sm:block">{description}</p>
+        <p className="text-gray-300 text-sm block sm:hidden">
+          {words.length > 20 && !isExpanded ? collapsedText : description}
         </p>
-        <button
-          className="bg-amber-500 hover:bg-amber-600 text-white font-medium px-4 py-2 rounded-lg text-sm mt-2"
-          onClick={() => setIsExpanded(!isExpanded)}
-          aria-label={isExpanded ? 'See Less' : 'See More'}
-        >
-          {isExpanded ? 'See Less' : 'See More'}
-        </button>
+        {words.length > 20 && (
+          <button
+            className="bg-amber-500 hover:bg-amber-600 text-white font-medium px-4 py-2 rounded-lg text-sm mt-2 sm:hidden"
+            onClick={() => setIsExpanded(!isExpanded)}
+            aria-label={isExpanded ? 'See Less' : 'See More'}
+          >
+            {isExpanded ? 'See Less' : 'See More'}
+          </button>
+        )}
       </div>
     );
   };
@@ -451,7 +451,7 @@ const Gallery = () => {
                   )}
                   {/* Dot Indicators for Albums */}
                   {selectedAlbum.type === 'album' && selectedAlbum.media.length > 1 && (
-                    <div className="absolute bottom-4 !left-1/2 !-translate-x-1/2 flex gap-2 justify-center bg-black/50 p-1 rounded">
+                    <div className="absolute bottom-4 !left-1/2 !-translate-x-1/2 flex gap-2 justify-center bg-black/50 p-1 rounded z-10">
                       {selectedAlbum.media.map((_, index) => (
                         <button
                           key={index}
@@ -471,17 +471,13 @@ const Gallery = () => {
               {/* Caption and Controls */}
               <div className="w-full sm:w-[50%] p-4 sm:p-6 flex flex-col justify-between bg-black border border-amber-700 md:overflow-y-auto">
                 <div>
-                  <h3 className="text-lg sm:text-xl font-semibold text-white mb-2">{selectedAlbum.title}</h3>
-
-                  
+                  <div className="flex items-center gap-2 mb-2">
+                    <h3 className="text-lg sm:text-xl font-semibold text-white">{selectedAlbum.title}</h3>
+                    <p className="text-gray-400 text-sm">
+                      Date: {selectedAlbum.media[currentMediaIndex].date || new Date().toLocaleDateString()}
+                    </p>
+                  </div>
                   {renderDescription(selectedAlbum.media[currentMediaIndex].description)}
-
-
-
-
-                  <p className="text-gray-400 text-sm mt-2">
-                    Date: {selectedAlbum.media[currentMediaIndex].date || new Date().toLocaleDateString()}
-                  </p>
                   {selectedAlbum.media[currentMediaIndex].tags?.length > 0 && (
                     <p className="text-gray-400 text-sm mt-2">
                       {selectedAlbum.media[currentMediaIndex].tags.map((tag, index) => (
