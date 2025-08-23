@@ -162,25 +162,70 @@ const Gallery = () => {
     }
   };
 
-  // Handle "See More" / "See Less" for description on mobile
+  // Handle "See More" / "See Less" for description on mobile with animations
   const renderDescription = (description) => {
     const words = description.split(/\s+/);
-    const collapsedText = words.slice(0, 20).join(' ') + '...';
+    const fullText = (
+      <>
+        <a
+          href="https://www.instagram.com/dkshotit_photography"
+          className="text-amber-500 hover:underline"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Visit dkshotit_photography on Instagram"
+        >
+          dkshotit_photography
+        </a>{' '}
+        {description}
+      </>
+    );
+    const collapsedText = words.length > 19 ? (
+      <>
+        <a
+          href="https://www.instagram.com/dkshotit_photography"
+          className="text-amber-500 hover:underline"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Visit dkshotit_photography on Instagram"
+        >
+          dkshotit_photography
+        </a>{' '}
+        {words.slice(0, 19).join(' ')}...
+      </>
+    ) : fullText;
     return (
       <div>
-        <p className="text-gray-300 text-sm hidden sm:block">{description}</p>
-        <p className="text-gray-300 text-sm block sm:hidden">
-          {words.length > 20 && !isExpanded ? collapsedText : description}
-        </p>
-        {words.length > 20 && (
-          <button
-            className="bg-amber-500 hover:bg-amber-600 text-white font-medium px-4 py-2 rounded-lg text-sm mt-2 sm:hidden"
-            onClick={() => setIsExpanded(!isExpanded)}
-            aria-label={isExpanded ? 'See Less' : 'See More'}
+        <p className="text-gray-300 text-sm hidden custom:block">{fullText}</p>
+        <AnimatePresence mode="wait">
+          <motion.p
+            key={isExpanded ? 'expanded' : 'collapsed'}
+            className="text-gray-300 text-sm block custom:hidden"
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: 10 }}
+            transition={{ duration: 0.2, ease: 'easeOut' }}
           >
-            {isExpanded ? 'See Less' : 'See More'}
-          </button>
-        )}
+            {words.length > 19 && !isExpanded ? collapsedText : fullText}
+          </motion.p>
+        </AnimatePresence>
+        <AnimatePresence mode="wait">
+          {words.length > 19 && (
+            <motion.button
+              key={isExpanded ? 'see-less' : 'see-more'}
+              className="bg-amber-500 hover:bg-amber-600 text-white font-medium px-4 py-2 rounded-lg text-sm mt-2 block custom:hidden"
+              onClick={() => setIsExpanded(!isExpanded)}
+              aria-label={isExpanded ? 'See Less' : 'See More'}
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: 10 }}
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              transition={{ duration: 0.2, ease: 'easeOut' }}
+            >
+              {isExpanded ? 'See Less' : 'See More'}
+            </motion.button>
+          )}
+        </AnimatePresence>
       </div>
     );
   };
@@ -345,7 +390,7 @@ const Gallery = () => {
             aria-label={`${selectedAlbum.title} lightbox`}
           >
             <motion.div
-              className="relative inline-flex md:w-[70%] flex flex-col sm:flex-row bg-black rounded-lg max-h-[100vh] sm:max-h-[95vh] m-auto lg:h-[95vh] overflow-y-auto"
+              className="relative inline-flex md:w-[70%] flex flex-col lg:flex-row bg-black rounded-lg max-h-[100vh] sm:max-h-[95vh] m-auto lg:h-[95vh] overflow-y-auto"
               initial={{ scale: 0.9, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               exit={{ scale: 0.9, opacity: 0 }}
@@ -354,14 +399,14 @@ const Gallery = () => {
             >
               {/* Media Display with Swipe */}
               <div
-                className="w-full sm:w-[50%] flex flex-col items-center justify-start sm:justify-center swipe-container lg:h-full"
+                className="w-full custom:w-[50%] flex flex-col items-center justify-start custom:justify-center swipe-container lg:h-full"
                 onTouchStart={swipeHandlers.onTouchStart}
                 onTouchMove={swipeHandlers.onTouchMove}
                 onTouchEnd={swipeHandlers.onTouchEnd}
                 tabIndex={0}
                 aria-label="Swipe or use arrow keys to navigate media"
               >
-                <div className="relative w-full h-[70vh] sm:h-full lg:h-full overflow-x-hidden border-amber-500 border">
+                <div className="relative w-full h-[70vh] custom:h-full lg:h-full overflow-x-hidden border-amber-500 border">
                   <AnimatePresence initial={false} custom={direction}>
                     <motion.div
                       key={currentMediaIndex}
@@ -469,7 +514,7 @@ const Gallery = () => {
                 </div>
               </div>
               {/* Caption and Controls */}
-              <div className="w-full sm:w-[50%] p-4 sm:p-6 flex flex-col justify-between bg-black border border-amber-700 md:overflow-y-auto">
+              <div className="w-full custom:w-[50%] p-4 sm:p-6 flex flex-col justify-between bg-black border border-amber-700 md:overflow-y-auto">
                 <div>
                   <div className="flex items-center gap-2 mb-2">
                     <h3 className="text-lg sm:text-xl font-semibold text-white">{selectedAlbum.title}</h3>

@@ -3,6 +3,7 @@ module.exports = {
     extend: {
       screens: {
         'xs': '360px', // custom screen for 360px
+        custom: '860px',
       },
     },
   },
