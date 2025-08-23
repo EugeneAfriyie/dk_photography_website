@@ -441,10 +441,20 @@ const Gallery = () => {
                 </div>
               </div>
               {/* Caption and Controls */}
-              <div className="w-full sm:w-[40%] p-4 sm:p-6 flex flex-col justify-between bg-black">
+              <div className="w-full sm:w-[50%] p-4 sm:p-6 flex flex-col justify-between bg-black border border-amber-700 overflow-y-auto">
                 <div>
                   <h3 className="text-lg sm:text-xl font-semibold text-white mb-2">{selectedAlbum.title}</h3>
-                  <p className="text-gray-300 text-sm">{selectedAlbum.media[currentMediaIndex].description}</p>
+                  <p className="text-gray-300 text-sm">
+                    
+                    {/* {selectedAlbum.media[currentMediaIndex].description} */}
+
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Iure, sapiente! Temporibus, debitis, voluptates non accusamus tenetur officia exercitationem soluta consequuntur sequi sint nesciunt quasi suscipit id, magni eius commodi optio?
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Iure, sapiente! Temporibus, debitis, voluptates non accusamus tenetur officia exercitationem soluta consequuntur sequi sint nesciunt quasi suscipit id, magni eius commodi optio?
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Iure, sapiente! Temporibus, debitis, voluptates non accusamus tenetur officia exercitationem soluta consequuntur sequi sint nesciunt quasi suscipit id, magni eius commodi optio?
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Iure, sapiente! Temporibus, debitis, voluptates non accusamus tenetur officia exercitationem soluta consequuntur sequi sint nesciunt quasi suscipit id, magni eius commodi optio?
+
+
+                  </p>
                   {selectedAlbum.media[currentMediaIndex].tags?.length > 0 && (
                     <p className="text-gray-400 text-sm mt-2">
                       {selectedAlbum.media[currentMediaIndex].tags.map((tag, index) => (
@@ -476,7 +486,7 @@ const Gallery = () => {
               </div>
               {/* Close Button */}
               <button
-                className="absolute top-2 right-2 bg-gray-800 hover:bg-gray-700 text-white p-2 rounded-full z-[60]"
+                className="absolute top-2 right-2 bg-gray-800 hover:bg-amber-700 text-white p-2 rounded-full z-[60]"
                 onClick={closeLightbox}
                 aria-label="Close lightbox"
               >
