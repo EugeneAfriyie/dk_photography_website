@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { throttle } from 'lodash';
 import { FaImages, FaImage, FaVideo } from 'react-icons/fa';
@@ -57,8 +57,9 @@ const Gallery = () => {
   const [isExpanded, setIsExpanded] = useState(false);
   const [loadedCount, setLoadedCount] = useState(40);
   const [isLoading, setIsLoading] = useState(false);
-  const [imageLoadStatus, setImageLoadStatus] = useState({}); // Track grid image loading
-  const [isBannerLoaded, setIsBannerLoaded] = useState(false); // Track banner image loading
+  const [imageLoadStatus, setImageLoadStatus] = useState({});
+  const [isBannerLoaded, setIsBannerLoaded] = useState(false);
+  const imageRefs = useRef({}); // Store refs for grid images
 
   // Filter options
   const filters = ['all', 'wedding', 'children', 'couple', 'birthday', 'graduation'];
@@ -78,9 +79,26 @@ const Gallery = () => {
     };
   }, []);
 
+  // Check for cached images on mount
+  useEffect(() => {
+    const initialImages = galleryImage.slice(0, 40);
+    const newLoadStatus = {};
+    initialImages.forEach((album, index) => {
+      const imageKey = `${album.title}-${index}`;
+      const imgElement = imageRefs.current[imageKey];
+      if (imgElement && imgElement.complete) {
+        console.log(`Image cached: ${imageKey}`);
+        newLoadStatus[imageKey] = true;
+      }
+    });
+    setImageLoadStatus((prev) => ({ ...prev, ...newLoadStatus }));
+  }, []);
+
   // Reset grid image load status when filter changes
   useEffect(() => {
+    console.log('Resetting imageLoadStatus due to filter change:', activeFilter);
     setImageLoadStatus({});
+    imageRefs.current = {};
   }, [activeFilter]);
 
   // Open lightbox
@@ -144,14 +162,13 @@ const Gallery = () => {
     console.log('Applying filter:', filter);
     setActiveFilter(filter);
     setSelectedAlbum(null);
-    setLoadedCount(40); // Reset to initial load count when filter changes
+    setLoadedCount(40);
   };
 
   // Load more albums
   const loadMore = () => {
     console.log('Loading more albums');
     setIsLoading(true);
-    // Simulate loading delay
     setTimeout(() => {
       setLoadedCount((prev) => prev + 40);
       setIsLoading(false);
@@ -183,7 +200,7 @@ const Gallery = () => {
     }
   };
 
-  // Handle "See More" / "See Less" for description on mobile with animations
+  // Handle "See More" / "See Less" for description on mobile
   const renderDescription = (description) => {
     const words = description.split(/\s+/);
     const fullText = (
@@ -374,7 +391,6 @@ const Gallery = () => {
               <div className="grid grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-1 sm:gap-2">
                 {filteredImages.slice(0, loadedCount).map((album, index) => {
                   const imageKey = `${album.title}-${index}`;
-                  console.log('Rendering album:', album.title, album.type, album.albumType, album.category);
                   return (
                     <motion.div
                       key={imageKey}
@@ -392,6 +408,7 @@ const Gallery = () => {
                       <AnimatePresence>
                         {!imageLoadStatus[imageKey] && (
                           <motion.div
+                            key={`placeholder-${imageKey}`}
                             className="absolute inset-0 bg-gray-700"
                             initial={{ opacity: 1 }}
                             exit={{ opacity: 0 }}
@@ -400,15 +417,19 @@ const Gallery = () => {
                         )}
                       </AnimatePresence>
                       <img
+                        ref={(el) => (imageRefs.current[imageKey] = el)}
                         src={album.media[0].src}
                         alt={album.media[0].alt}
                         className={`w-full h-full object-cover group-hover:brightness-75 transition-opacity duration-300 ${
                           imageLoadStatus[imageKey] ? 'opacity-100' : 'opacity-0'
                         }`}
                         loading="lazy"
-                        onLoad={() => setImageLoadStatus((prev) => ({ ...prev, [imageKey]: true }))}
+                        onLoad={() => {
+                          console.log(`Image loaded: ${imageKey}`);
+                          setImageLoadStatus((prev) => ({ ...prev, [imageKey]: true }));
+                        }}
                         onError={() => {
-                          console.error('Failed to load grid image:', album.media[0].src);
+                          console.error(`Failed to load grid image: ${album.media[0].src}`);
                           setImageLoadStatus((prev) => ({ ...prev, [imageKey]: true }));
                         }}
                       />
@@ -513,7 +534,6 @@ const Gallery = () => {
               transition={{ duration: 0.3 }}
               onClick={(e) => e.stopPropagation()}
             >
-              {/* Media Display with Swipe */}
               <div
                 className="w-full custom:w-[50%] flex flex-col items-center justify-start custom:justify-center swipe-container lg:h-full"
                 onTouchStart={swipeHandlers.onTouchStart}
@@ -565,7 +585,6 @@ const Gallery = () => {
                       )}
                     </motion.div>
                   </AnimatePresence>
-                  {/* Navigation Buttons */}
                   {selectedAlbum.media.length > 1 && (
                     <>
                       <button
@@ -610,7 +629,6 @@ const Gallery = () => {
                       </button>
                     </>
                   )}
-                  {/* Dot Indicators for Albums */}
                   {selectedAlbum.type === 'album' && selectedAlbum.media.length > 1 && (
                     <div className="absolute bottom-4 !left-1/2 !-translate-x-1/2 flex gap-2 justify-center bg-black/50 p-1 rounded z-10">
                       {selectedAlbum.media.map((_, index) => (
@@ -629,7 +647,6 @@ const Gallery = () => {
                   )}
                 </div>
               </div>
-              {/* Caption and Controls */}
               <div className="w-full custom:w-[50%] p-4 sm:p-6 flex flex-col justify-between bg-black border border-amber-700 md:overflow-y-auto">
                 <div>
                   <div className="flex items-center gap-2 mb-2">
@@ -668,7 +685,6 @@ const Gallery = () => {
                   </a>
                 </div>
               </div>
-              {/* Close Button */}
               <button
                 className="absolute top-2 right-2 bg-gray-800 hover:bg-amber-700 text-white p-2 rounded-full z-[60]"
                 onClick={closeLightbox}
