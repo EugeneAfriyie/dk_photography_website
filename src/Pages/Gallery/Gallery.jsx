@@ -146,7 +146,7 @@ const Gallery = () => {
     setIsLoading(true);
     // Simulate loading delay
     setTimeout(() => {
-      setLoadedCount((prev) => prev + 20);
+      setLoadedCount((prev) => prev + 40);
       setIsLoading(false);
     }, 1000);
   };
@@ -437,6 +437,18 @@ const Gallery = () => {
                   </motion.button>
                 </motion.div>
               )}
+              {loadedCount >= filteredImages.length && !isLoading && (
+                <motion.div
+                  className="flex justify-center mt-6"
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.2, ease: 'easeOut' }}
+                >
+                  <p className="text-gray-300 text-sm sm:text-base">
+                    <span className="text-amber-500">No more</span> albums to load
+                  </p>
+                </motion.div>
+              )}
             </>
           )}
         </section>
@@ -444,7 +456,7 @@ const Gallery = () => {
         {/* Instagram-style Lightbox Modal */}
         {selectedAlbum && (
           <motion.div
-            className="fixed inset-0 bg-black/90 flex items-center justify-center z-500 p-4 sm:p-6 lg:h-screen lg:w-screen overflow-y-auto"
+            className="fixed bottom-0 inset-0 bg-black/90 flex items-center justify-center z-500 p-4 sm:p-6 lg:h-screen lg:w-screen overflow-y-auto"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
