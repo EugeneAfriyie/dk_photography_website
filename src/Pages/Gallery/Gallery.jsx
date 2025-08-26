@@ -1,12 +1,14 @@
-import React, { useState, useEffect, useRef, useCallback } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { throttle } from 'lodash';
-import { FaImages, FaImage, FaVideo } from 'react-icons/fa';
 import { galleryImage } from '../Home/data';
 import Header from '../Home/Components/Header';
 import Footer from '../../Components/Footer';
-import ExclusiveOffer from '../Home/Components/ExclusiveOffer';
+import ExclusiveOffer from '../Home/Components/BookingPrompt';
 import BookingPrompt from '../Home/Components/BookingPrompt';
+import GridImage from './GridImage';
+import BannerCarousel from './BannerCarousel';
+
 
 // Custom swipe handler
 const useCustomSwipe = (onSwipedLeft, onSwipedRight) => {
@@ -48,388 +50,18 @@ const useCustomSwipe = (onSwipedLeft, onSwipedRight) => {
   };
 };
 
-// BannerCarousel component
-const BannerCarousel = ({ bannerImages }) => {
-  const defaultBannerImages = [
-    {
-      src: '/cloudinary/djeorsh5d/image/upload/w_800,h_400,c_fill/v1751247136/EQ_image-2_ttqpf8.png',
-      srcSet: '/cloudinary/djeorsh5d/image/upload/w_400,h_200,c_fill/v1751247136/EQ_image-2_ttqpf8.png 400w, /cloudinary/djeorsh5d/image/upload/w_800,h_400,c_fill/v1751247136/EQ_image-2_ttqpf8.png 800w, /cloudinary/djeorsh5d/image/upload/w_1200,h_600,c_fill/v1751247136/EQ_image-2_ttqpf8.png 1200w',
-      sizes: '(max-width: 640px) 400px, (max-width: 1280px) 800px, 1200px',
-      alt: 'Gallery banner showcasing photography',
-      title: 'Our Gallery',
-      description: 'Explore our stunning photography and videography moments.',
-    },
-    {
-      src: '/cloudinary/djeorsh5d/image/upload/w_800,h_400,c_fill/v1751247136/EQ_image-3_ttqpf8.png',
-      srcSet: '/cloudinary/djeorsh5d/image/upload/w_400,h_200,c_fill/v1751247136/EQ_image-3_ttqpf8.png 400w, /cloudinary/djeorsh5d/image/upload/w_800,h_400,c_fill/v1751247136/EQ_image-3_ttqpf8.png 800w, /cloudinary/djeorsh5d/image/upload/w_1200,h_600,c_fill/v1751247136/EQ_image-3_ttqpf8.png 1200w',
-      sizes: '(max-width: 640px) 400px, (max-width: 1280px) 800px, 1200px',
-      alt: 'Special booking offer banner',
-      title: 'Special Booking Offer',
-      description: 'Book now! Special offer ends soon!',
-    },
-    {
-      src: '/cloudinary/djeorsh5d/image/upload/w_800,h_400,c_fill/v1751247136/EQ_image-4_ttqpf8.png',
-      srcSet: '/cloudinary/djeorsh5d/image/upload/w_400,h_200,c_fill/v1751247136/EQ_image-4_ttqpf8.png 400w, /cloudinary/djeorsh5d/image/upload/w_800,h_400,c_fill/v1751247136/EQ_image-4_ttqpf8.png 800w, /cloudinary/djeorsh5d/image/upload/w_1200,h_600,c_fill/v1751247136/EQ_image-4_ttqpf8.png 1200w',
-      sizes: '(max-width: 640px) 400px, (max-width: 1280px) 800px, 1200px',
-      alt: 'Appreciation banner for capturing memories',
-      title: 'Unforgettable Moments',
-      description: 'Capture life’s unforgettable moments with us.',
-    },
-  ];
-
-  const slides = bannerImages || defaultBannerImages;
-  const [currentIndex, setCurrentIndex] = useState(0);
-  const [isLoaded, setIsLoaded] = useState({});
-  const [isPaused, setIsPaused] = useState(false);
-  const [countdown, setCountdown] = useState('');
-
-  // Countdown timer for Slide 2
-  useEffect(() => {
-    if (currentIndex !== 1) return;
-
-    const endDate = new Date('2025-09-02T06:05:00Z').getTime();
-    const updateCountdown = () => {
-      const now = new Date().getTime();
-      const distance = endDate - now;
-
-      if (distance <= 0) {
-        setCountdown('Offer ended!');
-        return;
-      }
-
-      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-      setCountdown(`${days}d ${hours}h ${minutes}m ${seconds}s`);
-    };
-
-    updateCountdown();
-    const interval = setInterval(updateCountdown, 1000);
-    return () => clearInterval(interval);
-  }, [currentIndex]);
-
-  // Auto-cycle
-  useEffect(() => {
-    if (isPaused) return;
-    const interval = setInterval(() => {
-      setCurrentIndex((prev) => (prev + 1) % slides.length);
-    }, 5000);
-    return () => clearInterval(interval);
-  }, [isPaused, slides.length]);
-
-  // Navigate to specific index
-  const goToIndex = (index) => {
-    console.log('Navigating to banner index:', index);
-    setCurrentIndex(index);
-  };
-
-  // Navigate previous/next
-  const navigate = (direction) => {
-    setCurrentIndex((prev) => (prev + direction + slides.length) % slides.length);
-  };
-
-  return (
-    <motion.section
-      className="relative rounded-lg mb-8 sm:mb-12 overflow-hidden h-64 sm:h-96 group"
-      initial={{ opacity: 0, y: 50, scale: 0.95 }}
-      animate={{ opacity: 1, y: 0, scale: 1 }}
-      transition={{ duration: 1.2, ease: 'easeOut', delay: 0.2 }}
-      onMouseEnter={() => setIsPaused(true)}
-      onMouseLeave={() => setIsPaused(false)}
-    >
-      <AnimatePresence mode="wait">
-        <motion.div
-          key={`banner-${currentIndex}`}
-          className="relative w-full h-full"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
-          transition={{ duration: 0.5 }}
-        >
-          <AnimatePresence>
-            {!isLoaded[currentIndex] && (
-              <motion.div
-                className="absolute inset-0 bg-gray-700"
-                initial={{ opacity: 1 }}
-                exit={{ opacity: 0 }}
-                transition={{ duration: 0.3 }}
-              />
-            )}
-          </AnimatePresence>
-          <motion.img
-            src={slides[currentIndex].src}
-            srcSet={slides[currentIndex].srcSet}
-            sizes={slides[currentIndex].sizes}
-            alt={slides[currentIndex].alt}
-            className="absolute top-0 left-0 w-full h-full object-cover transition-opacity duration-300 z-0"
-            onLoad={() => {
-              console.log(`Banner image loaded: ${slides[currentIndex].src}`);
-              setIsLoaded((prev) => ({ ...prev, [currentIndex]: true }));
-            }}
-            onError={() => {
-              console.error(`Failed to load banner image: ${slides[currentIndex].src}`);
-              setIsLoaded((prev) => ({ ...prev, [currentIndex]: true }));
-            }}
-          />
-        </motion.div>
-      </AnimatePresence>
-      <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-black/30 to-transparent z-10"></div>
-      <AnimatePresence mode="wait">
-        <motion.div
-          key={`text-${currentIndex}`}
-          className="absolute inset-0 z-20 flex items-center justify-center text-center px-4 py-6 sm:py-8"
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          exit={{ opacity: 0, y: 30 }}
-          transition={{ duration: 0.8, ease: 'easeOut' }}
-          onAnimationStart={() => console.log(`Rendering text for slide ${currentIndex}: ${slides[currentIndex].title}`)}
-          onAnimationComplete={() => console.log(`Text animation completed for slide ${currentIndex}`)}
-        >
-          <div className="max-w-2xl">
-            <motion.h1
-              className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 text-white drop-shadow-lg"
-              style={{ color: 'white', position: 'relative' }}
-              initial={{ y: 20, opacity: 0 }}
-              animate={{ y: 0, opacity: 1 }}
-              transition={{ duration: 0.6, delay: 0.2 }}
-            >
-              {slides[currentIndex].title}
-            </motion.h1>
-            <motion.p
-              className="text-gray-200 text-base sm:text-lg md:text-xl drop-shadow-md"
-              style={{ color: '#E5E7EB', position: 'relative' }}
-              initial={{ y: 30, opacity: 0 }}
-              animate={{ y: 0, opacity: 1 }}
-              transition={{ duration: 0.6, delay: 0.4 }}
-            >
-              {slides[currentIndex].description}
-              {currentIndex === 1 && countdown && (
-                <motion.span
-                  className="block text-amber-400 font-semibold mt-2"
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  transition={{ duration: 0.3 }}
-                >
-                  {countdown}
-                </motion.span>
-              )}
-              {currentIndex === 1 && countdown !== 'Offer ended!' && (
-                <motion.a
-                  href="/contact"
-                  className="inline-block bg-amber-500 hover:bg-amber-600 text-white font-medium px-4 py-2 rounded-lg text-sm mt-2"
-                  initial={{ opacity: 0, y: 10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.3, delay: 0.6 }}
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                  aria-label="Book now for special offer"
-                >
-                  Book Now
-                </motion.a>
-              )}
-            </motion.p>
-          </div>
-        </motion.div>
-      </AnimatePresence>
-      {slides.length > 1 && (
-        <>
-          <button
-            className="absolute left-4 top-1/2 -translate-y-1/2 bg-gray-800 hover:bg-gray-700 text-white p-3 rounded-full z-30 opacity-0 group-hover:opacity-100 transition-opacity duration-200"
-            onClick={() => navigate(-1)}
-            aria-label="Previous banner image"
-            tabIndex={0}
-            onKeyDown={(e) => e.key === 'Enter' && navigate(-1)}
-          >
-            <svg
-              className="w-5 h-5"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="2"
-                d="M15 19l-7-7 7-7"
-              />
-            </svg>
-          </button>
-          <button
-            className="absolute right-4 top-1/2 -translate-y-1/2 bg-gray-800 hover:bg-gray-700 text-white p-3 rounded-full z-30 opacity-0 group-hover:opacity-100 transition-opacity duration-200"
-            onClick={() => navigate(1)}
-            aria-label="Next banner image"
-            tabIndex={0}
-            onKeyDown={(e) => e.key === 'Enter' && navigate(1)}
-          >
-            <svg
-              className="w-5 h-5"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="2"
-                d="M9 5l7 7-7 7"
-              />
-            </svg>
-          </button>
-          <div className="absolute bottom-4 !left-1/2 !-translate-x-1/2 flex gap-2 justify-center bg-black/50 p-1 rounded z-30">
-            {slides.map((_, index) => (
-              <button
-                key={index}
-                className={`w-2 h-2 rounded-full ${
-                  index === currentIndex ? 'bg-white' : 'bg-gray-500'
-                }`}
-                onClick={() => goToIndex(index)}
-                aria-label={`View banner image ${index + 1}`}
-                tabIndex={0}
-                onKeyDown={(e) => e.key === 'Enter' && goToIndex(index)}
-              />
-            ))}
-          </div>
-        </>
-      )}
-    </motion.section>
-  );
-};
-
-// GridImage component
-const GridImage = ({ album, index, openLightbox }) => {
-  const imageKey = `${album.title}-${index}`;
-  const imageRef = useRef(null);
-  const [isLoaded, setIsLoaded] = useState(false);
-
-  const handleLoad = useCallback(() => {
-    console.log(`Image loaded: ${imageKey}`);
-    setIsLoaded(true);
-  }, [imageKey]);
-
-  const handleError = useCallback(() => {
-    console.error(`Failed to load grid image: ${album.media[0].src}`);
-    setIsLoaded(true);
-  }, [imageKey, album.media[0].src]);
-
-  useEffect(() => {
-    const img = imageRef.current;
-    let observer;
-
-    if (img) {
-      console.log(`Setting up IntersectionObserver for ${imageKey}`);
-      observer = new IntersectionObserver(
-        ([entry]) => {
-          if (entry.isIntersecting && img.complete) {
-            console.log(`Image cached: ${imageKey}, isLoaded: ${isLoaded}`);
-            setIsLoaded(true);
-            observer.disconnect();
-          }
-        },
-        { threshold: 0.1 }
-      );
-      observer.observe(img);
-    }
-
-    const timeout = setTimeout(() => {
-      if (!isLoaded) {
-        console.log(`Timeout triggered for ${imageKey}`);
-        setIsLoaded(true);
-      }
-    }, 3000);
-
-    return () => {
-      if (observer && img) {
-        console.log(`Cleaning up IntersectionObserver for ${imageKey}`);
-        observer.disconnect();
-      }
-      clearTimeout(timeout);
-    };
-  }, [imageKey, isLoaded]);
-
-  return (
-    <motion.div
-      key={imageKey}
-      className="relative aspect-3/4 overflow-hidden cursor-pointer group border border-gray-700 hover:border-amber-400 transition-colors duration-300 rounded-lg"
-      initial={{ opacity: 0 }}
-      whileInView={{ opacity: 1 }}
-      transition={{ duration: 0.5, delay: index * 0.05 }}
-      viewport={{ once: true }}
-      onClick={() => openLightbox(album, 0)}
-      tabIndex={0}
-      role="button"
-      aria-label={`View ${album.title} ${album.type === 'album' ? 'album' : 'media'} in lightbox`}
-      onKeyDown={(e) => e.key === 'Enter' && openLightbox(album, 0)}
-    >
-      <AnimatePresence>
-        {!isLoaded && (
-          <motion.div
-            key={`placeholder-${imageKey}`}
-            className="absolute inset-0 bg-gray-700"
-            initial={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.3 }}
-          />
-        )}
-      </AnimatePresence>
-      <img
-        key={`image-${imageKey}`}
-        ref={imageRef}
-        src={album.media[0].src}
-        alt={album.media[0].alt}
-        className={`w-full h-full object-cover group-hover:brightness-75 transition-opacity duration-300 ${
-          isLoaded ? 'opacity-100' : 'opacity-0'
-        }`}
-        loading="lazy"
-        onLoad={handleLoad}
-        onError={handleError}
-      />
-      <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-200 flex items-center justify-center">
-        <span className="text-white text-sm font-medium">
-          {album.title} {album.type === 'album' ? `(${album.media.length})` : ''}
-        </span>
-      </div>
-      {album.type === 'album' && (
-        <div
-          className="absolute top-2 right-2 bg-black/60 p-1 rounded-full album-icon"
-          aria-label={`Album contains ${album.albumType} content`}
-        >
-          {(() => {
-            switch (album.albumType) {
-              case 'mixed':
-                return <FaImages className="text-white w-5 h-5" />;
-              case 'images':
-                return <FaImage className="text-white w-5 h-5" />;
-              case 'videos':
-                return <FaVideo className="text-white w-5 h-5" />;
-              default:
-                return null;
-            }
-          })()}
-        </div>
-      )}
-    </motion.div>
-  );
-};
-
-// Gallery component
-const Gallery = ({
-  images = galleryImage,
-  filters = ['all', 'wedding', 'children', 'couple', 'birthday', 'graduation'],
-  initialCount = 40,
-  bannerImages,
-}) => {
+const Gallery = () => {
   const [isVisible, setIsVisible] = useState(false);
   const [selectedAlbum, setSelectedAlbum] = useState(null);
   const [currentMediaIndex, setCurrentMediaIndex] = useState(0);
   const [direction, setDirection] = useState(0);
   const [activeFilter, setActiveFilter] = useState('all');
   const [isExpanded, setIsExpanded] = useState(false);
-  const [loadedCount, setLoadedCount] = useState(initialCount);
+  const [loadedCount, setLoadedCount] = useState(40);
   const [isLoading, setIsLoading] = useState(false);
+
+  // Filter options
+  const filters = ['all', 'wedding', 'children', 'couple', 'birthday', 'graduation'];
 
   // Scroll-to-top button visibility
   useEffect(() => {
@@ -507,7 +139,7 @@ const Gallery = ({
     console.log('Applying filter:', filter);
     setActiveFilter(filter);
     setSelectedAlbum(null);
-    setLoadedCount(initialCount);
+    setLoadedCount(40);
   };
 
   // Load more albums
@@ -515,15 +147,15 @@ const Gallery = ({
     console.log('Loading more albums');
     setIsLoading(true);
     setTimeout(() => {
-      setLoadedCount((prev) => prev + initialCount);
+      setLoadedCount((prev) => prev + 40);
       setIsLoading(false);
     }, 1000);
   };
 
   // Filtered images
   const filteredImages = activeFilter === 'all'
-    ? images
-    : images.filter((album) => album.category === activeFilter);
+    ? galleryImage
+    : galleryImage.filter((album) => album.category === activeFilter);
 
   // Scroll to top
   const scrollToTop = () => {
@@ -609,7 +241,7 @@ const Gallery = ({
     >
       <Header />
       <div className="max-w-7xl mx-auto">
-        <BannerCarousel bannerImages={bannerImages} />
+        <BannerCarousel />
 
         <ExclusiveOffer />
 
