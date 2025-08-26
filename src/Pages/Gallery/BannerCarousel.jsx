@@ -4,24 +4,24 @@ import { motion, AnimatePresence } from 'framer-motion';
 const BannerCarousel = () => {
   const bannerImages = [
     {
-      src: '/cloudinary/djeorsh5d/image/upload/w_800,h_400,c_fill/v1751247136/EQ_image-2_ttqpf8.png',
-      srcSet: '/cloudinary/djeorsh5d/image/upload/w_400,h_200,c_fill/v1751247136/EQ_image-2_ttqpf8.png 400w, /cloudinary/djeorsh5d/image/upload/w_800,h_400,c_fill/v1751247136/EQ_image-2_ttqpf8.png 800w, /cloudinary/djeorsh5d/image/upload/w_1200,h_600,c_fill/v1751247136/EQ_image-2_ttqpf8.png 1200w',
+      src: 'https://res.cloudinary.com/djeorsh5d/image/upload/v1751247126/HOT1_chjduo.jpg',
+      srcSet: 'https://res.cloudinary.com/djeorsh5d/image/upload/v1751247126/HOT1_chjduo.jpg',
       sizes: '(max-width: 640px) 400px, (max-width: 1280px) 800px, 1200px',
       alt: 'Gallery banner showcasing photography',
       title: 'Our Gallery',
       description: 'Explore our stunning photography and videography moments.',
     },
     {
-      src: '/cloudinary/djeorsh5d/image/upload/w_800,h_400,c_fill/v1751247136/EQ_image-3_ttqpf8.png',
-      srcSet: '/cloudinary/djeorsh5d/image/upload/w_400,h_200,c_fill/v1751247136/EQ_image-3_ttqpf8.png 400w, /cloudinary/djeorsh5d/image/upload/w_800,h_400,c_fill/v1751247136/EQ_image-3_ttqpf8.png 800w, /cloudinary/djeorsh5d/image/upload/w_1200,h_600,c_fill/v1751247136/EQ_image-3_ttqpf8.png 1200w',
+      src: 'https://res.cloudinary.com/djeorsh5d/image/upload/v1751247106/SKYLA_d81pvt.jpg',
+      srcSet: 'https://res.cloudinary.com/djeorsh5d/image/upload/v1751247106/SKYLA_d81pvt.jpg',
       sizes: '(max-width: 640px) 400px, (max-width: 1280px) 800px, 1200px',
       alt: 'Special booking offer banner',
       title: 'Special Booking Offer',
       description: 'Book now! Special offer ends soon!',
     },
     {
-      src: '/cloudinary/djeorsh5d/image/upload/w_800,h_400,c_fill/v1751247136/EQ_image-4_ttqpf8.png',
-      srcSet: '/cloudinary/djeorsh5d/image/upload/w_400,h_200,c_fill/v1751247136/EQ_image-4_ttqpf8.png 400w, /cloudinary/djeorsh5d/image/upload/w_800,h_400,c_fill/v1751247136/EQ_image-4_ttqpf8.png 800w, /cloudinary/djeorsh5d/image/upload/w_1200,h_600,c_fill/v1751247136/EQ_image-4_ttqpf8.png 1200w',
+       src: 'https://res.cloudinary.com/djeorsh5d/image/upload/v1751247111/GRAWM1_azekpo.jpg',
+      srcSet: 'https://res.cloudinary.com/djeorsh5d/image/upload/v1751247111/GRAWM1_azekpo.jpg',
       sizes: '(max-width: 640px) 400px, (max-width: 1280px) 800px, 1200px',
       alt: 'Appreciation banner for capturing memories',
       title: 'Unforgettable Moments',
@@ -114,7 +114,7 @@ const BannerCarousel = () => {
             srcSet={bannerImages[currentIndex].srcSet}
             sizes={bannerImages[currentIndex].sizes}
             alt={bannerImages[currentIndex].alt}
-            className="absolute top-0 left-0 w-full h-full object-cover transition-opacity duration-300 z-0"
+            className="absolute top-0 left-0 w-full h-full object-cover transition-opacity duration-300 z-0 object-center"
             onLoad={() => {
               console.log(`Banner image loaded: ${bannerImages[currentIndex].src}`);
               setIsLoaded((prev) => ({ ...prev, [currentIndex]: true }));

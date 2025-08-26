@@ -14,6 +14,8 @@ import BannerCarousel from './BannerCarousel';
 const useCustomSwipe = (onSwipedLeft, onSwipedRight) => {
   const [touchStart, setTouchStart] = useState(null);
   const [touchEnd, setTouchEnd] = useState(null);
+  
+  
 
   const minSwipeDistance = 50;
 
@@ -59,6 +61,8 @@ const Gallery = () => {
   const [isExpanded, setIsExpanded] = useState(false);
   const [loadedCount, setLoadedCount] = useState(40);
   const [isLoading, setIsLoading] = useState(false);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+
 
   // Filter options
   const filters = ['all', 'wedding', 'children', 'couple', 'birthday', 'graduation'];
@@ -233,21 +237,22 @@ const Gallery = () => {
 
   return (
     <div
-      className={`min-h-screen bg-black text-white py-10 sm:py-20 px-4 overflow-hidden ${
+      className={`min-h-screen bg-black text-white pt-15 sm:pt-20 px-4 overflow-hidden ${
         selectedAlbum ? 'pause-animation' : ''
       }`}
       onKeyDown={handleKeyDown}
       tabIndex={0}
     >
-      <Header />
+            <Header mobileMenuOpen={mobileMenuOpen} setMobileMenuOpen={setMobileMenuOpen} />
+
       <div className="max-w-7xl mx-auto">
         <BannerCarousel />
 
-        <ExclusiveOffer />
 
         {/* Filter Bar */}
         <section className="mb-6 sm:mb-8">
-          <div className="flex gap-2 sm:gap-4 overflow-x-auto sm:flex-wrap pb-2 sm:pb-0 filter-bar">
+          <div className="flex gap-2 sm:gap-4 overflow-x-auto sm:flex-wrap pb-2 sm:pb-0 filter-bar lg:justify-center
+          ">
             {filters.map((filter) => (
               <motion.button
                 key={filter}
@@ -367,7 +372,7 @@ const Gallery = () => {
             aria-label={`${selectedAlbum.title} lightbox`}
           >
             <motion.div
-              className="relative inline-flex md:w-[70%] flex flex-col custom:flex-row bg-black rounded-lg max-h-[100vh] sm:max-h-[95vh] m-auto lg:h-[95vh] overflow-y-auto"
+              className="relative inline-flex md:w-[70%] flex flex-col lg:flex-row bg-black rounded-lg max-h-[100vh] sm:max-h-[95vh] m-auto lg:h-[95vh] overflow-y-auto"
               initial={{ scale: 0.9, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               exit={{ scale: 0.9, opacity: 0 }}

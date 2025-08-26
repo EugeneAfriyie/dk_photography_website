@@ -152,6 +152,8 @@ const Contact = () => {
   const [validationErrors, setValidationErrors] = useState({ name: false, email: false, phone: false, subject: false, message: false, package: false });
   const [submittedData, setSubmittedData] = useState(null);
   const [selectedPackage, setSelectedPackage] = useState({ title: 'Select a Package', price: '' });
+    const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  
 
   useEffect(() => {
     const handleScroll = () => {
@@ -332,7 +334,7 @@ const Contact = () => {
 
   return (
     <div className="min-h-screen bg-black text-white py-20 px-4 overflow-hidden" onKeyPress={handleKeyPress}>
-      <Header />
+            <Header mobileMenuOpen={mobileMenuOpen} setMobileMenuOpen={setMobileMenuOpen} />
 
       <div className="max-w-7xl mx-auto">
         {/* Contact Banner */}
