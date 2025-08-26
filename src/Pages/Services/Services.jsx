@@ -118,7 +118,7 @@ const duplicatedPackages = [...packages, ...packages];
 
 
   return (
-    <div className={`min-h-screen bg-black text-white py-10 sm:py-20 px-4 overflow-hidden ${selectedPackage ? 'pause-animation' : ''}`}>
+    <div className={`min-h-screen bg-black text-white pt-10 sm:pt-20 px- overflow-hidden ${selectedPackage ? 'pause-animation' : ''}`}>
             <Header mobileMenuOpen={mobileMenuOpen} setMobileMenuOpen={setMobileMenuOpen} />
       <div className="max-w-7xl mx-auto">
         {/* Services Banner */}

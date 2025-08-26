@@ -333,7 +333,7 @@ const Contact = () => {
   };
 
   return (
-    <div className="min-h-screen bg-black text-white py-20 px-4 overflow-hidden" onKeyPress={handleKeyPress}>
+    <div className="min-h-screen bg-black text-white pt-20  overflow-hidden" onKeyPress={handleKeyPress}>
             <Header mobileMenuOpen={mobileMenuOpen} setMobileMenuOpen={setMobileMenuOpen} />
 
       <div className="max-w-7xl mx-auto">
