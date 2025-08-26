@@ -48,8 +48,200 @@ const useCustomSwipe = (onSwipedLeft, onSwipedRight) => {
   };
 };
 
-// GridImage component for per-image placeholder logic
-const GridImage = ({ album, index, openLightbox, setImageLoadStatus }) => {
+// BannerCarousel component
+const BannerCarousel = () => {
+  const bannerImages = [
+    {
+      src: 'https://res.cloudinary.com/djeorsh5d/image/upload/v1751247111/FAM1_wdqml7.jpg',
+      srcSet: 'https://res.cloudinary.com/djeorsh5d/image/upload/v1751247111/FAM1_wdqml7.jpg',
+      sizes: '(max-width: 640px) 400px, (max-width: 1280px) 800px, 1200px',
+      alt: 'Gallery banner showcasing photography 1',
+    },
+    {
+      src: 'https://res.cloudinary.com/djeorsh5d/image/upload/v1751247111/FAM1_wdqml7.jpg',
+      srcSet: '/cloudinary/djeorsh5d/image/upload/w_400,h_200,c_fill/v1751247136/EQ_image-3_ttqpf8.png 400w, /cloudinary/djeorsh5d/image/upload/w_800,h_400,c_fill/v1751247136/EQ_image-3_ttqpf8.png 800w, /cloudinary/djeorsh5d/image/upload/w_1200,h_600,c_fill/v1751247136/EQ_image-3_ttqpf8.png 1200w',
+      sizes: '(max-width: 640px) 400px, (max-width: 1280px) 800px, 1200px',
+      alt: 'Gallery banner showcasing photography 2',
+    },
+    {
+      src: 'https://res.cloudinary.com/djeorsh5d/image/upload/v1751247111/FAM1_wdqml7.jpg',
+      srcSet: '/cloudinary/djeorsh5d/image/upload/w_400,h_200,c_fill/v1751247136/EQ_image-4_ttqpf8.png 400w, /cloudinary/djeorsh5d/image/upload/w_800,h_400,c_fill/v1751247136/EQ_image-4_ttqpf8.png 800w, /cloudinary/djeorsh5d/image/upload/w_1200,h_600,c_fill/v1751247136/EQ_image-4_ttqpf8.png 1200w',
+      sizes: '(max-width: 640px) 400px, (max-width: 1280px) 800px, 1200px',
+      alt: 'Gallery banner showcasing photography 3',
+    },
+  ];
+
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [isLoaded, setIsLoaded] = useState({});
+  const [isPaused, setIsPaused] = useState(false);
+
+  // Auto-cycle
+  useEffect(() => {
+    if (isPaused) return;
+    const interval = setInterval(() => {
+      setCurrentIndex((prev) => (prev + 1) % bannerImages.length);
+    }, 5000);
+    return () => clearInterval(interval);
+  }, [isPaused, bannerImages.length]);
+
+  // Navigate to specific index
+  const goToIndex = (index) => {
+    console.log('Navigating to banner index:', index);
+    setCurrentIndex(index);
+  };
+
+  // Navigate previous/next
+  const navigate = (direction) => {
+    setCurrentIndex((prev) => (prev + direction + bannerImages.length) % bannerImages.length);
+  };
+
+  return (
+    <motion.section
+      className="relative rounded-lg mb-8 sm:mb-12 overflow-hidden h-64 sm:h-96"
+      initial={{ opacity: 0, y: 50, scale: 0.95 }}
+      whileInView={{ opacity: 1, y: 0, scale: 1 }}
+      transition={{ duration: 1.2, ease: 'easeOut', delay: 0.2 }}
+      viewport={{ once: true }}
+      onMouseEnter={() => setIsPaused(true)}
+      onMouseLeave={() => setIsPaused(false)}
+    >
+      <AnimatePresence mode="wait">
+        <motion.div
+          key={currentIndex}
+          className="relative w-full h-full"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 0.5 }}
+        >
+          <AnimatePresence>
+            {!isLoaded[currentIndex] && (
+              <motion.div
+                className="absolute inset-0 bg-gray-700"
+                initial={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.3 }}
+              />
+            )}
+          </AnimatePresence>
+          <motion.img
+            src={bannerImages[currentIndex].src}
+            srcSet={bannerImages[currentIndex].srcSet}
+            sizes={bannerImages[currentIndex].sizes}
+            alt={bannerImages[currentIndex].alt}
+            className={`absolute top-0 left-0 w-full h-full object-cover transition-opacity duration-300 ${
+              isLoaded[currentIndex] ? 'opacity-100' : 'opacity-0'
+            }`}
+            onLoad={() => {
+              console.log(`Banner image loaded: ${bannerImages[currentIndex].src}`);
+              setIsLoaded((prev) => ({ ...prev, [currentIndex]: true }));
+            }}
+            onError={() => {
+              console.error(`Failed to load banner image: ${bannerImages[currentIndex].src}`);
+              setIsLoaded((prev) => ({ ...prev, [currentIndex]: true }));
+            }}
+          />
+        </motion.div>
+      </AnimatePresence>
+      <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/50 to-transparent"></div>
+      <motion.div
+        className="relative z-10 h-full flex items-center justify-center text-center px-4 py-6 sm:py-8"
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8, ease: 'easeOut', delay: 0.4 }}
+        viewport={{ once: true }}
+      >
+        <motion.div
+          className="max-w-2xl"
+          initial={{ scale: 0.9, opacity: 0 }}
+          whileInView={{ scale: 1, opacity: 1 }}
+          transition={{ duration: 0.7, delay: 0.6 }}
+          viewport={{ once: true }}
+        >
+          <motion.h1
+            className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 text-white drop-shadow-lg"
+            initial={{ y: 20, opacity: 0 }}
+            whileInView={{ y: 0, opacity: 1 }}
+            transition={{ duration: 0.6, delay: 0.8 }}
+            viewport={{ once: true }}
+          >
+            Our Gallery
+          </motion.h1>
+          <motion.p
+            className="text-gray-200 text-base sm:text-lg md:text-xl drop-shadow-md"
+            initial={{ y: 30, opacity: 0 }}
+            whileInView={{ y: 0, opacity: 1 }}
+            transition={{ duration: 0.6, delay: 1 }}
+            viewport={{ once: true }}
+          >
+            Explore our stunning photography and videography moments.
+          </motion.p>
+        </motion.div>
+      </motion.div>
+      {bannerImages.length > 1 && (
+        <>
+          <button
+            className="absolute left-4 top-1/2 -translate-y-1/2 bg-gray-800 hover:bg-gray-700 text-white p-3 rounded-full z-[60] opacity-0 group-hover:opacity-100 transition-opacity duration-200"
+            onClick={() => navigate(-1)}
+            aria-label="Previous banner image"
+          >
+            <svg
+              className="w-5 h-5"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="2"
+                d="M15 19l-7-7 7-7"
+              />
+            </svg>
+          </button>
+          <button
+            className="absolute right-4 top-1/2 -translate-y-1/2 bg-gray-800 hover:bg-gray-700 text-white p-3 rounded-full z-[60] opacity-0 group-hover:opacity-100 transition-opacity duration-200"
+            onClick={() => navigate(1)}
+            aria-label="Next banner image"
+          >
+            <svg
+              className="w-5 h-5"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="2"
+                d="M9 5l7 7-7 7"
+              />
+            </svg>
+          </button>
+          <div className="absolute bottom-4 !left-1/2 !-translate-x-1/2 flex gap-2 justify-center bg-black/50 p-1 rounded z-10">
+            {bannerImages.map((_, index) => (
+              <button
+                key={index}
+                className={`w-2 h-2 rounded-full ${
+                  index === currentIndex ? 'bg-white' : 'bg-gray-500'
+                }`}
+                onClick={() => goToIndex(index)}
+                aria-label={`View banner image ${index + 1}`}
+                tabIndex={0}
+                onKeyDown={(e) => e.key === 'Enter' && goToIndex(index)}
+              />
+            ))}
+          </div>
+        </>
+      )}
+    </motion.section>
+  );
+};
+
+// GridImage component
+const GridImage = ({ album, index, openLightbox }) => {
   const imageKey = `${album.title}-${index}`;
   const imageRef = useRef(null);
   const [isLoaded, setIsLoaded] = useState(false);
@@ -57,34 +249,43 @@ const GridImage = ({ album, index, openLightbox, setImageLoadStatus }) => {
   const handleLoad = useCallback(() => {
     console.log(`Image loaded: ${imageKey}`);
     setIsLoaded(true);
-    setImageLoadStatus((prev) => ({ ...prev, [imageKey]: true }));
-  }, [imageKey, setImageLoadStatus]);
+  }, [imageKey]);
 
   const handleError = useCallback(() => {
     console.error(`Failed to load grid image: ${album.media[0].src}`);
     setIsLoaded(true);
-    setImageLoadStatus((prev) => ({ ...prev, [imageKey]: true }));
-  }, [imageKey, album.media[0].src, setImageLoadStatus]);
+  }, [imageKey, album.media[0].src]);
 
   useEffect(() => {
     const img = imageRef.current;
-    if (img && img.complete) {
-      console.log(`Image cached: ${imageKey}`);
-      setIsLoaded(true);
-      setImageLoadStatus((prev) => ({ ...prev, [imageKey]: true }));
+    let observer;
+
+    if (img) {
+      observer = new IntersectionObserver(
+        ([entry]) => {
+          if (entry.isIntersecting && img.complete) {
+            console.log(`Image cached: ${imageKey}`);
+            setIsLoaded(true);
+            observer.disconnect();
+          }
+        },
+        { threshold: 0.1 }
+      );
+      observer.observe(img);
     }
 
-    // Fallback timeout to ensure placeholder removal
     const timeout = setTimeout(() => {
       if (!isLoaded) {
         console.log(`Timeout triggered for ${imageKey}`);
         setIsLoaded(true);
-        setImageLoadStatus((prev) => ({ ...prev, [imageKey]: true }));
       }
-    }, 5000);
+    }, 3000);
 
-    return () => clearTimeout(timeout);
-  }, [imageKey, isLoaded, setImageLoadStatus]);
+    return () => {
+      if (observer && img) observer.disconnect();
+      clearTimeout(timeout);
+    };
+  }, [imageKey, isLoaded]);
 
   return (
     <motion.div
@@ -160,8 +361,6 @@ const Gallery = () => {
   const [isExpanded, setIsExpanded] = useState(false);
   const [loadedCount, setLoadedCount] = useState(40);
   const [isLoading, setIsLoading] = useState(false);
-  const [imageLoadStatus, setImageLoadStatus] = useState({});
-  const [isBannerLoaded, setIsBannerLoaded] = useState(false);
 
   // Filter options
   const filters = ['all', 'wedding', 'children', 'couple', 'birthday', 'graduation'];
@@ -180,12 +379,6 @@ const Gallery = () => {
       handleScroll.cancel();
     };
   }, []);
-
-  // Reset grid image load status when filter changes
-  useEffect(() => {
-    console.log('Resetting imageLoadStatus due to filter change:', activeFilter);
-    setImageLoadStatus({});
-  }, [activeFilter]);
 
   // Open lightbox
   const openLightbox = (album, index) => {
@@ -350,78 +543,7 @@ const Gallery = () => {
     >
       <Header />
       <div className="max-w-7xl mx-auto">
-        {/* Gallery Banner */}
-        <motion.section
-          className="relative rounded-lg mb-8 sm:mb-12 overflow-hidden h-64 sm:h-96"
-          initial={{ opacity: 0, y: 50, scale: 0.95 }}
-          whileInView={{ opacity: 1, y: 0, scale: 1 }}
-          transition={{ duration: 1.2, ease: 'easeOut', delay: 0.2 }}
-          viewport={{ once: true }}
-        >
-          <AnimatePresence>
-            {!isBannerLoaded && (
-              <motion.div
-                className="absolute inset-0 bg-gray-700"
-                initial={{ opacity: 1 }}
-                exit={{ opacity: 0 }}
-                transition={{ duration: 0.3 }}
-              />
-            )}
-          </AnimatePresence>
-          <motion.img
-            src="/cloudinary/djeorsh5d/image/upload/w_800,h_400,c_fill/v1751247136/EQ_image-2_ttqpf8.png"
-            srcSet="/cloudinary/djeorsh5d/image/upload/w_400,h_200,c_fill/v1751247136/EQ_image-2_ttqpf8.png 400w, /cloudinary/djeorsh5d/image/upload/w_800,h_400,c_fill/v1751247136/EQ_image-2_ttqpf8.png 800w, /cloudinary/djeorsh5d/image/upload/w_1200,h_600,c_fill/v1751247136/EQ_image-2_ttqpf8.png 1200w"
-            sizes="(max-width: 640px) 400px, (max-width: 1280px) 800px, 1200px"
-            alt="Gallery banner showcasing photography"
-            className={`absolute top-0 left-0 w-full h-full object-cover transition-opacity duration-300 ${
-              isBannerLoaded ? 'opacity-100' : 'opacity-0'
-            }`}
-            initial={{ x: -100, opacity: 0 }}
-            whileInView={{ x: 0, opacity: isBannerLoaded ? 1 : 0 }}
-            transition={{ duration: 1, ease: 'easeOut' }}
-            viewport={{ once: true }}
-            onLoad={() => setIsBannerLoaded(true)}
-            onError={() => {
-              console.error('Failed to load banner image');
-              setIsBannerLoaded(true);
-            }}
-          />
-          <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/50 to-transparent"></div>
-          <motion.div
-            className="relative z-10 h-full flex items-center justify-center text-center px-4 py-6 sm:py-8"
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, ease: 'easeOut', delay: 0.4 }}
-            viewport={{ once: true }}
-          >
-            <motion.div
-              className="max-w-2xl"
-              initial={{ scale: 0.9, opacity: 0 }}
-              whileInView={{ scale: 1, opacity: 1 }}
-              transition={{ duration: 0.7, delay: 0.6 }}
-              viewport={{ once: true }}
-            >
-              <motion.h1
-                className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 text-white drop-shadow-lg"
-                initial={{ y: 20, opacity: 0 }}
-                whileInView={{ y: 0, opacity: 1 }}
-                transition={{ duration: 0.6, delay: 0.8 }}
-                viewport={{ once: true }}
-              >
-                Our Gallery
-              </motion.h1>
-              <motion.p
-                className="text-gray-200 text-base sm:text-lg md:text-xl drop-shadow-md"
-                initial={{ y: 30, opacity: 0 }}
-                whileInView={{ y: 0, opacity: 1 }}
-                transition={{ duration: 0.6, delay: 1 }}
-                viewport={{ once: true }}
-              >
-                Explore our stunning photography and videography moments.
-              </motion.p>
-            </motion.div>
-          </motion.div>
-        </motion.section>
+        <BannerCarousel />
 
         <ExclusiveOffer />
 
@@ -467,7 +589,6 @@ const Gallery = () => {
                     album={album}
                     index={index}
                     openLightbox={openLightbox}
-                    setImageLoadStatus={setImageLoadStatus}
                   />
                 ))}
               </div>
