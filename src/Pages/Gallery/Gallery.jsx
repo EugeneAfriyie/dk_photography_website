@@ -362,7 +362,7 @@ const Gallery = () => {
         {/* Instagram-style Lightbox Modal */}
         {selectedAlbum && (
           <motion.div
-            className="fixed inset-0 bg-black/90 flex items-center justify-center z-500 p-4 sm:p-6 lg:h-screen lg:w-screen overflow-y-auto"
+            className="fixed inset-0 bg-black/90 flex items-center justify-center z-500 p-2 sm:p-6 lg:h-screen lg:w-screen overflow-y-auto"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
@@ -387,7 +387,7 @@ const Gallery = () => {
                 tabIndex={0}
                 aria-label="Swipe or use arrow keys to navigate media"
               >
-                <div className="relative w-full h-[70vh] custom:h-full lg:h-full overflow-x-hidden border-amber-500 border">
+                <div className="relative w-full h-[70vh] custom:h-full lg:h-full overflow-x-hidden border-amber-500 borer">
                   <AnimatePresence initial={false} custom={direction}>
                     <motion.div
                       key={currentMediaIndex}
@@ -492,7 +492,7 @@ const Gallery = () => {
                   )}
                 </div>
               </div>
-              <div className="w-full custom:w-[50%] p-4 sm:p-6 flex flex-col justify-between bg-black border border-amber-700 md:overflow-y-auto">
+              <div className="w-full custom:w-[50%] p-4 sm:p-6 flex flex-col justify-between bg-black border-2 border-amber-700 md:overflow-y-auto mt-2">
                 <div>
                   <div className="flex items-center gap-2 mb-2">
                     <h3 className="text-lg sm:text-xl font-semibold text-white">{selectedAlbum.title}</h3>
