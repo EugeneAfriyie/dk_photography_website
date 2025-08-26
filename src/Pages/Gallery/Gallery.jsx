@@ -52,28 +52,62 @@ const useCustomSwipe = (onSwipedLeft, onSwipedRight) => {
 const BannerCarousel = () => {
   const bannerImages = [
     {
-      src: 'https://res.cloudinary.com/djeorsh5d/image/upload/v1751247111/FAM1_wdqml7.jpg',
-      srcSet: 'https://res.cloudinary.com/djeorsh5d/image/upload/v1751247111/FAM1_wdqml7.jpg',
+      src: 'https://res.cloudinary.com/djeorsh5d/image/upload/v1751247125/BRIDE1_kjfo1p.jpg',
+      srcSet: 'https://res.cloudinary.com/djeorsh5d/image/upload/v1751247125/BRIDE1_kjfo1p.jpg',
       sizes: '(max-width: 640px) 400px, (max-width: 1280px) 800px, 1200px',
-      alt: 'Gallery banner showcasing photography 1',
+      alt: 'Gallery banner showcasing photography',
+      title: 'Our Gallery',
+      description: 'Explore our stunning photography and videography moments.',
     },
     {
-      src: 'https://res.cloudinary.com/djeorsh5d/image/upload/v1751247111/FAM1_wdqml7.jpg',
-      srcSet: '/cloudinary/djeorsh5d/image/upload/w_400,h_200,c_fill/v1751247136/EQ_image-3_ttqpf8.png 400w, /cloudinary/djeorsh5d/image/upload/w_800,h_400,c_fill/v1751247136/EQ_image-3_ttqpf8.png 800w, /cloudinary/djeorsh5d/image/upload/w_1200,h_600,c_fill/v1751247136/EQ_image-3_ttqpf8.png 1200w',
+     src: 'https://res.cloudinary.com/djeorsh5d/image/upload/v1751247125/BRIDE1_kjfo1p.jpg',
+      srcSet: 'https://res.cloudinary.com/djeorsh5d/image/upload/v1751247125/BRIDE1_kjfo1p.jpg',
       sizes: '(max-width: 640px) 400px, (max-width: 1280px) 800px, 1200px',
-      alt: 'Gallery banner showcasing photography 2',
+      alt: 'Special booking offer banner',
+      title: 'Special Booking Offer',
+      description: 'Book now! Special offer ends soon!',
     },
     {
-      src: 'https://res.cloudinary.com/djeorsh5d/image/upload/v1751247111/FAM1_wdqml7.jpg',
-      srcSet: '/cloudinary/djeorsh5d/image/upload/w_400,h_200,c_fill/v1751247136/EQ_image-4_ttqpf8.png 400w, /cloudinary/djeorsh5d/image/upload/w_800,h_400,c_fill/v1751247136/EQ_image-4_ttqpf8.png 800w, /cloudinary/djeorsh5d/image/upload/w_1200,h_600,c_fill/v1751247136/EQ_image-4_ttqpf8.png 1200w',
+     src: 'https://res.cloudinary.com/djeorsh5d/image/upload/v1751247125/BRIDE1_kjfo1p.jpg',
+      srcSet: 'https://res.cloudinary.com/djeorsh5d/image/upload/v1751247125/BRIDE1_kjfo1p.jpg',
       sizes: '(max-width: 640px) 400px, (max-width: 1280px) 800px, 1200px',
-      alt: 'Gallery banner showcasing photography 3',
+      alt: 'Appreciation banner for capturing memories',
+      title: 'Unforgettable Moments',
+      description: 'Capture life’s unforgettable moments with us.',
     },
   ];
 
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isLoaded, setIsLoaded] = useState({});
   const [isPaused, setIsPaused] = useState(false);
+  const [countdown, setCountdown] = useState('');
+
+  // Countdown timer for Slide 2
+  useEffect(() => {
+    if (currentIndex !== 1) return;
+
+    const endDate = new Date('2025-09-02T06:05:00Z').getTime();
+    const updateCountdown = () => {
+      const now = new Date().getTime();
+      const distance = endDate - now;
+
+      if (distance <= 0) {
+        setCountdown('Offer ended!');
+        return;
+      }
+
+      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+      setCountdown(`${days}d ${hours}h ${minutes}m ${seconds}s`);
+    };
+
+    updateCountdown();
+    const interval = setInterval(updateCountdown, 1000);
+    return () => clearInterval(interval);
+  }, [currentIndex]);
 
   // Auto-cycle
   useEffect(() => {
@@ -97,17 +131,16 @@ const BannerCarousel = () => {
 
   return (
     <motion.section
-      className="relative rounded-lg mb-8 sm:mb-12 overflow-hidden h-64 sm:h-96"
+      className="relative rounded-lg mb-8 sm:mb-12 overflow-hidden h-64 sm:h-96 group"
       initial={{ opacity: 0, y: 50, scale: 0.95 }}
-      whileInView={{ opacity: 1, y: 0, scale: 1 }}
+      animate={{ opacity: 1, y: 0, scale: 1 }}
       transition={{ duration: 1.2, ease: 'easeOut', delay: 0.2 }}
-      viewport={{ once: true }}
       onMouseEnter={() => setIsPaused(true)}
       onMouseLeave={() => setIsPaused(false)}
     >
       <AnimatePresence mode="wait">
         <motion.div
-          key={currentIndex}
+          key={`banner-${currentIndex}`}
           className="relative w-full h-full"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
@@ -129,9 +162,7 @@ const BannerCarousel = () => {
             srcSet={bannerImages[currentIndex].srcSet}
             sizes={bannerImages[currentIndex].sizes}
             alt={bannerImages[currentIndex].alt}
-            className={`absolute top-0 left-0 w-full h-full object-cover transition-opacity duration-300 ${
-              isLoaded[currentIndex] ? 'opacity-100' : 'opacity-0'
-            }`}
+            className="absolute top-0 left-0 w-full h-full object-cover transition-opacity duration-300 z-0"
             onLoad={() => {
               console.log(`Banner image loaded: ${bannerImages[currentIndex].src}`);
               setIsLoaded((prev) => ({ ...prev, [currentIndex]: true }));
@@ -143,47 +174,72 @@ const BannerCarousel = () => {
           />
         </motion.div>
       </AnimatePresence>
-      <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/50 to-transparent"></div>
-      <motion.div
-        className="relative z-10 h-full flex items-center justify-center text-center px-4 py-6 sm:py-8"
-        initial={{ opacity: 0, y: 30 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8, ease: 'easeOut', delay: 0.4 }}
-        viewport={{ once: true }}
-      >
+      <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-black/30 to-transparent z-10"></div>
+      <AnimatePresence mode="wait">
         <motion.div
-          className="max-w-2xl"
-          initial={{ scale: 0.9, opacity: 0 }}
-          whileInView={{ scale: 1, opacity: 1 }}
-          transition={{ duration: 0.7, delay: 0.6 }}
-          viewport={{ once: true }}
+          key={`text-${currentIndex}`}
+          className="absolute inset-0 z-20 flex items-center justify-center text-center px-4 py-6 sm:py-8"
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: 30 }}
+          transition={{ duration: 0.8, ease: 'easeOut' }}
+          onAnimationStart={() => console.log(`Rendering text for slide ${currentIndex}: ${bannerImages[currentIndex].title}`)}
+          onAnimationComplete={() => console.log(`Text animation completed for slide ${currentIndex}`)}
         >
-          <motion.h1
-            className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 text-white drop-shadow-lg"
-            initial={{ y: 20, opacity: 0 }}
-            whileInView={{ y: 0, opacity: 1 }}
-            transition={{ duration: 0.6, delay: 0.8 }}
-            viewport={{ once: true }}
-          >
-            Our Gallery
-          </motion.h1>
-          <motion.p
-            className="text-gray-200 text-base sm:text-lg md:text-xl drop-shadow-md"
-            initial={{ y: 30, opacity: 0 }}
-            whileInView={{ y: 0, opacity: 1 }}
-            transition={{ duration: 0.6, delay: 1 }}
-            viewport={{ once: true }}
-          >
-            Explore our stunning photography and videography moments.
-          </motion.p>
+          <div className="max-w-2xl">
+            <motion.h1
+              className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 text-white drop-shadow-lg"
+              style={{ color: 'white', position: 'relative' }}
+              initial={{ y: 20, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+            >
+              {bannerImages[currentIndex].title}
+            </motion.h1>
+            <motion.p
+              className="text-gray-200 text-base sm:text-lg md:text-xl drop-shadow-md"
+              style={{ color: '#E5E7EB', position: 'relative' }}
+              initial={{ y: 30, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              transition={{ duration: 0.6, delay: 0.4 }}
+            >
+              {bannerImages[currentIndex].description}
+              {currentIndex === 1 && countdown && (
+                <motion.span
+                  className="block text-amber-400 font-semibold mt-2"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ duration: 0.3 }}
+                >
+                  {countdown}
+                </motion.span>
+              )}
+              {currentIndex === 1 && countdown !== 'Offer ended!' && (
+                <motion.a
+                  href="/contact"
+                  className="inline-block bg-amber-500 hover:bg-amber-600 text-white font-medium px-4 py-2 rounded-lg text-sm mt-2"
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.3, delay: 0.6 }}
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  aria-label="Book now for special offer"
+                >
+                  Book Now
+                </motion.a>
+              )}
+            </motion.p>
+          </div>
         </motion.div>
-      </motion.div>
+      </AnimatePresence>
       {bannerImages.length > 1 && (
         <>
           <button
-            className="absolute left-4 top-1/2 -translate-y-1/2 bg-gray-800 hover:bg-gray-700 text-white p-3 rounded-full z-[60] opacity-0 group-hover:opacity-100 transition-opacity duration-200"
+            className="absolute left-4 top-1/2 -translate-y-1/2 bg-gray-800 hover:bg-gray-700 text-white p-3 rounded-full z-30 opacity-0 group-hover:opacity-100 transition-opacity duration-200"
             onClick={() => navigate(-1)}
             aria-label="Previous banner image"
+            tabIndex={0}
+            onKeyDown={(e) => e.key === 'Enter' && navigate(-1)}
           >
             <svg
               className="w-5 h-5"
@@ -201,9 +257,11 @@ const BannerCarousel = () => {
             </svg>
           </button>
           <button
-            className="absolute right-4 top-1/2 -translate-y-1/2 bg-gray-800 hover:bg-gray-700 text-white p-3 rounded-full z-[60] opacity-0 group-hover:opacity-100 transition-opacity duration-200"
+            className="absolute right-4 top-1/2 -translate-y-1/2 bg-gray-800 hover:bg-gray-700 text-white p-3 rounded-full z-30 opacity-0 group-hover:opacity-100 transition-opacity duration-200"
             onClick={() => navigate(1)}
             aria-label="Next banner image"
+            tabIndex={0}
+            onKeyDown={(e) => e.key === 'Enter' && navigate(1)}
           >
             <svg
               className="w-5 h-5"
@@ -220,7 +278,7 @@ const BannerCarousel = () => {
               />
             </svg>
           </button>
-          <div className="absolute bottom-4 !left-1/2 !-translate-x-1/2 flex gap-2 justify-center bg-black/50 p-1 rounded z-10">
+          <div className="absolute bottom-4 !left-1/2 !-translate-x-1/2 flex gap-2 justify-center bg-black/50 p-1 rounded z-30">
             {bannerImages.map((_, index) => (
               <button
                 key={index}
@@ -261,10 +319,11 @@ const GridImage = ({ album, index, openLightbox }) => {
     let observer;
 
     if (img) {
+      console.log(`Setting up IntersectionObserver for ${imageKey}`);
       observer = new IntersectionObserver(
         ([entry]) => {
           if (entry.isIntersecting && img.complete) {
-            console.log(`Image cached: ${imageKey}`);
+            console.log(`Image cached: ${imageKey}, isLoaded: ${isLoaded}`);
             setIsLoaded(true);
             observer.disconnect();
           }
@@ -282,7 +341,10 @@ const GridImage = ({ album, index, openLightbox }) => {
     }, 3000);
 
     return () => {
-      if (observer && img) observer.disconnect();
+      if (observer && img) {
+        console.log(`Cleaning up IntersectionObserver for ${imageKey}`);
+        observer.disconnect();
+      }
       clearTimeout(timeout);
     };
   }, [imageKey, isLoaded]);
