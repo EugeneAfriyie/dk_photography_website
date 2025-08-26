@@ -49,27 +49,27 @@ const useCustomSwipe = (onSwipedLeft, onSwipedRight) => {
 };
 
 // BannerCarousel component
-const BannerCarousel = () => {
-  const bannerImages = [
+const BannerCarousel = ({ bannerImages }) => {
+  const defaultBannerImages = [
     {
-      src: 'https://res.cloudinary.com/djeorsh5d/image/upload/v1751247125/BRIDE1_kjfo1p.jpg',
-      srcSet: 'https://res.cloudinary.com/djeorsh5d/image/upload/v1751247125/BRIDE1_kjfo1p.jpg',
+      src: '/cloudinary/djeorsh5d/image/upload/w_800,h_400,c_fill/v1751247136/EQ_image-2_ttqpf8.png',
+      srcSet: '/cloudinary/djeorsh5d/image/upload/w_400,h_200,c_fill/v1751247136/EQ_image-2_ttqpf8.png 400w, /cloudinary/djeorsh5d/image/upload/w_800,h_400,c_fill/v1751247136/EQ_image-2_ttqpf8.png 800w, /cloudinary/djeorsh5d/image/upload/w_1200,h_600,c_fill/v1751247136/EQ_image-2_ttqpf8.png 1200w',
       sizes: '(max-width: 640px) 400px, (max-width: 1280px) 800px, 1200px',
       alt: 'Gallery banner showcasing photography',
       title: 'Our Gallery',
       description: 'Explore our stunning photography and videography moments.',
     },
     {
-     src: 'https://res.cloudinary.com/djeorsh5d/image/upload/v1751247125/BRIDE1_kjfo1p.jpg',
-      srcSet: 'https://res.cloudinary.com/djeorsh5d/image/upload/v1751247125/BRIDE1_kjfo1p.jpg',
+      src: '/cloudinary/djeorsh5d/image/upload/w_800,h_400,c_fill/v1751247136/EQ_image-3_ttqpf8.png',
+      srcSet: '/cloudinary/djeorsh5d/image/upload/w_400,h_200,c_fill/v1751247136/EQ_image-3_ttqpf8.png 400w, /cloudinary/djeorsh5d/image/upload/w_800,h_400,c_fill/v1751247136/EQ_image-3_ttqpf8.png 800w, /cloudinary/djeorsh5d/image/upload/w_1200,h_600,c_fill/v1751247136/EQ_image-3_ttqpf8.png 1200w',
       sizes: '(max-width: 640px) 400px, (max-width: 1280px) 800px, 1200px',
       alt: 'Special booking offer banner',
       title: 'Special Booking Offer',
       description: 'Book now! Special offer ends soon!',
     },
     {
-     src: 'https://res.cloudinary.com/djeorsh5d/image/upload/v1751247125/BRIDE1_kjfo1p.jpg',
-      srcSet: 'https://res.cloudinary.com/djeorsh5d/image/upload/v1751247125/BRIDE1_kjfo1p.jpg',
+      src: '/cloudinary/djeorsh5d/image/upload/w_800,h_400,c_fill/v1751247136/EQ_image-4_ttqpf8.png',
+      srcSet: '/cloudinary/djeorsh5d/image/upload/w_400,h_200,c_fill/v1751247136/EQ_image-4_ttqpf8.png 400w, /cloudinary/djeorsh5d/image/upload/w_800,h_400,c_fill/v1751247136/EQ_image-4_ttqpf8.png 800w, /cloudinary/djeorsh5d/image/upload/w_1200,h_600,c_fill/v1751247136/EQ_image-4_ttqpf8.png 1200w',
       sizes: '(max-width: 640px) 400px, (max-width: 1280px) 800px, 1200px',
       alt: 'Appreciation banner for capturing memories',
       title: 'Unforgettable Moments',
@@ -77,6 +77,7 @@ const BannerCarousel = () => {
     },
   ];
 
+  const slides = bannerImages || defaultBannerImages;
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isLoaded, setIsLoaded] = useState({});
   const [isPaused, setIsPaused] = useState(false);
@@ -113,10 +114,10 @@ const BannerCarousel = () => {
   useEffect(() => {
     if (isPaused) return;
     const interval = setInterval(() => {
-      setCurrentIndex((prev) => (prev + 1) % bannerImages.length);
+      setCurrentIndex((prev) => (prev + 1) % slides.length);
     }, 5000);
     return () => clearInterval(interval);
-  }, [isPaused, bannerImages.length]);
+  }, [isPaused, slides.length]);
 
   // Navigate to specific index
   const goToIndex = (index) => {
@@ -126,7 +127,7 @@ const BannerCarousel = () => {
 
   // Navigate previous/next
   const navigate = (direction) => {
-    setCurrentIndex((prev) => (prev + direction + bannerImages.length) % bannerImages.length);
+    setCurrentIndex((prev) => (prev + direction + slides.length) % slides.length);
   };
 
   return (
@@ -158,17 +159,17 @@ const BannerCarousel = () => {
             )}
           </AnimatePresence>
           <motion.img
-            src={bannerImages[currentIndex].src}
-            srcSet={bannerImages[currentIndex].srcSet}
-            sizes={bannerImages[currentIndex].sizes}
-            alt={bannerImages[currentIndex].alt}
+            src={slides[currentIndex].src}
+            srcSet={slides[currentIndex].srcSet}
+            sizes={slides[currentIndex].sizes}
+            alt={slides[currentIndex].alt}
             className="absolute top-0 left-0 w-full h-full object-cover transition-opacity duration-300 z-0"
             onLoad={() => {
-              console.log(`Banner image loaded: ${bannerImages[currentIndex].src}`);
+              console.log(`Banner image loaded: ${slides[currentIndex].src}`);
               setIsLoaded((prev) => ({ ...prev, [currentIndex]: true }));
             }}
             onError={() => {
-              console.error(`Failed to load banner image: ${bannerImages[currentIndex].src}`);
+              console.error(`Failed to load banner image: ${slides[currentIndex].src}`);
               setIsLoaded((prev) => ({ ...prev, [currentIndex]: true }));
             }}
           />
@@ -183,7 +184,7 @@ const BannerCarousel = () => {
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: 30 }}
           transition={{ duration: 0.8, ease: 'easeOut' }}
-          onAnimationStart={() => console.log(`Rendering text for slide ${currentIndex}: ${bannerImages[currentIndex].title}`)}
+          onAnimationStart={() => console.log(`Rendering text for slide ${currentIndex}: ${slides[currentIndex].title}`)}
           onAnimationComplete={() => console.log(`Text animation completed for slide ${currentIndex}`)}
         >
           <div className="max-w-2xl">
@@ -194,7 +195,7 @@ const BannerCarousel = () => {
               animate={{ y: 0, opacity: 1 }}
               transition={{ duration: 0.6, delay: 0.2 }}
             >
-              {bannerImages[currentIndex].title}
+              {slides[currentIndex].title}
             </motion.h1>
             <motion.p
               className="text-gray-200 text-base sm:text-lg md:text-xl drop-shadow-md"
@@ -203,7 +204,7 @@ const BannerCarousel = () => {
               animate={{ y: 0, opacity: 1 }}
               transition={{ duration: 0.6, delay: 0.4 }}
             >
-              {bannerImages[currentIndex].description}
+              {slides[currentIndex].description}
               {currentIndex === 1 && countdown && (
                 <motion.span
                   className="block text-amber-400 font-semibold mt-2"
@@ -232,7 +233,7 @@ const BannerCarousel = () => {
           </div>
         </motion.div>
       </AnimatePresence>
-      {bannerImages.length > 1 && (
+      {slides.length > 1 && (
         <>
           <button
             className="absolute left-4 top-1/2 -translate-y-1/2 bg-gray-800 hover:bg-gray-700 text-white p-3 rounded-full z-30 opacity-0 group-hover:opacity-100 transition-opacity duration-200"
@@ -279,7 +280,7 @@ const BannerCarousel = () => {
             </svg>
           </button>
           <div className="absolute bottom-4 !left-1/2 !-translate-x-1/2 flex gap-2 justify-center bg-black/50 p-1 rounded z-30">
-            {bannerImages.map((_, index) => (
+            {slides.map((_, index) => (
               <button
                 key={index}
                 className={`w-2 h-2 rounded-full ${
@@ -414,18 +415,21 @@ const GridImage = ({ album, index, openLightbox }) => {
   );
 };
 
-const Gallery = () => {
+// Gallery component
+const Gallery = ({
+  images = galleryImage,
+  filters = ['all', 'wedding', 'children', 'couple', 'birthday', 'graduation'],
+  initialCount = 40,
+  bannerImages,
+}) => {
   const [isVisible, setIsVisible] = useState(false);
   const [selectedAlbum, setSelectedAlbum] = useState(null);
   const [currentMediaIndex, setCurrentMediaIndex] = useState(0);
   const [direction, setDirection] = useState(0);
   const [activeFilter, setActiveFilter] = useState('all');
   const [isExpanded, setIsExpanded] = useState(false);
-  const [loadedCount, setLoadedCount] = useState(40);
+  const [loadedCount, setLoadedCount] = useState(initialCount);
   const [isLoading, setIsLoading] = useState(false);
-
-  // Filter options
-  const filters = ['all', 'wedding', 'children', 'couple', 'birthday', 'graduation'];
 
   // Scroll-to-top button visibility
   useEffect(() => {
@@ -503,7 +507,7 @@ const Gallery = () => {
     console.log('Applying filter:', filter);
     setActiveFilter(filter);
     setSelectedAlbum(null);
-    setLoadedCount(40);
+    setLoadedCount(initialCount);
   };
 
   // Load more albums
@@ -511,15 +515,15 @@ const Gallery = () => {
     console.log('Loading more albums');
     setIsLoading(true);
     setTimeout(() => {
-      setLoadedCount((prev) => prev + 40);
+      setLoadedCount((prev) => prev + initialCount);
       setIsLoading(false);
     }, 1000);
   };
 
   // Filtered images
   const filteredImages = activeFilter === 'all'
-    ? galleryImage
-    : galleryImage.filter((album) => album.category === activeFilter);
+    ? images
+    : images.filter((album) => album.category === activeFilter);
 
   // Scroll to top
   const scrollToTop = () => {
@@ -605,7 +609,7 @@ const Gallery = () => {
     >
       <Header />
       <div className="max-w-7xl mx-auto">
-        <BannerCarousel />
+        <BannerCarousel bannerImages={bannerImages} />
 
         <ExclusiveOffer />
 
