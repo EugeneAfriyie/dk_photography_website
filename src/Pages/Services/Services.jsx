@@ -242,8 +242,9 @@ const duplicatedPackages = [...packages, ...packages];
                       >
                         Book Now
                       </a>
+                    </div>
                       <button
-                        className="absolute bottom-0 right-0 bg-gray-600 hover:bg-gray-500 text-white p-1.5 sm:p-2 rounded-full info-icon"
+                        className="absolute bottom-0 right-0 bg-gray-60 hover:bg-gray-500 text-white p-1.5 sm:p-2 rounded-full info-icon"
                         onClick={() => handleInfoClick(pkg)}
                         aria-label={`View details for ${pkg.title}`}
                       >
@@ -262,7 +263,6 @@ const duplicatedPackages = [...packages, ...packages];
                           />
                         </svg>
                       </button>
-                    </div>
                   </div>
                 ))}
               </div>

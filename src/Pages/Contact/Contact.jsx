@@ -881,9 +881,9 @@ const Contact = () => {
                     </motion.button>
                     <p className="text-gray-400 text-sm mt-2">
                       Check the <a href="/services" className="text-amber-300 hover:underline">service page</a> for package details or{' '}
-                      <a href="tel:+233123456789" className="text-amber-300 hover:underline">call</a>{' '}
+                      <a href="tel:+23343839922" target='_blank' className="text-amber-300 hover:underline">call</a>{' '}
                       /{' '}
-                      <a href="https://wa.me/233123456789" className="text-amber-300 hover:underline">WhatsApp</a> your photographer for more details.
+                      <a href="https://wa.me/23343839922" target='_blank' className="text-amber-300 hover:underline">WhatsApp</a> your photographer for more details.
                     </p>
                   </div>
                 </motion.div>
@@ -952,7 +952,7 @@ const Contact = () => {
                   viewport={{ once: true }}
                 >
                   <p className="text-gray-400 mb-2">Phone:</p>
-                  <a href="tel:+233551217385">+233 123 456 789</a>
+                  <a href="tel:+23343839922">+233 243 829 922</a>
                   <p className="text-gray-400 mb-2 mt-4">Email:</p>
                   <a href="mailto:info@dkshotit.com">info@dkshotit.com</a>
 
@@ -1010,7 +1010,7 @@ const Contact = () => {
 
 
                  <motion.a
-                                    href="#"
+                                    href="https://www.instagram.com/dkshotit_photography/"
                                     aria-label="Instagram"
                                     // initial={{ color: '#D1D5DB' }} // gray-300
                                     // whileHover={{ color: '#E4405F' }}
@@ -1030,13 +1030,15 @@ const Contact = () => {
               
                                   {/* WhatsApp */}
                                   <motion.a
-                                    href="#"
+                                    href="https://wa.me/233243839922?text=Hello,%20I%20want%20to%20enroll%20in%20the%20training%20program!"
                                     aria-label="WhatsApp"
+                                     target="_blank"
+
                                     // initial={{ color: '#D1D5DB' }}
                                     // whileHover={{ color: '#25D366' }}
                                     // transition={{ duration: 0.4 }}
 
-                                                    target="_blank"
+                                                   
                     rel="noopener noreferrer"
                     className="text-2xl sm:text-3xl text-gray-400 hover:text-amber-300 transition duration-300"
                     initial={{ y: 20, opacity: 0 ,color: '#D1D5DB' }}
@@ -1052,6 +1054,8 @@ const Contact = () => {
                                   <motion.a
                                     href="#"
                                     aria-label="TikTok"
+                                     target="_blank"
+
                                     // initial={{ color: '#D1D5DB' }}
                                     // whileHover={{ color: '#25F4EE' }}
                                     // transition={{ duration: 0.4 }}
