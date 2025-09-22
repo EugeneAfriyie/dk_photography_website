@@ -1,14 +1,56 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { useSwipeable } from 'react-swipeable';
 import { throttle } from 'lodash';
-import { FaImages, FaImage, FaVideo } from 'react-icons/fa';
-import dayjs from 'dayjs';
 import { galleryImage } from '../Home/data';
 import Header from '../Home/Components/Header';
 import Footer from '../../Components/Footer';
-import ExclusiveOffer from '../Home/Components/ExclusiveOffer';
+import ExclusiveOffer from '../Home/Components/BookingPrompt';
 import BookingPrompt from '../Home/Components/BookingPrompt';
+import GridImage from './GridImage';
+import BannerCarousel from './BannerCarousel';
+
+
+// Custom swipe handler
+const useCustomSwipe = (onSwipedLeft, onSwipedRight) => {
+  const [touchStart, setTouchStart] = useState(null);
+  const [touchEnd, setTouchEnd] = useState(null);
+  
+  
+
+  const minSwipeDistance = 50;
+
+  const onTouchStart = (e) => {
+    setTouchEnd(null);
+    setTouchStart({ x: e.touches[0].clientX, y: e.touches[0].clientY });
+  };
+
+  const onTouchMove = (e) => {
+    setTouchEnd({ x: e.touches[0].clientX, y: e.touches[0].clientY });
+  };
+
+  const onTouchEnd = () => {
+    if (!touchStart || !touchEnd) return;
+    const distanceX = touchStart.x - touchEnd.x;
+    const distanceY = Math.abs(touchStart.y - touchEnd.y);
+    const isHorizontalSwipe = Math.abs(distanceX) > minSwipeDistance && distanceY < 50;
+
+    if (isHorizontalSwipe) {
+      if (distanceX > 0) {
+        console.log('Custom swipe: left');
+        onSwipedLeft();
+      } else {
+        console.log('Custom swipe: right');
+        onSwipedRight();
+      }
+    }
+  };
+
+  return {
+    onTouchStart,
+    onTouchMove,
+    onTouchEnd,
+  };
+};
 
 const Gallery = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -16,87 +58,25 @@ const Gallery = () => {
   const [currentMediaIndex, setCurrentMediaIndex] = useState(0);
   const [direction, setDirection] = useState(0);
   const [activeFilter, setActiveFilter] = useState('all');
-  const [carouselIndex, setCarouselIndex] = useState(0);
-  const [isPaused, setIsPaused] = useState(false);
-  const [countdown, setCountdown] = useState({
-    days: 0,
-    hours: 0,
-    minutes: 0,
-    seconds: 0,
-  });
+  const [isExpanded, setIsExpanded] = useState(false);
+  const [loadedCount, setLoadedCount] = useState(40);
+  const [isLoading, setIsLoading] = useState(false);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+
 
   // Filter options
   const filters = ['all', 'wedding', 'children', 'couple', 'birthday', 'graduation'];
 
-  // Carousel slides
-  const carouselSlides = [
-    {
-      image: 'https://picsum.photos/800/400',
-      srcSet: 'https://picsum.photos/400/200 400w, https://picsum.photos/800/400 800w, https://picsum.photos/1200/600 1200w',
-      sizes: '(max-width: 640px) 400px, (max-width: 1280px) 800px, 1200px',
-      alt: 'Gallery banner showcasing photography',
-      title: 'Our Gallery',
-      description: 'Explore our stunning photography and videography moments.',
-      cta: null,
-    },
-    {
-      image: 'https://picsum.photos/800/400?random=13',
-      srcSet: 'https://picsum.photos/400/200?random=13 400w, https://picsum.photos/800/400?random=13 800w, https://picsum.photos/1200/600?random=13 1200w',
-      sizes: '(max-width: 640px) 400px, (max-width: 1280px) 800px, 1200px',
-      alt: 'Special booking offer banner',
-      title: 'Limited Time Offer',
-      description: 'Book by August 31, 2025, for 20% off your session!',
-      cta: { text: 'Book Now', href: '/contact' },
-    },
-    {
-      image: 'https://picsum.photos/800/400?random=14',
-      srcSet: 'https://picsum.photos/400/200?random=14 400w, https://picsum.photos/800/400?random=14 800w, https://picsum.photos/1200/600?random=14 1200w',
-      sizes: '(max-width: 640px) 400px, (max-width: 1280px) 800px, 1200px',
-      alt: 'Featured romantic sunset portraits',
-      title: 'Featured Shoot: Sunset Portraits',
-      description: 'Capture your love story with our breathtaking sunset sessions.',
-      cta: { text: 'Learn More', href: '/services' },
-    },
-  ];
-
-  // Countdown timer
-  useEffect(() => {
-    const targetDate = dayjs('2025-08-31T23:59:59');
-    const updateCountdown = () => {
-      const now = dayjs();
-      const duration = targetDate.diff(now);
-      if (duration <= 0) {
-        setCountdown({ days: 0, hours: 0, minutes: 0, seconds: 0 });
-        return;
-      }
-      const days = Math.floor(duration / (1000 * 60 * 60 * 24));
-      const hours = Math.floor((duration % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-      const minutes = Math.floor((duration % (1000 * 60 * 60)) / (1000 * 60));
-      const seconds = Math.floor((duration % (1000 * 60)) / 1000);
-      setCountdown({ days, hours, minutes, seconds });
-    };
-    updateCountdown();
-    const interval = setInterval(updateCountdown, 1000);
-    return () => clearInterval(interval);
-  }, []);
-
-  // Carousel auto-rotation
-  useEffect(() => {
-    if (isPaused) return;
-    const interval = setInterval(() => {
-      setCarouselIndex((prev) => (prev + 1) % carouselSlides.length);
-      setDirection(1);
-    }, 5000);
-    return () => clearInterval(interval);
-  }, [isPaused]);
-
   // Scroll-to-top button visibility
   useEffect(() => {
+    console.log('Setting up scroll-to-top handler');
     const handleScroll = throttle(() => {
       setIsVisible(window.scrollY > 300);
     }, 100);
+
     window.addEventListener('scroll', handleScroll);
     return () => {
+      console.log('Cleaning up scroll-to-top handler');
       window.removeEventListener('scroll', handleScroll);
       handleScroll.cancel();
     };
@@ -104,16 +84,20 @@ const Gallery = () => {
 
   // Open lightbox
   const openLightbox = (album, index) => {
+    console.log('Opening lightbox:', album.title, index);
     setSelectedAlbum(album);
     setCurrentMediaIndex(index);
+    setIsExpanded(false);
     document.body.style.overflow = 'hidden';
   };
 
   // Close lightbox
   const closeLightbox = () => {
+    console.log('Closing lightbox');
     setSelectedAlbum(null);
     setCurrentMediaIndex(0);
     setDirection(0);
+    setIsExpanded(false);
     document.body.style.overflow = 'auto';
   };
 
@@ -121,62 +105,55 @@ const Gallery = () => {
   const navigateMedia = (direction) => {
     if (!selectedAlbum) return;
     const newIndex = (currentMediaIndex + direction + selectedAlbum.media.length) % selectedAlbum.media.length;
+    console.log('Navigating media:', direction, 'New index:', newIndex);
     setCurrentMediaIndex(newIndex);
     setDirection(direction);
+    setIsExpanded(false);
   };
 
   // Navigate to specific media item
   const goToMedia = (index) => {
+    console.log('Going to media index:', index);
     setDirection(index > currentMediaIndex ? 1 : -1);
     setCurrentMediaIndex(index);
+    setIsExpanded(false);
   };
 
-  // Navigate carousel
-  const navigateCarousel = (direction) => {
-    const newIndex = (carouselIndex + direction + carouselSlides.length) % carouselSlides.length;
-    setCarouselIndex(newIndex);
-    setDirection(direction);
-  };
-
-  // Go to specific carousel slide
-  const goToCarouselSlide = (index) => {
-    setDirection(index > carouselIndex ? 1 : -1);
-    setCarouselIndex(index);
-  };
-
-  // Swipe handlers for carousel
-  const carouselSwipeHandlers = useSwipeable({
-    onSwipedLeft: () => navigateCarousel(1),
-    onSwipedRight: () => navigateCarousel(-1),
-    delta: 10,
-    preventDefaultTouchmoveEvent: true,
-    trackMouse: false,
-  });
-
-  // Swipe handlers for lightbox
-  const lightboxSwipeHandlers = useSwipeable({
-    onSwipedLeft: () => navigateMedia(1),
-    onSwipedRight: () => navigateMedia(-1),
-    delta: 10,
-    preventDefaultTouchmoveEvent: true,
-    trackMouse: false,
-  });
+  // Swipe handlers
+  const swipeHandlers = useCustomSwipe(
+    () => navigateMedia(1),
+    () => navigateMedia(-1)
+  );
 
   // Keyboard navigation
   const handleKeyDown = (e) => {
-    if (selectedAlbum) {
-      if (e.key === 'ArrowLeft') navigateMedia(-1);
-      if (e.key === 'ArrowRight') navigateMedia(1);
-    } else {
-      if (e.key === 'ArrowLeft') navigateCarousel(-1);
-      if (e.key === 'ArrowRight') navigateCarousel(1);
+    if (!selectedAlbum) return;
+    if (e.key === 'ArrowLeft') {
+      console.log('Keydown: ArrowLeft (media)');
+      navigateMedia(-1);
+    }
+    if (e.key === 'ArrowRight') {
+      console.log('Keydown: ArrowRight (media)');
+      navigateMedia(1);
     }
   };
 
   // Filter handler
   const handleFilter = (filter) => {
+    console.log('Applying filter:', filter);
     setActiveFilter(filter);
     setSelectedAlbum(null);
+    setLoadedCount(40);
+  };
+
+  // Load more albums
+  const loadMore = () => {
+    console.log('Loading more albums');
+    setIsLoading(true);
+    setTimeout(() => {
+      setLoadedCount((prev) => prev + 40);
+      setIsLoading(false);
+    }, 1000);
   };
 
   // Filtered images
@@ -186,164 +163,96 @@ const Gallery = () => {
 
   // Scroll to top
   const scrollToTop = () => {
+    console.log('Scrolling to top');
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
-  // Get icon based on albumType
-  const getAlbumIcon = (albumType) => {
-    switch (albumType) {
-      case 'mixed':
-        return <FaImages className="text-white w-5 h-5 sm:w-6 sm:h-6" />;
-      case 'images':
-        return <FaImage className="text-white w-5 h-5 sm:w-6 sm:h-6" />;
-      case 'videos':
-        return <FaVideo className="text-white w-5 h-5 sm:w-6 sm:h-6" />;
-      default:
-        return null;
-    }
+  // Handle "See More" / "See Less" for description on mobile
+  const renderDescription = (description) => {
+    const words = description.split(/\s+/);
+    const fullText = (
+      <>
+        <a
+          href="https://www.instagram.com/dkshotit_photography"
+          className="text-amber-500 hover:underline"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Visit dkshotit_photography on Instagram"
+        >
+          dkshotit_photography
+        </a>{' '}
+        {description}
+      </>
+    );
+    const collapsedText = words.length > 19 ? (
+      <>
+        <a
+          href="https://www.instagram.com/dkshotit_photography"
+          className="text-amber-500 hover:underline"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Visit dkshotit_photography on Instagram"
+        >
+          dkshotit_photography
+        </a>{' '}
+        {words.slice(0, 19).join(' ')}...
+      </>
+    ) : fullText;
+    return (
+      <div>
+        <p className="text-gray-300 text-sm hidden custom:block">{fullText}</p>
+        <AnimatePresence mode="wait">
+          <motion.p
+            key={isExpanded ? 'expanded' : 'collapsed'}
+            className="text-gray-300 text-sm block custom:hidden"
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: 10 }}
+            transition={{ duration: 0.2, ease: 'easeOut' }}
+          >
+            {words.length > 19 && !isExpanded ? collapsedText : fullText}
+          </motion.p>
+        </AnimatePresence>
+        <AnimatePresence mode="wait">
+          {words.length > 19 && (
+            <motion.button
+              key={isExpanded ? 'see-less' : 'see-more'}
+              className="bg-amber-500 hover:bg-amber-600 text-white font-medium px-4 py-2 rounded-lg text-sm mt-2 block custom:hidden"
+              onClick={() => setIsExpanded(!isExpanded)}
+              aria-label={isExpanded ? 'See Less' : 'See More'}
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: 10 }}
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              transition={{ duration: 0.2, ease: 'easeOut' }}
+            >
+              {isExpanded ? 'See Less' : 'See More'}
+            </motion.button>
+          )}
+        </AnimatePresence>
+      </div>
+    );
   };
 
   return (
     <div
-      className={`min-h-screen bg-black text-white py-10 sm:py-20 px-4 overflow-hidden ${selectedAlbum ? 'overflow-hidden' : ''}`}
+      className={`min-h-screen bg-black text-white pt-15 sm:pt-20 px-4 overflow-hidden ${
+        selectedAlbum ? 'pause-animation' : ''
+      }`}
       onKeyDown={handleKeyDown}
       tabIndex={0}
     >
-      {/* <Header /> */}
-      <div className="max-w-7xl mx-auto">
-        {/* Carousel Banner */}
-        <motion.section
-          className="relative rounded-lg mb-8 sm:mb-12 overflow-hidden h-64 sm:h-96"
-          initial={{ opacity: 0, y: 50 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1, ease: 'ease-out' }}
-          viewport={{ once: true }}
-          onMouseEnter={() => setIsPaused(true)}
-          onMouseLeave={() => setIsPaused(false)}
-        >
-          <div className="relative w-full h-full" {...carouselSwipeHandlers}>
-            <AnimatePresence initial={false} custom={direction}>
-              <motion.div
-                key={carouselIndex}
-                custom={direction}
-                variants={{
-                  enter: (dir) => ({ x: dir > 0 ? '100%' : '-100%', opacity: 0 }),
-                  center: { x: 0, opacity: 1 },
-                  exit: (dir) => ({ x: dir > 0 ? '-100%' : '100%', opacity: 0 }),
-                }}
-                initial="enter"
-                animate="center"
-                exit="exit"
-                transition={{ duration: 0.5, ease: 'ease-out' }}
-                className="absolute w-full h-full"
-              >
-                <img
-                  src={carouselSlides[carouselIndex].image}
-                  srcSet={carouselSlides[carouselIndex].srcSet}
-                  sizes={carouselSlides[carouselIndex].sizes}
-                  alt={carouselSlides[carouselIndex].alt}
-                  className="w-full h-full object-cover"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/50 to-transparent"></div>
-                <div className="absolute inset-0 flex items-center justify-center text-center px-4 py-6 sm:py-8">
-                  <div className="max-w-2xl">
-                    <motion.h1
-                      className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 text-white drop-shadow-lg"
-                      initial={{ y: 20, opacity: 0 }}
-                      whileInView={{ y: 0, opacity: 1 }}
-                      transition={{ duration: 0.6, delay: 0.2 }}
-                      viewport={{ once: true }}
-                    >
-                      {carouselSlides[carouselIndex].title}
-                    </motion.h1>
-                    <motion.p
-                      className="text-gray-200 text-base sm:text-lg md:text-xl drop-shadow-md mb-4"
-                      initial={{ y: 20, opacity: 0 }}
-                      whileInView={{ y: 0, opacity: 1 }}
-                      transition={{ duration: 0.6, delay: 0.4 }}
-                      viewport={{ once: true }}
-                    >
-                      {carouselSlides[carouselIndex].title === 'Limited Time Offer' ? (
-                        <>
-                          {carouselSlides[carouselIndex].description}
-                          <br />
-                          <span className="text-amber-500 font-semibold">
-                            {countdown.days}d {countdown.hours}h {countdown.minutes}m {countdown.seconds}s
-                          </span>
-                        </>
-                      ) : (
-                        carouselSlides[carouselIndex].description
-                      )}
-                    </motion.p>
-                    {carouselSlides[carouselIndex].cta && (
-                      <motion.a
-                        href={carouselSlides[carouselIndex].cta.href}
-                        className="bg-amber-500 hover:bg-amber-600 text-white font-medium px-4 sm:px-6 py-2 sm:py-3 rounded-lg text-sm sm:text-base transition-colors duration-300"
-                        whileHover={{ scale: 1.05 }}
-                        whileTap={{ scale: 0.95 }}
-                        aria-label={carouselSlides[carouselIndex].cta.text}
-                      >
-                        {carouselSlides[carouselIndex].cta.text}
-                      </motion.a>
-                    )}
-                  </div>
-                </div>
-              </motion.div>
-            </AnimatePresence>
-            {/* Carousel Dots */}
-            <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2">
-              {carouselSlides.map((_, index) => (
-                <button
-                  key={index}
-                  className={`w-2 h-2 sm:w-3 sm:h-3 rounded-full ${
-                    index === carouselIndex ? 'bg-white' : 'bg-gray-500 hover:bg-gray-300'
-                  } transition-colors duration-200`}
-                  onClick={() => goToCarouselSlide(index)}
-                  aria-label={`Go to carousel slide ${index + 1} of ${carouselSlides.length}`}
-                  tabIndex={0}
-                  onKeyDown={(e) => e.key === 'Enter' && goToCarouselSlide(index)}
-                />
-              ))}
-            </div>
-            {/* Carousel Navigation Buttons (Desktop) */}
-            <button
-              className="absolute left-2 top-1/2 -translate-y-1/2 bg-gray-800 hover:bg-gray-700 text-white p-3 rounded-full hidden sm:block z-10"
-              onClick={() => navigateCarousel(-1)}
-              aria-label="Previous carousel slide"
-            >
-              <svg
-                className="w-5 h-5"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M15 19l-7-7 7-7" />
-              </svg>
-            </button>
-            <button
-              className="absolute right-2 top-1/2 -translate-y-1/2 bg-gray-800 hover:bg-gray-700 text-white p-3 rounded-full hidden sm:block z-10"
-              onClick={() => navigateCarousel(1)}
-              aria-label="Next carousel slide"
-            >
-              <svg
-                className="w-5 h-5"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M9 5l7 7-7 7" />
-              </svg>
-            </button>
-          </div>
-        </motion.section>
+            <Header mobileMenuOpen={mobileMenuOpen} setMobileMenuOpen={setMobileMenuOpen} />
 
-        {/* <ExclusiveOffer /> */}
+      <div className="max-w-7xl mx-auto">
+        <BannerCarousel />
+
 
         {/* Filter Bar */}
         <section className="mb-6 sm:mb-8">
-          <div className="flex gap-2 sm:gap-4 overflow-x-auto sm:flex-wrap pb-2 sm:pb-0 scrollbar-hidden">
+          <div className="flex gap-2 sm:gap-4 overflow-x-auto sm:flex-wrap pb-2 sm:pb-0 filter-bar lg:justify-center
+          ">
             {filters.map((filter) => (
               <motion.button
                 key={filter}
@@ -351,7 +260,7 @@ const Gallery = () => {
                   activeFilter === filter
                     ? 'bg-amber-500 text-white'
                     : 'bg-gray-800 text-gray-300 hover:bg-gray-700'
-                } transition-colors duration-200`}
+                }`}
                 onClick={() => handleFilter(filter)}
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
@@ -375,53 +284,85 @@ const Gallery = () => {
           {filteredImages.length === 0 ? (
             <p className="text-center text-gray-300">No media available for this category.</p>
           ) : (
-            <div className="grid grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-1 sm:gap-2">
-              {filteredImages.map((album, index) => {
-                console.log(album.title, album.type, album.albumType, album.category); // Debug log
-                return (
-                  <motion.div
+            <>
+              <div className="grid grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-1 sm:gap-2">
+                {filteredImages.slice(0, loadedCount).map((album, index) => (
+                  <GridImage
                     key={`${album.title}-${index}`}
-                    className="relative aspect-square overflow-hidden cursor-pointer group"
-                    initial={{ opacity: 0 }}
-                    whileInView={{ opacity: 1 }}
-                    transition={{ duration: 0.5, delay: index * 0.05 }}
-                    viewport={{ once: true }}
-                    onClick={() => openLightbox(album, 0)}
-                    tabIndex={0}
-                    role="button"
-                    aria-label={`View ${album.title} ${album.type === 'album' ? 'album' : 'media'} in lightbox`}
-                    onKeyDown={(e) => e.key === 'Enter' && openLightbox(album, 0)}
+                    album={album}
+                    index={index}
+                    openLightbox={openLightbox}
+                  />
+                ))}
+              </div>
+              <AnimatePresence>
+                {isLoading && (
+                  <motion.div
+                    className="flex justify-center items-center mt-6"
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: 10 }}
+                    transition={{ duration: 0.2, ease: 'easeOut' }}
                   >
-                    <img
-                      src={album.media[0].src}
-                      alt={album.media[0].alt}
-                      className="w-full h-full object-cover group-hover:brightness-75 transition-brightness duration-200"
-                      loading="lazy"
-                    />
-                    <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-200 flex items-center justify-center">
-                      <span className="text-white text-sm font-medium">
-                        {album.title} {album.type === 'album' ? `(${album.media.length})` : ''}
-                      </span>
+                    <div className="flex gap-2">
+                      {[0, 1, 2].map((i) => (
+                        <motion.div
+                          key={i}
+                          className="w-3 h-3 bg-amber-500 rounded-full"
+                          animate={{
+                            scale: [0.8, 1.2, 0.8],
+                            opacity: [0.5, 1, 0.5],
+                          }}
+                          transition={{
+                            duration: 0.6,
+                            repeat: Infinity,
+                            delay: i * 0.2,
+                            ease: 'easeInOut',
+                          }}
+                        />
+                      ))}
                     </div>
-                    {album.type === 'album' && (
-                      <div
-                        className="absolute top-2 right-2 bg-black/60 p-1 rounded-full flex items-center justify-center"
-                        aria-label={`Album contains ${album.albumType} content`}
-                      >
-                        {getAlbumIcon(album.albumType)}
-                      </div>
-                    )}
                   </motion.div>
-                );
-              })}
-            </div>
+                )}
+              </AnimatePresence>
+              {loadedCount < filteredImages.length && !isLoading && (
+                <motion.div
+                  className="flex justify-center mt-6"
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.2, ease: 'easeOut' }}
+                >
+                  <motion.button
+                    className="bg-amber-500 hover:bg-amber-600 text-white font-medium px-6 py-3 rounded-lg text-sm"
+                    onClick={loadMore}
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                    aria-label="Load more albums"
+                  >
+                    Load More
+                  </motion.button>
+                </motion.div>
+              )}
+              {loadedCount >= filteredImages.length && !isLoading && (
+                <motion.div
+                  className="flex justify-center mt-6"
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.2, ease: 'easeOut' }}
+                >
+                  <p className="text-gray-300 text-sm sm:text-base">
+                    <span className="text-amber-500">No more</span> albums to load
+                  </p>
+                </motion.div>
+              )}
+            </>
           )}
         </section>
 
         {/* Instagram-style Lightbox Modal */}
         {selectedAlbum && (
           <motion.div
-            className="fixed inset-0 bg-black/90 flex items-start sm:items-center justify-center z-50 p-4 sm:p-6"
+            className="fixed inset-0 bg-black/90 flex items-center justify-center z-500 p-2 sm:p-6 lg:h-screen lg:w-screen overflow-y-auto"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
@@ -431,41 +372,49 @@ const Gallery = () => {
             aria-label={`${selectedAlbum.title} lightbox`}
           >
             <motion.div
-              className="relative w-full max-w-4xl flex flex-col sm:flex-row bg-black rounded-lg max-h-[100vh] sm:max-h-[80vh]"
+              className="relative inline-flex md:w-[70%] flex flex-col lg:flex-row bg-black rounded-lg max-h-[100vh] sm:max-h-[95vh] m-auto lg:h-[95vh] overflow-y-auto"
               initial={{ scale: 0.9, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               exit={{ scale: 0.9, opacity: 0 }}
               transition={{ duration: 0.3 }}
               onClick={(e) => e.stopPropagation()}
             >
-              {/* Media Display with Swipe */}
               <div
-                className="w-full sm:w-2/3 flex flex-col items-center justify-start sm:justify-center relative overflow-x-hidden"
-                {...lightboxSwipeHandlers}
+                className="w-full custom:w-[50%] flex flex-col items-center justify-start custom:justify-center swipe-container lg:h-full"
+                onTouchStart={swipeHandlers.onTouchStart}
+                onTouchMove={swipeHandlers.onTouchMove}
+                onTouchEnd={swipeHandlers.onTouchEnd}
                 tabIndex={0}
                 aria-label="Swipe or use arrow keys to navigate media"
               >
-                <div className="relative w-full h-[90vh] sm:h-[70vh]">
+                <div className="relative w-full h-[70vh] custom:h-full lg:h-full overflow-x-hidden border-amber-500 borer">
                   <AnimatePresence initial={false} custom={direction}>
                     <motion.div
                       key={currentMediaIndex}
                       custom={direction}
                       variants={{
-                        enter: (dir) => ({ x: dir > 0 ? '100%' : '-100%', opacity: 0 }),
+                        enter: (dir) => ({
+                          x: dir > 0 ? '100%' : '-100%',
+                          opacity: 0,
+                        }),
                         center: { x: 0, opacity: 1 },
-                        exit: (dir) => ({ x: dir > 0 ? '-100%' : '100%', opacity: 0 }),
+                        exit: (dir) => ({
+                          x: dir > 0 ? '-100%' : '100%',
+                          opacity: 0,
+                        }),
                       }}
                       initial="enter"
                       animate="center"
                       exit="exit"
-                      transition={{ duration: 0.3, ease: 'ease-out' }}
-                      className="absolute w-full h-full"
+                      transition={{ duration: 0.3, ease: 'easeOut' }}
+                      className="absolute w-full h-full flex items-center justify-center"
                     >
                       {selectedAlbum.media[currentMediaIndex].type === 'image' ? (
                         <img
                           src={selectedAlbum.media[currentMediaIndex].src}
                           alt={selectedAlbum.media[currentMediaIndex].alt}
                           className="w-full h-full object-contain"
+                          onError={() => console.error('Failed to load lightbox image:', selectedAlbum.media[currentMediaIndex].src)}
                         />
                       ) : (
                         <video
@@ -476,60 +425,108 @@ const Gallery = () => {
                           autoPlay
                           loop
                           muted
+                          onError={() => console.error('Failed to load lightbox video:', selectedAlbum.media[currentMediaIndex].src)}
                         />
                       )}
                     </motion.div>
                   </AnimatePresence>
-                </div>
-                {/* Dot Indicators for Albums */}
-                {selectedAlbum.type === 'album' && selectedAlbum.media.length > 1 && (
-                  <div className="flex gap-2 mt-4">
-                    {selectedAlbum.media.map((_, index) => (
+                  {selectedAlbum.media.length > 1 && (
+                    <>
                       <button
-                        key={index}
-                        className={`w-2 h-2 sm:w-3 sm:h-3 rounded-full ${
-                          index === currentMediaIndex ? 'bg-white' : 'bg-gray-500 hover:bg-gray-300'
-                        } transition-colors duration-200`}
-                        onClick={() => goToMedia(index)}
-                        aria-label={`View media item ${index + 1} of ${selectedAlbum.media.length}`}
-                        tabIndex={0}
-                        onKeyDown={(e) => e.key === 'Enter' && goToMedia(index)}
-                      />
-                    ))}
-                  </div>
-                )}
+                        className="absolute left-4 top-1/2 -translate-y-1/2 bg-gray-800 hover:bg-gray-700 text-white p-3 rounded-full z-[60]"
+                        onClick={() => navigateMedia(-1)}
+                        aria-label="Previous media"
+                      >
+                        <svg
+                          className="w-5 h-5"
+                          fill="none"
+                          stroke="currentColor"
+                          viewBox="0 0 24 24"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth="2"
+                            d="M15 19l-7-7 7-7"
+                          />
+                        </svg>
+                      </button>
+                      <button
+                        className="absolute right-4 top-1/2 -translate-y-1/2 bg-gray-800 hover:bg-gray-700 text-white p-3 rounded-full z-[60]"
+                        onClick={() => navigateMedia(1)}
+                        aria-label="Next media"
+                      >
+                        <svg
+                          className="w-5 h-5"
+                          fill="none"
+                          stroke="currentColor"
+                          viewBox="0 0 24 24"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth="2"
+                            d="M9 5l7 7-7 7"
+                          />
+                        </svg>
+                      </button>
+                    </>
+                  )}
+                  {selectedAlbum.type === 'album' && selectedAlbum.media.length > 1 && (
+                    <div className="absolute bottom-4 !left-1/2 !-translate-x-1/2 flex gap-2 justify-center bg-black/50 p-1 rounded z-10">
+                      {selectedAlbum.media.map((_, index) => (
+                        <button
+                          key={index}
+                          className={`w-2 h-2 rounded-full ${
+                            index === currentMediaIndex ? 'bg-white' : 'bg-gray-500'
+                          }`}
+                          onClick={() => goToMedia(index)}
+                          aria-label={`View media item ${index + 1} of ${selectedAlbum.media.length}`}
+                          tabIndex={0}
+                          onKeyDown={(e) => e.key === 'Enter' && goToMedia(index)}
+                        />
+                      ))}
+                    </div>
+                  )}
+                </div>
               </div>
-              {/* Caption and Controls */}
-              <div className="w-full sm:w-1/3 p-4 sm:p-6 flex flex-col justify-between bg-black sm:mb-0 mb-4">
+              <div className="w-full custom:w-[50%] p-4 sm:p-6 flex flex-col justify-between bg-black border-2 border-amber-700 md:overflow-y-auto mt-2">
                 <div>
-                  <h3 className="text-lg sm:text-xl font-semibold text-white mb-2">{selectedAlbum.title}</h3>
-                  <p className="text-gray-300 text-sm">
-                    {/* {selectedAlbum.media[currentMediaIndex].description} */}
-
-                    Happy Birthday to Me!
-Grateful for the journey, the lessons, the growth, and the joy that each year has brought. Today, I celebrate strength, resilience, and the incredible person I’ve become. Here’s to new adventures, deeper peace, and dreams that keep getting bigger. Cheers to this beautiful chapter ahead! 🥂✨🎉
-
-Happy birthday to me @mrdk_real
+                  <div className="flex items-center gap-2 mb-2">
+                    <h3 className="text-lg sm:text-xl font-semibold text-white">{selectedAlbum.title}</h3>
+                    <p className="text-gray-400 text-sm">
+                      Date: {selectedAlbum.media[currentMediaIndex].date || new Date().toLocaleDateString()}
                     </p>
-                  {selectedAlbum.media[currentMediaIndex].tags?.length > 0 && (
-                    <p className="text-gray-400 text-sm sm:text-base mt-2">
-                      {selectedAlbum.media[currentMediaIndex].tags.map((tag, index) => (
-                        <span key={index}>
-                          {tag.label}: {tag.name}{' '}
-                          <a
-                            href={`https://www.instagram.com/${tag.handle.slice(1)}`}
+                  </div>
+                  {renderDescription(selectedAlbum.media[currentMediaIndex].description)}
+                 {selectedAlbum.media[currentMediaIndex].tags?.length > 0 && (
+  <div className="mt-4 space-y-3">
+    {selectedAlbum.media[currentMediaIndex].tags.map((group, groupIndex) => (
+      <div key={groupIndex}>
+        <h2 className="text-gray-200 font-semibold">{group.title}</h2>
+        <ul className="ml-4 list-disc">
+          {group.tag.map((item, tagIndex) => (
+            <li key={tagIndex} className="text-gray-400 text-sm">
+              {item.label}: {item.name} 
+                                  <a
+                            href={`https://www.instagram.com/${item.handle.slice(1)}`}
                             className="text-amber-500 hover:underline"
                             target="_blank"
                             rel="noopener noreferrer"
-                            aria-label={`Visit ${tag.handle} on Instagram`}
+                            aria-label={`Visit ${item.handle} on Instagram`}
                           >
-                            {tag.handle}
+                            {item.handle}
                           </a>
-                          {index < selectedAlbum.media[currentMediaIndex].tags.length - 1 ? ', ' : ''}
-                        </span>
-                      ))}
-                    </p>
-                  )}
+            </li>
+          ))}
+        </ul>
+      </div>
+    ))}
+  </div>
+)}
+
                 </div>
                 <div className="flex gap-4 mt-4">
                   <a
@@ -540,9 +537,8 @@ Happy birthday to me @mrdk_real
                   </a>
                 </div>
               </div>
-              {/* Close Button */}
               <button
-                className="absolute top-2 right-2 bg-gray-800 hover:bg-gray-700 text-white p-2 rounded-full z-[60]"
+                className="absolute top-2 right-2 bg-gray-800 hover:bg-amber-700 text-white p-2 rounded-full z-[60]"
                 onClick={closeLightbox}
                 aria-label="Close lightbox"
               >
@@ -556,56 +552,11 @@ Happy birthday to me @mrdk_real
                   <path
                     strokeLinecap="round"
                     strokeLinejoin="round"
-                    strokeWidth="2.5"
+                    strokeWidth="2"
                     d="M6 18L18 6M6 6l12 12"
                   />
                 </svg>
               </button>
-              {/* Navigation Buttons */}
-              {selectedAlbum.media.length > 1 && (
-                <>
-                  <button
-                    className="absolute left-2 top-1/2 -translate-y-1/2 bg-gray-800 hover:bg-gray-700 text-white p-3 rounded-full z-[60]"
-                    onClick={() => navigateMedia(-1)}
-                    aria-label="Previous media"
-                  >
-                    <svg
-                      className="w-5 h-5"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth="2.5"
-                        d="M15 19l-7-7 7-7"
-                      />
-                    </svg>
-                  </button>
-                  <button
-                    className="absolute right-2 top-1/2 -translate-y-1/2 bg-gray-800 hover:bg-gray-700 text-white p-3 rounded-full z-[60]"
-                    onClick={() => navigateMedia(1)}
-                    aria-label="Next media"
-                  >
-                    <svg
-                      className="w-5 h-5"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth="2.5"
-                        d="M9 5l7 7-7 7"
-                      />
-                    </svg>
-                  </button>
-                </>
-              )}
             </motion.div>
           </motion.div>
         )}
@@ -614,7 +565,7 @@ Happy birthday to me @mrdk_real
           className="bg-gray-900 p-4 sm:p-6 md:p-8 rounded-lg mb-8 sm:mb-12 text-center"
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1, ease: 'ease-out', delay: 0.2 }}
+          transition={{ duration: 1, ease: 'easeOut', delay: 0.2 }}
           viewport={{ once: true }}
         >
           <h2 className="text-xl sm:text-2xl md:text-3xl font-bold mb-4 sm:mb-6">Have Questions?</h2>
@@ -624,7 +575,7 @@ Happy birthday to me @mrdk_real
           <div className="flex flex-col sm:flex-row justify-center gap-3 sm:gap-4">
             <motion.a
               href="tel:+233123456789"
-              className="bg-amber-500 hover:bg-amber-600 text-white font-medium px-4 sm:px-6 py-2 sm:py-3 rounded-xl transition-colors duration-300 text-sm sm:text-base"
+              className="bg-amber-500 hover:bg-amber-600 text-white font-medium px-4 sm:px-6 py-2 sm:py-3 rounded-xl transition duration-300 text-sm sm:text-base"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
@@ -632,7 +583,7 @@ Happy birthday to me @mrdk_real
             </motion.a>
             <motion.a
               href="https://wa.me/233123456789"
-              className="bg-emerald-500 hover:bg-emerald-600 text-white font-medium px-4 sm:px-6 py-2 sm:py-3 rounded-xl transition-colors duration-300 text-sm sm:text-base"
+              className="bg-emerald-500 hover:bg-emerald-600 text-white font-medium px-4 sm:px-6 py-2 sm:py-3 rounded-xl transition duration-300 text-sm sm:text-base"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
@@ -647,12 +598,12 @@ Happy birthday to me @mrdk_real
 
       {isVisible && (
         <motion.button
-          className="fixed bottom-4 sm:bottom-8 right-4 sm:right-8 bg-amber-500 hover:bg-amber-600 text-white p-2 sm:p-3 rounded-full shadow-lg transition-colors duration-300"
+          className="fixed bottom-4 sm:bottom-8 right-4 sm:right-8 bg-amber-500 hover:bg-amber-600 text-white p-2 sm:p-3 rounded-full shadow-lg transition duration-300"
           onClick={scrollToTop}
           initial={{ y: 50, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           exit={{ y: 50, opacity: 0 }}
-          transition={{ duration: 0.3, ease: 'ease-out' }}
+          transition={{ duration: 0.3, ease: 'easeOut' }}
           whileHover={{ scale: 1.1 }}
           whileTap={{ scale: 0.95 }}
           aria-label="Scroll to top"

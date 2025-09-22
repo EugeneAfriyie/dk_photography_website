@@ -1,6 +1,8 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { FaImages, FaImage, FaVideo } from 'react-icons/fa';
+import { IoIosPhotos } from 'react-icons/io';
+import { GoVideo } from 'react-icons/go';
 
 const GridImage = ({ album, index, openLightbox }) => {
   const imageKey = `${album.title}-${index}`;
@@ -8,12 +10,12 @@ const GridImage = ({ album, index, openLightbox }) => {
   const [isLoaded, setIsLoaded] = useState(false);
 
   const handleLoad = useCallback(() => {
-    console.log(`Image loaded: ${imageKey}`);
+    // console.log(`Image loaded: ${imageKey}`);
     setIsLoaded(true);
   }, [imageKey]);
 
   const handleError = useCallback(() => {
-    console.error(`Failed to load grid image: ${album.media[0].src}`);
+    // console.error(`Failed to load grid image: ${album.media[0].src}`);
     setIsLoaded(true);
   }, [imageKey, album.media[0].src]);
 
@@ -22,11 +24,11 @@ const GridImage = ({ album, index, openLightbox }) => {
     let observer;
 
     if (img) {
-      console.log(`Setting up IntersectionObserver for ${imageKey}`);
+      // console.log(`Setting up IntersectionObserver for ${imageKey}`);
       observer = new IntersectionObserver(
         ([entry]) => {
           if (entry.isIntersecting && img.complete) {
-            console.log(`Image cached: ${imageKey}, isLoaded: ${isLoaded}`);
+            // console.log(`Image cached: ${imageKey}, isLoaded: ${isLoaded}`);
             setIsLoaded(true);
             observer.disconnect();
           }
@@ -38,14 +40,14 @@ const GridImage = ({ album, index, openLightbox }) => {
 
     const timeout = setTimeout(() => {
       if (!isLoaded) {
-        console.log(`Timeout triggered for ${imageKey}`);
+        // console.log(`Timeout triggered for ${imageKey}`);
         setIsLoaded(true);
       }
     }, 3000);
 
     return () => {
       if (observer && img) {
-        console.log(`Cleaning up IntersectionObserver for ${imageKey}`);
+        // console.log(`Cleaning up IntersectionObserver for ${imageKey}`);
         observer.disconnect();
       }
       clearTimeout(timeout);
@@ -94,19 +96,23 @@ const GridImage = ({ album, index, openLightbox }) => {
           {album.title} {album.type === 'album' ? `(${album.media.length})` : ''}
         </span>
       </div>
-      {album.type === 'album' && (
+      {album.type  && (
         <div
           className="absolute top-2 right-2 bg-black/60 p-1 rounded-full album-icon"
           aria-label={`Album contains ${album.albumType} content`}
         >
           {(() => {
-            switch (album.albumType) {
-              case 'mixed':
+            switch (album.type) {
+              case 'album':
+
+              if (album.albumType === 'images') {
                 return <FaImages className="text-white w-5 h-5" />;
+              }
+                return <IoIosPhotos className="text-white w-5 h-5" />;
               case 'images':
                 return <FaImage className="text-white w-5 h-5" />;
-              case 'videos':
-                return <FaVideo className="text-white w-5 h-5" />;
+              case 'single':
+                return <GoVideo className="text-white w-5 h-5" />;
               default:
                 return null;
             }

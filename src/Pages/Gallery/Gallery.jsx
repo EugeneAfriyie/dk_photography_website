@@ -501,25 +501,32 @@ const Gallery = () => {
                     </p>
                   </div>
                   {renderDescription(selectedAlbum.media[currentMediaIndex].description)}
-                  {selectedAlbum.media[currentMediaIndex].tags?.length > 0 && (
-                    <p className="text-gray-400 text-sm mt-2">
-                      {selectedAlbum.media[currentMediaIndex].tags.map((tag, index) => (
-                        <span key={index}>
-                          {tag.label}: {tag.name}{' '}
-                          <a
-                            href={`https://www.instagram.com/${tag.handle.slice(1)}`}
+                 {selectedAlbum.media[currentMediaIndex].tags?.length > 0 && (
+  <div className="mt-4 space-y-3">
+    {selectedAlbum.media[currentMediaIndex].tags.map((group, groupIndex) => (
+      <div key={groupIndex}>
+        <h2 className="text-gray-200 font-semibold">{group.title}</h2>
+        <ul className="ml-4 list-disc">
+          {group.tag.map((item, tagIndex) => (
+            <li key={tagIndex} className="text-gray-400 text-sm">
+              {item.label}: {item.name} 
+                                  <a
+                            href={`https://www.instagram.com/${item.handle.slice(1)}`}
                             className="text-amber-500 hover:underline"
                             target="_blank"
                             rel="noopener noreferrer"
-                            aria-label={`Visit ${tag.handle} on Instagram`}
+                            aria-label={`Visit ${item.handle} on Instagram`}
                           >
-                            {tag.handle}
+                            {item.handle}
                           </a>
-                          {index < selectedAlbum.media[currentMediaIndex].tags.length - 1 ? ', ' : ''}
-                        </span>
-                      ))}
-                    </p>
-                  )}
+            </li>
+          ))}
+        </ul>
+      </div>
+    ))}
+  </div>
+)}
+
                 </div>
                 <div className="flex gap-4 mt-4">
                   <a

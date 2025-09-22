@@ -107,10 +107,10 @@ const ExclusiveOffer = () => {
           viewport={{ once: true }}
         >
           <p className="text-gray-300 mb-4">Offer ends in:</p>
-          <CountdownTimer deadline="2025-09-05T17:00:00Z" />
+          <CountdownTimer deadline="2025-11-05T17:00:00Z" />
           <div className="flex flex-col sm:flex-row gap-4 mt-4 justify-center">
             <motion.a
-              href="tel:+12025550123"
+              href="tel:+233243839922"
               className="flex items-center justify-center bg-amber-500 px-6 py-2 rounded hover:bg-amber-600 text-white"
               initial={{ opacity: 0, x: -20 }}
               whileInView={{ opacity: 1, x: 0 }}
@@ -121,7 +121,7 @@ const ExclusiveOffer = () => {
               Call to Enroll
             </motion.a>
             <motion.a
-              href="https://wa.me/12025550123?text=Hello,%20I%20want%20to%20enroll%20in%20the%20training%20program!"
+              href="https://wa.me/233243839922?text=Hello,%20I%20want%20to%20enroll%20in%20the%20training%20program!"
               target="_blank"
               rel="noopener noreferrer"
               className="flex items-center justify-center bg-amber-500 px-6 py-2 rounded hover:bg-amber-600 text-white"

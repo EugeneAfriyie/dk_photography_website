@@ -72,7 +72,7 @@ const BannerCarousel = () => {
 
   // Navigate to specific index
   const goToIndex = (index) => {
-    console.log('Navigating to banner index:', index);
+    // console.log('Navigating to banner index:', index);
     setCurrentIndex(index);
   };
 
@@ -116,11 +116,11 @@ const BannerCarousel = () => {
             alt={bannerImages[currentIndex].alt}
             className="absolute top-0 left-0 w-full h-full object-cover transition-opacity duration-300 z-0 object-center"
             onLoad={() => {
-              console.log(`Banner image loaded: ${bannerImages[currentIndex].src}`);
+              // console.log(`Banner image loaded: ${bannerImages[currentIndex].src}`);
               setIsLoaded((prev) => ({ ...prev, [currentIndex]: true }));
             }}
             onError={() => {
-              console.error(`Failed to load banner image: ${bannerImages[currentIndex].src}`);
+              // console.error(`Failed to load banner image: ${bannerImages[currentIndex].src}`);
               setIsLoaded((prev) => ({ ...prev, [currentIndex]: true }));
             }}
           />
@@ -135,8 +135,8 @@ const BannerCarousel = () => {
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: 30 }}
           transition={{ duration: 0.8, ease: 'easeOut' }}
-          onAnimationStart={() => console.log(`Rendering text for slide ${currentIndex}: ${bannerImages[currentIndex].title}`)}
-          onAnimationComplete={() => console.log(`Text animation completed for slide ${currentIndex}`)}
+          // onAnimationStart={() => console.log(`Rendering text for slide ${currentIndex}: ${bannerImages[currentIndex].title}`)}
+          // onAnimationComplete={() => console.log(`Text animation completed for slide ${currentIndex}`)}
         >
           <div className="max-w-2xl">
             <motion.h1

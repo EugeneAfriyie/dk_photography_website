@@ -31,7 +31,8 @@ const Footer = ({isFocused,setIsFocused}) => {
                     
                     {/* Instagram */}
                     <motion.a
-                      href="#"
+                      href="https://www.instagram.com/dkshotit_photography/"
+                      target="_blank"
                       aria-label="Instagram"
                       initial={{ color: '#D1D5DB' }} // gray-300
                       whileHover={{ color: '#E4405F' }}
@@ -42,7 +43,8 @@ const Footer = ({isFocused,setIsFocused}) => {
 
                     {/* WhatsApp */}
                     <motion.a
-                      href="#"
+                      href="https://wa.me/233243839922?text=Hello,%20I%20want%20to%20enroll%20in%20the%20training%20program!"
+                      target="_blank"
                       aria-label="WhatsApp"
                       initial={{ color: '#D1D5DB' }}
                       whileHover={{ color: '#25D366' }}
@@ -54,6 +56,7 @@ const Footer = ({isFocused,setIsFocused}) => {
                     {/* TikTok */}
                     <motion.a
                       href="#"
+                      target="_blank"
                       aria-label="TikTok"
                       initial={{ color: '#D1D5DB' }}
                       whileHover={{ color: '#25F4EE' }}
