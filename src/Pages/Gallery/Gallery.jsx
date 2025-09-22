@@ -574,15 +574,17 @@ const Gallery = () => {
           </p>
           <div className="flex flex-col sm:flex-row justify-center gap-3 sm:gap-4">
             <motion.a
-              href="tel:+233123456789"
+              href="tel:+233243839922"
+              target='_blank'
               className="bg-amber-500 hover:bg-amber-600 text-white font-medium px-4 sm:px-6 py-2 sm:py-3 rounded-xl transition duration-300 text-sm sm:text-base"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
-              Call Us: +233 123 456 789
+              Call Us: +233 243 839 922
             </motion.a>
             <motion.a
-              href="https://wa.me/233123456789"
+              href="https://wa.me/233243839922"
+              target='_blank'
               className="bg-emerald-500 hover:bg-emerald-600 text-white font-medium px-4 sm:px-6 py-2 sm:py-3 rounded-xl transition duration-300 text-sm sm:text-base"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
