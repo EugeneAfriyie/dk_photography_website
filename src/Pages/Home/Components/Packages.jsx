@@ -1,4 +1,3 @@
-
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Link } from 'react-router-dom';
@@ -23,9 +22,7 @@ const InfoIcon = ({ className, onClick, ariaLabel }) => (
   </svg>
 );
 
-
-
-const PackagesSection = ({packages}) => {
+const PackagesSection = ({ packages }) => {
   const [selectedPackage, setSelectedPackage] = useState(null);
 
   return (
@@ -41,7 +38,7 @@ const PackagesSection = ({packages}) => {
           Our Photography Packages
         </motion.h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-          {packages.map((packageItem, i) => (
+          {packages.slice(0, 6).map((packageItem, i) => (
             <motion.div
               key={packageItem.title}
               className="bg-gray-800 p-8 rounded-xl shadow-md hover:shadow-lg transition-all duration-300 flex flex-col min-h-full relative"
@@ -64,7 +61,7 @@ const PackagesSection = ({packages}) => {
                 }}
                 ariaLabel={`More information about ${packageItem.title}`}
               />
-              <motion.div className="w-full  bg-gray-700 overflow-hidden aspect-[4/3] mb-4">
+              <motion.div className="w-full bg-gray-700 overflow-hidden aspect-[4/3] mb-4">
                 <motion.img
                   src={packageItem.icon}
                   alt={`${packageItem.title} package`}
@@ -195,6 +192,25 @@ const PackagesSection = ({packages}) => {
             </motion.div>
           ))}
         </div>
+        <motion.div
+          className="flex justify-center mt-8"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, ease: 'easeOut' }}
+          viewport={{ once: true }}
+        >
+          <Link to="/services">
+            <motion.button
+              className="bg-amber-500 hover:bg-amber-600 text-white font-semibold px-6 py-3 rounded-lg text-base transition-colors duration-300"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              transition={{ duration: 0.2 }}
+              aria-label="View all photography packages"
+            >
+              Click to access the full packages
+            </motion.button>
+          </Link>
+        </motion.div>
         <AnimatePresence>
           {selectedPackage && (
             <motion.div
