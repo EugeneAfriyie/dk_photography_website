@@ -9,14 +9,11 @@ import BookingPrompt from '../Home/Components/BookingPrompt';
 import GridImage from './GridImage';
 import BannerCarousel from './BannerCarousel';
 
-
 // Custom swipe handler
 const useCustomSwipe = (onSwipedLeft, onSwipedRight) => {
   const [touchStart, setTouchStart] = useState(null);
   const [touchEnd, setTouchEnd] = useState(null);
   
-  
-
   const minSwipeDistance = 50;
 
   const onTouchStart = (e) => {
@@ -59,10 +56,9 @@ const Gallery = () => {
   const [direction, setDirection] = useState(0);
   const [activeFilter, setActiveFilter] = useState('all');
   const [isExpanded, setIsExpanded] = useState(false);
-  const [loadedCount, setLoadedCount] = useState(40);
+  const [loadedCount, setLoadedCount] = useState(12); // Start with 6 albums
   const [isLoading, setIsLoading] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-
 
   // Filter options
   const filters = ['all', 'wedding', 'children', 'couple', 'birthday', 'graduation'];
@@ -143,7 +139,7 @@ const Gallery = () => {
     console.log('Applying filter:', filter);
     setActiveFilter(filter);
     setSelectedAlbum(null);
-    setLoadedCount(40);
+    setLoadedCount(6); // Reset to 6 albums on filter change
   };
 
   // Load more albums
@@ -151,15 +147,17 @@ const Gallery = () => {
     console.log('Loading more albums');
     setIsLoading(true);
     setTimeout(() => {
-      setLoadedCount((prev) => prev + 40);
+      setLoadedCount((prev) => prev + 6); // Load 6 more albums
       setIsLoading(false);
-    }, 1000);
+    }, 500);
   };
 
-  // Filtered images
-  const filteredImages = activeFilter === 'all'
-    ? galleryImage
-    : galleryImage.filter((album) => album.category === activeFilter);
+  // Filtered images with fallback
+  const filteredImages = Array.isArray(galleryImage)
+    ? activeFilter === 'all'
+      ? galleryImage
+      : galleryImage.filter((album) => album.category === activeFilter)
+    : [];
 
   // Scroll to top
   const scrollToTop = () => {
@@ -237,22 +235,19 @@ const Gallery = () => {
 
   return (
     <div
-      className={`min-h-screen bg-black text-white pt-15 sm:pt-20 px-4 overflow-hidden ${
+      className={`min-h-screen bg-black text-white pt-16 sm:pt-20 px-4 overflow-hidden ${
         selectedAlbum ? 'pause-animation' : ''
       }`}
       onKeyDown={handleKeyDown}
       tabIndex={0}
     >
-            <Header mobileMenuOpen={mobileMenuOpen} setMobileMenuOpen={setMobileMenuOpen} />
-
+      <Header mobileMenuOpen={mobileMenuOpen} setMobileMenuOpen={setMobileMenuOpen} />
       <div className="max-w-7xl mx-auto">
         <BannerCarousel />
 
-
         {/* Filter Bar */}
         <section className="mb-6 sm:mb-8">
-          <div className="flex gap-2 sm:gap-4 overflow-x-auto sm:flex-wrap pb-2 sm:pb-0 filter-bar lg:justify-center
-          ">
+          <div className="flex gap-2 sm:gap-4 overflow-x-auto sm:flex-wrap pb-2 sm:pb-0 filter-bar lg:justify-center">
             {filters.map((filter) => (
               <motion.button
                 key={filter}
@@ -295,65 +290,63 @@ const Gallery = () => {
                   />
                 ))}
               </div>
-              <AnimatePresence>
-                {isLoading && (
-                  <motion.div
-                    className="flex justify-center items-center mt-6"
-                    initial={{ opacity: 0, y: 10 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: 10 }}
-                    transition={{ duration: 0.2, ease: 'easeOut' }}
-                  >
-                    <div className="flex gap-2">
-                      {[0, 1, 2].map((i) => (
-                        <motion.div
-                          key={i}
-                          className="w-3 h-3 bg-amber-500 rounded-full"
-                          animate={{
-                            scale: [0.8, 1.2, 0.8],
-                            opacity: [0.5, 1, 0.5],
-                          }}
-                          transition={{
-                            duration: 0.6,
-                            repeat: Infinity,
-                            delay: i * 0.2,
-                            ease: 'easeInOut',
-                          }}
-                        />
-                      ))}
-                    </div>
-                  </motion.div>
-                )}
-              </AnimatePresence>
               {loadedCount < filteredImages.length && !isLoading && (
                 <motion.div
-                  className="flex justify-center mt-6"
-                  initial={{ opacity: 0, y: 10 }}
+                  className="flex justify-center mt-8"
+                  initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.2, ease: 'easeOut' }}
+                  transition={{ duration: 0.5, ease: 'easeOut' }}
                 >
                   <motion.button
-                    className="bg-amber-500 hover:bg-amber-600 text-white font-medium px-6 py-3 rounded-lg text-sm"
+                    className="bg-amber-500 hover:bg-amber-600 text-white font-semibold px-6 py-3 rounded-lg text-base transition-colors duration-300"
                     onClick={loadMore}
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
+                    transition={{ duration: 0.2 }}
                     aria-label="Load more albums"
                   >
                     Load More
                   </motion.button>
                 </motion.div>
               )}
-              {loadedCount >= filteredImages.length && !isLoading && (
+              {isLoading && (
                 <motion.div
-                  className="flex justify-center mt-6"
-                  initial={{ opacity: 0, y: 10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.2, ease: 'easeOut' }}
+                  className="flex justify-center mt-8"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  transition={{ duration: 0.3 }}
                 >
-                  <p className="text-gray-300 text-sm sm:text-base">
-                    <span className="text-amber-500">No more</span> albums to load
-                  </p>
+                  <svg
+                    className="animate-spin h-8 w-8 text-amber-500"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                  >
+                    <circle
+                      className="opacity-25"
+                      cx="12"
+                      cy="12"
+                      r="10"
+                      stroke="currentColor"
+                      strokeWidth="4"
+                    />
+                    <path
+                      className="opacity-75"
+                      fill="currentColor"
+                      d="M4 12a8 8 0 018-8v8h8a8 8 0 01-8 8 8 8 0 01-8-8z"
+                    />
+                  </svg>
                 </motion.div>
+              )}
+              {loadedCount >= filteredImages.length && !isLoading && (
+                <motion.p
+                  className="text-center text-gray-300 mt-8"
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5, ease: 'easeOut' }}
+                >
+                  No more albums to load.
+                </motion.p>
               )}
             </>
           )}
@@ -387,7 +380,7 @@ const Gallery = () => {
                 tabIndex={0}
                 aria-label="Swipe or use arrow keys to navigate media"
               >
-                <div className="relative w-full h-[70vh] custom:h-full lg:h-full overflow-x-hidden border-amber-500 borer">
+                <div className="relative w-full h-[70vh] custom:h-full lg:h-full overflow-x-hidden border-amber-500 border">
                   <AnimatePresence initial={false} custom={direction}>
                     <motion.div
                       key={currentMediaIndex}
@@ -501,32 +494,31 @@ const Gallery = () => {
                     </p>
                   </div>
                   {renderDescription(selectedAlbum.media[currentMediaIndex].description)}
-                 {selectedAlbum.media[currentMediaIndex].tags?.length > 0 && (
-  <div className="mt-4 space-y-3">
-    {selectedAlbum.media[currentMediaIndex].tags.map((group, groupIndex) => (
-      <div key={groupIndex}>
-        <h2 className="text-gray-200 font-semibold">{group.title}</h2>
-        <ul className="ml-4 list-disc">
-          {group.tag.map((item, tagIndex) => (
-            <li key={tagIndex} className="text-gray-400 text-sm">
-              {item.label}: {item.name} 
-                                  <a
-                            href={`https://www.instagram.com/${item.handle.slice(1)}`}
-                            className="text-amber-500 hover:underline"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            aria-label={`Visit ${item.handle} on Instagram`}
-                          >
-                            {item.handle}
-                          </a>
-            </li>
-          ))}
-        </ul>
-      </div>
-    ))}
-  </div>
-)}
-
+                  {selectedAlbum.media[currentMediaIndex].tags?.length > 0 && (
+                    <div className="mt-4 space-y-3">
+                      {selectedAlbum.media[currentMediaIndex].tags.map((group, groupIndex) => (
+                        <div key={groupIndex}>
+                          <h2 className="text-gray-200 font-semibold">{group.title}</h2>
+                          <ul className="ml-4 list-disc">
+                            {group.tag.map((item, tagIndex) => (
+                              <li key={tagIndex} className="text-gray-400 text-sm">
+                                {item.label}: {item.name}{' '}
+                                <a
+                                  href={`https://www.instagram.com/${item.handle.slice(1)}`}
+                                  className="text-amber-500 hover:underline"
+                                  target="_blank"
+                                  rel="noopener noreferrer"
+                                  aria-label={`Visit ${item.handle} on Instagram`}
+                                >
+                                  {item.handle}
+                                </a>
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
+                      ))}
+                    </div>
+                  )}
                 </div>
                 <div className="flex gap-4 mt-4">
                   <a
@@ -593,41 +585,41 @@ const Gallery = () => {
             </motion.a>
           </div>
         </motion.section>
-      </div>
 
-      <BookingPrompt />
-      <Footer />
+        <BookingPrompt />
+        <Footer />
 
-      {isVisible && (
-        <motion.button
-          className="fixed bottom-4 sm:bottom-8 right-4 sm:right-8 bg-amber-500 hover:bg-amber-600 text-white p-2 sm:p-3 rounded-full shadow-lg transition duration-300"
-          onClick={scrollToTop}
-          initial={{ y: 50, opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
-          exit={{ y: 50, opacity: 0 }}
-          transition={{ duration: 0.3, ease: 'easeOut' }}
-          whileHover={{ scale: 1.1 }}
-          whileTap={{ scale: 0.95 }}
-          aria-label="Scroll to top"
-        >
-          <svg
-            className="w-5 sm:w-6 h-5 sm:h-6"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-            xmlns="http://www.w3.org/2000/svg"
+        {isVisible && (
+          <motion.button
+            className="fixed bottom-4 sm:bottom-8 right-4 sm:right-8 bg-amber-500 hover:bg-amber-600 text-white p-2 sm:p-3 rounded-full shadow-lg transition duration-300"
+            onClick={scrollToTop}
+            initial={{ y: 50, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            exit={{ y: 50, opacity: 0 }}
+            transition={{ duration: 0.3, ease: 'easeOut' }}
+            whileHover={{ scale: 1.1 }}
+            whileTap={{ scale: 0.95 }}
+            aria-label="Scroll to top"
           >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth="2"
-              d="M5 10l7-7m0 0l7 7m-7-7v18"
-            />
-          </svg>
-        </motion.button>
-      )}
+            <svg
+              className="w-5 sm:w-6 h-5 sm:h-6"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="2"
+                d="M5 10l7-7m0 0l7 7m-7-7v18"
+              />
+            </svg>
+          </motion.button>
+        )}
+      </div>
     </div>
   );
 };
 
-export default Gallery;
+export default Gallery; 
