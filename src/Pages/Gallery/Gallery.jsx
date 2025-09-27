@@ -56,7 +56,7 @@ const Gallery = () => {
   const [direction, setDirection] = useState(0);
   const [activeFilter, setActiveFilter] = useState('all');
   const [isExpanded, setIsExpanded] = useState(false);
-  const [loadedCount, setLoadedCount] = useState(12); // Start with 6 albums
+  const [loadedCount, setLoadedCount] = useState(6); // Start with 6 albums
   const [isLoading, setIsLoading] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
@@ -490,13 +490,13 @@ const Gallery = () => {
                   <div className="flex items-center gap-2 mb-2">
                     <h3 className="text-lg sm:text-xl font-semibold text-white">{selectedAlbum.title}</h3>
                     <p className="text-gray-400 text-sm">
-                      Date: {selectedAlbum.media[currentMediaIndex].date || new Date().toLocaleDateString()}
+                      Date: {selectedAlbum.date || new Date().toLocaleDateString()}
                     </p>
                   </div>
-                  {renderDescription(selectedAlbum.media[currentMediaIndex].description)}
-                  {selectedAlbum.media[currentMediaIndex].tags?.length > 0 && (
+                  {renderDescription(selectedAlbum.description)}
+                  {selectedAlbum.tags?.length > 0 && (
                     <div className="mt-4 space-y-3">
-                      {selectedAlbum.media[currentMediaIndex].tags.map((group, groupIndex) => (
+                      {selectedAlbum.tags.map((group, groupIndex) => (
                         <div key={groupIndex}>
                           <h2 className="text-gray-200 font-semibold">{group.title}</h2>
                           <ul className="ml-4 list-disc">
@@ -622,4 +622,4 @@ const Gallery = () => {
   );
 };
 
-export default Gallery; 
+export default Gallery;

@@ -440,44 +440,47 @@ export const galleryImage = [
     title: 'Wedding Bliss Album',
     albumType: 'mixed',
     category: 'wedding',
+    description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Iure, sapiente! Temporibus, debitis, voluptates non accusamus tenetur officia exercitationem soluta consequuntur sequi sint nesciunt quasi suscipit id, magni eius commodi optio? Lorem ipsum dolor sit amet consectetur adipisicing elit. Iure, sapiente! Temporibus, debitis, voluptates non accusamus tenetur officia exercitationem soluta consequuntur sequi sint nesciunt quasi suscipit id, magni eius commodi optio? Lorem ipsum dolor sit amet consectetur adipisicing elit. Iure, sapiente! Temporibus, debitis, voluptates non accusamus tenetur officia exercitationem soluta consequuntur sequi sint nesciunt quasi suscipit id, magni eius commodi optio',
+    tags: [
+      {
+        title: 'CONCEPT DESIGN & PRODUCTION',
+        tag: [
+          { label: 'choreographer', name: 'Dance Co', handle: '@danceco' },
+          { label: 'director', name: 'Jane Smith', handle: '@janesmith' },
+          { label: 'producer', name: 'Event Pro', handle: '@eventpro' },
+        ],
+      },
+      {
+        title: 'Other vendors',
+        tag: [
+          { label: 'florist', name: 'Bloom Co', handle: '@bloomco' },
+          { label: 'caterer', name: 'Taste Events', handle: '@tasteevents' },
+          { label: 'planner', name: 'Plan Perfect', handle: '@planperfect' },
+        ],
+      },
+      {
+        title: 'Vendors',
+        tag: [
+          { label: 'choreographer', name: 'Dance Co', handle: '@danceco' },
+          { label: 'officiant', name: 'Rev John', handle: '@revjohn' },
+        ],
+      },
+    ],
     media: [
       {
         src: 'https://res.cloudinary.com/djeorsh5d/image/upload/v1751247125/BRIDE1_kjfo1p.jpg',
         type: 'image',
         alt: 'Bride in white dress',
-        description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Iure, sapiente! Temporibus, debitis, voluptates non accusamus tenetur officia exercitationem soluta consequuntur sequi sint nesciunt quasi suscipit id, magni eius commodi optio? Lorem ipsum dolor sit amet consectetur adipisicing elit. Iure, sapiente! Temporibus, debitis, voluptates non accusamus tenetur officia exercitationem soluta consequuntur sequi sint nesciunt quasi suscipit id, magni eius commodi optio? Lorem ipsum dolor sit amet consectetur adipisicing elit. Iure, sapiente! Temporibus, debitis, voluptates non accusamus tenetur officia exercitationem soluta consequuntur sequi sint nesciunt quasi suscipit id, magni eius commodi optio',
-        tags: [
-          {
-            title: 'CONCEPT DESIGN & PRODUCTION',
-            tag: [
-              { label: 'choreographer', name: 'Dance Co', handle: '@danceco' },
-              { label: 'director', name: 'Jane Smith', handle: '@janesmith' },
-              { label: 'producer', name: 'Event Pro', handle: '@eventpro' },
-            ],
-          },
-          {
-            title: 'Other vendors',
-            tag: [
-              { label: 'florist', name: 'Bloom Co', handle: '@bloomco' },
-              { label: 'caterer', name: 'Taste Events', handle: '@tasteevents' },
-              { label: 'planner', name: 'Plan Perfect', handle: '@planperfect' },
-            ],
-          },
-        ],
       },
       {
-        src: 'https://res.cloudinary.com/djeorsh5d/video/upload/v1758593443/SnapInsta.to_AQN2dK4AoxwN6G9g8eojgM6XNNLatlRiZgVJ93hyNepVc0gmCh3-buI4P8por-2-SuPs759DPs8sf0g5_aeGS23xAO4dgRDSXwuKLDk_aclqc9.mp4',
+        src: 'https://res.cloudinary.com/djeorsh5d/video/upload/v1758593443/wedding_dance.mp4',
         type: 'video',
         alt: 'Wedding dance video',
-        description: 'First dance at the reception.',
-        tags: [{ title: 'Vendors', tag: [{ label: 'choreographer', name: 'Dance Co', handle: '@danceco' }]}],
       },
       {
         src: 'https://res.cloudinary.com/djeorsh5d/image/upload/v1751247136/EQ_image-2_ttqpf8.png',
         type: 'image',
         alt: 'Wedding ceremony',
-        description: 'Exchange of vows.',
-        tags: [{ title: 'Vendors', tag: [{ label: 'officiant', name: 'Rev John', handle: '@revjohn' }]}],
       },
     ],
   },
@@ -486,20 +489,18 @@ export const galleryImage = [
     title: 'Family Legacy Album',
     albumType: 'images',
     category: 'children',
+    description: 'Family in studio.',
+    tags: [],
     media: [
       {
         src: 'https://res.cloudinary.com/djeorsh5d/image/upload/v1751247136/EQ_image-2_ttqpf8.png',
         type: 'image',
         alt: 'Family portrait',
-        description: 'Family in studio.',
-        tags: [],
       },
       {
         src: 'https://res.cloudinary.com/djeorsh5d/image/upload/v1751247136/EQ_image-2_ttqpf8.png',
         type: 'image',
         alt: 'Family outdoors',
-        description: 'Outdoor family photo.',
-        tags: [],
       },
     ],
   },
@@ -507,13 +508,18 @@ export const galleryImage = [
     type: 'single',
     title: 'Sunset Portrait',
     category: 'couple',
+    description: 'Portrait at golden hour.',
+    tags: [
+      {
+        title: 'Vendors',
+        tag: [{ label: 'stylist', name: 'Luna', handle: '@luna_style' }],
+      },
+    ],
     media: [
       {
         src: 'https://res.cloudinary.com/djeorsh5d/image/upload/v1751247136/EQ_image-2_ttqpf8.png',
         type: 'image',
         alt: 'Sunset portrait',
-        description: 'Portrait at golden hour.',
-        tags: [{ title: 'Vendors', tag: [{ label: 'stylist', name: 'Luna', handle: '@luna_style' }]}],
       },
     ],
   },
@@ -522,34 +528,33 @@ export const galleryImage = [
     title: 'Graduation Moments',
     albumType: 'mixed',
     category: 'graduation',
+    description: 'Graduate tossing cap.',
+    tags: [
+      {
+        title: 'Vendors',
+        tag: [{ label: 'photographer', name: 'Alex', handle: '@alex_snaps' }],
+      },
+    ],
     media: [
       {
         src: 'https://res.cloudinary.com/djeorsh5d/image/upload/v1751247136/EQ_image-2_ttqpf8.png',
         type: 'image',
         alt: 'Graduate in cap',
-        description: 'Graduate tossing cap.',
-        tags: [{ title: 'Vendors', tag: [{ label: 'photographer', name: 'Alex', handle: '@alex_snaps' }]}],
       },
       {
         src: 'https://res.cloudinary.com/djeorsh5d/video/upload/v1751247136/graduation_walk.mp4',
         type: 'video',
         alt: 'Graduation walk video',
-        description: 'Walking across stage.',
-        tags: [],
       },
       {
         src: 'https://res.cloudinary.com/djeorsh5d/image/upload/v1751247136/EQ_image-2_ttqpf8.png',
         type: 'image',
         alt: 'Graduate with family',
-        description: 'Family celebration.',
-        tags: [],
       },
       {
         src: 'https://res.cloudinary.com/djeorsh5d/image/upload/v1751247136/EQ_image-2_ttqpf8.png',
         type: 'image',
         alt: 'Graduate portrait',
-        description: 'Solo graduate portrait.',
-        tags: [],
       },
     ],
   },
@@ -557,18 +562,21 @@ export const galleryImage = [
     type: 'single',
     title: 'Beach Wedding Shot',
     category: 'wedding',
+    description: 'Couple on beach at sunset.',
+    tags: [
+      {
+        title: 'Vendors',
+        tag: [
+          { label: 'makeup artist', name: 'Pretty', handle: '@nana_amabbe' },
+          { label: 'decor', name: 'Sea Events', handle: '@sea_events' },
+        ],
+      },
+    ],
     media: [
       {
         src: 'https://res.cloudinary.com/djeorsh5d/image/upload/v1751247136/EQ_image-2_ttqpf8.png',
         type: 'image',
         alt: 'Beach wedding',
-        description: 'Couple on beach at sunset.',
-        tags: [
-          { title: 'Vendors', tag: [
-            { label: 'makeup artist', name: 'Pretty', handle: '@nana_amabbe' },
-            { label: 'decor', name: 'Sea Events', handle: '@sea_events' },
-          ]},
-        ],
       },
     ],
   },
@@ -577,240 +585,18 @@ export const galleryImage = [
     title: 'Engagement Session',
     albumType: 'images',
     category: 'couple',
+    description: 'Couple in park.',
+    tags: [],
     media: [
       {
         src: 'https://res.cloudinary.com/djeorsh5d/image/upload/v1751247136/EQ_image-2_ttqpf8.png',
         type: 'image',
         alt: 'Engagement photo',
-        description: 'Couple in park.',
-        tags: [],
       },
       {
         src: 'https://res.cloudinary.com/djeorsh5d/image/upload/v1751247136/EQ_image-2_ttqpf8.png',
         type: 'image',
         alt: 'Ring close-up',
-        description: 'Close-up of engagement ring.',
-        tags: [],
-      },
-    ],
-  },
-  {
-    type: 'album',
-    title: 'Engagement Session',
-    albumType: 'images',
-    category: 'couple',
-    media: [
-      {
-        src: 'https://res.cloudinary.com/djeorsh5d/image/upload/v1751247136/EQ_image-2_ttqpf8.png',
-        type: 'image',
-        alt: 'Engagement photo',
-        description: 'Couple in park.',
-        tags: [],
-      },
-      {
-        src: 'https://res.cloudinary.com/djeorsh5d/image/upload/v1751247136/EQ_image-2_ttqpf8.png',
-        type: 'image',
-        alt: 'Ring close-up',
-        description: 'Close-up of engagement ring.',
-        tags: [],
-      },
-    ],
-  },
-  {
-    type: 'album',
-    title: 'Engagement Session',
-    albumType: 'images',
-    category: 'couple',
-    media: [
-      {
-        src: 'https://res.cloudinary.com/djeorsh5d/image/upload/v1751247136/EQ_image-2_ttqpf8.png',
-        type: 'image',
-        alt: 'Engagement photo',
-        description: 'Couple in park.',
-        tags: [],
-      },
-      {
-        src: 'https://res.cloudinary.com/djeorsh5d/image/upload/v1751247136/EQ_image-2_ttqpf8.png',
-        type: 'image',
-        alt: 'Ring close-up',
-        description: 'Close-up of engagement ring.',
-        tags: [],
-      },
-    ],
-  },
-  {
-    type: 'album',
-    title: 'Engagement Session',
-    albumType: 'images',
-    category: 'couple',
-    media: [
-      {
-        src: 'https://res.cloudinary.com/djeorsh5d/image/upload/v1751247136/EQ_image-2_ttqpf8.png',
-        type: 'image',
-        alt: 'Engagement photo',
-        description: 'Couple in park.',
-        tags: [],
-      },
-      {
-        src: 'https://res.cloudinary.com/djeorsh5d/image/upload/v1751247136/EQ_image-2_ttqpf8.png',
-        type: 'image',
-        alt: 'Ring close-up',
-        description: 'Close-up of engagement ring.',
-        tags: [],
-      },
-    ],
-  },
-  {
-    type: 'album',
-    title: 'Engagement Session',
-    albumType: 'images',
-    category: 'couple',
-    media: [
-      {
-        src: 'https://res.cloudinary.com/djeorsh5d/image/upload/v1751247136/EQ_image-2_ttqpf8.png',
-        type: 'image',
-        alt: 'Engagement photo',
-        description: 'Couple in park.',
-        tags: [],
-      },
-      {
-        src: 'https://res.cloudinary.com/djeorsh5d/image/upload/v1751247136/EQ_image-2_ttqpf8.png',
-        type: 'image',
-        alt: 'Ring close-up',
-        description: 'Close-up of engagement ring.',
-        tags: [],
-      },
-    ],
-  },
-  {
-    type: 'album',
-    title: 'Engagement Session',
-    albumType: 'images',
-    category: 'couple',
-    media: [
-      {
-        src: 'https://res.cloudinary.com/djeorsh5d/image/upload/v1751247136/EQ_image-2_ttqpf8.png',
-        type: 'image',
-        alt: 'Engagement photo',
-        description: 'Couple in park.',
-        tags: [],
-      },
-      {
-        src: 'https://res.cloudinary.com/djeorsh5d/image/upload/v1751247136/EQ_image-2_ttqpf8.png',
-        type: 'image',
-        alt: 'Ring close-up',
-        description: 'Close-up of engagement ring.',
-        tags: [],
-      },
-    ],
-  },
-  {
-    type: 'album',
-    title: 'Engagement Session',
-    albumType: 'images',
-    category: 'couple',
-    media: [
-      {
-        src: 'https://res.cloudinary.com/djeorsh5d/image/upload/v1751247136/EQ_image-2_ttqpf8.png',
-        type: 'image',
-        alt: 'Engagement photo',
-        description: 'Couple in park.',
-        tags: [],
-      },
-      {
-        src: 'https://res.cloudinary.com/djeorsh5d/image/upload/v1751247136/EQ_image-2_ttqpf8.png',
-        type: 'image',
-        alt: 'Ring close-up',
-        description: 'Close-up of engagement ring.',
-        tags: [],
-      },
-    ],
-  },
-  {
-    type: 'album',
-    title: 'Engagement Session',
-    albumType: 'images',
-    category: 'couple',
-    media: [
-      {
-        src: 'https://res.cloudinary.com/djeorsh5d/image/upload/v1751247136/EQ_image-2_ttqpf8.png',
-        type: 'image',
-        alt: 'Engagement photo',
-        description: 'Couple in park.',
-        tags: [],
-      },
-      {
-        src: 'https://res.cloudinary.com/djeorsh5d/image/upload/v1751247136/EQ_image-2_ttqpf8.png',
-        type: 'image',
-        alt: 'Ring close-up',
-        description: 'Close-up of engagement ring.',
-        tags: [],
-      },
-    ],
-  },
-  {
-    type: 'album',
-    title: 'Engagement Session',
-    albumType: 'images',
-    category: 'couple',
-    media: [
-      {
-        src: 'https://res.cloudinary.com/djeorsh5d/image/upload/v1751247136/EQ_image-2_ttqpf8.png',
-        type: 'image',
-        alt: 'Engagement photo',
-        description: 'Couple in park.',
-        tags: [],
-      },
-      {
-        src: 'https://res.cloudinary.com/djeorsh5d/image/upload/v1751247136/EQ_image-2_ttqpf8.png',
-        type: 'image',
-        alt: 'Ring close-up',
-        description: 'Close-up of engagement ring.',
-        tags: [],
-      },
-    ],
-  },
-  {
-    type: 'album',
-    title: 'Engagement Session',
-    albumType: 'images',
-    category: 'couple',
-    media: [
-      {
-        src: 'https://res.cloudinary.com/djeorsh5d/image/upload/v1751247136/EQ_image-2_ttqpf8.png',
-        type: 'image',
-        alt: 'Engagement photo',
-        description: 'Couple in park.',
-        tags: [],
-      },
-      {
-        src: 'https://res.cloudinary.com/djeorsh5d/image/upload/v1751247136/EQ_image-2_ttqpf8.png',
-        type: 'image',
-        alt: 'Ring close-up',
-        description: 'Close-up of engagement ring.',
-        tags: [],
-      },
-    ],
-  },
-  {
-    type: 'album',
-    title: 'Engagement Session',
-    albumType: 'images',
-    category: 'couple',
-    media: [
-      {
-        src: 'https://res.cloudinary.com/djeorsh5d/image/upload/v1751247136/EQ_image-2_ttqpf8.png',
-        type: 'image',
-        alt: 'Engagement photo',
-        description: 'Couple in park.',
-        tags: [],
-      },
-      {
-        src: 'https://res.cloudinary.com/djeorsh5d/image/upload/v1751247136/EQ_image-2_ttqpf8.png',
-        type: 'image',
-        alt: 'Ring close-up',
-        description: 'Close-up of engagement ring.',
-        tags: [],
       },
     ],
   },
