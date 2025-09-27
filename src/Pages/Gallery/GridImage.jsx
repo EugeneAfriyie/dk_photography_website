@@ -105,13 +105,10 @@ const GridImage = ({ album, index, openLightbox }) => {
             switch (album.type) {
               case 'album':
 
-              if (album.albumType === 'images') {
-                return <FaImages className="text-white w-5 h-5" />;
-              }
+              
                 return <IoIosPhotos className="text-white w-5 h-5" />;
-              case 'images':
-                return <FaImage className="text-white w-5 h-5" />;
-              case 'single':
+             
+              case 'video':
                 return <GoVideo className="text-white w-5 h-5" />;
               default:
                 return null;

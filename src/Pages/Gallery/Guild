@@ -1,0 +1,111 @@
+ 
+ 
+//  for album with more
+ 
+ {
+    type: 'album',
+    title: 'Wedding Bliss Album',
+    albumType: 'mixed',
+    category: 'wedding',
+    description: 'Lorem ni eius commodi optio',
+    tags: [
+      {
+        title: 'CONCEPT DESIGN & PRODUCTION',
+        tag: [
+          { label: 'choreographer', name: 'Dance Co', handle: '@danceco' },
+          { label: 'director', name: 'Jane Smith', handle: '@janesmith' },
+          { label: 'producer', name: 'Event Pro', handle: '@eventpro' },
+        ],
+      },
+      {
+        title: 'Other vendors',
+        tag: [
+          { label: 'florist', name: 'Bloom Co', handle: '@bloomco' },
+          { label: 'caterer', name: 'Taste Events', handle: '@tasteevents' },
+          { label: 'planner', name: 'Plan Perfect', handle: '@planperfect' },
+        ],
+      },
+      {
+        title: 'Vendors',
+        tag: [
+          { label: 'choreographer', name: 'Dance Co', handle: '@danceco' },
+          { label: 'officiant', name: 'Rev John', handle: '@revjohn' },
+        ],
+      },
+    ],
+    media: [
+      {
+        src: 'https://res.cloudinary.com/djeorsh5d/image/upload/v1751247125/BRIDE1_kjfo1p.jpg',
+        type: 'image',
+        alt: 'Bride in white dress',
+      },
+      {
+        src: 'https://res.cloudinary.com/djeorsh5d/video/upload/v1758593443/wedding_dance.mp4',
+        type: 'video',
+        alt: 'Wedding dance video',
+      },
+      {
+        src: 'https://res.cloudinary.com/djeorsh5d/image/upload/v1751247136/EQ_image-2_ttqpf8.png',
+        type: 'image',
+        alt: 'Wedding ceremony',
+      },
+    ],
+  },
+
+
+
+//   for album with few
+
+ {
+    type: 'album',
+    date:  '  '
+    title: ' ',
+    category: ' ',
+    description: 'Lorem ipsum ',
+    tags: [
+      {
+        title: '  ',
+        tag: [
+          { label: 'choreographer', name: ' ', handle: '@danceco' },
+        ],
+      },
+ 
+    ],
+    media: [
+      {
+        src: 'https://res.cloudinary.com/djeorsh5d/image/upload/v1751247125/BRIDE1_kjfo1p.jpg',
+        type: 'image',
+        alt: '',
+      },
+      {
+        src: 'https://res.cloudinary.com/djeorsh5d/video/upload/v1758593443/wedding_dance.mp4',
+        type: 'video',
+        alt: 'Wedding dance video',
+      },
+    
+    ],
+  },
+
+
+
+//   for video
+
+  {
+    type: 'single',
+    title: 'Sunset Portrait',
+    category: 'couple',
+    description: 'Portrait at golden hour.',
+    tags: [
+      {
+        title: 'Vendors',
+        tag: [{ label: 'stylist', name: 'Luna', handle: '@luna_style' }],
+      },
+    ],
+    media: [
+      {
+        src: 'https://res.cloudinary.com/djeorsh5d/image/upload/v1751247136/EQ_image-2_ttqpf8.png',
+        type: 'image',
+        alt: 'Sunset portrait',
+      },
+    ],
+  },

@@ -56,7 +56,7 @@ const Gallery = () => {
   const [direction, setDirection] = useState(0);
   const [activeFilter, setActiveFilter] = useState('all');
   const [isExpanded, setIsExpanded] = useState(false);
-  const [loadedCount, setLoadedCount] = useState(6); // Start with 6 albums
+  const [loadedCount, setLoadedCount] = useState(10); // Start with 6 albums
   const [isLoading, setIsLoading] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 

@@ -435,169 +435,610 @@ export const testimonials = [
 
 
 export const galleryImage = [
-  {
+
+   {
     type: 'album',
-    title: 'Wedding Bliss Album',
-    albumType: 'mixed',
-    category: 'wedding',
-    description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Iure, sapiente! Temporibus, debitis, voluptates non accusamus tenetur officia exercitationem soluta consequuntur sequi sint nesciunt quasi suscipit id, magni eius commodi optio? Lorem ipsum dolor sit amet consectetur adipisicing elit. Iure, sapiente! Temporibus, debitis, voluptates non accusamus tenetur officia exercitationem soluta consequuntur sequi sint nesciunt quasi suscipit id, magni eius commodi optio? Lorem ipsum dolor sit amet consectetur adipisicing elit. Iure, sapiente! Temporibus, debitis, voluptates non accusamus tenetur officia exercitationem soluta consequuntur sequi sint nesciunt quasi suscipit id, magni eius commodi optio',
+    date: 'June 12, 2024',
+    title: '',
+    category: 'Memory',
+    description: 'A cultured woman embodies grace, intelligence, and an appreciation for the arts and humanities. She is well-read, often conversing fluently about literature, history, and current events. Her tastes are refined, whether in choosing a classic novel, attending an opera, or selecting a fine wine. She respects diverse perspectives and is comfortable in various social settings, exhibiting impeccable manners and empathy. This woman values education and lifelong learning, continuously seeking to expand her knowledge and understanding of the world. Her elegance is not just in appearance but in her actions, reflecting a deep-seated respect for tradition and innovation alike.',
+
+
+
+
     tags: [
       {
-        title: 'CONCEPT DESIGN & PRODUCTION',
+        title: '',
         tag: [
-          { label: 'choreographer', name: 'Dance Co', handle: '@danceco' },
-          { label: 'director', name: 'Jane Smith', handle: '@janesmith' },
-          { label: 'producer', name: 'Event Pro', handle: '@eventpro' },
+          { label: 'In frame', name: '', handle: '@nanaamaroyale' },
+        ],
+      },
+        {tag: [
+          { label: 'Apartment', name: '', handle: ' @teflon_suites' },
+        ],},
+        {tag: [
+          { label: 'Photographed by', name: '', handle: '  @dkshotit_photography' },
+        ],
+      },
+        {tag: [
+          { label: 'Video', name: '', handle: '   @heightz_studios' },
+        ],},
+        {tag: [
+          { label: 'Coordinator', name: '', handle: '  @mannie__frempomaa' },
+        ],
+      },
+ 
+    ],
+    media: [
+      {
+        src: 'https://res.cloudinary.com/djeorsh5d/image/upload/v1758593223/SnapInsta.to_470505786_18472515946055684_2124519700047603790_n_sncrx4.jpg',
+        type: 'image',
+        alt: '',
+      },
+      {
+        src: 'https://res.cloudinary.com/djeorsh5d/image/upload/v1758593223/SnapInsta.to_471188796_18472516195055684_7280646282009017664_n_wnoqly.jpg',
+        type: 'image',
+        alt: '',
+      },
+      {
+        src: 'https://res.cloudinary.com/djeorsh5d/image/upload/v1758593223/SnapInsta.to_470472372_18472516093055684_4852746370394075761_n_sclr8f.jpg',
+        type: 'image',
+        alt: '',
+      },
+      
+    
+    ],
+  },
+   {
+    type: 'album',
+    title: ' ',
+    category: 'birthday',
+    description: 'Happy birthday 🎊',
+    date:'September 22,2025',
+
+     
+    tags: [
+      {
+        title: '  ',
+        tag: [
+          { label: 'MUA', name: '  ', handle: '@anfbeautybar' },
+        ]},
+        {
+          tag: [
+          { label: 'Photo credit', name: '  ', handle: '@dkshotit_photography' },
+        ],
+      },
+ 
+    ],
+    media: [
+      {
+        src: 'https://res.cloudinary.com/djeorsh5d/image/upload/v1758593260/SnapInsta.to_552935698_18524311054055684_6738123050842077576_n_ppzliy.jpg',
+        type: 'image',
+        alt: '  ',
+      },
+      {
+        src: 'https://res.cloudinary.com/djeorsh5d/image/upload/v1758593260/SnapInsta.to_553111800_18524311078055684_9000473600684466783_n_rvqnmd.jpg',
+        type: 'image',
+        alt: '  ',
+      },
+      {
+        src: 'https://res.cloudinary.com/djeorsh5d/image/upload/v1758593259/SnapInsta.to_552504924_18524311081055684_2673924432682795702_n_xvozrl.jpg',
+        type: 'image',
+        alt: '  ',
+      },
+      {
+        src: 'https://res.cloudinary.com/djeorsh5d/image/upload/v1758593259/SnapInsta.to_552138236_18524311045055684_7352049944900830986_n_wfi2rm.jpg',
+        type: 'image',
+        alt: '  ',
+      },
+     
+      {
+        src: 'https://res.cloudinary.com/djeorsh5d/image/upload/v1758593259/SnapInsta.to_552138236_18524311045055684_7352049944900830986_n_wfi2rm.jpg',
+        type: 'image',
+        alt: '  ',
+      },
+      {
+        src: 'https://res.cloudinary.com/djeorsh5d/image/upload/v1758593258/SnapInsta.to_552072561_18524311015055684_1304535860475917782_n_oue6sa.jpg',
+        type: 'image',
+        alt: '  ',
+      },
+      {
+        src: 'https://res.cloudinary.com/djeorsh5d/image/upload/v1758593256/SnapInsta.to_551363063_18524311003055684_6610024021125613284_n_mzpwjq.jpg',
+        type: 'image',
+        alt: '  ',
+      },
+     
+    
+    ],
+  },
+  {
+    type: 'album',
+    date:  ' September 13 ,2025 ',
+    title: ' ',
+    category: 'couple',
+    description: 'LOVE IS A BEAUTIFUL THING',
+    tags: [
+      {
+         
+        title: '  ',
+        tag: [
+          { label: 'Photo credit', name: '', handle: '@dkshotit_photography' },
+        ],
+      },
+ 
+    ],
+    media: [
+      {
+        src: 'https://res.cloudinary.com/djeorsh5d/image/upload/v1758593305/SnapInsta.to_546711448_18522507613055684_2514601968053975152_n_o1y5eu.jpg',
+        type: 'image',
+        alt: '',
+      },
+      {
+        src: 'https://res.cloudinary.com/djeorsh5d/image/upload/v1758593304/SnapInsta.to_548730475_18522507598055684_5402222588970454910_n_nsxkka.jpg',
+        type: 'image',
+        alt: '',
+      },
+      
+    
+    ],
+  },
+   {
+    type: 'album',
+    date:  ' September 13,2025 ',
+    title: ' ',
+    category: 'memory',
+    description: '🤍🤍🤍🤍🤍',
+    tags: [
+      {
+        title: '  ',
+        tag: [
+          { label: 'Photographed by', name: ' ', handle: ' @dkshotit_studio' },
+        ],
+      },
+ 
+    ],
+    media: [
+      {
+        src: 'https://res.cloudinary.com/djeorsh5d/image/upload/v1758593343/SnapInsta.to_547689944_18521866063055684_9193961476596479419_n_nhco8q.jpg',
+        type: 'image',
+        alt: '',
+      },
+      {
+        src: 'https://res.cloudinary.com/djeorsh5d/image/upload/v1758593342/SnapInsta.to_546521226_18521866051055684_510190859229499296_n_vseowh.jpg',
+        type: 'image',
+        alt: '',
+      },
+      {
+        src: 'https://res.cloudinary.com/djeorsh5d/image/upload/v1758593341/SnapInsta.to_545139364_18521866072055684_3374857276094695849_n_z8imc1.jpg',
+        type: 'image',
+        alt: '',
+      },
+      
+      {
+        src: 'https://res.cloudinary.com/djeorsh5d/image/upload/v1758593340/SnapInsta.to_543692702_18521866054055684_6416811568019677120_n_ov0eny.jpg',
+        type: 'image',
+        alt: '',
+      },
+      
+    
+    ],
+  },
+   {
+    type: 'album',
+    date:  ' September 11,2025 ',
+    title: ' ',
+    category: 'wedding',
+    description: 'Grateful for life and beautiful memories of Sammy and Christiana ',
+    tags: [
+            {
+        title: '  ',
+        tag: [
+          { label: '', name: ' ', handle: '@barimah_makeup_artistry' },
+        ],
+      },
+       { tag: [
+          { label: '', name: ' ', handle: '@devidasdeco_2' },
+        ],},
+
+       { tag: [
+          { label: '', name: ' ', handle: '@dkshotit_weddings' },
+        ],
+      },
+
+       { tag: [
+          { label: '', name: ' ', handle: '@khadys_kitchen' },
+        ],},
+        {tag: [
+          { label: '', name: ' ', handle: '@carols_couture_official' },
+        ],},
+        {tag: [
+          { label: '', name: ' ', handle: '@dkshotit_films' },
+        ],},
+        {tag: [
+          { label: '', name: ' ', handle: '@moda_by_enea' },
+        ],},
+        {tag: [
+          { label: '', name: ' ', handle: '@the_edwinscollections' },
+        ],
+      },
+ 
+    ],
+    media: [
+      {
+        src: 'https://res.cloudinary.com/djeorsh5d/image/upload/v1758593378/SnapInsta.to_546631826_18521856442055684_5062829520905621851_n_wis7sc.jpg',
+        type: 'image',
+        alt: '',
+      },
+      {
+        src: 'https://res.cloudinary.com/djeorsh5d/image/upload/v1758593377/SnapInsta.to_547766273_18521856430055684_5216003054573213648_n_b7ql0n.jpg',
+        type: 'image',
+        alt: '',
+      },
+      {
+        src: 'https://res.cloudinary.com/djeorsh5d/image/upload/v1758593376/SnapInsta.to_545356860_18521856460055684_2929199221484271611_n_nb49es.jpg',
+        type: 'image',
+        alt: '',
+      },
+      {
+        src: 'https://res.cloudinary.com/djeorsh5d/image/upload/v1758593374/SnapInsta.to_545129766_18521856472055684_4444255856543332604_n_eagv2g.jpg',
+        type: 'image',
+        alt: '',
+      },
+           
+      {
+        src: 'https://res.cloudinary.com/djeorsh5d/image/upload/v1758593373/SnapInsta.to_543860626_18521856433055684_5026211352236551697_n_jb6vpp.jpg',
+        type: 'image',
+        alt: '',
+      },
+      {
+        src: 'https://res.cloudinary.com/djeorsh5d/image/upload/v1758593373/SnapInsta.to_544918245_18521856451055684_8527469629795151254_n_g1uscn.jpg',
+        type: 'image',
+        alt: '',
+      },
+      {
+        src: 'https://res.cloudinary.com/djeorsh5d/image/upload/v1758593372/SnapInsta.to_542827907_18521856481055684_8426812885547460100_n_wbid5d.jpg',
+        type: 'image',
+        alt: '',
+      },
+      
+    
+    ],
+  },
+   {
+    type: 'album',
+    date:  ' September 11,2025 ',
+    title: ' ',
+    category: ' wedding',
+    description: 'Grateful for life and beautiful memories of Sammy and Christiana',
+     tags: [
+            {
+        title: '  ',
+        tag: [
+          { label: '', name: ' ', handle: '@barimah_makeup_artistry' },
+        ],
+      },
+       { tag: [
+          { label: '', name: ' ', handle: '@devidasdeco_2' },
+        ],},
+
+       { tag: [
+          { label: '', name: ' ', handle: '@dkshotit_weddings' },
+        ],
+      },
+
+       { tag: [
+          { label: '', name: ' ', handle: '@khadys_kitchen' },
+        ],},
+        {tag: [
+          { label: '', name: ' ', handle: '@carols_couture_official' },
+        ],},
+        {tag: [
+          { label: '', name: ' ', handle: '@dkshotit_films' },
+        ],},
+        {tag: [
+          { label: '', name: ' ', handle: '@moda_by_enea' },
+        ],},
+        {tag: [
+          { label: '', name: ' ', handle: '@the_edwinscollections' },
+        ],
+      },
+ 
+    ],
+    media: [
+      {
+        src: 'https://res.cloudinary.com/djeorsh5d/image/upload/v1758593386/SnapInsta.to_546257848_18521832241055684_6479278194754376348_n_m4cscx.jpg',
+        type: 'image',
+        alt: '',
+      },
+      {
+        src: 'https://res.cloudinary.com/djeorsh5d/image/upload/v1758593385/SnapInsta.to_545190432_18521832250055684_193542375285742012_n_cdjjy3.jpg',
+        type: 'image',
+        alt: '',
+      },
+     
+      {
+        src: 'https://res.cloudinary.com/djeorsh5d/image/upload/v1758593383/SnapInsta.to_545190432_18521832250055684_193542375285742012_n_1_ogorph.jpg',
+        type: 'image',
+        alt: '',
+      },
+      {
+        src: 'https://res.cloudinary.com/djeorsh5d/image/upload/v1758593383/SnapInsta.to_545178063_18521832316055684_4252378690451019827_n_x4df43.jpg',
+        type: 'image',
+        alt: '',
+      },
+      {
+        src: 'https://res.cloudinary.com/djeorsh5d/image/upload/v1758593383/SnapInsta.to_545178063_18521832316055684_4252378690451019827_n_x4df43.jpg',
+        type: 'image',
+        alt: '',
+      },
+      {
+        src: 'https://res.cloudinary.com/djeorsh5d/image/upload/v1758593382/SnapInsta.to_544344715_18521832289055684_4609280406219264743_n_ip1pwn.jpg',
+        type: 'image',
+        alt: '',
+      },
+      {
+        src: 'https://res.cloudinary.com/djeorsh5d/image/upload/v1758593382/SnapInsta.to_544344715_18521832289055684_4609280406219264743_n_ip1pwn.jpg',
+        type: 'image',
+        alt: '',
+      },
+      {
+        src: 'https://res.cloudinary.com/djeorsh5d/image/upload/v1758593382/SnapInsta.to_543830407_18521832280055684_9221969007198886964_n_cvlspx.jpg',
+        type: 'image',
+        alt: '',
+      },
+      {
+        src: 'https://res.cloudinary.com/djeorsh5d/image/upload/v1758593381/SnapInsta.to_543830407_18521832280055684_9221969007198886964_n_1_lgjaa8.jpg',
+        type: 'image',
+        alt: '',
+      },
+      {
+        src: 'https://res.cloudinary.com/djeorsh5d/image/upload/v1758593381/SnapInsta.to_544143918_18521832304055684_6299432697232882750_n_k8mkij.jpg',
+        type: 'image',
+        alt: '',
+      },
+      {
+        src: 'https://res.cloudinary.com/djeorsh5d/image/upload/v1758593381/SnapInsta.to_544143918_18521832304055684_6299432697232882750_n_k8mkij.jpg',
+        type: 'image',
+        alt: '',
+      },
+     
+    
+    ],
+  },
+   {
+    type: 'album',
+    date:  ' September 10,2025 ',
+    title: ' ',
+    category: 'memory',
+    description: 'GRATEFUL HEARTS 💕',
+    tags: [
+      {
+        title: '  ',
+        tag: [
+          { label: 'Photographed by', name: ' ', handle: ' @dkshotit_studio' },
+        ],
+      },
+ 
+    ],
+    media: [
+      {
+        src: 'https://res.cloudinary.com/djeorsh5d/image/upload/v1758593389/SnapInsta.to_544517768_18521689027055684_345006082328069063_n_qa98qv.jpg',
+        type: 'image',
+        alt: '',
+      },
+      
+      {
+        src: 'https://res.cloudinary.com/djeorsh5d/image/upload/v1758593389/SnapInsta.to_544517768_18521689027055684_345006082328069063_n_1_yts0o3.jpg',
+        type: 'image',
+        alt: '',
+      },
+      {
+        src: 'https://res.cloudinary.com/djeorsh5d/image/upload/v1758593389/SnapInsta.to_544065617_18521689039055684_2311006378073326033_n_opj7gt.jpg',
+        type: 'image',
+        alt: '',
+      },
+      
+      {
+        src: 'https://res.cloudinary.com/djeorsh5d/image/upload/v1758593387/SnapInsta.to_543818775_18521689048055684_5256023215849866076_n_mrpkyv.jpg',
+        type: 'image',
+        alt: '',
+      },
+      {
+        src: 'https://res.cloudinary.com/djeorsh5d/image/upload/v1758593386/SnapInsta.to_543342080_18521689078055684_5749276740667957102_n_v7rwyc.jpg',
+        type: 'image',
+        alt: '',
+      },
+      
+    
+    ],
+  },
+   {
+    type: 'album',
+    date:  ' September 9,2025 ',
+    title: ' ',
+    category: 'birthday',
+    description: 'Happy birthday 🎊',
+    tags: [
+      {
+        title: '  ',
+        tag: [
+          { label: 'Photographed by', name: ' ', handle: ' @dkshotit_studio' },
+        ],
+      },
+ 
+    ],
+    media: [
+      {
+        src: 'https://res.cloudinary.com/djeorsh5d/image/upload/v1758593394/SnapInsta.to_544043033_18521480722055684_3940438706529032847_n_bfsxnl.jpg',
+        type: 'image',
+        alt: '',
+      },
+      
+      {
+        src: 'https://res.cloudinary.com/djeorsh5d/image/upload/v1758593393/SnapInsta.to_543779174_18521480656055684_2122752062714306871_n_zvmmer.jpg',
+        type: 'image',
+        alt: '',
+      },
+      {
+        src: 'https://res.cloudinary.com/djeorsh5d/image/upload/v1758593393/SnapInsta.to_543649211_18521480638055684_4657508121901960187_n_ezecnf.jpg',
+        type: 'image',
+        alt: '',
+      },
+      
+      {
+        src: 'https://res.cloudinary.com/djeorsh5d/image/upload/v1758593392/SnapInsta.to_543409490_18521480647055684_2737262691762605876_n_g3kbqy.jpg',
+        type: 'image',
+        alt: '',
+      },
+      {
+        src: 'https://res.cloudinary.com/djeorsh5d/image/upload/v1758593390/SnapInsta.to_542817713_18521480719055684_7246643982448022689_n_ym7fua.jpg',
+        type: 'image',
+        alt: '',
+      },
+      
+    
+    ],
+  },
+   {
+    type: 'album',
+    date:  ' September 7,2025 ',
+    title: ' ',
+    category: 'birthday',
+    description: 'Happy birthday 🎊 Ohemaa',
+    tags: [
+      {
+        title: '  ',
+        tag: [
+          { label: 'Photographed by', name: ' ', handle: ' @dkshotit_studio' },
+        ],
+      },
+ 
+      {
+        title: '  ',
+        tag: [
+          { label: ' Makeup 💄', name: ' ', handle: ' @nivet_beauty_lounge' },
+          
+        ],
+      },
+ 
+    ],
+    media: [
+      {
+        src: 'https://res.cloudinary.com/djeorsh5d/image/upload/v1758593400/SnapInsta.to_543801844_18056045132386283_4113241991325957828_n_odi7ln.jpg',
+        type: 'image',
+        alt: '',
+      },
+      
+      {
+        src: 'https://res.cloudinary.com/djeorsh5d/image/upload/v1758593398/SnapInsta.to_543696192_18056045096386283_690973403848164455_n_yt22rx.jpg',
+        type: 'image',
+        alt: '',
+      },
+      {
+        src: 'https://res.cloudinary.com/djeorsh5d/image/upload/v1758593398/SnapInsta.to_543696192_18056045096386283_690973403848164455_n_yt22rx.jpg',
+        type: 'image',
+        alt: '',
+      },
+      
+      {
+        src: 'https://res.cloudinary.com/djeorsh5d/image/upload/v1758593397/SnapInsta.to_542864404_18056045144386283_6826810100504778178_n_jebhb2.jpg',
+        type: 'image',
+        alt: '',
+      },
+      {
+        src: 'https://res.cloudinary.com/djeorsh5d/image/upload/v1758593396/SnapInsta.to_542813717_18056045120386283_8186770685146707863_n_yh6epp.jpg',
+        type: 'image',
+        alt: '',
+      },
+      {
+        src: 'https://res.cloudinary.com/djeorsh5d/image/upload/v1758593395/SnapInsta.to_542498178_18056045105386283_8512674272442024579_n_g6kioc.jpg',
+        type: 'image',
+        alt: '',
+      },
+      
+    
+    ],
+  },
+   {
+    type: 'album',
+    title: 'Wedding Bliss Album',
+    category: 'wedding',
+    description: 'B&J FOREVER ♾️',
+    tags: [
+      {
+        title: 'PREWEDDING VENDORS',
+        tag: [
+          { label: 'Makeup & hairstylist', name: ' ', handle: ' @anfbeautybar' },
+          { label: 'Photographed by', name: ' ', handle: ' @dkshotit_studio' },
+          { label: 'Groom outfit', name: ' ', handle: ' @sleekjosh' },
+          
         ],
       },
       {
-        title: 'Other vendors',
+        title: 'WEDDING VENDORS',
         tag: [
           { label: 'florist', name: 'Bloom Co', handle: '@bloomco' },
           { label: 'caterer', name: 'Taste Events', handle: '@tasteevents' },
           { label: 'planner', name: 'Plan Perfect', handle: '@planperfect' },
+          { label: 'Decor', name: ' ', handle: '  @emmboat_events' },
+          { label: 'Makeup & hairstylist', name: ' ', handle: '@obremsmakeover' },
+          { label: 'Brides robe 👘', name: ' ', handle:  '@naabeadesigns' },
+          { label: 'Kente', name: ' ', handle:  ' @god_of_mercy_15_ventures' },
+          { label: 'Kente Gown', name: ' ', handle:   ' @patterns_gh' },
+          { label: 'Bridal reception dress', name: ' ', handle:   ' @patterns_gh' },
+          { label: 'Bridal Gown', name: ' ', handle:   ' @patterns_gh' },
+          { label: 'Cake', name: ' ', handle:   ' @patterns_gh' },
+          { label: 'Bridal Gown', name: ' ', handle:   '@yummyediblesgh' },
+          { label: 'Dj', name: ' ', handle:   ' @djwalaski_bryant' },
+          { label: 'Mc', name: ' ', handle:   ' @priscilla.asiamah.3726' },
+          { label: 'Food', name: ' ', handle:   '@a&dcateringservice' },
         ],
       },
-      {
-        title: 'Vendors',
-        tag: [
-          { label: 'choreographer', name: 'Dance Co', handle: '@danceco' },
-          { label: 'officiant', name: 'Rev John', handle: '@revjohn' },
-        ],
-      },
+    
     ],
     media: [
+     
       {
-        src: 'https://res.cloudinary.com/djeorsh5d/image/upload/v1751247125/BRIDE1_kjfo1p.jpg',
+        src: 'https://res.cloudinary.com/djeorsh5d/image/upload/v1758593226/SnapInsta.to_541302896_18519613093055684_6740046950790644215_n_tsawnk.jpg',
+        type: 'image',
+        alt: 'Bride in white dress',
+      },
+        {
+        src: 'https://res.cloudinary.com/djeorsh5d/image/upload/v1758979968/SnapInsta.to_541145408_18519613144055684_5084278124931176146_n_qfcqmp.jpg',
+        type: 'image',
+        alt: 'Bride in white dress',
+      },
+    
+      {
+        src: 'https://res.cloudinary.com/djeorsh5d/image/upload/v1758593226/SnapInsta.to_541490925_18519613153055684_6939455512769807179_n_ato1vj.jpg',
         type: 'image',
         alt: 'Bride in white dress',
       },
       {
-        src: 'https://res.cloudinary.com/djeorsh5d/video/upload/v1758593443/wedding_dance.mp4',
-        type: 'video',
-        alt: 'Wedding dance video',
+        src: 'https://res.cloudinary.com/djeorsh5d/image/upload/v1758593226/SnapInsta.to_541576915_18519613108055684_4339557097751497301_n_q4xqqa.jpg',
+        type: 'image',
+        alt: 'Bride in white dress',
       },
       {
-        src: 'https://res.cloudinary.com/djeorsh5d/image/upload/v1751247136/EQ_image-2_ttqpf8.png',
+        src: 'https://res.cloudinary.com/djeorsh5d/image/upload/v1758593226/SnapInsta.to_540598899_18519613126055684_4610235825931222305_n_afccfz.jpg',
         type: 'image',
-        alt: 'Wedding ceremony',
+        alt: 'Bride in white dress',
       },
+      {
+        src: 'https://res.cloudinary.com/djeorsh5d/image/upload/v1758593225/SnapInsta.to_542007511_18519613084055684_3809603893325593848_n_ss82go.jpg',
+        type: 'image',
+        alt: 'Bride in white dress',
+      },
+      {
+        src: 'https://res.cloudinary.com/djeorsh5d/image/upload/v1758593224/SnapInsta.to_540412111_18519613135055684_6205689008774977035_n_ukzryc.jpg',
+        type: 'image',
+        alt: 'Bride in white dress',
+      },
+    
     ],
   },
-  {
-    type: 'album',
-    title: 'Family Legacy Album',
-    albumType: 'images',
-    category: 'children',
-    description: 'Family in studio.',
-    tags: [],
-    media: [
-      {
-        src: 'https://res.cloudinary.com/djeorsh5d/image/upload/v1751247136/EQ_image-2_ttqpf8.png',
-        type: 'image',
-        alt: 'Family portrait',
-      },
-      {
-        src: 'https://res.cloudinary.com/djeorsh5d/image/upload/v1751247136/EQ_image-2_ttqpf8.png',
-        type: 'image',
-        alt: 'Family outdoors',
-      },
-    ],
-  },
-  {
-    type: 'single',
-    title: 'Sunset Portrait',
-    category: 'couple',
-    description: 'Portrait at golden hour.',
-    tags: [
-      {
-        title: 'Vendors',
-        tag: [{ label: 'stylist', name: 'Luna', handle: '@luna_style' }],
-      },
-    ],
-    media: [
-      {
-        src: 'https://res.cloudinary.com/djeorsh5d/image/upload/v1751247136/EQ_image-2_ttqpf8.png',
-        type: 'image',
-        alt: 'Sunset portrait',
-      },
-    ],
-  },
-  {
-    type: 'album',
-    title: 'Graduation Moments',
-    albumType: 'mixed',
-    category: 'graduation',
-    description: 'Graduate tossing cap.',
-    tags: [
-      {
-        title: 'Vendors',
-        tag: [{ label: 'photographer', name: 'Alex', handle: '@alex_snaps' }],
-      },
-    ],
-    media: [
-      {
-        src: 'https://res.cloudinary.com/djeorsh5d/image/upload/v1751247136/EQ_image-2_ttqpf8.png',
-        type: 'image',
-        alt: 'Graduate in cap',
-      },
-      {
-        src: 'https://res.cloudinary.com/djeorsh5d/video/upload/v1751247136/graduation_walk.mp4',
-        type: 'video',
-        alt: 'Graduation walk video',
-      },
-      {
-        src: 'https://res.cloudinary.com/djeorsh5d/image/upload/v1751247136/EQ_image-2_ttqpf8.png',
-        type: 'image',
-        alt: 'Graduate with family',
-      },
-      {
-        src: 'https://res.cloudinary.com/djeorsh5d/image/upload/v1751247136/EQ_image-2_ttqpf8.png',
-        type: 'image',
-        alt: 'Graduate portrait',
-      },
-    ],
-  },
-  {
-    type: 'single',
-    title: 'Beach Wedding Shot',
-    category: 'wedding',
-    description: 'Couple on beach at sunset.',
-    tags: [
-      {
-        title: 'Vendors',
-        tag: [
-          { label: 'makeup artist', name: 'Pretty', handle: '@nana_amabbe' },
-          { label: 'decor', name: 'Sea Events', handle: '@sea_events' },
-        ],
-      },
-    ],
-    media: [
-      {
-        src: 'https://res.cloudinary.com/djeorsh5d/image/upload/v1751247136/EQ_image-2_ttqpf8.png',
-        type: 'image',
-        alt: 'Beach wedding',
-      },
-    ],
-  },
-  {
-    type: 'album',
-    title: 'Engagement Session',
-    albumType: 'images',
-    category: 'couple',
-    description: 'Couple in park.',
-    tags: [],
-    media: [
-      {
-        src: 'https://res.cloudinary.com/djeorsh5d/image/upload/v1751247136/EQ_image-2_ttqpf8.png',
-        type: 'image',
-        alt: 'Engagement photo',
-      },
-      {
-        src: 'https://res.cloudinary.com/djeorsh5d/image/upload/v1751247136/EQ_image-2_ttqpf8.png',
-        type: 'image',
-        alt: 'Ring close-up',
-      },
-    ],
-  },
-];
+
+
+]
+
+          // { label: 'Photographed by', name: ' ', handle: ' @dkshotit_studio' },
