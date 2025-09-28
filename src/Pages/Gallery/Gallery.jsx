@@ -488,12 +488,17 @@ const Gallery = () => {
               <div className="w-full custom:w-[50%] p-4 sm:p-6 flex flex-col justify-between bg-black border-2 border-amber-700 md:overflow-y-auto mt-2">
                 <div>
                   <div className="flex items-center gap-2 mb-2">
-                    <h3 className="text-lg sm:text-xl font-semibold text-white">{selectedAlbum.title}</h3>
+                    <h3 className="text-lg sm:text-xl font-semibold text-white">{selectedAlbum.description?.length 
+  ? '' 
+  : ''}</h3>
                     <p className="text-gray-400 text-sm">
                       Date: {selectedAlbum.date || new Date().toLocaleDateString()}
                     </p>
                   </div>
-                  {renderDescription(selectedAlbum.description)}
+                 {selectedAlbum.description?.length 
+  ? renderDescription(selectedAlbum.description) 
+  : selectedAlbum.title}
+
                   {selectedAlbum.tags?.length > 0 && (
                     <div className="mt-4 space-y-3">
                       {selectedAlbum.tags.map((group, groupIndex) => (
