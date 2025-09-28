@@ -3435,7 +3435,44 @@ export const galleryImage = [
       "alt": ""
     }
   ]
+},
+{
+  "type": "gallery",
+  "date": "May 5, 2025",
+  "title": "HAPPY BIRTHDAY IVY … MUCH LOVE 💕",
+  "category": "image",
+  "tags": [
+    {
+      "title": "Photography",
+      "tag": [
+        { "label": "", "name": "", "handle": "@dkshotit_photography" }
+      ]
+    }
+  ],
+  "media": [
+    {
+      "src": "https://res.cloudinary.com/djeorsh5d/image/upload/v1758593383/SnapInsta.to_495583082_18497919994055684_1741928930888204757_n_prqlr2.jpg",
+      "type": "image",
+      "alt": ""
+    },
+    {
+      "src": "https://res.cloudinary.com/djeorsh5d/image/upload/v1758593379/SnapInsta.to_495343898_18497919967055684_1932820387186759856_n_yvrtot.jpg",
+      "type": "image",
+      "alt": ""
+    },
+    {
+      "src": "https://res.cloudinary.com/djeorsh5d/image/upload/v1758593378/SnapInsta.to_491446432_18497920009055684_3665204723391084513_n_loxrrz.jpg",
+      "type": "image",
+      "alt": ""
+    },
+    {
+      "src": "https://res.cloudinary.com/djeorsh5d/image/upload/v1758593378/SnapInsta.to_494757802_18497919976055684_752268394656273464_n_ixbapt.jpg",
+      "type": "image",
+      "alt": ""
+    }
+  ]
 }
+
 
 
 
