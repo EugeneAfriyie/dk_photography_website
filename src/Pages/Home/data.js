@@ -1175,7 +1175,7 @@ export const galleryImage = [
   ],
 },
     {
-  type: 'album',
+  type: 'video',
   date: 'August 24, 2025',
   title: 'B&J FOREVER ❤️♾️',
   category: 'Prewedding',
@@ -2315,7 +2315,31 @@ export const galleryImage = [
       alt: '',
     },
   ],
+},{
+  "type": "video",
+  "date": "June 13, 2025",
+  "title": "Timeless beauty with a touch of art 😮‍💨",
+  "description": "A & F Beauty Bar is now open for all bookings.\n\nWhat we do:\n✅ Professional Luxury Make Up\n✅ Hair Installation and wig caps\n✅ Pedicure (Unisex)\n✅ Traditional Sew in\n\nBook Us for your Graduation, Wedding, Birthday, or General event Glam-Up 💄✨\n\nLoc: Amakom Traffic Light, Adjacent Bank of Africa, KUMASI- GHANA\n\nCall 0540877220 or 0592187565 to make an appointment\n\nYour NO.1 stop for timeless beauty 💄!",
+  "business": {
+    "name": "A & F Beauty Bar",
+    "services": [
+      "Professional Luxury Make Up",
+      "Hair Installation and wig caps",
+      "Pedicure (Unisex)",
+      "Traditional Sew in"
+    ],
+    "location": "Amakom Traffic Light, Adjacent Bank of Africa, Kumasi, Ghana",
+    "contact": ["0540877220", "0592187565"]
+  },
+  "media": [
+    {
+      "src": "https://res.cloudinary.com/djeorsh5d/video/upload/v1759102779/SnapInsta.to_AQNi8qGmQW9ynVPAIHj_HLmhE-zStBY2j5DLXhCX6UwTWTx0O2pSVBFTJpGB3zS8yK77jGVMI9CzM6fHb0474AlSvO5u_QHuSwvtX7Y_xxw7fb.mp4",
+      "type": "video",
+      "alt": "Promotional video for A & F Beauty Bar services"
+    }
+  ]
 }
+
 ,
 {
   type: 'album',
@@ -2455,7 +2479,55 @@ export const galleryImage = [
       alt: '',
     },
   ],
+},{
+  "type": "video",
+  "date": "June 23, 2025",
+  "title": "Another year, another reason to smile 😊✨✨",
+  "description": "Celebrating life today 🙌🏻🙌🏻.. Happy Birthday @santeshair 🎉😍💯💯",
+  "tags": [
+    {
+      "title": "Makeup & Hairstyling",
+      "handle": "@obremsmakeover"
+    },
+    {
+      "title": "Photography",
+      "handle": "@dkshotit_photography"
+    },
+    {
+      "title": "Wig",
+      "handle": "@santeshair"
+    },
+    {
+      "title": "Lashes",
+      "handle": "@lash4dolls"
+    },
+    {
+      "title": "Products",
+      "handle": [
+        "@anniesbeautygh",
+        "@tm.essentials",
+        "@nubanbeauty",
+        "@bethmienbeauty",
+        "@nasaj_beautystore",
+        "@makeup_wavesgh",
+        "@shormiesbeautysupply",
+        "@the_general_merchant",
+        "@kumasi_makeup_store",
+        "@tekkie_beautystore",
+        "@becharm_ageless_cosmetic",
+        "@affordable_beauty_store_gh"
+      ]
+    }
+  ],
+  "media": [
+    {
+      "src": "https://res.cloudinary.com/djeorsh5d/video/upload/v1759102725/SnapInsta.to_AQNYyStHtw3CJ-Nabtz0zPa1iRLF1txBOYBIhNdBJtWgrS4Y5LCXSy4rQe8OmztjqYltUgqZJb1KySTx5bWbAQrltP28xqG6xnG8DAw_byjvnl.mp4",
+      "type": "video",
+      "alt": "Birthday celebration video for @santeshair"
+    }
+  ]
 }
+
 ,{
   type: 'album',
   date: 'June 13, 2025',
@@ -3106,7 +3178,7 @@ export const galleryImage = [
 
 ,
 {
-  "type": "single",
+  "type": "video",
   "date": "May 13, 2025",
   "title": "Give way for the birthday girl @shez_hairgh 😍🥳🥳",
   "category": "video",
@@ -3162,7 +3234,7 @@ export const galleryImage = [
   ]
 },
 {
-  "type": "single",
+  "type": "album",
   "date": "May 13, 2025",
   "title": "HAPPY BIRTHDAY TO YOU CEO of @shez_hairgh",
   "category": "image",
