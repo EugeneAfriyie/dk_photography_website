@@ -11,7 +11,7 @@ import { FaInstagram, FaTiktok, FaWhatsapp } from 'react-icons/fa';
 export const packages = [
   {
     title: 'Wedding Bliss Package',
-    price: '$2,500',
+    price: '2500',
     coverageHours: '8 Hours',
     photographers: '2 Photographers',
     editedPhotos: '300 Photos',
@@ -23,13 +23,13 @@ export const packages = [
     isPopular: false,
     icon: 'https://res.cloudinary.com/djeorsh5d/image/upload/v1751247125/BRIDE1_kjfo1p.jpg',
   },
-  // ... (include the rest of your packages array here if needed)
+  // Add more packages as needed
 ];
 
 const Contact = () => {
   const [isVisible, setIsVisible] = useState(false);
   const [formMode, setFormMode] = useState('inquiry');
-  const [formData, setFormData] = useState({ name: '', email: '', subject: '', message: '', attachment: null, phone: '', notes: '' });
+  const [formData, setFormData] = useState({ name: '', email: '', subject: '', message: '', attachment: null, phone: '', notes: '', whatsapp: '' });
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [showPopup, setShowPopup] = useState(false);
   const [acceptedTerms, setAcceptedTerms] = useState(false);
@@ -37,13 +37,12 @@ const Contact = () => {
   const [showTermsPopup, setShowTermsPopup] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
   const [showNoteLimitAlert, setShowNoteLimitAlert] = useState(false);
-  const [validationErrors, setValidationErrors] = useState({ name: false, email: false, phone: false, subject: false, message: false, package: false });
+  const [validationErrors, setValidationErrors] = useState({ name: false, email: false, phone: false, subject: false, message: false, package: false, whatsapp: false });
   const [submittedData, setSubmittedData] = useState(null);
   const [selectedPackage, setSelectedPackage] = useState({ title: 'Select a Package', price: '' });
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   useEffect(() => {
-    // Initialize EmailJS with the appropriate Public Key based on form mode
     const initializeEmailJS = () => {
       if (formMode === 'inquiry') {
         emailjs.init('KhmeYLlM1LVFQI84Y'); // Public Key for Account 1 (inquiry)
@@ -85,6 +84,11 @@ const Contact = () => {
     return phoneRegex.test(phone);
   };
 
+  const validateWhatsApp = (whatsapp) => {
+    const whatsappRegex = /^\+?[\d\s-]{10,}$/;
+    return !whatsapp || whatsappRegex.test(whatsapp);
+  };
+
   const handleChange = (e) => {
     const { name, value, files, type, checked } = e.target;
     if (name === 'notes' && value.length >= 250) {
@@ -122,7 +126,7 @@ const Contact = () => {
       if (formData.attachment) {
         const formDataToUpload = new FormData();
         formDataToUpload.append('file', formData.attachment);
-        formDataToUpload.append('upload_preset', 'dkshotit_upload'); // Your Cloudinary Upload Preset
+        formDataToUpload.append('upload_preset', 'dkshotit_upload');
 
         try {
           const response = await fetch('https://api.cloudinary.com/v1_1/djeorsh5d/upload', {
@@ -179,7 +183,8 @@ const Contact = () => {
         name: !formData.name.trim(),
         email: !formData.email || !validateEmail(formData.email),
         phone: !formData.phone || !validatePhone(formData.phone),
-        package: !selectedPackage || selectedPackage.title === 'Select a Package'
+        package: !selectedPackage || selectedPackage.title === 'Select a Package',
+        whatsapp: formData.whatsapp && !validateWhatsApp(formData.whatsapp)
       };
       setValidationErrors(errors);
       if (Object.values(errors).some(error => error)) {
@@ -193,43 +198,56 @@ const Contact = () => {
       setShowConfirm(true);
     }
   };
+const handleConfirmSubmit = async () => {
+  const deposit_amount = '$' + Math.round(parseFloat(selectedPackage.price / 2 ));
+  const current_date = new Date().toLocaleString('en-US', { timeZone: 'GMT' });
+  const whatsapp_link = validateWhatsApp(formData.whatsapp) && formData.whatsapp !== 'Not provided' && formData.whatsapp
+    ? `<a href="https://wa.me/${formData.whatsapp}" style="margin-left: 10px;" target="_blank" rel="noopener noreferrer">WhatsApp Client</a>`
+    : '';
 
-  const handleConfirmSubmit = async () => {
-    const customerTemplateParams = {
-      to_name: formData.name,
-      to_email: formData.email,
-      phone: formData.phone,
-      notes: formData.notes || 'None',
-      package_title: selectedPackage.title,
-      package_price: selectedPackage.price,
-    };
 
-    const adminTemplateParams = {
-      to_name: 'Admin',
-      from_name: formData.name,
-      from_email: formData.email,
-      phone: formData.phone,
-      notes: formData.notes || 'None',
-      package_title: selectedPackage.title,
-      package_price: selectedPackage.price,
-    };
-
-    try {
-      await emailjs.send('dkbook_mail', 'template_k751psa', customerTemplateParams);
-      await emailjs.send('dkbook_mail', 'template_3idvwbm', adminTemplateParams);
-      setSubmittedData({ ...formData, package: selectedPackage });
-      setShowConfirm(false);
-      setIsSubmitted(true);
-      setShowPopup(true);
-      setFormData({ name: '', email: '', subject: '', message: '', attachment: null, phone: '', notes: '' });
-      setSelectedPackage({ title: 'Select a Package', price: '' });
-      setAcceptedTerms(false);
-    } catch (error) {
-      console.error('Booking Error:', error);
-      setErrorMessage('Failed to confirm booking. Please try again. Error: ' + error.message);
-    }
+    console.log('WhatsApp Link:', whatsapp_link); // Debugging line
+    console.log(selectedPackage.price);
+    console.log(deposit_amount);
+  const customerTemplateParams = {
+    to_name: formData.name,
+    to_email: formData.email,
+    phone: formData.phone,
+    notes: formData.notes || 'None',
+    package_title: selectedPackage.title,
+    package_price: selectedPackage.price,
+    deposit_amount,
   };
 
+  const adminTemplateParams = {
+    to_name: 'Admin',
+    from_name: formData.name,
+    from_email: formData.email,
+    phone: formData.phone,
+    whatsapp: formData.whatsapp || 'Not provided',
+    notes: formData.notes || 'None',
+    package_title: selectedPackage.title,
+    package_price: selectedPackage.price,
+    deposit_amount,
+    current_date,
+    whatsapp_link, // Add this parameter
+  };
+
+  try {
+    await emailjs.send('dkbook_mail', 'template_k751psa', customerTemplateParams);
+    await emailjs.send('dkbook_mail', 'template_3idvwbm', adminTemplateParams);
+    setSubmittedData({ ...formData, package: selectedPackage });
+    setShowConfirm(false);
+    setIsSubmitted(true);
+    setShowPopup(true);
+    setFormData({ name: '', email: '', subject: '', message: '', attachment: null, phone: '', notes: '', whatsapp: '' });
+    setSelectedPackage({ title: 'Select a Package', price: '' });
+    setAcceptedTerms(false);
+  } catch (error) {
+    console.error('Booking Error:', error);
+    setErrorMessage('Failed to confirm booking. Please try again. Error: ' + error.message);
+  }
+};
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
@@ -715,6 +733,33 @@ const Contact = () => {
                   transition={{ duration: 0.5, delay: 0.9 }}
                   viewport={{ once: true }}
                 >
+                  <label htmlFor="whatsapp" className="block text-sm font-medium mb-2 text-white">
+                    WhatsApp Number (Optional)
+                  </label>
+                  <div className={`flex items-center bg-[#111] text-white rounded-xl px-4 py-3 ${validationErrors.whatsapp ? 'border-2 border-red-500' : ''}`}>
+                    <span className="mr-3 text-gray-400">
+                      <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+                        <path d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                      </svg>
+                    </span>
+                    <input
+                      type="tel"
+                      name="whatsapp"
+                      id="whatsapp"
+                      value={formData.whatsapp}
+                      onChange={handleChange}
+                      placeholder="Enter your WhatsApp number (e.g., +1234567890)"
+                      className="bg-transparent flex-1 outline-none text-white placeholder-gray-500"
+                    />
+                  </div>
+                  {validationErrors.whatsapp && <p className="text-red-500 text-sm mt-1">Please enter a valid WhatsApp number (e.g., +1234567890).</p>}
+                </motion.div>
+                <motion.div
+                  initial={{ opacity: 0, y: 10 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5, delay: 1 }}
+                  viewport={{ once: true }}
+                >
                   <label htmlFor="notes" className="block text-sm font-medium mb-2 text-white">
                     Notes
                   </label>
@@ -738,7 +783,7 @@ const Contact = () => {
                 <motion.div
                   initial={{ opacity: 0, y: 10 }}
                   whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.5, delay: 1 }}
+                  transition={{ duration: 0.5, delay: 1.1 }}
                   viewport={{ once: true }}
                 >
                   <div className="bg-gray-700 p-4 rounded-lg text-center">
@@ -749,7 +794,7 @@ const Contact = () => {
                 <motion.div
                   initial={{ opacity: 0, y: 10 }}
                   whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.5, delay: 1.1 }}
+                  transition={{ duration: 0.5, delay: 1.2 }}
                   viewport={{ once: true }}
                 >
                   <div className="flex items-center space-x-2">
@@ -773,7 +818,7 @@ const Contact = () => {
                 <motion.div
                   initial={{ opacity: 0, y: 10 }}
                   whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.5, delay: 1.2 }}
+                  transition={{ duration: 0.5, delay: 1.3 }}
                   viewport={{ once: true }}
                 >
                   <div className="text-center">
@@ -1039,10 +1084,10 @@ const Contact = () => {
           transition={{ duration: 0.3 }}
         >
           <motion.div
-            className="bg-gray-800 p-4 sm:p-6 rounded-lg shadow-lg max-w-md sm:max-w-lg w-full text-center relative"
+            className="bg-gray-800 p-6 sm:p-8 rounded-lg shadow-lg max-w-md w-full text-center relative"
             initial={{ scale: 0.8, y: 50 }}
             animate={{ scale: 1, y: 0 }}
-            exit={{ scale: 0.8, y: 50}}
+            exit={{ scale: 0.8, y: 50 }}
             transition={{ duration: 0.3 }}
           >
             <button
@@ -1055,44 +1100,49 @@ const Contact = () => {
                 <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
               </svg>
             </button>
+            <svg
+              className="w-12 h-12 text-yellow-400 mx-auto mb-4"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              viewBox="0 0 24 24"
+            >
+              <path strokeLinecap="round" strokeLinejoin="round" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
             <motion.h3
-              className="text-xl sm:text-2xl font-bold text-white mb-4"
+              className="text-xl sm:text-2xl font-bold text-white mb-2"
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.4 }}
             >
-              Confirm Booking Details
+              Confirm Booking
             </motion.h3>
-            <motion.div
-              className="text-left text-gray-300 space-y-2 max-h-64 overflow-y-auto p-2 sm:p-4 scrollbar-thin scrollbar-thumb-amber-500 scrollbar-track-gray-900"
+            <motion.p
+              className="text-gray-300 text-sm sm:text-base"
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.4, delay: 0.2 }}
             >
-              <p><strong>Name:</strong> {formData.name || 'Not provided'}</p>
-              <p><strong>Email:</strong> {formData.email || 'Not provided'}</p>
-              <p><strong>Phone:</strong> {formData.phone || 'Not provided'}</p>
-              <p><strong>Notes:</strong> {formData.notes || 'None'}</p>
-              <p><strong>Package:</strong> {selectedPackage.title} - {selectedPackage.price}</p>
-            </motion.div>
+              Are you sure you want to confirm your booking for <strong>{selectedPackage.title}</strong> at <strong>{selectedPackage.price}</strong>? A 50% deposit is required within 48 hours.
+            </motion.p>
             <motion.div
-              className="mt-4 sm:mt-6 space-x-2 sm:space-x-4"
+              className="mt-6 space-x-4"
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.4, delay: 0.4 }}
+              transition={{ duration: 0.4, delay: 0.3 }}
             >
               <motion.button
                 onClick={handleConfirmSubmit}
-                className="bg-green-500 hover:bg-green-600 text-white font-medium px-4 py-2 sm:px-6 sm:py-3 rounded-xl transition duration-300"
-                whileHover={{ scale: 1.05 }}
+                className="bg-green-500 hover:bg-green-600 text-white font-medium px-4 py-2 rounded-lg transition duration-300"
+                whileHover={{ scale: 1.05, backgroundColor: '#16a34a' }}
                 whileTap={{ scale: 0.95 }}
               >
                 Confirm
               </motion.button>
               <motion.button
                 onClick={handleCloseConfirm}
-                className="bg-red-500 hover:bg-red-600 text-white font-medium px-4 py-2 sm:px-6 sm:py-3 rounded-xl transition duration-300"
-                whileHover={{ scale: 1.05 }}
+                className="bg-red-500 hover:bg-red-600 text-white font-medium px-4 py-2 rounded-lg transition duration-300"
+                whileHover={{ scale: 1.05, backgroundColor: '#dc2626' }}
                 whileTap={{ scale: 0.95 }}
               >
                 Cancel
@@ -1102,6 +1152,7 @@ const Contact = () => {
         </motion.div>
       )}
 
+      
       {showTermsPopup && (
         <motion.div
           className="fixed inset-0 bg-black/10 backdrop-blur-md flex items-center justify-center z-50"
