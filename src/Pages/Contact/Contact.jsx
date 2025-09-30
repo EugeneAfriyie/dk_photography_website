@@ -199,16 +199,13 @@ const Contact = () => {
     }
   };
 const handleConfirmSubmit = async () => {
-  const deposit_amount = '$' + Math.round(parseFloat(selectedPackage.price / 2 ));
+  const deposit_amount = '$' + Math.round(parseFloat(selectedPackage.price.replace('$', '')) * 0.5);
   const current_date = new Date().toLocaleString('en-US', { timeZone: 'GMT' });
+  const whatsapp = formData.whatsapp || 'Not provided';
   const whatsapp_link = validateWhatsApp(formData.whatsapp) && formData.whatsapp !== 'Not provided' && formData.whatsapp
-    ? `<a href="https://wa.me/${formData.whatsapp}" style="margin-left: 10px;" target="_blank" rel="noopener noreferrer">WhatsApp Client</a>`
-    : '';
+    ? formData.whatsapp
+    : validatePhone(formData.phone) ? formData.phone : ''; // Fallback to phone if valid
 
-
-    console.log('WhatsApp Link:', whatsapp_link); // Debugging line
-    console.log(selectedPackage.price);
-    console.log(deposit_amount);
   const customerTemplateParams = {
     to_name: formData.name,
     to_email: formData.email,
@@ -224,18 +221,20 @@ const handleConfirmSubmit = async () => {
     from_name: formData.name,
     from_email: formData.email,
     phone: formData.phone,
-    whatsapp: formData.whatsapp || 'Not provided',
+    whatsapp: whatsapp, // Display "Not provided" or the actual WhatsApp
+    whatsapp_link: whatsapp_link, // Use phone as fallback
     notes: formData.notes || 'None',
     package_title: selectedPackage.title,
     package_price: selectedPackage.price,
     deposit_amount,
     current_date,
-    whatsapp_link, // Add this parameter
   };
 
   try {
     await emailjs.send('dkbook_mail', 'template_k751psa', customerTemplateParams);
-    await emailjs.send('dkbook_mail', 'template_3idvwbm', adminTemplateParams);
+    await emailjs.send('dkbook_mail', 'template_3idvwbm', adminTemplateParams, {
+      'content-type': 'text/html'
+    });
     setSubmittedData({ ...formData, package: selectedPackage });
     setShowConfirm(false);
     setIsSubmitted(true);
