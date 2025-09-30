@@ -1,14 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
+import emailjs from '@emailjs/browser';
 import Header from '../Home/Components/Header';
 import Footer from '../../Components/Footer';
 import ExclusiveOffer from '../Home/Components/ExclusiveOffer';
 import BookingPrompt from '../Home/Components/BookingPrompt';
 import { FaInstagram, FaTiktok, FaWhatsapp } from 'react-icons/fa';
 
-// import Footer from '../../Components/Footer';
-
-// Export packages (to be used elsewhere if needed)
+// Packages array
 export const packages = [
   {
     title: 'Wedding Bliss Package',
@@ -24,123 +23,12 @@ export const packages = [
     isPopular: false,
     icon: 'https://res.cloudinary.com/djeorsh5d/image/upload/v1751247125/BRIDE1_kjfo1p.jpg',
   },
-  {
-    title: 'Premium Wedding Experience',
-    price: '$4,800',
-    coverageHours: '12 Hours',
-    photographers: '2 Photographers',
-    editedPhotos: '550 Photos',
-    deliveryTime: '5 Weeks',
-    extras: 'Premium Album, Drone Footage, Dedicated Videographer, Bridal Makeup and Hair, Pre-Wedding Photo Session',
-    sessionLocation: 'Outdoor or Venue',
-    description: 'Luxury Wedding Photography with a pre-wedding photo session, a dedicated videographer for cinematic videography including drone footage, and professional bridal makeup and hairstyling. Features 12 hours of coverage, two photographers, and a premium album.',
-    servicesIncluded: ['Photography', 'Videography', 'Make Up and Hair Styling'],
-    isPopular: false,
-    icon: 'https://res.cloudinary.com/djeorsh5d/image/upload/v1751247127/WED1_c0gp9p.jpg',
-  },
-  {
-    title: 'Premium Family Legacy',
-    price: '$2,500',
-    coverageHours: '6 Hours',
-    photographers: '2 Photographers',
-    editedPhotos: '200 Photos',
-    deliveryTime: '4 Weeks',
-    extras: 'Hardcover Book, Video Highlights',
-    sessionLocation: 'Studio or Outdoor',
-    description: 'Elite Children Photography and Family Photography with 6 hours, studio access, a hardcover book, and video highlights.',
-    servicesIncluded: ['Photography', 'Videography'],
-    isPopular: false,
-    icon: 'https://res.cloudinary.com/djeorsh5d/image/upload/v1751247111/FAM1_wdqml7.jpg',
-  },
-  {
-    title: 'Family Memories Package',
-    price: '$1,200',
-    coverageHours: '3 Hours',
-    photographers: '1 Photographer',
-    editedPhotos: '100 Photos',
-    deliveryTime: '3 Weeks',
-    extras: 'Digital Gallery',
-    sessionLocation: 'Outdoor or Indoor',
-    description: 'Cherish your family bond with Children Photography and Family Photography. Includes 3 hours of outdoor or indoor sessions and a digital gallery.',
-    servicesIncluded: ['Photography'],
-    isPopular: false,
-    icon: 'https://res.cloudinary.com/djeorsh5d/image/upload/v1751247111/FAM2_kaaw51.jpg',
-  },
-  {
-    title: 'Graduation Celebration Package',
-    price: '$600',
-    coverageHours: '1.5 Hours',
-    photographers: '1 Photographer',
-    editedPhotos: '30 Photos',
-    deliveryTime: '2 Weeks',
-    extras: 'Digital Frame',
-    sessionLocation: 'Campus or Outdoor',
-    description: 'Capture your graduation day with professional photos featuring caps, gowns, and milestone moments.',
-    servicesIncluded: ['Photography'],
-    isPopular: false,
-    icon: 'https://res.cloudinary.com/djeorsh5d/image/upload/v1751247111/GRAWM2_flta1z.jpg',
-  },
-  {
-    title: 'Premium Graduation Package',
-    price: '$1,000',
-    coverageHours: '3 Hours',
-    photographers: '1 Photographer',
-    editedPhotos: '75 Photos',
-    deliveryTime: '3 Weeks',
-    extras: 'Custom Photo Book, Group Shots',
-    sessionLocation: 'Campus or Venue',
-    description: 'A comprehensive graduation package with extended coverage, a custom photo book, and group shots.',
-    servicesIncluded: ['Photography'],
-    isPopular: true,
-    icon: 'https://res.cloudinary.com/djeorsh5d/image/upload/v1751247111/GRAWM1_azekpo.jpg',
-  },
-  {
-    title: 'Birthday Celebration Package',
-    price: '$1,300',
-    coverageHours: '3 Hours',
-    photographers: '1 Photographer',
-    editedPhotos: '80 Photos',
-    deliveryTime: '3 Weeks',
-    extras: 'Digital Gallery, Party Highlights, Dedicated Videographer, Special Occasion Makeup and Hair',
-    sessionLocation: 'Venue or Outdoor',
-    description: 'Celebrate your special day with vibrant birthday photography, a dedicated videographer for cinematic videography, and professional makeup and hairstyling. Includes 3 hours of coverage and a digital gallery.',
-    servicesIncluded: ['Photography', 'Videography', 'Make Up and Hair Styling'],
-    isPopular: false,
-    icon: 'https://res.cloudinary.com/djeorsh5d/image/upload/v1751247104/BIRTH3_po4i3v.jpg',
-  },
-  {
-    title: 'Couple Shots Package',
-    price: '$800',
-    coverageHours: '2 Hours',
-    photographers: '1 Photographer',
-    editedPhotos: '50 Photos',
-    deliveryTime: '2 Weeks',
-    extras: 'Digital Gallery, Romantic Photo Book',
-    sessionLocation: 'Studio or Outdoor',
-    description: 'Capture your love story with a romantic couple photography session, perfect for engagements, anniversaries, or special moments.',
-    servicesIncluded: ['Photography'],
-    isPopular: false,
-    icon: 'https://res.cloudinary.com/djeorsh5d/image/upload/v1751247107/COP1_gfdb3c.jpg',
-  },
-  {
-    title: 'Children Shot Package',
-    price: '$700',
-    coverageHours: '2 Hours',
-    photographers: '1 Photographer',
-    editedPhotos: '50 Photos',
-    deliveryTime: '2 Weeks',
-    extras: 'Digital Gallery, Children’s Photo Book',
-    sessionLocation: 'Studio or Outdoor',
-    description: 'Capture your child’s milestones with a fun and vibrant photography session, perfect for birthdays, first steps, or special moments.',
-    servicesIncluded: ['Photography'],
-    isPopular: false,
-    icon: 'https://res.cloudinary.com/djeorsh5d/image/upload/v1751247106/SKYLA_d81pvt.jpg',
-  },
+  // ... (include the rest of your packages array here if needed)
 ];
 
 const Contact = () => {
   const [isVisible, setIsVisible] = useState(false);
-  const [formMode, setFormMode] = useState('inquiry'); // 'inquiry' or 'booking'
+  const [formMode, setFormMode] = useState('inquiry');
   const [formData, setFormData] = useState({ name: '', email: '', subject: '', message: '', attachment: null, phone: '', notes: '' });
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [showPopup, setShowPopup] = useState(false);
@@ -152,16 +40,21 @@ const Contact = () => {
   const [validationErrors, setValidationErrors] = useState({ name: false, email: false, phone: false, subject: false, message: false, package: false });
   const [submittedData, setSubmittedData] = useState(null);
   const [selectedPackage, setSelectedPackage] = useState({ title: 'Select a Package', price: '' });
-    const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   useEffect(() => {
-    const handleScroll = () => {
-      if (window.scrollY > 300) {
-        setIsVisible(true);
+    // Initialize EmailJS with the appropriate Public Key based on form mode
+    const initializeEmailJS = () => {
+      if (formMode === 'inquiry') {
+        emailjs.init('KhmeYLlM1LVFQI84Y'); // Public Key for Account 1 (inquiry)
       } else {
-        setIsVisible(false);
+        emailjs.init('9s9u_x9PGUDBxOt7_'); // Public Key for Account 2 (booking)
       }
+    };
+    initializeEmailJS();
+
+    const handleScroll = () => {
+      setIsVisible(window.scrollY > 300);
     };
 
     const handleKeyPress = (e) => {
@@ -180,11 +73,7 @@ const Contact = () => {
       window.removeEventListener('scroll', handleScroll);
       window.removeEventListener('keydown', handleKeyPress);
     };
-  }, []);
-
-  const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  };
+  }, [formMode]);
 
   const validateEmail = (email) => {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -209,11 +98,11 @@ const Contact = () => {
     if (type === 'checkbox') {
       setAcceptedTerms(checked);
     }
-    setValidationErrors(prev => ({ ...prev, [name]: false })); // Clear error on change
-    setErrorMessage(''); // Clear error message on change
+    setValidationErrors(prev => ({ ...prev, [name]: false }));
+    setErrorMessage('');
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if (formMode === 'inquiry') {
       const errors = {
@@ -225,94 +114,130 @@ const Contact = () => {
       };
       setValidationErrors(errors);
       if (Object.values(errors).some(error => error)) {
-        setErrorMessage('Please fill in all required fields with valid information (Name, Email, Phone, Subject, Message).');
+        setErrorMessage('Please fill in all required fields with valid information.');
         return;
       }
-      const formDataToSend = new FormData();
-      formDataToSend.append('name', formData.name);
-      formDataToSend.append('email', formData.email);
-      formDataToSend.append('subject', formData.subject);
-      formDataToSend.append('message', formData.message);
-      formDataToSend.append('phone', formData.phone);
-      formDataToSend.append('notes', formData.notes);
+
+      let attachmentUrl = '';
       if (formData.attachment) {
-        formDataToSend.append('attachment', formData.attachment);
+        const formDataToUpload = new FormData();
+        formDataToUpload.append('file', formData.attachment);
+        formDataToUpload.append('upload_preset', 'dkshotit_upload'); // Your Cloudinary Upload Preset
+
+        try {
+          const response = await fetch('https://api.cloudinary.com/v1_1/djeorsh5d/upload', {
+            method: 'POST',
+            body: formDataToUpload,
+          });
+          const data = await response.json();
+          if (data.secure_url) {
+            attachmentUrl = data.secure_url;
+          } else {
+            setErrorMessage('Failed to upload attachment. Please try again.');
+            return;
+          }
+        } catch (error) {
+          setErrorMessage('Failed to upload attachment. Please try again.');
+          return;
+        }
       }
-      // Simulate form submission (replace with actual API call)
-      console.log('Inquiry submitted with formData:', formData);
-      setSubmittedData({
-        name: formData.name,
-        email: formData.email,
-        phone: formData.phone,
+
+      const customerTemplateParams = {
+        to_name: formData.name,
+        to_email: formData.email,
         subject: formData.subject,
         message: formData.message,
-        notes: formData.notes,
-        attachment: formData.attachment
-      });
-      setIsSubmitted(true);
-      setShowPopup(true);
-      // Removed setTimeout with formData clearing
+        phone: formData.phone,
+        notes: formData.notes || 'None',
+        attachment_url: attachmentUrl || 'None',
+      };
+
+      const adminTemplateParams = {
+        to_name: 'Admin',
+        from_name: formData.name,
+        from_email: formData.email,
+        subject: formData.subject,
+        message: formData.message,
+        phone: formData.phone,
+        notes: formData.notes || 'None',
+        attachment_url: attachmentUrl || 'None',
+      };
+
+      try {
+        await emailjs.send('dk_mail', 'template_c4m3dk6', customerTemplateParams);
+        await emailjs.send('dk_mail', 'template_nrx7gu6', adminTemplateParams);
+        setSubmittedData({ ...formData, attachment_url: attachmentUrl });
+        setIsSubmitted(true);
+        setShowPopup(true);
+        setFormData({ name: '', email: '', subject: '', message: '', attachment: null, phone: '', notes: '' });
+      } catch (error) {
+        console.error('Inquiry Error:', error);
+        setErrorMessage('Failed to submit inquiry. Please try again. Error: ' + error.message);
+      }
     } else {
       const errors = {
-        name: !formData.name,
+        name: !formData.name.trim(),
         email: !formData.email || !validateEmail(formData.email),
         phone: !formData.phone || !validatePhone(formData.phone),
         package: !selectedPackage || selectedPackage.title === 'Select a Package'
       };
       setValidationErrors(errors);
       if (Object.values(errors).some(error => error)) {
-        setErrorMessage('Please fill in all required fields with valid information (Name, Email, Phone, Package).');
+        setErrorMessage('Please fill in all required fields with valid information.');
         return;
       }
       if (!acceptedTerms) {
         setShowTermsPopup(true);
         return;
       }
-      setShowConfirm(true); // Show confirmation popup for booking
+      setShowConfirm(true);
     }
   };
 
-  const handleConfirmSubmit = () => {
-    console.log('Booking confirmed:', {
-      name: formData.name,
-      email: formData.email,
+  const handleConfirmSubmit = async () => {
+    const customerTemplateParams = {
+      to_name: formData.name,
+      to_email: formData.email,
       phone: formData.phone,
-      notes: formData.notes,
-      package: selectedPackage
-    });
-    setSubmittedData({
-      name: formData.name,
-      email: formData.email,
+      notes: formData.notes || 'None',
+      package_title: selectedPackage.title,
+      package_price: selectedPackage.price,
+    };
+
+    const adminTemplateParams = {
+      to_name: 'Admin',
+      from_name: formData.name,
+      from_email: formData.email,
       phone: formData.phone,
-      notes: formData.notes,
-      package: selectedPackage
-    });
-    setShowConfirm(false);
-    setIsSubmitted(true);
-    setShowPopup(true);
-    // Removed setTimeout with formData clearing
+      notes: formData.notes || 'None',
+      package_title: selectedPackage.title,
+      package_price: selectedPackage.price,
+    };
+
+    try {
+      await emailjs.send('dkbook_mail', 'template_k751psa', customerTemplateParams);
+      await emailjs.send('dkbook_mail', 'template_3idvwbm', adminTemplateParams);
+      setSubmittedData({ ...formData, package: selectedPackage });
+      setShowConfirm(false);
+      setIsSubmitted(true);
+      setShowPopup(true);
+      setFormData({ name: '', email: '', subject: '', message: '', attachment: null, phone: '', notes: '' });
+      setSelectedPackage({ title: 'Select a Package', price: '' });
+      setAcceptedTerms(false);
+    } catch (error) {
+      console.error('Booking Error:', error);
+      setErrorMessage('Failed to confirm booking. Please try again. Error: ' + error.message);
+    }
   };
 
-  const handleKeyPress = (e) => {
-    if (e.key === 'Enter' && !e.shiftKey) {
-      e.preventDefault();
-      if (showConfirm) {
-        handleConfirmSubmit();
-      } else if (showTermsPopup) {
-        handleAcceptTerms();
-      } else {
-        handleSubmit(e);
-      }
-    }
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   const handleClosePopup = () => {
     setShowPopup(false);
     setIsSubmitted(false);
-
-      setFormData({ name: '', email: '', subject: '', message: '', attachment: null, phone: '', notes: '' });
-                setAcceptedTerms(false);
-                setSubmittedData(null);
+    setSubmittedData(null);
   };
 
   const handleCloseConfirm = () => {
@@ -332,10 +257,22 @@ const Contact = () => {
     setShowNoteLimitAlert(false);
   };
 
-  return (
-    <div className="min-h-screen bg-black text-white pt-20  overflow-hidden" onKeyPress={handleKeyPress}>
-            <Header mobileMenuOpen={mobileMenuOpen} setMobileMenuOpen={setMobileMenuOpen} />
+  const handleKeyPress = (e) => {
+    if (e.key === 'Enter' && !e.shiftKey) {
+      e.preventDefault();
+      if (showConfirm) {
+        handleConfirmSubmit();
+      } else if (showTermsPopup) {
+        handleAcceptTerms();
+      } else {
+        handleSubmit(e);
+      }
+    }
+  };
 
+  return (
+    <div className="min-h-screen bg-black text-white pt-20 overflow-hidden" onKeyPress={handleKeyPress}>
+      <Header mobileMenuOpen={mobileMenuOpen} setMobileMenuOpen={setMobileMenuOpen} />
       <div className="max-w-7xl mx-auto">
         {/* Contact Banner */}
         <motion.section
@@ -392,7 +329,7 @@ const Contact = () => {
           </motion.div>
         </motion.section>
 
-        {/* Form Mode Toggle with Consistent Active Background */}
+        {/* Form Mode Toggle */}
         <motion.div
           className="mb-8 text-center"
           initial={{ opacity: 0, y: 20 }}
@@ -419,7 +356,7 @@ const Contact = () => {
           </motion.button>
         </motion.div>
 
-        {/* Contact Form or Booking Checkout with Active Background */}
+        {/* Contact Form or Booking Checkout */}
         <motion.section
           className={`bg-gray-800 p-6 sm:p-8 rounded-lg mb-12 ${formMode === 'inquiry' ? 'bg-gradient-to-br from-gray-800 via-amber-900/20 to-gray-800' : 'bg-gradient-to-br from-gray-800 via-emerald-900/20 to-gray-800'}`}
           initial={{ opacity: 0, y: 50, scale: 0.98 }}
@@ -439,7 +376,6 @@ const Contact = () => {
                 Send Us a Message
               </motion.h2>
               <form onSubmit={handleSubmit} className="max-w-2xl mx-auto space-y-6">
-                {/* Name */}
                 <motion.div
                   initial={{ opacity: 0, y: 10 }}
                   whileInView={{ opacity: 1, y: 0 }}
@@ -467,8 +403,6 @@ const Contact = () => {
                     />
                   </div>
                 </motion.div>
-
-                {/* Email */}
                 <motion.div
                   initial={{ opacity: 0, y: 10 }}
                   whileInView={{ opacity: 1, y: 0 }}
@@ -496,8 +430,6 @@ const Contact = () => {
                     />
                   </div>
                 </motion.div>
-
-                {/* Phone */}
                 <motion.div
                   initial={{ opacity: 0, y: 10 }}
                   whileInView={{ opacity: 1, y: 0 }}
@@ -525,8 +457,6 @@ const Contact = () => {
                     />
                   </div>
                 </motion.div>
-
-                {/* Subject */}
                 <motion.div
                   initial={{ opacity: 0, y: 10 }}
                   whileInView={{ opacity: 1, y: 0 }}
@@ -554,8 +484,6 @@ const Contact = () => {
                     />
                   </div>
                 </motion.div>
-
-                {/* Message */}
                 <motion.div
                   initial={{ opacity: 0, y: 10 }}
                   whileInView={{ opacity: 1, y: 0 }}
@@ -582,8 +510,6 @@ const Contact = () => {
                     ></textarea>
                   </div>
                 </motion.div>
-
-                {/* Notes */}
                 <motion.div
                   initial={{ opacity: 0, y: 10 }}
                   whileInView={{ opacity: 1, y: 0 }}
@@ -610,12 +536,10 @@ const Contact = () => {
                     ></textarea>
                   </div>
                 </motion.div>
-
-                {/* Attachment */}
                 <motion.div
                   initial={{ opacity: 0, y: 10 }}
                   whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.5, delay: 1.1 }}
+                  transition={{ duration: 0.5, delay: 1.1}}
                   viewport={{ once: true }}
                 >
                   <label htmlFor="attachment" className="block text-sm font-medium mb-2 text-white">
@@ -638,8 +562,6 @@ const Contact = () => {
                   </div>
                   {formData.attachment && <p className="text-gray-500 text-sm mt-1">Selected: {formData.attachment.name}</p>}
                 </motion.div>
-
-                {/* Submit */}
                 <motion.div
                   initial={{ opacity: 0, y: 10 }}
                   whileInView={{ opacity: 1, y: 0 }}
@@ -657,8 +579,6 @@ const Contact = () => {
                     </motion.button>
                   </div>
                 </motion.div>
-
-                {/* Error Message */}
                 {errorMessage && (
                   <motion.div
                     className="text-red-500 text-sm mt-4 text-center"
@@ -683,7 +603,6 @@ const Contact = () => {
                 Book a Package
               </motion.h2>
               <div className="max-w-2xl mx-auto space-y-6">
-                {/* Package Selection */}
                 <motion.div
                   initial={{ opacity: 0, y: 10 }}
                   whileInView={{ opacity: 1, y: 0 }}
@@ -709,8 +628,6 @@ const Contact = () => {
                     ))}
                   </select>
                 </motion.div>
-
-                {/* Contact Info for Booking */}
                 <motion.div
                   initial={{ opacity: 0, y: 10 }}
                   whileInView={{ opacity: 1, y: 0 }}
@@ -738,7 +655,6 @@ const Contact = () => {
                     />
                   </div>
                 </motion.div>
-
                 <motion.div
                   initial={{ opacity: 0, y: 10 }}
                   whileInView={{ opacity: 1, y: 0 }}
@@ -766,7 +682,6 @@ const Contact = () => {
                     />
                   </div>
                 </motion.div>
-
                 <motion.div
                   initial={{ opacity: 0, y: 10 }}
                   whileInView={{ opacity: 1, y: 0 }}
@@ -794,8 +709,6 @@ const Contact = () => {
                     />
                   </div>
                 </motion.div>
-
-                {/* Notes */}
                 <motion.div
                   initial={{ opacity: 0, y: 10 }}
                   whileInView={{ opacity: 1, y: 0 }}
@@ -822,8 +735,6 @@ const Contact = () => {
                     ></textarea>
                   </div>
                 </motion.div>
-
-                {/* Amount Due */}
                 <motion.div
                   initial={{ opacity: 0, y: 10 }}
                   whileInView={{ opacity: 1, y: 0 }}
@@ -835,8 +746,6 @@ const Contact = () => {
                     <p className="text-amber-300 text-xl">{selectedPackage.price || 'N/A'}</p>
                   </div>
                 </motion.div>
-
-                {/* Terms and Conditions */}
                 <motion.div
                   initial={{ opacity: 0, y: 10 }}
                   whileInView={{ opacity: 1, y: 0 }}
@@ -861,8 +770,6 @@ const Contact = () => {
                     </label>
                   </div>
                 </motion.div>
-
-                {/* Submit */}
                 <motion.div
                   initial={{ opacity: 0, y: 10 }}
                   whileInView={{ opacity: 1, y: 0 }}
@@ -871,7 +778,7 @@ const Contact = () => {
                 >
                   <div className="text-center">
                     <motion.button
-                      type="button" // Changed to button to trigger confirmation
+                      type="button"
                       onClick={handleSubmit}
                       className="bg-[#7c3aed] hover:bg-purple-700 text-white font-medium px-6 py-3 rounded-xl transition duration-300"
                       whileHover={{ scale: 1.05, backgroundColor: '#6b21a8' }}
@@ -887,8 +794,6 @@ const Contact = () => {
                     </p>
                   </div>
                 </motion.div>
-
-                {/* Error Message */}
                 {errorMessage && (
                   <motion.div
                     className="text-red-500 text-sm mt-4 text-center"
@@ -906,171 +811,128 @@ const Contact = () => {
 
         {/* Contact Info */}
         <motion.section
-          className="bg-gray-900 p-6 sm:p-8 rounded-lg mb-12 "
+          className="bg-gray-900 p-6 sm:p-8 rounded-lg mb-12"
           initial={{ opacity: 0, y: 50, scale: 0.98 }}
           whileInView={{ opacity: 1, y: 0, scale: 1 }}
           transition={{ duration: 1, ease: "easeOut", delay: 0.2 }}
           viewport={{ once: true }}
-           >
-              <motion.h2
-                className="text-2xl sm:text-3xl font-bold mb-6 text-center"
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.4 }}
-                viewport={{ once: true }}
+        >
+          <motion.h2
+            className="text-2xl sm:text-3xl font-bold mb-6 text-center"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.4 }}
+            viewport={{ once: true }}
+          >
+            Contact Information
+          </motion.h2>
+          <motion.div
+            className="grid grid-cols-1 sm:grid-cols-2 gap-6 text-center sm:text-left"
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            transition={{ duration: 0.8, delay: 0.6 }}
+            viewport={{ once: true }}
+          >
+            <motion.div
+              initial={{ x: -20, opacity: 0 }}
+              whileInView={{ x: 0, opacity: 1 }}
+              transition={{ duration: 0.7, delay: 0.8 }}
+              viewport={{ once: true }}
+            >
+              <p className="text-gray-400 mb-2">Address:</p>
+              <p>DKSHOTIT Studio, Amakom, Kumasi, Ghana</p>
+              <a
+                href="https://maps.google.com/maps?q=Amakom,+Kumasi,+Ghana"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-amber-300 hover:underline mt-2 inline-block"
               >
-                Contact Information
-              </motion.h2>
-              <motion.div
-                  className="grid grid-cols-1  sm:grid-cols-2 gap-6 text-center sm:text-left"
-                  initial={{ opacity: 0 }}
-                  whileInView={{ opacity: 1 }}
-                  transition={{ duration: 0.8, delay: 0.6 }}
-                  viewport={{ once: true }}
-                  >
-                    <motion.div
-                      initial={{ x: -20, opacity: 0 }}
-                      whileInView={{ x: 0, opacity: 1 }}
-                      transition={{ duration: 0.7, delay: 0.8 }}
-                      viewport={{ once: true }}
-                    >
-                      <p className="text-gray-400 mb-2">Address:</p>
-                      <p>DKSHOTIT Studio, Amakom, Kumasi, Ghana</p>
-                      <a
-                        href="https://maps.google.com/maps?q=Amakom,+Kumasi,+Ghana"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="text-amber-300 hover:underline mt-2 inline-block"
-                      >
-                        View on Map
-                      </a>
-                    </motion.div>
-                <motion.div
-                  initial={{ x: 20, opacity: 0 }}
-                  whileInView={{ x: 0, opacity: 1 }}
-                  transition={{ duration: 0.7, delay: 0.9 }}
-                  viewport={{ once: true }}
-                >
-                  <p className="text-gray-400 mb-2">Phone:</p>
-                  <a href="tel:+23343839922">+233 243 829 922</a>
-                  <p className="text-gray-400 mb-2 mt-4">Email:</p>
-                  <a href="mailto:info@dkshotit.com">info@dkshotit.com</a>
-
-                </motion.div>
-              </motion.div>
+                View on Map
+              </a>
+            </motion.div>
+            <motion.div
+              initial={{ x: 20, opacity: 0 }}
+              whileInView={{ x: 0, opacity: 1 }}
+              transition={{ duration: 0.7, delay: 0.9 }}
+              viewport={{ once: true }}
+            >
+              <p className="text-gray-400 mb-2">Phone:</p>
+              <a href="tel:+23343839922">+233 243 829 922</a>
+              <p className="text-gray-400 mb-2 mt-4">Email:</p>
+              <a href="mailto:info@dkshotit.com">info@dkshotit.com</a>
+            </motion.div>
+          </motion.div>
         </motion.section>
 
-          <BookingPrompt />
-
-
-
+        <BookingPrompt />
 
         {/* Social Media */}
         <motion.section
-              className="bg-gray-800 p-6 sm:p-8 rounded-lg mb-12 text-center"
-              initial={{ opacity: 0, y: 50, scale: 0.98 }}
-              whileInView={{ opacity: 1, y: 0, scale: 1 }}
-              transition={{ duration: 1, ease: "easeOut", delay: 0.2 }}
+          className="bg-gray-800 p-6 sm:p-8 rounded-lg mb-12 text-center"
+          initial={{ opacity: 0, y: 50, scale: 0.98 }}
+          whileInView={{ opacity: 1, y: 0, scale: 1 }}
+          transition={{ duration: 1, ease: "easeOut", delay: 0.2 }}
+          viewport={{ once: true }}
+        >
+          <motion.h2
+            className="text-2xl sm:text-3xl font-bold mb-6"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.4 }}
+            viewport={{ once: true }}
+          >
+            Connect With Us
+          </motion.h2>
+          <motion.div
+            className="flex justify-center gap-6"
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            transition={{ duration: 0.8, delay: 0.6 }}
+            viewport={{ once: true }}
+          >
+            <motion.a
+              href="https://www.instagram.com/dkshotit_photography/"
+              aria-label="Instagram"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-2xl sm:text-3xl text-gray-400 hover:text-amber-300 transition duration-300"
+              initial={{ y: 20, opacity: 0, color: '#D1D5DB' }}
+              whileInView={{ y: 0, opacity: 1 }}
+              transition={{ duration: 0.4, delay: 0.2 }}
+              whileHover={{ scale: 1.2, color: '#E4405F' }}
               viewport={{ once: true }}
             >
-              <motion.h2
-                className="text-2xl sm:text-3xl font-bold mb-6"
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.4 }}
-                viewport={{ once: true }}
-              >
-                Connect With Us
-              </motion.h2>
-
-              
-              <motion.div
-                className="flex justify-center gap-6"
-                initial={{ opacity: 0 }}
-                whileInView={{ opacity: 1 }}
-                transition={{ duration: 0.8, delay: 0.6 }}
-                viewport={{ once: true }}
-              >
-                {/* {['twittertagram', 'twitter'].map((social, index) => (
-                  <motion.a
-                    key={social}
-                    href={`https://${social}.com/dkshotitstudio`} // Replace with actual URLs
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-2xl sm:text-3xl text-gray-400 hover:text-amber-300 transition duration-300"
-                    initial={{ y: 20, opacity: 0 }}
-                    whileInView={{ y: 0, opacity: 1 }}
-                    transition={{ duration: 0.5, delay: 0.8 + index * 0.1 }}
-                    whileHover={{ scale: 1.2, color: '#f59e0b' }}
-                    viewport={{ once: true }}
-                  >
-                    {social === 'TikTok' : social === 'instagram' ? '📸' : '🐦'}
-                </motion.a>
-                ))} */}
-
-
-                 <motion.a
-                                    href="https://www.instagram.com/dkshotit_photography/"
-                                    aria-label="Instagram"
-                                    // initial={{ color: '#D1D5DB' }} // gray-300
-                                    // whileHover={{ color: '#E4405F' }}
-                                    // transition={{ duration: 0.3 }}
-
-                                     target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-2xl sm:text-3xl text-gray-400 hover:text-amber-300 transition duration-300"
-                    initial={{ y: 20, opacity: 0 ,color: '#D1D5DB' }}
-                    whileInView={{ y: 0, opacity: 1 }}
-                    transition={{ duration: 0.4, delay: 0.2 + 0 * 0.1 }}
-                    whileHover={{ scale: 1.2, color: '#E4405F' }}
-                    viewport={{ once: true }}
-                                  >
-                                    <FaInstagram />
-                                  </motion.a>
-              
-                                  {/* WhatsApp */}
-                                  <motion.a
-                                    href="https://wa.me/233243839922?text=Hello,%20I%20want%20to%20enroll%20in%20the%20training%20program!"
-                                    aria-label="WhatsApp"
-                                     target="_blank"
-
-                                    // initial={{ color: '#D1D5DB' }}
-                                    // whileHover={{ color: '#25D366' }}
-                                    // transition={{ duration: 0.4 }}
-
-                                                   
-                    rel="noopener noreferrer"
-                    className="text-2xl sm:text-3xl text-gray-400 hover:text-amber-300 transition duration-300"
-                    initial={{ y: 20, opacity: 0 ,color: '#D1D5DB' }}
-                    whileInView={{ y: 0, opacity: 1 }}
-                    transition={{ duration: 0.4, delay: 0.8 + 1 * 0.1 }}
-                    whileHover={{ scale: 1.2, color: '#25D366' }}
-                    viewport={{ once: true }}
-                                  >
-                                    <FaWhatsapp />
-                                  </motion.a>
-              
-                                  {/* TikTok */}
-                                  <motion.a
-                                    href="#"
-                                    aria-label="TikTok"
-                                     target="_blank"
-
-                                    // initial={{ color: '#D1D5DB' }}
-                                    // whileHover={{ color: '#25F4EE' }}
-                                    // transition={{ duration: 0.4 }}
-
-                                     rel="noopener noreferrer"
-                    className="text-2xl sm:text-3xl text-gray-400 hover:text-amber-300 transition duration-300"
-                    initial={{ y: 20, opacity: 0 ,color: '#D1D5DB' }}
-                    whileInView={{ y: 0, opacity: 1 }}
-                    transition={{ duration: 0.4, delay: 0.8 + 2 * 0.1 }}
-                    whileHover={{ scale: 1.2, color: '#25F4EE' }}
-                    viewport={{ once: true }}
-                                  >
-                                    <FaTiktok />
-                                  </motion.a>
-              </motion.div>
+              <FaInstagram />
+            </motion.a>
+            <motion.a
+              href="https://wa.me/233243839922?text=Hello,%20I%20want%20to%20enroll%20in%20the%20training%20program!"
+              aria-label="WhatsApp"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-2xl sm:text-3xl text-gray-400 hover:text-amber-300 transition duration-300"
+              initial={{ y: 20, opacity: 0, color: '#D1D5DB' }}
+              whileInView={{ y: 0, opacity: 1 }}
+              transition={{ duration: 0.4, delay: 0.3 }}
+              whileHover={{ scale: 1.2, color: '#25D366' }}
+              viewport={{ once: true }}
+            >
+              <FaWhatsapp />
+            </motion.a>
+            <motion.a
+              href="#"
+              aria-label="TikTok"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-2xl sm:text-3xl text-gray-400 hover:text-amber-300 transition duration-300"
+              initial={{ y: 20, opacity: 0, color: '#D1D5DB' }}
+              whileInView={{ y: 0, opacity: 1 }}
+              transition={{ duration: 0.4, delay: 0.4 }}
+              whileHover={{ scale: 1.2, color: '#25F4EE' }}
+              viewport={{ once: true }}
+            >
+              <FaTiktok />
+            </motion.a>
+          </motion.div>
         </motion.section>
 
         <Footer />
@@ -1104,7 +966,6 @@ const Contact = () => {
         </motion.button>
       )}
 
-      {/* Success Popup */}
       {showPopup && (
         <motion.div
           className="fixed inset-0 bg-black/10 backdrop-blur-md flex items-center justify-center z-50"
@@ -1153,17 +1014,22 @@ const Contact = () => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.4, delay: 0.2 }}
             >
-              {(() => {
-                console.log('Submitted name at popup render:', submittedData?.name);
-                return `Thank you, ${submittedData?.name.trim() || 'valued customer'}, for ${formMode === 'inquiry' ? `submitting your inquiry about "${submittedData?.subject || 'your request'}"` : `booking the ${submittedData?.package?.title}`} with DKSHOTIT Studio & Photography. We look forward to assisting you. Check your email for confirmation details!`;
-              })()}
+              {`Thank you, ${submittedData?.name.trim() || 'valued customer'}, for ${formMode === 'inquiry' ? `submitting your inquiry about "${submittedData?.subject || 'your request'}"` : `booking the ${submittedData?.package?.title}`} with DKSHOTIT Studio. A confirmation email has been sent to ${submittedData?.email}.`}
             </motion.p>
-           
+            {submittedData?.attachment_url && formMode === 'inquiry' && (
+              <motion.p
+                className="text-gray-300 text-sm mt-2"
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.4, delay: 0.3 }}
+              >
+                Attachment: <a href={submittedData.attachment_url} target="_blank" rel="noopener noreferrer" className="text-amber-300 hover:underline">View File</a>
+              </motion.p>
+            )}
           </motion.div>
         </motion.div>
       )}
 
-      {/* Confirmation Popup */}
       {showConfirm && (
         <motion.div
           className="fixed inset-0 bg-black/10 backdrop-blur-md flex items-center justify-center z-50"
@@ -1176,6 +1042,7 @@ const Contact = () => {
             className="bg-gray-800 p-4 sm:p-6 rounded-lg shadow-lg max-w-md sm:max-w-lg w-full text-center relative"
             initial={{ scale: 0.8, y: 50 }}
             animate={{ scale: 1, y: 0 }}
+            exit={{ scale: 0.8, y: 50}}
             transition={{ duration: 0.3 }}
           >
             <button
@@ -1235,7 +1102,6 @@ const Contact = () => {
         </motion.div>
       )}
 
-      {/* Terms and Conditions Popup */}
       {showTermsPopup && (
         <motion.div
           className="fixed inset-0 bg-black/10 backdrop-blur-md flex items-center justify-center z-50"
@@ -1304,7 +1170,6 @@ const Contact = () => {
         </motion.div>
       )}
 
-      {/* Note Limit Alert */}
       {showNoteLimitAlert && (
         <motion.div
           className="fixed inset-0 bg-black/10 backdrop-blur-md flex items-center justify-center z-50"
