@@ -6,25 +6,26 @@ import Footer from '../../Components/Footer';
 import ExclusiveOffer from '../Home/Components/ExclusiveOffer';
 import BookingPrompt from '../Home/Components/BookingPrompt';
 import { FaInstagram, FaTiktok, FaWhatsapp } from 'react-icons/fa';
+import { packages } from '../Home/data';
 
 // Packages array
-export const packages = [
-  {
-    title: 'Wedding Bliss Package',
-    price: '2500',
-    coverageHours: '8 Hours',
-    photographers: '2 Photographers',
-    editedPhotos: '300 Photos',
-    deliveryTime: '4 Weeks',
-    extras: 'Custom Album',
-    sessionLocation: 'Outdoor or Venue',
-    description: 'Capture your special day with our Wedding Photography and Event Coverage. Includes 8 hours of coverage, two photographers, and a custom album.',
-    servicesIncluded: ['Photography'],
-    isPopular: false,
-    icon: 'https://res.cloudinary.com/djeorsh5d/image/upload/v1751247125/BRIDE1_kjfo1p.jpg',
-  },
-  // Add more packages as needed
-];
+// export const package = [
+//   {
+//     title: 'Wedding Bliss Package',
+//     price: '$2,500',
+//     coverageHours: '8 Hours',
+//     photographers: '2 Photographers',
+//     editedPhotos: '300 Photos',
+//     deliveryTime: '4 Weeks',
+//     extras: 'Custom Album',
+//     sessionLocation: 'Outdoor or Venue',
+//     description: 'Capture your special day with our Wedding Photography and Event Coverage. Includes 8 hours of coverage, two photographers, and a custom album.',
+//     servicesIncluded: ['Photography'],
+//     isPopular: false,
+//     icon: 'https://res.cloudinary.com/djeorsh5d/image/upload/v1751247125/BRIDE1_kjfo1p.jpg',
+//   },
+//   Add more packages as needed
+// ];
 
 const Contact = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -199,7 +200,7 @@ const Contact = () => {
     }
   };
 const handleConfirmSubmit = async () => {
-  const deposit_amount = '$' + Math.round(parseFloat(selectedPackage.price.replace('$', '')) * 0.5);
+  const deposit_amount = '$' + Math.round(parseFloat(selectedPackage.price.replace('$', '').replace(',', '')) * 0.5);
   const current_date = new Date().toLocaleString('en-US', { timeZone: 'GMT' });
   const whatsapp = formData.whatsapp || 'Not provided';
   const whatsapp_link = validateWhatsApp(formData.whatsapp) && formData.whatsapp !== 'Not provided' && formData.whatsapp
@@ -221,8 +222,8 @@ const handleConfirmSubmit = async () => {
     from_name: formData.name,
     from_email: formData.email,
     phone: formData.phone,
-    whatsapp: whatsapp, // Display "Not provided" or the actual WhatsApp
-    whatsapp_link: whatsapp_link, // Use phone as fallback
+    whatsapp: whatsapp,
+    whatsapp_link: whatsapp_link,
     notes: formData.notes || 'None',
     package_title: selectedPackage.title,
     package_price: selectedPackage.price,
