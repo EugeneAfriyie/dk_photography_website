@@ -2,8 +2,8 @@ import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 // Placeholder video URL - replace with your actual DK brand video
-const VIDEO_URL = 'https://res.cloudinary.com/djeorsh5d/video/upload/v1758593443/wedding_dance.mp4'; // Replace with your DK brand video URL
-const POSTER_URL = 'https://res.cloudinary.com/djeorsh5d/image/upload/v1751247136/EQ_image-2_ttqpf8.png'; // Poster image
+const VIDEO_URL = 'https://res.cloudinary.com/djeorsh5d/video/upload/v1758593437/SnapInsta.to_AQNLXYf0Bz6MnFcFHbumHkMn2qK4CrbleGb3E866ipYuga1cA-Oeq4s9vUMQsFWAr8KnWjJ6XctUl5ThSu6XCFnRWUP9K9wETWrDlaE_oa8nvw.mp4'; // Replace with your DK brand video URL
+const POSTER_URL = 'https://res.cloudinary.com/djeorsh5d/image/upload/v1758593229/SnapInsta.to_539607310_18518990365055684_5097656796829457109_n_1_bgyrg0.jpg'; // Poster image
 
 const DKBrandVideo = () => {
   const [isPlaying, setIsPlaying] = useState(false);

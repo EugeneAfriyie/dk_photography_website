@@ -21,6 +21,7 @@ import  Progress from './Progress';
 import Footer from '../../Components/Footer';
 import ExclusiveOffer from './Components/ExclusiveOffer';
 import ToTop from '../About/Components/ToTop';
+import DKBrandVideo from './Components/DKBrandVideo';
 
 
 
@@ -163,6 +164,8 @@ const Home = () => {
                   <Intro_Sec />
                 </ErrorBoundary>
                 {/* {console.log(<Intro_Sec />)} */}
+
+                {<DKBrandVideo />}
              
 
                   {/* Services Section */}
