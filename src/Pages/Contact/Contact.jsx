@@ -137,7 +137,7 @@ const Contact = () => {
       subject: formData.subject,
       message: formData.message,
       notes: formData.notes || 'None',
-      attachment_url: attachmentUrl,
+     
       current_date,
     };
 
@@ -149,14 +149,14 @@ const Contact = () => {
       subject: formData.subject,
       message: formData.message,
       notes: formData.notes || 'None',
-      attachment_url: attachmentUrl,
+     
       current_date,
       whatsapp_link,
     };
 
     try {
-      await emailjs.send('dk_mail', 'template_customer_inquiry', customerTemplateParams);
-      await emailjs.send('dk_mail', 'template_admin_inquiry', adminTemplateParams, {
+      await emailjs.send('dk_mail', 'template_c4m3dk6', customerTemplateParams);
+      await emailjs.send('dk_mail', 'template_nrx7gu6', adminTemplateParams, {
         'content-type': 'text/html'
       });
       setSubmittedData({
@@ -166,7 +166,7 @@ const Contact = () => {
         subject: formData.subject,
         message: formData.message,
         notes: formData.notes || 'None',
-        attachment_url: attachmentUrl || null,
+      
       });
       setIsSubmitted(true);
       setShowPopup(true);
