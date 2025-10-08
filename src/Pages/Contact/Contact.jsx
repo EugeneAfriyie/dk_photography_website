@@ -123,31 +123,7 @@ const Contact = () => {
       return;
     }
 
-    let attachmentUrl = '';
-    if (formData.attachment) {
-      const formDataToUpload = new FormData();
-      formDataToUpload.append('file', formData.attachment);
-      formDataToUpload.append('upload_preset', 'dkshotit_upload');
-
-      try {
-        const response = await fetch('https://api.cloudinary.com/v1_1/djeorsh5d/upload', {
-          method: 'POST',
-          body: formDataToUpload,
-        });
-        const data = await response.json();
-        if (data.secure_url) {
-          attachmentUrl = data.secure_url;
-        } else {
-          setErrorMessage('Failed to upload attachment. Please try again.');
-          return;
-        }
-      } catch (error) {
-        setErrorMessage('Failed to upload attachment. Please try again.');
-        return;
-      }
-    } else {
-      attachmentUrl = 'None'; // Explicitly set to 'None' if no attachment
-    }
+   
 
     const current_date = new Date().toLocaleString('en-US', { timeZone: 'GMT' });
     const whatsapp_link = validateWhatsApp(formData.whatsapp) && formData.whatsapp !== 'Not provided' && formData.whatsapp
@@ -587,32 +563,9 @@ const handleConfirmSubmit = async () => {
                     ></textarea>
                   </div>
                 </motion.div>
-                <motion.div
-                  initial={{ opacity: 0, y: 10 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.5, delay: 1.1}}
-                  viewport={{ once: true }}
-                >
-                  <label htmlFor="attachment" className="block text-sm font-medium mb-2 text-white">
-                    Attachment (e.g., Photos)
-                  </label>
-                  <div className="flex items-center bg-[#111] text-white rounded-xl px-4 py-3">
-                    <span className="mr-3 text-gray-400">
-                      <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
-                        <path d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
-                      </svg>
-                    </span>
-                    <input
-                      type="file"
-                      name="attachment"
-                      id="attachment"
-                      onChange={handleChange}
-                      className="bg-transparent flex-1 outline-none text-white placeholder-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-gray-700 file:text-white hover:file:bg-gray-600"
-                      accept="image/*,application/pdf"
-                    />
-                  </div>
-                  {formData.attachment && <p className="text-gray-500 text-sm mt-1">Selected: {formData.attachment.name}</p>}
-                </motion.div>
+
+
+
                 <motion.div
                   initial={{ opacity: 0, y: 10 }}
                   whileInView={{ opacity: 1, y: 0 }}
