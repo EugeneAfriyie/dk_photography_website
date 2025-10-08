@@ -107,105 +107,131 @@ const Contact = () => {
     setErrorMessage('');
   };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    if (formMode === 'inquiry') {
-      const errors = {
-        name: !formData.name.trim(),
-        email: !formData.email || !validateEmail(formData.email),
-        phone: !formData.phone || !validatePhone(formData.phone),
-        subject: !formData.subject,
-        message: !formData.message
-      };
-      setValidationErrors(errors);
-      if (Object.values(errors).some(error => error)) {
-        setErrorMessage('Please fill in all required fields with valid information.');
-        return;
-      }
+ const handleSubmit = async (e) => {
+  e.preventDefault();
+  if (formMode === 'inquiry') {
+    const errors = {
+      name: !formData.name.trim(),
+      email: !formData.email || !validateEmail(formData.email),
+      phone: !formData.phone || !validatePhone(formData.phone),
+      subject: !formData.subject,
+      message: !formData.message
+    };
+    setValidationErrors(errors);
+    if (Object.values(errors).some(error => error)) {
+      setErrorMessage('Please fill in all required fields with valid information.');
+      return;
+    }
 
-      let attachmentUrl = '';
-      if (formData.attachment) {
-        const formDataToUpload = new FormData();
-        formDataToUpload.append('file', formData.attachment);
-        formDataToUpload.append('upload_preset', 'dkshotit_upload');
+    let attachmentUrl = '';
+    if (formData.attachment) {
+      const formDataToUpload = new FormData();
+      formDataToUpload.append('file', formData.attachment);
+      formDataToUpload.append('upload_preset', 'dkshotit_upload');
 
-        try {
-          const response = await fetch('https://api.cloudinary.com/v1_1/djeorsh5d/upload', {
-            method: 'POST',
-            body: formDataToUpload,
-          });
-          const data = await response.json();
-          if (data.secure_url) {
-            attachmentUrl = data.secure_url;
-          } else {
-            setErrorMessage('Failed to upload attachment. Please try again.');
-            return;
-          }
-        } catch (error) {
+      try {
+        const response = await fetch('https://api.cloudinary.com/v1_1/djeorsh5d/upload', {
+          method: 'POST',
+          body: formDataToUpload,
+        });
+        const data = await response.json();
+        if (data.secure_url) {
+          attachmentUrl = data.secure_url;
+        } else {
           setErrorMessage('Failed to upload attachment. Please try again.');
           return;
         }
-      }
-
-      const customerTemplateParams = {
-        to_name: formData.name,
-        to_email: formData.email,
-        subject: formData.subject,
-        message: formData.message,
-        phone: formData.phone,
-        notes: formData.notes || 'None',
-        attachment_url: attachmentUrl || 'None',
-      };
-
-      const adminTemplateParams = {
-        to_name: 'Admin',
-        from_name: formData.name,
-        from_email: formData.email,
-        subject: formData.subject,
-        message: formData.message,
-        phone: formData.phone,
-        notes: formData.notes || 'None',
-        attachment_url: attachmentUrl || 'None',
-      };
-
-      try {
-        await emailjs.send('dk_mail', 'template_c4m3dk6', customerTemplateParams);
-        await emailjs.send('dk_mail', 'template_nrx7gu6', adminTemplateParams);
-        setSubmittedData({ ...formData, attachment_url: attachmentUrl });
-        setIsSubmitted(true);
-        setShowPopup(true);
-        setFormData({ name: '', email: '', subject: '', message: '', attachment: null, phone: '', notes: '' });
       } catch (error) {
-        console.error('Inquiry Error:', error);
-        setErrorMessage('Failed to submit inquiry. Please try again. Error: ' + error.message);
+        setErrorMessage('Failed to upload attachment. Please try again.');
+        return;
       }
     } else {
-      const errors = {
-        name: !formData.name.trim(),
-        email: !formData.email || !validateEmail(formData.email),
-        phone: !formData.phone || !validatePhone(formData.phone),
-        package: !selectedPackage || selectedPackage.title === 'Select a Package',
-        whatsapp: formData.whatsapp && !validateWhatsApp(formData.whatsapp)
-      };
-      setValidationErrors(errors);
-      if (Object.values(errors).some(error => error)) {
-        setErrorMessage('Please fill in all required fields with valid information.');
-        return;
-      }
-      if (!acceptedTerms) {
-        setShowTermsPopup(true);
-        return;
-      }
-      setShowConfirm(true);
+      attachmentUrl = 'None'; // Explicitly set to 'None' if no attachment
     }
-  };
+
+    const current_date = new Date().toLocaleString('en-US', { timeZone: 'GMT' });
+    const whatsapp_link = validateWhatsApp(formData.whatsapp) && formData.whatsapp !== 'Not provided' && formData.whatsapp
+      ? formData.whatsapp
+      : validatePhone(formData.phone) ? formData.phone : '+233243839922'; // Fallback
+
+    const customerTemplateParams = {
+      to_name: formData.name,
+      to_email: formData.email,
+      phone: formData.phone,
+      subject: formData.subject,
+      message: formData.message,
+      notes: formData.notes || 'None',
+      attachment_url: attachmentUrl,
+      current_date,
+    };
+
+    const adminTemplateParams = {
+      to_name: 'Admin',
+      from_name: formData.name,
+      from_email: formData.email,
+      phone: formData.phone,
+      subject: formData.subject,
+      message: formData.message,
+      notes: formData.notes || 'None',
+      attachment_url: attachmentUrl,
+      current_date,
+      whatsapp_link,
+    };
+
+    try {
+      await emailjs.send('dk_mail', 'template_customer_inquiry', customerTemplateParams);
+      await emailjs.send('dk_mail', 'template_admin_inquiry', adminTemplateParams, {
+        'content-type': 'text/html'
+      });
+      setSubmittedData({
+        name: formData.name,
+        email: formData.email,
+        phone: formData.phone,
+        subject: formData.subject,
+        message: formData.message,
+        notes: formData.notes || 'None',
+        attachment_url: attachmentUrl || null,
+      });
+      setIsSubmitted(true);
+      setShowPopup(true);
+      setFormData({ name: '', email: '', subject: '', message: '', attachment: null, phone: '', notes: '', whatsapp: '' });
+    } catch (error) {
+      console.error('Inquiry Error:', error);
+      setErrorMessage('Failed to submit inquiry. Please try again. Error: ' + error.message);
+    }
+  } else {
+    // Booking logic remains unchanged
+    const errors = {
+      name: !formData.name.trim(),
+      email: !formData.email || !validateEmail(formData.email),
+      phone: !formData.phone || !validatePhone(formData.phone),
+      package: !selectedPackage || selectedPackage.title === 'Select a Package',
+      whatsapp: formData.whatsapp && !validateWhatsApp(formData.whatsapp)
+    };
+    setValidationErrors(errors);
+    if (Object.values(errors).some(error => error)) {
+      setErrorMessage('Please fill in all required fields with valid information.');
+      return;
+    }
+    if (!acceptedTerms) {
+      setShowTermsPopup(true);
+      return;
+    }
+    setShowConfirm(true);
+  }
+};
 const handleConfirmSubmit = async () => {
   const deposit_amount = '$' + Math.round(parseFloat(selectedPackage.price.replace('$', '').replace(',', '')) * 0.5);
+  const full_amount = '$' + parseFloat(selectedPackage.price.replace('$', '').replace(',', ''));
   const current_date = new Date().toLocaleString('en-US', { timeZone: 'GMT' });
+  // Generate booking_id with phone number and timestamp
+  const phoneForId = formData.phone ? formData.phone.replace(/[^0-9]/g, '') : '0000000000'; // Remove non-numeric chars, fallback to 0000000000
+  const booking_id = `BK${phoneForId}_${Date.now()}`; // e.g., BK233123456789_1634567890123
+  const momo_number = '+233243829922'; // Your MoMo merchant number (replace with yours)
   const whatsapp = formData.whatsapp || 'Not provided';
   const whatsapp_link = validateWhatsApp(formData.whatsapp) && formData.whatsapp !== 'Not provided' && formData.whatsapp
     ? formData.whatsapp
-    : validatePhone(formData.phone) ? formData.phone : ''; // Fallback to phone if valid
+    : validatePhone(formData.phone) ? formData.phone : '+233243839922'; // Fallback to provided number
 
   const customerTemplateParams = {
     to_name: formData.name,
@@ -215,6 +241,10 @@ const handleConfirmSubmit = async () => {
     package_title: selectedPackage.title,
     package_price: selectedPackage.price,
     deposit_amount,
+    full_amount,
+    booking_id,
+    momo_number,
+    current_date,
   };
 
   const adminTemplateParams = {
@@ -228,6 +258,9 @@ const handleConfirmSubmit = async () => {
     package_title: selectedPackage.title,
     package_price: selectedPackage.price,
     deposit_amount,
+    full_amount,
+    booking_id,
+    momo_number,
     current_date,
   };
 
