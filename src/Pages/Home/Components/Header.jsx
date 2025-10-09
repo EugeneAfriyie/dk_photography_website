@@ -3,13 +3,15 @@ import { Link } from 'react-router-dom';
 import { Menu, X } from 'lucide-react';
 import { AnimatePresence, motion } from 'framer-motion';
 
-// Custom hook for typewriter effect on two lines
-function useTwoLineTypewriter(name, motto, speed = 100, pause = 1500) {
+// Custom hook for typewriter effect with alternating mottos
+function useTwoLineTypewriter(name, mottos, speed = 100, pause = 1500) {
   const [nameText, setNameText] = useState('');
   const [mottoText, setMottoText] = useState('');
   const [phase, setPhase] = useState('typingName');
   const [index, setIndex] = useState(0);
+  const [mottoIndex, setMottoIndex] = useState(0);
   const [showCursor, setShowCursor] = useState(true);
+  const currentMotto = mottos[mottoIndex];
 
   useEffect(() => {
     let timeout;
@@ -28,9 +30,9 @@ function useTwoLineTypewriter(name, motto, speed = 100, pause = 1500) {
         }
         break;
       case 'typingMotto':
-        if (index < motto.length) {
+        if (index < currentMotto.length) {
           timeout = setTimeout(() => {
-            setMottoText((prev) => prev + motto[index]);
+            setMottoText((prev) => prev + currentMotto[index]);
             setIndex(index + 1);
           }, speed);
         } else {
@@ -48,7 +50,7 @@ function useTwoLineTypewriter(name, motto, speed = 100, pause = 1500) {
           }, speed);
         } else {
           timeout = setTimeout(() => {
-            setIndex(motto.length - 1);
+            setIndex(currentMotto.length - 1);
             setPhase('deletingMotto');
           }, pause);
         }
@@ -61,6 +63,7 @@ function useTwoLineTypewriter(name, motto, speed = 100, pause = 1500) {
           }, speed);
         } else {
           timeout = setTimeout(() => {
+            setMottoIndex((prev) => (prev + 1) % mottos.length);
             setIndex(0);
             setPhase('typingName');
           }, pause);
@@ -70,7 +73,7 @@ function useTwoLineTypewriter(name, motto, speed = 100, pause = 1500) {
         break;
     }
     return () => clearTimeout(timeout);
-  }, [phase, index, name, motto, speed, pause]);
+  }, [phase, index, name, currentMotto, speed, pause]);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -88,7 +91,7 @@ function useTwoLineTypewriter(name, motto, speed = 100, pause = 1500) {
 const Header = ({ mobileMenuOpen, setMobileMenuOpen }) => {
   const { nameLine, mottoLine } = useTwoLineTypewriter(
     'DKSHOTIT STUDIO & PHOTOGRAPHY',
-    ' Moments Captured, Memories Forever.',
+    ['Moments Captured, Memories Forever', 'Timeless Images, Endless Memories'],
     70,
     1500
   );
@@ -101,7 +104,8 @@ const Header = ({ mobileMenuOpen, setMobileMenuOpen }) => {
             .typewriter-text {
               font-family: monospace;
               white-space: nowrap;
-              overflow: hidden;
+              overflow: visible;
+              min-width: 200px;
             }
           `}
         </style>
@@ -114,7 +118,7 @@ const Header = ({ mobileMenuOpen, setMobileMenuOpen }) => {
                 alt="LOGO"
               />
             </div>
-            <div className="whitespace-nowrap flex flex-col justify-center leading-tight">
+            <div className="flex flex-col justify-center leading-tight">
               <motion.div
                 initial="hidden"
                 animate="visible"
@@ -122,7 +126,7 @@ const Header = ({ mobileMenuOpen, setMobileMenuOpen }) => {
                   hidden: { opacity: 0, y: 10 },
                   visible: { opacity: 1, y: 0, transition: { duration: 0.8 } },
                 }}
-                className="text-[.6rem] lg:flex md:hidden font-semibold typewriter-text min-h-[1.25rem] hover:text-amber-400 transition-colors duration-300"
+                className="text-[.6rem] lg:flex md:hidden font-semibold typewriter-text min-h-[1.25rem] text-white hover:text-amber-400 transition-colors duration-300"
               >
                 {nameLine || <span>&nbsp;</span>}
               </motion.div>
@@ -133,7 +137,7 @@ const Header = ({ mobileMenuOpen, setMobileMenuOpen }) => {
                   hidden: { opacity: 0, y: 10 },
                   visible: { opacity: 1, y: 0, transition: { duration: 0.8 } },
                 }}
-                className="text-[.6rem] lg:flex md:hidden font-semibold typewriter-text min-h-[1.2rem] hover:text-amber-400 transition-colors duration-300"
+                className="text-[.6rem] lg:flex md:hidden font-semibold typewriter-text min-h-[1.2rem] text-white hover:text-amber-400 transition-colors duration-300"
               >
                 {mottoLine || <span>&nbsp;</span>}
               </motion.div>
@@ -209,7 +213,7 @@ const Header = ({ mobileMenuOpen, setMobileMenuOpen }) => {
                     alt="LOGO"
                   />
                 </div>
-                <div className="whitespace-nowrap flex flex-col justify-center leading-tight">
+                <div className="flex flex-col justify-center leading-tight">
                   <motion.div
                     initial="hidden"
                     animate="visible"
@@ -217,7 +221,7 @@ const Header = ({ mobileMenuOpen, setMobileMenuOpen }) => {
                       hidden: { opacity: 0, y: 10 },
                       visible: { opacity: 1, y: 0, transition: { duration: 0.8 } },
                     }}
-                    className="text-[.6rem] font-semibold typewriter-text min-h-[1.25rem] hover:text-amber-400 transition-colors duration-300"
+                    className="text-[.6rem] font-semibold typewriter-text min-h-[1.25rem] text-white hover:text-amber-400 transition-colors duration-300"
                   >
                     {nameLine || <span>&nbsp;</span>}
                   </motion.div>
@@ -228,7 +232,7 @@ const Header = ({ mobileMenuOpen, setMobileMenuOpen }) => {
                       hidden: { opacity: 0, y: 10 },
                       visible: { opacity: 1, y: 0, transition: { duration: 0.8 } },
                     }}
-                    className="text-[.6rem] font-semibold typewriter-text min-h-[1.2rem] hover:text-amber-400 transition-colors duration-300"
+                    className="text-[.6rem] font-semibold typewriter-text min-h-[1.2rem] text-white hover:text-amber-400 transition-colors duration-300"
                   >
                     {mottoLine || <span>&nbsp;</span>}
                   </motion.div>
