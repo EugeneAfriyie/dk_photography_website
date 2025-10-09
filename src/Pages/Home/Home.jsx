@@ -22,6 +22,7 @@ import Footer from '../../Components/Footer';
 import ExclusiveOffer from './Components/ExclusiveOffer';
 import ToTop from '../About/Components/ToTop';
 import DKBrandVideo from './Components/DKBrandVideo';
+import Onboarding from '../../Components/Onboarding';
 
 
 
@@ -220,8 +221,6 @@ const Home = () => {
                     </Link>
                   </motion.div>
                 </section>
-
-
 
 
       {/* Packages Section */}
