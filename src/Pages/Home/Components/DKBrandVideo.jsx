@@ -111,7 +111,7 @@ const DKBrandVideo = () => {
             className="text-lg md:text-xl text-gray-300 max-w-2xl mx-auto"
             variants={itemVariants}
           >
-            Capturing your moments with passion, precision, and creativity.
+            Moments Captured, Memories Forever.
           </motion.p>
         </motion.div>
 
@@ -213,6 +213,7 @@ const DKBrandVideo = () => {
                 </div>
                 <div className="text-right">
                   <p className="text-amber-300 text-xs font-semibold">DK Shot It</p>
+                  <p className="text-gray-400 text-xs">Moments Captured, Memories Forever</p>
                 </div>
               </motion.div>
             )}
@@ -226,7 +227,7 @@ const DKBrandVideo = () => {
         >
           <h3 className="text-2xl font-bold mb-4 text-amber-400">Why DK Shot It?</h3>
           <p className="text-base text-gray-300 mb-6">
-            We craft stunning photos and videos for your events, delivering timeless memories with creativity and care.
+            Stunning photos and videos crafted with creativity and care for your unforgettable moments.
           </p>
           <div className="flex flex-col sm:flex-row justify-center gap-4">
             <motion.button
