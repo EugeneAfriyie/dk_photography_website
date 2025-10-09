@@ -37,19 +37,6 @@ function useTwoLineTypewriter(name, mottos, speed = 100, pause = 1500) {
           }, speed);
         } else {
           timeout = setTimeout(() => {
-            setIndex(name.length - 1);
-            setPhase('deletingName');
-          }, pause);
-        }
-        break;
-      case 'deletingName':
-        if (index >= 0) {
-          timeout = setTimeout(() => {
-            setNameText((prev) => prev.slice(0, -1));
-            setIndex(index - 1);
-          }, speed);
-        } else {
-          timeout = setTimeout(() => {
             setIndex(currentMotto.length - 1);
             setPhase('deletingMotto');
           }, pause);
@@ -59,6 +46,19 @@ function useTwoLineTypewriter(name, mottos, speed = 100, pause = 1500) {
         if (index >= 0) {
           timeout = setTimeout(() => {
             setMottoText((prev) => prev.slice(0, -1));
+            setIndex(index - 1);
+          }, speed);
+        } else {
+          timeout = setTimeout(() => {
+            setIndex(name.length - 1);
+            setPhase('deletingName');
+          }, pause);
+        }
+        break;
+      case 'deletingName':
+        if (index >= 0) {
+          timeout = setTimeout(() => {
+            setNameText((prev) => prev.slice(0, -1));
             setIndex(index - 1);
           }, speed);
         } else {
