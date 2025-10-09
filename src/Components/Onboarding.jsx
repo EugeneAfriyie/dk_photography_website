@@ -5,9 +5,8 @@ import { Link, useNavigate } from 'react-router-dom';
 // Hero images - replace with your brand images (1920x1080+)
 const HERO_IMAGES = [
   'https://res.cloudinary.com/djeorsh5d/image/upload/v1751247136/EQ_image-2_ttqpf8.png', // Page 1: Wedding
-  'https://res.cloudinary.com/djeorsh5d/image/upload/v1751247136/EQ_image-2_ttqpf8.png', // Page 1: Wedding
-  'https://res.cloudinary.com/djeorsh5d/image/upload/v1751247136/EQ_image-2_ttqpf8.png', // Page 1: Wedding
-// Page 3: Legacy
+  'https://res.cloudinary.com/djeorsh5d/image/upload/v1751247136/EQ_image-3_milestone.jpg', // Page 2: Family event
+  'https://res.cloudinary.com/djeorsh5d/image/upload/v1751247136/EQ_image-4_legacy.jpg', // Page 3: Legacy
 ];
 
 // Carousel content
@@ -31,40 +30,88 @@ const Onboarding = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
 
-  // Auto-slide every 5s, pause on hover/interaction
+  // Debug dot and button rendering
+  useEffect(() => {
+    console.log('Rendering dots:', CAROUSEL_CONTENT.length, 'dots expected');
+    const dots = document.querySelectorAll('.carousel-dot');
+    console.log('Dots found:', dots.length);
+    dots.forEach((dot, index) => {
+      console.log(`Dot ${index}:`, {
+        display: getComputedStyle(dot).display,
+        zIndex: getComputedStyle(dot).zIndex,
+        bottom: getComputedStyle(dot.parentElement).bottom,
+        visibility: getComputedStyle(dot).visibility,
+      });
+    });
+    console.log('Skip button:', document.querySelector('.skip-button') ? 'Found' : 'Not found');
+    console.log('Next/Get Started button:', document.querySelector('.nav-button:not(.previous)') ? 'Found' : 'Not found');
+    console.log('Previous button:', currentSlide === 0 ? 'Hidden (slide 0)' : document.querySelector('.nav-button.previous') ? 'Found' : 'Not found');
+    // Check for overlap
+    const navButtons = document.querySelector('.nav-button-container');
+    const description = document.querySelector('.motto-text');
+    if (navButtons && description) {
+      const navRect = navButtons.getBoundingClientRect();
+      const descRect = description.getBoundingClientRect();
+      console.log('Nav buttons rect:', navRect);
+      console.log('Description rect:', descRect);
+      const isOverlapping = !(
+        navRect.right < descRect.left ||
+        navRect.left > descRect.right ||
+        navRect.bottom < descRect.top ||
+        navRect.top > descRect.bottom
+      );
+      console.log('Nav buttons overlapping description:', isOverlapping);
+    }
+  }, [currentSlide]);
+
+  // Auto-slide every 5s on desktop, pause on hover/interaction
   useEffect(() => {
     if (window.innerWidth < 640 || isPaused) return;
     const interval = setInterval(() => {
       setCurrentSlide((prev) => (prev === CAROUSEL_CONTENT.length - 1 ? 0 : prev + 1));
+      console.log('Auto-slide to:', currentSlide + 1);
     }, 5000);
     return () => clearInterval(interval);
-  }, [isPaused]);
+  }, [isPaused, currentSlide]);
 
-  // Handle navigation
+  // Handle dot navigation
   const goToSlide = (index) => {
     setCurrentSlide(index);
     setIsPaused(true);
+    console.log('Navigated to slide:', index);
     setTimeout(() => setIsPaused(false), 3000); // Resume after 3s
   };
 
-  const nextSlide = () => {
-    setCurrentSlide((prev) => (prev === CAROUSEL_CONTENT.length - 1 ? 0 : prev + 1));
-    setIsPaused(true);
-    setTimeout(() => setIsPaused(false), 3000);
-  };
-
-  const prevSlide = () => {
-    setCurrentSlide((prev) => (prev === 0 ? CAROUSEL_CONTENT.length - 1 : prev - 1));
-    setIsPaused(true);
-    setTimeout(() => setIsPaused(false), 3000);
-  };
-
-  // Handle Get Started button
-  const handleGetStarted = () => {
+  // Handle Skip button
+  const handleSkip = () => {
     localStorage.setItem('hasSeenOnboarding', 'true');
     navigate('/');
+    console.log('Skip clicked, hasSeenOnboarding set');
   };
 
+  // Handle Next/Get Started button
+  const handleNext = () => {
+    if (currentSlide === CAROUSEL_CONTENT.length - 1) {
+      localStorage.setItem('hasSeenOnboarding', 'true');
+      navigate('/');
+      console.log('Get Started (bottom) clicked, hasSeenOnboarding set');
+    } else {
+      setCurrentSlide((prev) => (prev === CAROUSEL_CONTENT.length - 1 ? 0 : prev + 1));
+      setIsPaused(true);
+      console.log('Next clicked, slide:', currentSlide + 1);
+      setTimeout(() => setIsPaused(false), 3000);
+    }
+  };
+
+  // Handle Previous button
+  const handlePrevious = () => {
+    setCurrentSlide((prev) => (prev === 0 ? CAROUSEL_CONTENT.length - 1 : prev - 1));
+    setIsPaused(true);
+    console.log('Previous clicked, slide:', currentSlide - 1);
+    setTimeout(() => setIsPaused(false), 3000);
+  };
+
+  // Animation variants
   const containerVariants = {
     hidden: { opacity: 0, y: 50 },
     visible: {
@@ -103,15 +150,20 @@ const Onboarding = () => {
   const buttonVariants = {
     hover: { 
       scale: 1.05, 
-      background: 'linear-gradient(to right, #fbbf24, #f59e0b)',
-      boxShadow: '0 4px 12px rgba(245, 158, 11, 0.3)',
-      transition: { duration: 0.3 }
+      transition: { duration: 0.3 },
     },
     tap: { scale: 0.95 },
     pulse: { 
       scale: [1, 1.02, 1], 
-      transition: { duration: 2, repeat: Infinity, ease: 'easeInOut' }
+      transition: { duration: 2, repeat: Infinity, ease: 'easeInOut' },
     },
+  };
+
+  const dotVariants = {
+    inactive: { scale: 1 },
+    active: { scale: 1.6, transition: { duration: 0.3 } },
+    hover: { scale: 2.5, transition: { duration: 0.3 } },
+    tap: { scale: 0.5, transition: { duration: 0.2 } },
   };
 
   return (
@@ -123,22 +175,24 @@ const Onboarding = () => {
       onMouseEnter={() => setIsPaused(true)}
       onMouseLeave={() => setIsPaused(false)}
     >
-      <div className="relative max-w-4xl sm:max-w-5xl lg:max-w-7xl 2xl:max-w-8xl mx-auto flex flex-col lg:flex-row items-center gap-6 sm:gap-8 lg:gap-12">
-        {/* Left Arrow */}
-        <button
-          className="carousel-arrow absolute left-2 sm:left-4 lg:-left-12 hidden sm:flex"
-          onClick={prevSlide}
-          aria-label="Previous slide"
-        >
-          <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 19l-7-7 7-7" />
-          </svg>
-        </button>
+      {/* Skip Button */}
+      <motion.button
+        className="skip-button"
+        onClick={handleSkip}
+        variants={buttonVariants}
+        whileHover="hover"
+        whileTap="tap"
+        animate={{ ...buttonVariants.pulse, scale: window.innerWidth < 640 ? 1 : [1, 1.02, 1] }}
+        data-testid="skip-button"
+      >
+        Skip
+      </motion.button>
 
+      <div className="relative max-w-4xl sm:max-w-5xl lg:max-w-7xl 2xl:max-w-8xl mx-auto flex flex-col lg:flex-row items-center gap-6 sm:gap-8 lg:gap-12 z-0">
         <AnimatePresence mode="wait">
           <motion.div
             key={currentSlide}
-            className="w-full lg:w-1/2 max-h-[50vh] sm:max-h-[60vh] lg:max-h-[70vh] 2xl:max-h-[80vh] overflow-hidden rounded-2xl shadow-2xl shadow-amber-500/40 relative"
+            className="w-full lg:w-1/2 max-h-[50vh] sm:max-h-[60vh] lg:max-h-[70vh] 2xl:max-h-[80vh] overflow-hidden rounded-2xl shadow-2xl shadow-amber-500/40 relative z-10"
             variants={imageVariants}
             initial="initial"
             animate="animate"
@@ -148,21 +202,32 @@ const Onboarding = () => {
             dragConstraints={{ left: 0, right: 0 }}
             dragElastic={0.2}
             onDragEnd={(e, info) => {
-              if (info.offset.x < -100) nextSlide();
-              if (info.offset.x > 100) prevSlide();
+              if (info.offset.x < -120) {
+                setCurrentSlide((prev) => (prev === CAROUSEL_CONTENT.length - 1 ? 0 : prev + 1));
+                setIsPaused(true);
+                console.log('Swiped to next slide:', currentSlide + 1);
+                setTimeout(() => setIsPaused(false), 3000);
+              }
+              if (info.offset.x > 120) {
+                setCurrentSlide((prev) => (prev === 0 ? CAROUSEL_CONTENT.length - 1 : prev - 1));
+                setIsPaused(true);
+                console.log('Swiped to previous slide:', currentSlide - 1);
+                setTimeout(() => setIsPaused(false), 3000);
+              }
             }}
           >
             <img
               src={HERO_IMAGES[currentSlide]}
               alt={CAROUSEL_CONTENT[currentSlide].title}
               className="w-full h-auto max-h-[50vh] sm:max-h-[60vh] lg:max-h-[70vh] 2xl:max-h-[80vh] object-cover hero-image"
+              onError={() => console.error('Image failed to load:', HERO_IMAGES[currentSlide])}
             />
             <div className="absolute inset-0 bg-gradient-to-r from-black/80 to-amber-900/20"></div>
           </motion.div>
         </AnimatePresence>
 
         <motion.div
-          className="w-full lg:w-1/2 bg-black/30 backdrop-blur-sm rounded-xl p-4 sm:p-6 lg:p-8 max-w-lg lg:max-w-xl relative z-10"
+          className="w-full lg:w-1/2 bg-black/30 backdrop-blur-sm rounded-xl p-4 sm:p-6 lg:p-8 max-w-lg lg:max-w-xl z-10"
           variants={itemVariants}
         >
           <AnimatePresence mode="wait">
@@ -183,7 +248,7 @@ const Onboarding = () => {
                   </motion.span>
                 ))}
               </motion.h1>
-              <p className="text-sm sm:text-base lg:text-lg font-sans text-gray-300 mb-6 sm:mb-8">
+              <p className="text-sm sm:text-base lg:text-lg font-sans text-gray-300 mb-6 sm:mb-8 motto-text">
                 {CAROUSEL_CONTENT[currentSlide].description}
               </p>
               {currentSlide === CAROUSEL_CONTENT.length - 1 && (
@@ -193,12 +258,17 @@ const Onboarding = () => {
                 >
                   <motion.div variants={itemVariants}>
                     <button
-                      onClick={handleGetStarted}
+                      onClick={() => {
+                        localStorage.setItem('hasSeenOnboarding', 'true');
+                        navigate('/');
+                        console.log('Get Started (bottom) clicked, hasSeenOnboarding set');
+                      }}
                       className="bg-gradient-to-r from-amber-400 to-amber-500 hover:from-amber-500 hover:to-amber-600 text-white px-4 sm:px-6 lg:px-8 2xl:px-10 py-2 sm:py-3 lg:py-4 2xl:py-5 rounded-xl font-sans font-semibold text-sm sm:text-base lg:text-lg 2xl:text-xl transition-colors duration-300 shadow-md min-w-[120px]"
                       variants={buttonVariants}
                       whileHover="hover"
                       whileTap="tap"
                       animate={{ ...buttonVariants.pulse, scale: window.innerWidth < 640 ? 1 : [1, 1.02, 1] }}
+                      data-testid="get-started-button"
                     >
                       Get Started
                     </button>
@@ -211,6 +281,7 @@ const Onboarding = () => {
                         variants={buttonVariants}
                         whileHover="hover"
                         whileTap="tap"
+                        data-testid="book-now-button"
                       >
                         Book Now
                       </Link>
@@ -222,6 +293,7 @@ const Onboarding = () => {
                         variants={buttonVariants}
                         whileHover="hover"
                         whileTap="tap"
+                        data-testid="view-portfolio-button"
                       >
                         View Portfolio
                       </Link>
@@ -232,29 +304,52 @@ const Onboarding = () => {
             </motion.div>
           </AnimatePresence>
         </motion.div>
-
-        {/* Right Arrow */}
-        <button
-          className="carousel-arrow absolute right-2 sm:right-4 lg:-right-12 hidden sm:flex"
-          onClick={nextSlide}
-          aria-label="Next slide"
-        >
-          <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7" />
-          </svg>
-        </button>
       </div>
 
       {/* Carousel Dots */}
-      <div className="absolute bottom-8 sm:bottom-10 lg:bottom-12 flex justify-center z-20">
+      <div className="carousel-dot-container">
         {CAROUSEL_CONTENT.map((_, index) => (
-          <button
+          <motion.button
             key={index}
             className={`carousel-dot ${currentSlide === index ? 'active' : ''}`}
             onClick={() => goToSlide(index)}
             aria-label={`Go to slide ${index + 1}`}
+            data-testid={`carousel-dot-${index}`}
+            variants={dotVariants}
+            initial="inactive"
+            animate={currentSlide === index ? 'active' : 'inactive'}
+            whileHover="hover"
+            whileTap="tap"
           />
         ))}
+      </div>
+
+      {/* Next/Get Started and Previous Buttons */}
+      <div className="nav-button-container fixed top-1/2 right-4 sm:right-6 lg:right-8 transform -translate-y-1/2 flex flex-col gap-2 z-50">
+        <motion.button
+          className={`nav-button ${currentSlide === CAROUSEL_CONTENT.length - 1 ? 'get-started' : ''}`}
+          onClick={handleNext}
+          variants={buttonVariants}
+          whileHover="hover"
+          whileTap="tap"
+          animate={{ ...buttonVariants.pulse, scale: window.innerWidth < 640 ? 1 : [1, 1.02, 1] }}
+          data-testid={currentSlide === CAROUSEL_CONTENT.length - 1 ? 'get-started-nav-button' : 'next-button'}
+        >
+          {currentSlide === CAROUSEL_CONTENT.length - 1 ? 'Get Started' : 'Next'}
+        </motion.button>
+        {currentSlide !== 0 && (
+          <motion.button
+            className="nav-button previous"
+            onClick={handlePrevious}
+            variants={buttonVariants}
+            whileHover="hover"
+            whileTap="tap"
+            animate={{ ...buttonVariants.pulse, scale: window.innerWidth < 640 ? 1 : [1, 1.02, 1] }}
+            data-testid="previous-button"
+          >
+            Previous
+          </motion.button>
+        )}
       </div>
     </motion.section>
   );
