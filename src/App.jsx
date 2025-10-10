@@ -12,7 +12,7 @@ const AppContent = () => {
   const location = useLocation();
 
   useEffect(() => {
-    const hasSeenOnboarding = localStorage.getItem('hasSeenOnboarding');
+    const hasSeenOnboarding = localStorage.getItem('hasSeenOnboardinggg');
     if (!hasSeenOnboarding && location.pathname !== '/onboarding') {
       navigate('/onboarding', { replace: true });
     }

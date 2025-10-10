@@ -239,11 +239,11 @@ const Onboarding = () => {
         </div>
       </div>
 
-      <div className="fixed bottom-8 sm:bottom-12 lg:bottom-16 left-1/2 -translate-x-1/2 flex justify-center items-center bg-black/90 px-6 py-3 rounded-3xl border-2 border-amber-50 z-70">
+      <div className="fixed bottom-2 sm:bottom-2 lg:bottom-2 left-1/2 -translate-x-1/2 flex justify-center items-center bg-black/90 px-6 py-3 rounded-3xl border border-amber-50 z-70">
         {CAROUSEL_CONTENT.map((_, index) => (
           <button
             key={index}
-            className={`w-6 sm:w-6.5 lg:w-7 h-6 sm:h-6.5 lg:h-7 rounded-full ${currentSlide === index ? 'bg-amber-50' : 'border-4 border-amber-50'} mx-5 cursor-pointer outline-2 outline-red-500 outline ${currentSlide === index ? 'outline-none' : ''}`}
+            className={`w-2 sm:w-3  h-2 sm:h-3  rounded-full ${currentSlide === index ? 'bg-amber-50' : 'border-2 border-amber-50'} mx-5 cursor-pointer outline-1 outline-red-500 outline ${currentSlide === index ? 'outline-none' : ''}`}
             onClick={() => goToSlide(index)}
             aria-label={`Go to slide ${index + 1}`}
             data-testid={`carousel-dot-${index}`}
