@@ -139,7 +139,7 @@ const Gallery = () => {
     console.log('Applying filter:', filter);
     setActiveFilter(filter);
     setSelectedAlbum(null);
-    setLoadedCount(6); // Reset to 6 albums on filter change
+    setLoadedCount(10); // Reset to 6 albums on filter change
   };
 
   // Load more albums
@@ -147,7 +147,7 @@ const Gallery = () => {
     console.log('Loading more albums');
     setIsLoading(true);
     setTimeout(() => {
-      setLoadedCount((prev) => prev + 6); // Load 6 more albums
+      setLoadedCount((prev) => prev + 10); // Load 6 more albums
       setIsLoading(false);
     }, 500);
   };
