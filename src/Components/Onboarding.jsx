@@ -5,10 +5,13 @@ import { useNavigate } from 'react-router-dom';
 
 // Clutter images for slide 2 - replace with your brand images (1920x1080+)
 const CLUTTER_IMAGES = [
-  { src: 'https://res.cloudinary.com/djeorsh5d/image/upload/v1759712515/SnapInsta.to_558976645_18526850191055684_8864724944103735477_n_y3cjrq.jpg', style: 'absolute top-0 left-0 w-5/6 h-5/6 min-w-[200px] min-h-[200px] object-cover rounded-lg shadow-lg transform rotate-[-5deg] z-10 clutter-image' },
-  { src: 'https://res.cloudinary.com/djeorsh5d/image/upload/v1759712515/SnapInsta.to_558976645_18526850191055684_8864724944103735477_n_y3cjrq.jpg', style: 'absolute top-1/4 right-0 w-5/6 h-5/6 min-w-[200px] min-h-[200px] object-cover rounded-lg shadow-lg transform rotate-[5deg] z-20 clutter-image' },
-  { src: 'https://res.cloudinary.com/djeorsh5d/image/upload/v1759712515/SnapInsta.to_558976645_18526850191055684_8864724944103735477_n_y3cjrq.jpg', style: 'absolute bottom-0 left-1/4 w-3/4 h-3/4 min-w-[180px] min-h-[180px] object-cover rounded-lg shadow-lg transform rotate-[-3deg] z-30 clutter-image' },
-  { src: 'https://res.cloudinary.com/djeorsh5d/image/upload/v1759712515/SnapInsta.to_558976645_18526850191055684_8864724944103735477_n_y3cjrq.jpg', style: 'absolute bottom-1/4 right-1/4 w-2/3 h-2/3 min-w-[150px] min-h-[150px] object-cover rounded-lg shadow-lg transform rotate-[3deg] z-40 clutter-image' },
+  { src: 'https://res.cloudinary.com/djeorsh5d/image/upload/v1758593372/SnapInsta.to_542827907_18521856481055684_8426812885547460100_n_wbid5d.jpg', style: 'absolute top-0 -left-10 w-1/4 h-3/6 min-w-[200px] min-h-[200px] object-cover rounded-lg shadow-lg transform rotate-[-5deg] z-10 clutter-image' },
+  { src: 'https://res.cloudinary.com/djeorsh5d/image/upload/v1759712506/SnapInsta.to_466039879_18464144392055684_7340120126445394992_n_ockrio.jpg', style: 'absolute top-0 right-0 w-2/6 h-3/6 min-w-[200px] min-h-[200px] object-cover rounded-lg shadow-lg transform rotate-[5deg] z-20 clutter-image' },
+   { src: 'https://res.cloudinary.com/djeorsh5d/image/upload/v1759712502/SnapInsta.to_469106779_18468514393055684_8981492141983261214_n_mev2oz.jpg', style: 'absolute bottom-0 right-0 w-1/4 h-2/4 min-w-[180px] min-h-[180px] object-cover rounded-lg shadow-lg transform rotate-[-3deg] z-30 clutter-image' },
+   { src: 'https://res.cloudinary.com/djeorsh5d/image/upload/v1759712487/SnapInsta.to_559874069_18526734382055684_5386065605553386549_n_udw2wu.jpg', style: 'absolute bottom-0 right-1/4 w-2/4 h-3/4 min-w-[150px] min-h-[150px] object-cover rounded-lg shadow-lg transform rotate-[3deg] z-50 clutter-image' },
+   { src: 'https://res.cloudinary.com/djeorsh5d/image/upload/v1758593312/SnapInsta.to_509807707_18506848873055684_8078455403276683565_n_guh69c.jpg', style: 'absolute bottom-1 left-0 w-1/3 h-2/4 min-w-[150px] min-h-[150px] object-cover rounded-lg shadow-lg transform rotate-[3deg] z-40 clutter-image' },
+   { src: 'https://res.cloudinary.com/djeorsh5d/image/upload/v1759712515/SnapInsta.to_558976645_18526850191055684_8864724944103735477_n_y3cjrq.jpg', style: 'absolute top-0 left-1/4 w-1/3 h-2/4 min-w-[150px] min-h-[150px] object-cover rounded-lg shadow-lg transform rotate-[10deg] z-40 clutter-image' },
+   { src: 'https://res.cloudinary.com/djeorsh5d/image/upload/v1758593328/SnapInsta.to_504327947_18504909601055684_3578887262547455650_n_t79dli.jpg', style: 'absolute bottom-0 left-2/6 w-2/6 h-2/4 min-w-[150px] min-h-[150px] object-cover rounded-lg shadow-lg transform -rotate-[5deg] z-60 clutter-image' },
 ];
 
 // Video for slide 3 - replace with your brand video (MP4/WebM, 1920x1080+)
@@ -107,7 +110,7 @@ const Onboarding = () => {
     setCurrentSlide(index);
     setIsPaused(true);
     console.log('Navigated to slide:', index);
-    setTimeout(() => setIsPaused(false), 3000);
+    setTimeout(() => setIsPaused(false), 300000);
   };
 
   // Handle Next/Get Started
@@ -120,7 +123,7 @@ const Onboarding = () => {
       setCurrentSlide((prev) => prev + 1);
       setIsPaused(true);
       console.log('Next clicked, slide:', currentSlide + 1);
-      setTimeout(() => setIsPaused(false), 3000);
+      setTimeout(() => setIsPaused(false), 300000);
     }
   };
 
@@ -129,7 +132,7 @@ const Onboarding = () => {
     setCurrentSlide((prev) => prev - 1);
     setIsPaused(true);
     console.log('Previous clicked, slide:', currentSlide - 1);
-    setTimeout(() => setIsPaused(false), 3000);
+    setTimeout(() => setIsPaused(false), 300000);
   };
 
   return (
