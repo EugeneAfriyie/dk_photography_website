@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 const HeroCarousel = () => {
   const slides = [
     {
-      title: 'Welcome to Eugene Afriyie Photography',
+      title: 'Welcome to DKSHOTIT STUDIO & Photography',
       tagline: 'Immerse yourself in a journey of artistic vision, where every snapshot celebrates life’s beauty from Kumasi, Ghana, to global horizons since 2017.',
       bgImage: 'https://images.unsplash.com/photo-1516321497487-e288fb19713f?w=1200&h=600&fit=crop',
     },
