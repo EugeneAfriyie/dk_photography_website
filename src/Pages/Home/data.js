@@ -440,7 +440,7 @@ export const galleryImage = [
     type: 'album',
     date: 'June 12, 2024',
     title: '',
-    category: 'Memory',
+    category: 'memory',
     description: 'A cultured woman embodies grace, intelligence, and an appreciation for the arts and humanities. She is well-read, often conversing fluently about literature, history, and current events. Her tastes are refined, whether in choosing a classic novel, attending an opera, or selecting a fine wine. She respects diverse perspectives and is comfortable in various social settings, exhibiting impeccable manners and empathy. This woman values education and lifelong learning, continuously seeking to expand her knowledge and understanding of the world. Her elegance is not just in appearance but in her actions, reflecting a deep-seated respect for tradition and innovation alike.',
 
 
@@ -623,6 +623,7 @@ export const galleryImage = [
     
     ],
   },
+
    {
     type: 'album',
     date:  ' September 11,2025 ',
@@ -704,6 +705,7 @@ export const galleryImage = [
     
     ],
   },
+
    {
     type: 'album',
     date:  ' September 11,2025 ',
@@ -899,6 +901,7 @@ export const galleryImage = [
     
     ],
   },
+
    {
     type: 'album',
     date:  ' September 7,2025 ',
@@ -1037,8 +1040,8 @@ export const galleryImage = [
     
     ],
   },
-  {
-      type: 'album',
+{
+    type: 'album',
       date:  'August 26,2025 ',
       title: ' ',
       category: 'birthday ',
@@ -1174,11 +1177,11 @@ export const galleryImage = [
    
   ],
 },
-    {
+{
   type: 'video',
   date: 'August 24, 2025',
   title: 'B&J FOREVER ❤️♾️',
-  category: 'Prewedding',
+  category: 'prewedding',
   description: 'Prewedding & Wedding highlights',
   tags: [
     {
@@ -1231,6 +1234,8 @@ export const galleryImage = [
     },
   ],
 }
+
+
 ,{
   type: 'album',
   date: 'August 16, 2025',
@@ -1296,7 +1301,7 @@ export const galleryImage = [
   type: 'album',
   date: 'August 2, 2025',
   title: 'A woman of wisdom.',
-  category: 'inspiration',
+  category: 'memory',
   description: 'She sees beyond surface appearances and understands deeper truths. Her wisdom is tempered by empathy, not arrogance. She’s rooted in her values, unshaken by passing trends. Others often seek her counsel, not because she has all the answers, but because she asks the right questions.\n\nBe a woman of WISDOM. ❤️',
   tags: [
     {
@@ -1344,7 +1349,7 @@ export const galleryImage = [
   type: 'album',
   date: 'August 1, 2025',
   title: 'Five years of love ❤️',
-  category: 'anniversary',
+  category: 'memory',
   description: 'Five years of love, laughs, and putting up with each other’s quirks — impressive! You’ve officially proven that love is patient… and has a great sense of humor. Here’s to continuing to laugh your way through life together. Cheers, legends!',
   tags: [
     {
@@ -1674,7 +1679,7 @@ export const galleryImage = [
   type: 'album',
   date: 'June 5, 2025',
   title: 'GOD BLESS WOMEN 💕',
-  category: 'lifestyle',
+  category: 'pregnacy',
   description: 'Being pregnant is one of the most profound and transformative journeys a person can experience. From the wonder of feeling a new life growing inside to the life-changing moment of birth, every step is extraordinary. Photographed by @dkshotit_studio @dkshotit_photography.',
   tags: [
     {
@@ -1863,7 +1868,7 @@ export const galleryImage = [
   type: 'album',
   date: 'June 28, 2025',
   title: 'Welcome BABY Hazel ❤️💕',
-  category: 'baby',
+  category: 'children',
   description: 'Celebrating the arrival of Baby Hazel 🤍🩷. Wishing the little one a life full of love, joy, and blessings!',
   tags: [
     {
@@ -1970,13 +1975,12 @@ export const galleryImage = [
       alt: '',
     },
   ],
-}
-,
+},
 {
   type: 'album',
   date: 'June 28, 2025',
   title: 'Welcome BABY Hazel ❤️💕',
-  category: 'baby',
+  category: 'children',
   description: 'Celebrating the arrival of Baby Hazel 🤍🩷. Wishing the little one a life full of love, joy, and blessings!',
   tags: [
     {
@@ -2229,8 +2233,7 @@ export const galleryImage = [
       alt: 'Birthday shoot video',
     },
   ],
-}
-,
+},
 {
   type: 'album',
   date: 'June 14, 2025',
@@ -2315,11 +2318,12 @@ export const galleryImage = [
       alt: '',
     },
   ],
-},{
-  "type": "video",
-  "date": "June 13, 2025",
-  "title": "Timeless beauty with a touch of art 😮‍💨",
-  "description": "A & F Beauty Bar is now open for all bookings.\n\nWhat we do:\n✅ Professional Luxury Make Up\n✅ Hair Installation and wig caps\n✅ Pedicure (Unisex)\n✅ Traditional Sew in\n\nBook Us for your Graduation, Wedding, Birthday, or General event Glam-Up 💄✨\n\nLoc: Amakom Traffic Light, Adjacent Bank of Africa, KUMASI- GHANA\n\nCall 0540877220 or 0592187565 to make an appointment\n\nYour NO.1 stop for timeless beauty 💄!",
+},
+{
+  type: "video",
+  date: "June 13, 2025",
+  title: "Timeless beauty with a touch of art 😮‍💨",
+  description: "A & F Beauty Bar is now open for all bookings.\n\nWhat we do:\n✅ Professional Luxury Make Up\n✅ Hair Installation and wig caps\n✅ Pedicure (Unisex)\n✅ Traditional Sew in\n\nBook Us for your Graduation, Wedding, Birthday, or General event Glam-Up 💄✨\n\nLoc: Amakom Traffic Light, Adjacent Bank of Africa, KUMASI- GHANA\n\nCall 0540877220 or 0592187565 to make an appointment\n\nYour NO.1 stop for timeless beauty 💄!",
   "business": {
     "name": "A & F Beauty Bar",
     "services": [
@@ -2338,9 +2342,7 @@ export const galleryImage = [
       "alt": "Promotional video for A & F Beauty Bar services"
     }
   ]
-}
-
-,
+},
 {
   type: 'album',
   date: 'June 15, 2025',
@@ -2384,8 +2386,8 @@ export const galleryImage = [
       alt: '',
     },
   ],
-}
-,{
+},
+{
   type: 'album',
   date: 'June 13, 2025',
   title: 'Birthday Celebration',
@@ -2479,7 +2481,8 @@ export const galleryImage = [
       alt: '',
     },
   ],
-},{
+},
+{
   "type": "video",
   "date": "June 23, 2025",
   "title": "Another year, another reason to smile 😊✨✨",
@@ -2526,9 +2529,8 @@ export const galleryImage = [
       "alt": "Birthday celebration video for @santeshair"
     }
   ]
-}
-
-,{
+},
+{
   type: 'album',
   date: 'June 13, 2025',
   title: 'Birthday Celebration',
@@ -2622,7 +2624,7 @@ export const galleryImage = [
   type: 'album',
   date: 'June 11, 2025',
   title: 'Motivational Shoot',
-  category: 'portrait',
+  category: 'memory',
   description: 'You can be the greatest and the best. Just don’t give up on you. 💕',
   tags: [
     {
@@ -2673,13 +2675,12 @@ export const galleryImage = [
       alt: ''
     }
   ]
-}
-,
+},
 {
   type: 'album',
   date: 'June 10, 2025',
   title: 'Unconditional Love',
-  category: 'portrait',
+  category: 'memory',
   description: "Unconditional Love - A mother’s love is often the first love a daughter experiences — steady, nurturing, and fierce. It’s the foundation upon which a daughter’s sense of security and self-worth is built. PURE LOVE ❤️",
   tags: [
     {
@@ -2744,13 +2745,12 @@ export const galleryImage = [
       alt: ''
     }
   ]
-}
-,
+},
 {
   type: 'album',
   date: 'June 2, 2025',
   title: 'AN AMAZING YOUNG LADY',
-  category: 'portrait',
+  category: 'memory',
   description: "AN AMAZING YOUNG LADY .. 💕 @nana_amabbe",
   tags: [
     {
@@ -2792,758 +2792,1112 @@ export const galleryImage = [
   ]
 }
 ,
-{
-  "type": "single",
-  "date": "June 5, 2025",
-  "title": "GREEN = LIFE 💚💚💚💚",
-  "category": "portrait",
-  "description": "Pretty @nana_amabbe",
-  "tags": [
-    {
-      "title": "MUA",
-      "tag": [
-        { "label": "", "name": "", "handle": "@moka_looks" }
-      ]
-    },
-    {
-      "title": "Media Team",
-      "tag": [
-        { "label": "", "name": "", "handle": "@dkshotit_studio" },
-        { "label": "", "name": "", "handle": "@dkshotit_films" },
-        { "label": "", "name": "", "handle": "@dkshotit_photography" }
-      ]
-    }
-  ],
-  "media": [
-    {
-      "src": "https://res.cloudinary.com/djeorsh5d/video/upload/v1758593340/SnapInsta.to_AQN3mKBC4YLxtgCJI7FxGUTIBEh9D3uEGyGmo71pZkRYn8WsA1H4BoNHBrT7DP1-P24t6C5zd46nmSvffEYHbdVjJNt-8TxjIwEBKr0_pnlk56.mp4",
-      "type": "video",
-      "alt": ""
-    }
-  ]
-}
-,
-{
-  "type": "single",
-  "date": "June 7, 2025",
-  "title": "Pretty little baby @nana_amabbe 💗",
-  "category": "portrait",
-  "tags": [
-    {
-      "title": "MUA",
-      "tag": [
-        { "label": "", "name": "", "handle": "@moka_looks" }
-      ]
-    },
-    {
-      "title": "Studio",
-      "tag": [
-        { "label": "", "name": "", "handle": "@dkshotit_studio" }
-      ]
-    },
-    {
-      "title": "Creative Director",
-      "tag": [
-        { "label": "", "name": "", "handle": "@mrdk_real" }
-      ]
-    },
-    {
-      "title": "Photography Brand",
-      "tag": [
-        { "label": "", "name": "", "handle": "@dkshotit_photography" }
-      ]
-    }
-  ],
-  "media": [
-    {
-      "src": "https://res.cloudinary.com/djeorsh5d/image/upload/v1758593335/SnapInsta.to_503857055_18504319840055684_3581246673401144806_n_qcqxsv.jpg",
-      "type": "image",
-      "alt": ""
-    },
-    {
-      "src": "https://res.cloudinary.com/djeorsh5d/image/upload/v1758593335/SnapInsta.to_503554432_18504319843055684_585255444407550398_n_vjuz0e.jpg",
-      "type": "image",
-      "alt": ""
-    },
-    {
-      "src": "https://res.cloudinary.com/djeorsh5d/image/upload/v1758593332/SnapInsta.to_503506445_18504319825055684_7083044346535226725_n_bc7g4h.jpg",
-      "type": "image",
-      "alt": ""
-    }
-  ]
-}
-,{
-  "type": "single",
-  "date": "May 31, 2025",
-  "title": "Belated birthday @mrzaddo",
-  "category": "portrait",
-  "tags": [
-    {
-      "title": "MUA",
-      "tag": [
-        { "label": "", "name": "", "handle": "@eejaycosmetics" }
-      ]
-    },
-    {
-      "title": "Photography",
-      "tag": [
-        { "label": "", "name": "", "handle": "@dkshotit_photography" },
-        { "label": "", "name": "", "handle": "@dkshotit_studio" }
-      ]
-    }
-  ],
-  "media": [
-    {
-      "src": "https://res.cloudinary.com/djeorsh5d/image/upload/v1758593340/SnapInsta.to_503123694_18502930618055684_1212371315606963645_n_gemdxh.jpg",
-      "type": "image",
-      "alt": ""
-    },
-    {
-      "src": "https://res.cloudinary.com/djeorsh5d/image/upload/v1758593339/SnapInsta.to_503107295_18502930558055684_1686271969334041813_n_cptwzf.jpg",
-      "type": "image",
-      "alt": ""
-    },
-    {
-      "src": "https://res.cloudinary.com/djeorsh5d/image/upload/v1758593339/SnapInsta.to_503065449_18502930657055684_3711702290954315968_n_gmq6vb.jpg",
-      "type": "image",
-      "alt": ""
-    },
-    {
-      "src": "https://res.cloudinary.com/djeorsh5d/image/upload/v1758593338/SnapInsta.to_502737319_18502930570055684_4898710995767441498_n_plri0z.jpg",
-      "type": "image",
-      "alt": ""
-    },
-    {
-      "src": "https://res.cloudinary.com/djeorsh5d/image/upload/v1758593338/SnapInsta.to_502732796_18502930609055684_396608733904159725_n_jerwz5.jpg",
-      "type": "image",
-      "alt": ""
-    },
-    {
-      "src": "https://res.cloudinary.com/djeorsh5d/image/upload/v1758593337/SnapInsta.to_502542090_18502930600055684_723878412222266813_n_ldykzi.jpg",
-      "type": "image",
-      "alt": ""
-    },
-    {
-      "src": "https://res.cloudinary.com/djeorsh5d/image/upload/v1758593336/SnapInsta.to_502401687_18502930648055684_3072517586375947217_n_jwygnt.jpg",
-      "type": "image",
-      "alt": ""
-    },
-    {
-      "src": "https://res.cloudinary.com/djeorsh5d/image/upload/v1758593335/SnapInsta.to_502317273_18502930594055684_6730063178882548009_n_wsctoo.jpg",
-      "type": "image",
-      "alt": ""
-    },
-    {
-      "src": "https://res.cloudinary.com/djeorsh5d/image/upload/v1758593335/SnapInsta.to_501968835_18502930597055684_8851743103427673207_n_dpg3nb.jpg",
-      "type": "image",
-      "alt": ""
-    }
-  ]
-},
-{
-  "type": "single",
-  "date": "May 31, 2025",
-  "title": "Belated birthday @mrzaddo",
-  "category": "portrait",
-  "tags": [
-    {
-      "title": "MUA",
-      "tag": [
-        { "label": "", "name": "", "handle": "@eejaycosmetics" }
-      ]
-    },
-    {
-      "title": "Photography",
-      "tag": [
-        { "label": "", "name": "", "handle": "@dkshotit_photography" },
-        { "label": "", "name": "", "handle": "@dkshotit_studio" }
-      ]
-    }
-  ],
-  "media": [
-    {
-      "src": "https://res.cloudinary.com/djeorsh5d/image/upload/v1758593346/SnapInsta.to_503047378_18502922131055684_6451243711459075639_n_h6g88l.jpg",
-      "type": "image",
-      "alt": ""
-    },
-    {
-      "src": "https://res.cloudinary.com/djeorsh5d/image/upload/v1758593345/SnapInsta.to_502756006_18502922170055684_1320077262402191340_n_jvwibu.jpg",
-      "type": "image",
-      "alt": ""
-    },
-    {
-      "src": "https://res.cloudinary.com/djeorsh5d/image/upload/v1758593339/SnapInsta.to_503065449_18502930657055684_3711702290954315968_n_gmq6vb.jpg",
-      "type": "image",
-      "alt": ""
-    },
-    {
-      "src": "https://res.cloudinary.com/djeorsh5d/image/upload/v1758593345/SnapInsta.to_502143183_18502922143055684_238252593824476157_n_yalict.jpg",
-      "type": "image",
-      "alt": ""
-    },
-    {
-      "src": "https://res.cloudinary.com/djeorsh5d/image/upload/v1758593344/SnapInsta.to_502728179_18502922161055684_2162242173249597600_n_ch6ood.jpg",
-      "type": "image",
-      "alt": ""
-    },
+
+
+
+
+
+
+
+
+
+
+
+
+
+  {
+    type: "single",
+    date: "June 5,2025",
+    title: "GREEN = LIFE 💚💚💚💚",
+    category: "memory",
+    description: "Pretty @nana_amabbe",
+    tags: [
+      {
+        title: "MUA",
+        tag: [
+          { handle: "@moka_looks" }
+        ]
+      },
+      {
+        title: "Media Team",
+        tag: [
+          { handle: "@dkshotit_studio" },
+          { handle: "@dkshotit_films" },
+          { handle: "@dkshotit_photography" }
+        ]
+      }
+    ],
+    media: [
+      {
+        src: "https://res.cloudinary.com/djeorsh5d/video/upload/v1758593340/SnapInsta.to_AQN3mKBC4YLxtgCJI7FxGUTIBEh9D3uEGyGmo71pZkRYn8WsA1H4BoNHBrT7DP1-P24t6C5zd46nmSvffEYHbdVjJNt-8TxjIwEBKr0_pnlk56.mp4",
+        type: "video"
+      }
+    ]
+  },
+  {
+    type: "single",
+    date: "June 7,2025",
+    title: "Pretty little baby @nana_amabbe 💗",
+    category: "memory",
+    tags: [
+      {
+        title: "MUA",
+        tag: [
+          { handle: "@moka_looks" }
+        ]
+      },
+      {
+        title: "Studio",
+        tag: [
+          { handle: "@dkshotit_studio" }
+        ]
+      },
+      {
+        title: "Creative Director",
+        tag: [
+          { handle: "@mrdk_real" }
+        ]
+      },
+      {
+        title: "Photography Brand",
+        tag: [
+          { handle: "@dkshotit_photography" }
+        ]
+      }
+    ],
+    media: [
+      {
+        src: "https://res.cloudinary.com/djeorsh5d/image/upload/v1758593335/SnapInsta.to_503857055_18504319840055684_3581246673401144806_n_qcqxsv.jpg",
+        type: "image"
+      },
+      {
+        src: "https://res.cloudinary.com/djeorsh5d/image/upload/v1758593335/SnapInsta.to_503554432_18504319843055684_585255444407550398_n_vjuz0e.jpg",
+        type: "image"
+      },
+      {
+        src: "https://res.cloudinary.com/djeorsh5d/image/upload/v1758593332/SnapInsta.to_503506445_18504319825055684_7083044346535226725_n_bc7g4h.jpg",
+        type: "image"
+      }
+    ]
+  },
+  {
+    type: "single",
+    date: "May 31,2025",
+    title: "Belated birthday @mrzaddo",
+    category: "birthday",
+    tags: [
+      {
+        title: "MUA",
+        tag: [
+          { handle: "@eejaycosmetics" }
+        ]
+      },
+      {
+        title: "Photography",
+        tag: [
+          { handle: "@dkshotit_photography" },
+          { handle: "@dkshotit_studio" }
+        ]
+      }
+    ],
+    media: [
+      {
+        src: "https://res.cloudinary.com/djeorsh5d/image/upload/v1758593340/SnapInsta.to_503123694_18502930618055684_1212371315606963645_n_gemdxh.jpg",
+        type: "image"
+      },
+      {
+        src: "https://res.cloudinary.com/djeorsh5d/image/upload/v1758593339/SnapInsta.to_503107295_18502930558055684_1686271969334041813_n_cptwzf.jpg",
+        type: "image"
+      },
+      {
+        src: "https://res.cloudinary.com/djeorsh5d/image/upload/v1758593339/SnapInsta.to_503065449_18502930657055684_3711702290954315968_n_gmq6vb.jpg",
+        type: "image"
+      },
+      {
+        src: "https://res.cloudinary.com/djeorsh5d/image/upload/v1758593338/SnapInsta.to_502737319_18502930570055684_4898710995767441498_n_plri0z.jpg",
+        type: "image"
+      },
+      {
+        src: "https://res.cloudinary.com/djeorsh5d/image/upload/v1758593338/SnapInsta.to_502732796_18502930609055684_396608733904159725_n_jerwz5.jpg",
+        type: "image"
+      },
+      {
+        src: "https://res.cloudinary.com/djeorsh5d/image/upload/v1758593337/SnapInsta.to_502542090_18502930600055684_723878412222266813_n_ldykzi.jpg",
+        type: "image"
+      },
+      {
+        src: "https://res.cloudinary.com/djeorsh5d/image/upload/v1758593336/SnapInsta.to_502401687_18502930648055684_3072517586375947217_n_jwygnt.jpg",
+        type: "image"
+      },
+      {
+        src: "https://res.cloudinary.com/djeorsh5d/image/upload/v1758593335/SnapInsta.to_502317273_18502930594055684_6730063178882548009_n_wsctoo.jpg",
+        type: "image"
+      },
+      {
+        src: "https://res.cloudinary.com/djeorsh5d/image/upload/v1758593335/SnapInsta.to_501968835_18502930597055684_8851743103427673207_n_dpg3nb.jpg",
+        type: "image"
+      }
+    ]
+  },
+  {
+    type: "single",
+    date: "May 31,2025",
+    title: "Belated birthday @mrzaddo",
+    category: "birthday",
+    tags: [
+      {
+        title: "MUA",
+        tag: [
+          { handle: "@eejaycosmetics" }
+        ]
+      },
+      {
+        title: "Photography",
+        tag: [
+          { handle: "@dkshotit_photography" },
+          { handle: "@dkshotit_studio" }
+        ]
+      }
+    ],
+    media: [
+      {
+        src: "https://res.cloudinary.com/djeorsh5d/image/upload/v1758593346/SnapInsta.to_503047378_18502922131055684_6451243711459075639_n_h6g88l.jpg",
+        type: "image"
+      },
+      {
+        src: "https://res.cloudinary.com/djeorsh5d/image/upload/v1758593345/SnapInsta.to_502756006_18502922170055684_1320077262402191340_n_jvwibu.jpg",
+        type: "image"
+      },
+      {
+        src: "https://res.cloudinary.com/djeorsh5d/image/upload/v1758593339/SnapInsta.to_503065449_18502930657055684_3711702290954315968_n_gmq6vb.jpg",
+        type: "image"
+      },
+      {
+        src: "https://res.cloudinary.com/djeorsh5d/image/upload/v1758593345/SnapInsta.to_502143183_18502922143055684_238252593824476157_n_yalict.jpg",
+        type: "image"
+      },
+      {
+        src: "https://res.cloudinary.com/djeorsh5d/image/upload/v1758593344/SnapInsta.to_502728179_18502922161055684_2162242173249597600_n_ch6ood.jpg",
+        type: "image"
+      }
+    ]
+  },
+
+
+
+
+  {
+    type: "single",
+    date: "May 20,2025",
+    title: "SWEET & LIVELY 50",
+    category: "birthday",
+    tags: [
+      {
+        title: "Photography",
+        tag: [
+          { handle: "@dkshotit_photography" }
+        ]
+      }
+    ],
+    media: [
+      {
+        src: "https://res.cloudinary.com/djeorsh5d/image/upload/v1758593350/SnapInsta.to_499930552_18500657311055684_697128237342267689_n_zlo7cz.jpg",
+        type: "image"
+      },
+      {
+        src: "https://res.cloudinary.com/djeorsh5d/image/upload/v1758593348/SnapInsta.to_499483077_18500657302055684_1562161864961923771_n_mjhxyq.jpg",
+        type: "image"
+      },
+      {
+        src: "https://res.cloudinary.com/djeorsh5d/image/upload/v1758593348/SnapInsta.to_499012901_18500657314055684_1514888357552826277_n_shxm7u.jpg",
+        type: "image"
+      },
+      {
+        src: "https://res.cloudinary.com/djeorsh5d/image/upload/v1758593347/SnapInsta.to_499364043_18500657299055684_5264065530914242627_n_z7oa3c.jpg",
+        type: "image"
+      }
+    ]
+  },
+  {
+    type: "single",
+    date: "May 19,2025",
+    title: "🧡🤍🤎🧡🤍🤎🧡🤍🤎",
+    category: "memory",
+    tags: [
+      {
+        title: "Photography",
+        tag: [
+          { handle: "@dkshotit_photography" }
+        ]
+      }
+    ],
+    media: [
+      {
+        src: "https://res.cloudinary.com/djeorsh5d/image/upload/v1758593367/SnapInsta.to_499659877_18500554792055684_2353848307775482449_n_ddhwdj.jpg",
+        type: "image"
+      },
+      {
+        src: "https://res.cloudinary.com/djeorsh5d/image/upload/v1758593354/SnapInsta.to_499244374_18500554747055684_2553792770226965932_n_ovxzai.jpg",
+        type: "image"
+      },
+      {
+        src: "https://res.cloudinary.com/djeorsh5d/image/upload/v1758593353/SnapInsta.to_499002699_18500554744055684_8026615038266937186_n_d6dxeq.jpg",
+        type: "image"
+      },
+      {
+        src: "https://res.cloudinary.com/djeorsh5d/image/upload/v1758593353/SnapInsta.to_498694839_18500554726055684_5778092374974397597_n_eedfbf.jpg",
+        type: "image"
+      },
+      {
+        src: "https://res.cloudinary.com/djeorsh5d/image/upload/v1758593351/SnapInsta.to_498179954_18500554801055684_2637817766615636582_n_eahbpc.jpg",
+        type: "image"
+      }
+    ]
+  },
+  {
+    type: "single",
+    date: "May 17,2025",
+    title: "BE GRATEFUL FOR LIFE AND TO THOSE WHO CALLS YOU TO ASSIST THEIR GIG…DON’T STEAL, cox Tomorrow doesn’t belongs to you. Let love lead",
+    category: "video",
+    tags: [
+      {
+        title: "Photography & Videography",
+        tag: [
+          { handle: "@dkshotit_photography" },
+          { handle: "@dkshotit_weddings" },
+          { handle: "@dkshotit_films" }
+        ]
+      },
+      {
+        title: "Makeup & Hair",
+        tag: [
+          { handle: "@barimah_makeup_artistry" }
+        ]
+      },
+      {
+        title: "Dress",
+        tag: [
+          { handle: "@todayxstyle" }
+        ]
+      }
+    ],
+    media: [
+      {
+        src: "https://res.cloudinary.com/djeorsh5d/video/upload/v1758593366/SnapInsta.to_AQNwcJLWwEvapimO-2pTzZ0gLLFEn-1o6Cl7LFhhF5gRRZkih4ercdBKSlrKL2bE4KfvKJfom9BR3bLXrIMdISe49uqkugF8ADPELXU_oirkyt.mp4",
+        type: "video"
+      }
+    ]
+  },
+  {
+    type: "single",
+    date: "May 15,2025",
+    title: "STILL IN THE BIRTHDAY MODE - BELATED BIRTHDAY TO YOU CEO of @shez_hairgh",
+    category: "birthday",
+    tags: [
+      {
+        title: "Wig",
+        tag: [
+          { handle: "@shez_hairgh" },
+          { handle: "@shezhair_lounge" },
+          { handle: "@shez_hairgh1" }
+        ]
+      },
+      {
+        title: "Makeup & Hairstyling",
+        tag: [
+          { handle: "@obremsmakeover" }
+        ]
+      },
+      {
+        title: "Photography",
+        tag: [
+          { handle: "@dkshotit_photography" },
+          { handle: "@dkshotit_studio" }
+        ]
+      },
+      {
+        title: "Assistant",
+        tag: [
+          { handle: "@whamz_photography" }
+        ]
+      },
+      {
+        title: "Dress",
+        tag: [
+          { handle: "@jessys_clothing" }
+        ]
+
+      },
+      {
+        title: "Heels",
+        tag: [
+          { handle: "@mahaliakollection" }
+        ]
+      },
+      {
+        title: "Jewelry",
+        tag: [
+          { handle: "@saharajewellerygh" }
+        ]
+      },
+      {
+        title: "Suit",
+        tag: [
+          { handle: "@obobisuit123" }
+        ]
+      }
+    ],
+    media: [
+      {
+        src: "https://res.cloudinary.com/djeorsh5d/image/upload/v1758593360/SnapInsta.to_498942500_18499803961055684_741294583783171696_n_wztfjx.jpg",
+        type: "image"
+      },
+      {
+        src: "https://res.cloudinary.com/djeorsh5d/image/upload/v1758593358/SnapInsta.to_497656087_18499803973055684_4503044335052575873_n_nxquwb.jpg",
+        type: "image"
+      }
+    ]
+  },
+  {
+    type: "video",
+    date: "May 13,2025",
+    title: "Give way for the birthday girl @shez_hairgh 😍🥳🥳",
+    category: "video",
+    tags: [
+      {
+        title: "Makeup & Hairstyling",
+        tag: [
+          { handle: "@obremsmakeover" }
+        ]
+      },
+      {
+        title: "Photography",
+        tag: [
+          { handle: "@dkshotit_photography" }
+        ]
+      },
+      {
+        title: "Wig",
+        tag: [
+          { handle: "@shez_hairgh" }
+        ]
+      },
+      {
+        title: "Lashes",
+        tag: [
+          { handle: "@lash4dolls" }
+        ]
+      },
+      {
+        title: "Products",
+        tag: [
+          { handle: "@anniesbeautygh" },
+          { handle: "@tm.essentials" },
+          { handle: "@nubanbeauty" },
+          { handle: "@bethmienbeauty" },
+          { handle: "@nasaj_beautystore" },
+          { handle: "@makeup_wavesgh" },
+          { handle: "@shormiesbeautysupply" },
+          { handle: "@the_general_merchant" },
+          { handle: "@kumasi_makeup_store" },
+          { handle: "@tekkie_beautystore" },
+          { handle: "@becharm_ageless_cosmetic" },
+          { handle: "@affordable_beauty_store_gh" }
+        ]
+      }
+    ],
+    media: [
+      {
+        src: "https://res.cloudinary.com/djeorsh5d/video/upload/v1758593418/SnapInsta.to_AQOzPeg-POLp-wRBevw7-SVvGDaNqypcMescom5oanPGMnWIsprQKx2eaXCvQSfpz1RDCRhmMffG-YeVkhfwV4qFtQ-z0KrUDQUyWXM_ldqf4i.mp4",
+        type: "video"
+      }
+    ]
+  },
+  {
+    type: "album",
+    date: "May 13,2025",
+    title: "HAPPY BIRTHDAY TO YOU CEO of @shez_hairgh",
+    category: "birthday",
+    tags: [
+      {
+        title: "Wig",
+        tag: [
+          { handle: "@shez_hairgh" },
+          { handle: "@shezhair_lounge" },
+          { handle: "@shez_hairgh1" }
+        ]
+      },
+      {
+        title: "Makeup & Hairstyling",
+        tag: [
+          { handle: "@obremsmakeover" }
+        ]
+      },
+      {
+        title: "Photography",
+        tag: [
+          { handle: "@dkshotit_photography" },
+          { handle: "@dkshotit_studio" }
+        ]
+      },
+      {
+        title: "Assistant",
+        tag: [
+          { handle: "@whamz_photography" }
+        ]
+      },
+      {
+        title: "Dress",
+        tag: [
+          { handle: "@jessys_clothing" }
+        ]
+      },
+      {
+        title: "Heels",
+        tag: [
+          { handle: "@mahaliakollection" }
+        ]
+      },
+      {
+        title: "Jewelry",
+        tag: [
+          { handle: "@saharajewellerygh" }
+        ]
+      },
+      {
+        title: "Suit",
+        tag: [
+          { handle: "@obobisuit123" }
+        ]
+      }
+    ],
+    media: [
+      {
+        src: "https://res.cloudinary.com/djeorsh5d/image/upload/v1758593366/SnapInsta.to_496958547_18499403773055684_2768985621317769185_n_yq72oo.jpg",
+        type: "image"
+      },
+      {
+        src: "https://res.cloudinary.com/djeorsh5d/image/upload/v1758593365/SnapInsta.to_497384154_18499403830055684_171541736507714688_n_bpqqr2.jpg",
+        type: "image"
+      },
+      {
+        src: "https://res.cloudinary.com/djeorsh5d/image/upload/v1758593356/SnapInsta.to_497439448_18499403782055684_3206392025651586158_n_a6reie.jpg",
+        type: "image"
+      }
+    ]
+  },
+
+
+  {
+    type: "single",
+    date: "May 13,2025",
+    title: "HAPPY BIRTHDAY TO YOU CEO of @shez_hairgh",
+    category: "birthday",
+    tags: [
+      {
+        title: "Wig",
+        tag: [
+          { handle: "@shez_hairgh" },
+          { handle: "@shezhair_lounge" },
+          { handle: "@shez_hairgh1" }
+        ]
+      },
+      {
+        title: "Makeup & Hairstyling",
+        tag: [
+          { handle: "@obremsmakeover" }
+        ]
+      },
+      {
+        title: "Photography",
+        tag: [
+          { handle: "@dkshotit_photography" },
+          { handle: "@dkshotit_studio" }
+        ]
+      },
+      {
+        title: "Assistant",
+        tag: [
+          { handle: "@whamz_photography" }
+        ]
+      },
+      {
+        title: "Dress",
+        tag: [
+          { handle: "@jessys_clothing" }
+        ]
+      },
+      {
+        title: "Heels",
+        tag: [
+          { handle: "@mahaliakollection" }
+        ]
+      },
+      {
+        title: "Jewelry",
+        tag: [
+          { handle: "@saharajewellerygh" }
+        ]
+      },
+      {
+        title: "Suit",
+        tag: [
+          { handle: "@obobisuit123" }
+        ]
+      }
+    ],
+    media: [
+      {
+        src: "https://res.cloudinary.com/djeorsh5d/image/upload/v1758593363/SnapInsta.to_497805184_18499399348055684_8760950554318651317_n_dsdkyo.jpg",
+        type: "image"
+      },
+      {
+        src: "https://res.cloudinary.com/djeorsh5d/image/upload/v1758593363/SnapInsta.to_497655273_18499399375055684_2737019179220264730_n_ajcxkn.jpg",
+        type: "image"
+      },
+      {
+        src: "https://res.cloudinary.com/djeorsh5d/image/upload/v1758593363/SnapInsta.to_497457857_18499399366055684_7662398607129585949_n_iaj88p.jpg",
+        type: "image"
+      },
+      {
+        src: "https://res.cloudinary.com/djeorsh5d/image/upload/v1758593361/SnapInsta.to_496963095_18499399363055684_6019141094478291150_n_vgye4a.jpg",
+        type: "image"
+      }
+    ]
+  },
+  {
+    type: "single",
+    date: "May 7,2025",
+    title: "THIS IS GOLDEN JUBILEE 🏆, Belated 50TH BIRTHDAY 🎂 LINDA NSAFOAH",
+    category: "birthday",
+    tags: [
+      {
+        title: "Makeup",
+        tag: [
+          { handle: "@a.n.f_beautybar" }
+        ]
+      },
+      {
+        title: "Photography",
+        tag: [
+          { handle: "@dkshotit_studio" },
+          { handle: "@dkshotit_photography" }
+        ]
+      }
+    ],
+    media: [
+      {
+        src: "https://res.cloudinary.com/djeorsh5d/image/upload/v1758593364/SnapInsta.to_496123730_18498331042055684_7368396383890844253_n_dmwsgv.jpg",
+        type: "image"
+      }
+    ]
+  },
+  {
+    type: "gallery",
+    date: "May 6,2025",
+    title: "BELATED BIRTHDAY TO OUR BEAUTIFUL SIS & A MOM 👩. Happy 50Th Birthday 🎉",
+    category: "birthday",
+    tags: [
+      {
+        title: "Photography",
+        tag: [
+          { handle: "@dkshotit_photography" },
+          { handle: "@dkshotit_studio" }
+        ]
+      }
+    ],
+    media: [
+      {
+        src: "https://res.cloudinary.com/djeorsh5d/image/upload/v1758593368/SnapInsta.to_495700631_18498125065055684_4761215927786535158_n_j3w4zv.jpg",
+        type: "image"
+      },
+      {
+        src: "https://res.cloudinary.com/djeorsh5d/image/upload/v1758593367/SnapInsta.to_495651765_18498125029055684_3079869952333007559_n_xfatjp.jpg",
+        type: "image"
+      },
+      {
+        src: "https://res.cloudinary.com/djeorsh5d/image/upload/v1758593367/SnapInsta.to_495692610_18498125062055684_78208564723294005_n_w8mwcu.jpg",
+        type: "image"
+      },
+      {
+        src: "https://res.cloudinary.com/djeorsh5d/image/upload/v1758593366/SnapInsta.to_495564200_18498125011055684_2543678329775957249_n_apalu6.jpg",
+        type: "image"
+      },
+      {
+        src: "https://res.cloudinary.com/djeorsh5d/image/upload/v1758593366/SnapInsta.to_495553327_18498125044055684_8231572460175299842_n_qqiwec.jpg",
+        type: "image"
+      },
+      {
+        src: "https://res.cloudinary.com/djeorsh5d/image/upload/v1758593365/SnapInsta.to_495499320_18498125083055684_2244064161036621426_n_nrhudo.jpg",
+        type: "image"
+      },
+      {
+        src: "https://res.cloudinary.com/djeorsh5d/image/upload/v1758593364/SnapInsta.to_491447697_18498125047055684_2010875345067401279_n_cd8elx.jpg",
+        type: "image"
+      }
+    ]
+  },
+  {
+    type: "gallery",
+    date: "May 6,2025",
+    title: "HAPPY BIRTHDAY GIFTY",
+    category: "birthday",
+    tags: [
+      {
+        title: "Photography & Styling",
+        tag: [
+          { handle: "@dkshotit_photography" },
+          { handle: "@dkshotit_studio" },
+          { handle: "@a.n.f_beautybar" }
+        ]
+      }
+    ],
+    media: [
+      {
+        src: "https://res.cloudinary.com/djeorsh5d/image/upload/v1758593371/SnapInsta.to_495712633_18498119068055684_5436287651337601700_n_eiqppj.jpg",
+        type: "image"
+      },
+      {
+        src: "https://res.cloudinary.com/djeorsh5d/image/upload/v1758593371/SnapInsta.to_495857392_18498119212055684_3823151440918805314_n_dizhhd.jpg",
+        type: "image"
+      },
+      {
+        src: "https://res.cloudinary.com/djeorsh5d/image/upload/v1758593369/SnapInsta.to_495601275_18498119050055684_6595719380879690934_n_btpde1.jpg",
+        type: "image"
+      },
+      {
+        src: "https://res.cloudinary.com/djeorsh5d/image/upload/v1758593368/SnapInsta.to_495341267_18498119200055684_3996367609353588517_n_icqxsr.jpg",
+        type: "image"
+      }
+    ]
+  },
+  {
+    type: "gallery",
+    date: "May 5,2025",
+    title: "HAPPY BIRTHDAY IVY … MUCH LOVE 💕",
+    category: "birthday",
+    tags: [
+      {
+        tag: [
+          { handle: "@dkshotit_photography" }
+        ]
+      }
+    ],
+    media: [
+      {
+        src: "https://res.cloudinary.com/djeorsh5d/image/upload/v1758593383/SnapInsta.to_495583082_18497919994055684_1741928930888204757_n_prqlr2.jpg",
+        type: "image"
+      },
+      {
+        src: "https://res.cloudinary.com/djeorsh5d/image/upload/v1758593379/SnapInsta.to_495343898_18497919967055684_1932820387186759856_n_yvrtot.jpg",
+        type: "image"
+      },
+      {
+        src: "https://res.cloudinary.com/djeorsh5d/image/upload/v1758593378/SnapInsta.to_491446432_18497920009055684_3665204723391084513_n_loxrrz.jpg",
+        type: "image"
+      },
+      {
+        src: "https://res.cloudinary.com/djeorsh5d/image/upload/v1758593378/SnapInsta.to_494757802_18497919976055684_752268394656273464_n_ixbapt.jpg",
+        type: "image"
+      }
+    ]
+  },
+  {
+    type: "photo",
+    date: "October 4,2025",
+    title: "Two souls, one heartbeat.",
+    // description: "GOOD GOD",
+    category: "pregnancy",
+
+    tags: [
+      {
+        title: "Photography",
+        tag: [
+          { label: "photographer", handle: "@dkshotit_photography" }
+        ]
+      }
+    ],
+    hashtags: ["#dkshotitphotograhy", "#dkshotitstudio", "#pregnantandperfect"],
+    media: [
+      {
+        src: "https://res.cloudinary.com/djeorsh5d/image/upload/v1759712512/SnapInsta.to_558063477_18526734394055684_597963000324053431_n_h1z1uo.jpg",
+        type: "image",
+        alt: "Maternity photo shoot - portrait 1"
+      },
+      {
+        src: "https://res.cloudinary.com/djeorsh5d/image/upload/v1759712511/SnapInsta.to_559187087_18526734379055684_2945446221219841540_n_mm5efr.jpg",
+        type: "image",
+        alt: "Maternity photo shoot - portrait 2"
+      },
+      {
+        src: "https://res.cloudinary.com/djeorsh5d/image/upload/v1759712487/SnapInsta.to_559874069_18526734382055684_5386065605553386549_n_udw2wu.jpg",
+        type: "image",
+        alt: "Maternity photo shoot - portrait 3"
+      }
+    ]
+  },
+  {
+    type: "photo",
+    date: "October 5,2025",
+    title: "Happy birthday Star ⭐️ 🧒 Winston",
+    category: "children",
+
+    hashtags: ["#dkshotitphotograhy"],
+    tags: [
+      {
+        tag: [
+          { handle: "@dkshotit_photography" }
+        ]
+      }
+    ],
+    media: [
+      {
+        src: "https://res.cloudinary.com/djeorsh5d/image/upload/v1759712516/SnapInsta.to_559689670_18526850209055684_1722908797114717170_n_xewzpd.jpg",
+        type: "image",
+        alt: "Birthday portrait of Star Winston 1"
+      },
+      {
+        src: "https://res.cloudinary.com/djeorsh5d/image/upload/v1759712515/SnapInsta.to_558976645_18526850191055684_8864724944103735477_n_y3cjrq.jpg",
+        type: "image",
+        alt: "Birthday portrait of Star Winston 2"
+      },
+      {
+        src: "https://res.cloudinary.com/djeorsh5d/image/upload/v1759712513/SnapInsta.to_560453355_18526850218055684_3333648649439319504_n_ewuktr.jpg",
+        type: "image",
+        alt: "Birthday portrait of Star Winston 3"
+      },
+      {
+        src: "https://res.cloudinary.com/djeorsh5d/image/upload/v1759712511/SnapInsta.to_559251930_18526850200055684_4893320221861092057_n_egc3nl.jpg",
+        type: "image",
+        alt: "Birthday portrait of Star Winston 4"
+      }
+    ]
+  },
+  {
+    type: "photo",
+    date: "March 5,2025",
+    title: "Congratulations on the Arrival of Your Precious Little One 💕",
+    description: "Your journey into motherhood is nothing short of extraordinary, and today marks the beginning of a beautiful new chapter filled with love, joy, and endless cherished moments.\n\nMay your heart be filled with warmth as you hold your baby in your arms, and may your home be filled with laughter and happiness. You are already an amazing mother, and your strength and love will shape this little life in the most incredible ways.\n\nWishing you and your little one health, peace, and abundance of love. Enjoy every moment of this beautiful blessing!",
+    category: "pregnancy",
+
+
+    tags: [
+      {
+        tag: [
+          {label: "photographer", handle: "@dkshotit_photography" }
+        ]
+      },
+      {
+        tag: [
+          {label: 'makeup_hairstyle', handle: "@erniekay_splendor" }
+        ]
+      },
+      
+    ],
+    media: [
+      {
+        src: "https://res.cloudinary.com/djeorsh5d/image/upload/v1759712514/SnapInsta.to_474363190_18485679028055684_671931168743387662_n_jptemb.jpg",
+        type: "image",
+        alt: "Mother holding newborn baby portrait 1"
+      },
+      {
+        src: "https://res.cloudinary.com/djeorsh5d/image/upload/v1759712514/SnapInsta.to_482505239_18485679025055684_7109062476901550987_n_s4niel.jpg",
+        type: "image",
+        alt: "Mother holding newborn baby portrait 2"
+      },
+      {
+        src: "https://res.cloudinary.com/djeorsh5d/image/upload/v1759712487/SnapInsta.to_482337544_18485678998055684_1106566874468251929_n_qiflxe.jpg",
+        type: "image",
+        alt: "Mother holding newborn baby portrait 3"
+      },
+      {
+        src: "https://res.cloudinary.com/djeorsh5d/image/upload/v1759712487/SnapInsta.to_472567327_18485679016055684_2134049507011690833_n_bskfdg.jpg",
+        type: "image",
+        alt: "Mother holding newborn baby portrait 4"
+      },
+      {
+        src: "https://res.cloudinary.com/djeorsh5d/image/upload/v1759712487/SnapInsta.to_472607420_18485679013055684_371518464487763160_n_p5t8df.jpg",
+        type: "image",
+        alt: "Mother holding newborn baby portrait 5"
+      }
+    ]
+  },
+  {
+    type: "photo",
+    date: "June 2,2024",
+    title: "May This Smile Never Fade Away 🌸",
+    description: "Happy Birthday Princess 👸! Your smile lights up every room — may it never fade away. Wishing you endless joy, laughter, and love on your special day.",
+    category: "children",
+
+    tags: [
+      {
+        tag: [
+          { label: "balloon_decor", handle: "@dkshotit_photography" }
+        ]
+      },
+      {
+        tag: [
+          { label: "photographer", handle: "@dkshotit_photography" }
+        ]
+      }
+    ],
+    media: [
+      {
+        src: "https://res.cloudinary.com/djeorsh5d/image/upload/v1759712515/SnapInsta.to_471498231_18472580647055684_7143812809912805313_n_jremvc.jpg",
+        type: "image",
+        alt: "Birthday princess with balloon decor 1"
+      },
+      {
+        src: "https://res.cloudinary.com/djeorsh5d/image/upload/v1759712512/SnapInsta.to_471087136_18472580545055684_2169456061458478493_n_ci8qhs.jpg",
+        type: "image",
+        alt: "Birthday princess with balloon decor 2"
+      },
+      {
+        src: "https://res.cloudinary.com/djeorsh5d/image/upload/v1759712494/SnapInsta.to_471489980_18472580533055684_6739593157892384946_n_visflp.jpg",
+        type: "image",
+        alt: "Birthday princess with balloon decor 3"
+      },
+      {
+        src: "https://res.cloudinary.com/djeorsh5d/image/upload/v1759712493/SnapInsta.to_471417148_18472580659055684_7671413462611187828_n_mwsm4l.jpg",
+        type: "image",
+        alt: "Birthday princess with balloon decor 4"
+      },
+      {
+        src: "https://res.cloudinary.com/djeorsh5d/image/upload/v1759712490/SnapInsta.to_471293402_18472580911055684_8573344225434687838_n_u3vxng.jpg",
+        type: "image",
+        alt: "Birthday princess with balloon decor 5"
+      },
+      {
+        src: "https://res.cloudinary.com/djeorsh5d/image/upload/v1759712488/SnapInsta.to_471187246_18472580602055684_2821836130381860787_n_hoqueb.jpg",
+        type: "image",
+        alt: "Birthday princess with balloon decor 6"
+      },
+      {
+        src: "https://res.cloudinary.com/djeorsh5d/image/upload/v1759712488/SnapInsta.to_471203731_18472580611055684_6783045303661402090_n_vrmzaj.jpg",
+        type: "image",
+        alt: "Birthday princess with balloon decor 7"
+      },
+      {
+        src: "https://res.cloudinary.com/djeorsh5d/image/upload/v1759712487/SnapInsta.to_470880911_18472580668055684_2919973922148552987_n_fndx0j.jpg",
+        type: "image",
+        alt: "Birthday princess with balloon decor 8"
+      }
+    ]
+  },
+  {
+    type: "music_promo",
+    date: "November 9,2024",
+    title: "LIBUSKI FALL APART 🎶",
+    description: "New release — *LIBUSKI FALL APART* by @mr_prempeh1 is finally out! 🔥 Stream it via the link in his bio and feel the vibe. 🎧✨",
+    category: "memory",
+
+    tags: [
+      {
+        tag: [
+          { label: "photo_credit", handle: "@dkshotit_photography" }
+        ]
+      },
+      {
+        tag: [
+          { label: "cover_art", handle: "@mrdk_real" }
+        ]
+      },
+      {
+        tag: [
+          { label: "music_video_director", handle: "@dkshotit_films" }
+        ]
+      }
+    ],
+    media: [
+      {
+        src: "https://res.cloudinary.com/djeorsh5d/image/upload/v1759712507/SnapInsta.to_466413527_18464144422055684_4824681263297474096_n_hqvq5c.jpg",
+        type: "image",
+        alt: "LIBUSKI FALL APART promo cover 1"
+      },
+      {
+        src: "https://res.cloudinary.com/djeorsh5d/image/upload/v1759712507/SnapInsta.to_466122595_18464144419055684_3048575582497923164_n_lc506o.jpg",
+        type: "image",
+        alt: "LIBUSKI FALL APART promo cover 2"
+      },
+      {
+        src: "https://res.cloudinary.com/djeorsh5d/image/upload/v1759712506/SnapInsta.to_466039879_18464144392055684_7340120126445394992_n_ockrio.jpg",
+        type: "image",
+        alt: "LIBUSKI FALL APART promo cover 3"
+      }
+    ]
+  },
+  {
+    type: "graduation_post",
+    date: "December 9,2024",
+    title: "Congrats 🍾 @_alexandra_owusu",
+    description: "Congratulations on your graduation! 🎓",
+    category: "graduation",
+
+    tags: [
+      {
+        tag: [
+          { tag: "photo_credit", handle: "@dkshotit_photography" }
+        ]
+      }
+    ],
+    media: [
+      {
+        src: "https://res.cloudinary.com/djeorsh5d/image/upload/v1759712506/SnapInsta.to_469531805_18469426879055684_4966678874934700017_n_1_pfcfdc.jpg",
+        type: "image",
+        alt: "Alexandra Owusu graduation photo 1"
+      },
+      {
+        src: "https://res.cloudinary.com/djeorsh5d/image/upload/v1759712505/SnapInsta.to_469219492_18469426897055684_7402252849566931661_n_acqt6z.jpg",
+        type: "image",
+        alt: "Alexandra Owusu graduation photo 2"
+      },
+      {
+        src: "https://res.cloudinary.com/djeorsh5d/image/upload/v1759712504/SnapInsta.to_469102855_18469426888055684_3814573888885486712_n_1_tq8pn0.jpg",
+        type: "image",
+        alt: "Alexandra Owusu graduation photo 3"
+      },
+      {
+        src: "https://res.cloudinary.com/djeorsh5d/image/upload/v1759712503/SnapInsta.to_468901365_18469426906055684_5680961954296803200_n_nv8chm.jpg",
+        type: "image",
+        alt: "Alexandra Owusu graduation photo 4"
+      }
+    ]
+  },
+  {
+    type: "holiday_post",
+    date: "December 29,2025",
+    title: "MERRY CHRISTMAS 🎄🎁 TO YOU ALL",
+    category: "memory",
+
+    tags: [
+      {
+        tag: [
+          { label: "photo_credit", handle: "@dkshotit_photography" }
+        ]
+      },
+      {
+        title: "vendors",
+        tag: [
+          { label: "hair", handle: "@shez_hairgh" },
+          { label: "makeup", handle: "@moka_looks" },
+          { label: "clothing", handle: "@jessys_clothing" }
+        ]
+      }
+    ],
+    media: [
+      {
+        src: "https://res.cloudinary.com/djeorsh5d/image/upload/v1759712510/SnapInsta.to_471676425_18473794522055684_8570740565689255928_n_tns29k.jpg",
+        type: "image",
+        alt: "Christmas photo 1"
+      },
+      {
+        src: "https://res.cloudinary.com/djeorsh5d/image/upload/v1759712509/SnapInsta.to_471461001_18473794534055684_6769988721659986884_n_xnnycq.jpg",
+        type: "image",
+        alt: "Christmas photo 2"
+      },
+      {
+        src: "https://res.cloudinary.com/djeorsh5d/image/upload/v1759712509/SnapInsta.to_470945368_18473794525055684_2715026811384001017_n_f0rxp1.jpg",
+        type: "image",
+        alt: "Christmas photo 3"
+      },
+      {
+        src: "https://res.cloudinary.com/djeorsh5d/image/upload/v1759712508/SnapInsta.to_470943433_18473794507055684_1991708800022047915_n_cponyc.jpg",
+        type: "image",
+        alt: "Christmas photo 4"
+      }
+    ]
+  },
+  {
+    type: "holiday_post",
+    date: "December 29,2025",
+    title: "Congrats beautiful",
+    category: "graduation",
+
+
+     
  
-  ]
-},
-{
-  "type": "single",
-  "date": "May 20, 2025",
-  "title": "SWEET & LIVELY 50",
-  "category": "portrait",
-  "tags": [
-    {
-      "title": "Photography",
-      "tag": [
-        { "label": "", "name": "", "handle": "@dkshotit_photography" }
-      ]
-    }
-  ],
-  "media": [
-    {
-      "src": "https://res.cloudinary.com/djeorsh5d/image/upload/v1758593350/SnapInsta.to_499930552_18500657311055684_697128237342267689_n_zlo7cz.jpg",
-      "type": "image",
-      "alt": ""
-    },
-    {
-      "src": "https://res.cloudinary.com/djeorsh5d/image/upload/v1758593348/SnapInsta.to_499483077_18500657302055684_1562161864961923771_n_mjhxyq.jpg",
-      "type": "image",
-      "alt": ""
-    },
-    {
-      "src": "https://res.cloudinary.com/djeorsh5d/image/upload/v1758593348/SnapInsta.to_499012901_18500657314055684_1514888357552826277_n_shxm7u.jpg",
-      "type": "image",
-      "alt": ""
-    },
-    {
-      "src": "https://res.cloudinary.com/djeorsh5d/image/upload/v1758593347/SnapInsta.to_499364043_18500657299055684_5264065530914242627_n_z7oa3c.jpg",
-      "type": "image",
-      "alt": ""
-    }
-  ]
-}
-,
-{
-  "type": "single",
-  "date": "May 19, 2025",
-  "title": "🧡🤍🤎🧡🤍🤎🧡🤍🤎",
-  "category": "portrait",
-  "tags": [
-    {
-      "title": "Photography",
-      "tag": [
-        { "label": "", "name": "", "handle": "@dkshotit_photography" }
-      ]
-    }
-  ],
-  "media": [
-    {
-      "src": "https://res.cloudinary.com/djeorsh5d/image/upload/v1758593367/SnapInsta.to_499659877_18500554792055684_2353848307775482449_n_ddhwdj.jpg",
-      "type": "image",
-      "alt": ""
-    },
-    {
-      "src": "https://res.cloudinary.com/djeorsh5d/image/upload/v1758593354/SnapInsta.to_499244374_18500554747055684_2553792770226965932_n_ovxzai.jpg",
-      "type": "image",
-      "alt": ""
-    },
-    {
-      "src": "https://res.cloudinary.com/djeorsh5d/image/upload/v1758593353/SnapInsta.to_499002699_18500554744055684_8026615038266937186_n_d6dxeq.jpg",
-      "type": "image",
-      "alt": ""
-    },
-    {
-      "src": "https://res.cloudinary.com/djeorsh5d/image/upload/v1758593353/SnapInsta.to_498694839_18500554726055684_5778092374974397597_n_eedfbf.jpg",
-      "type": "image",
-      "alt": ""
-    },
-    {
-      "src": "https://res.cloudinary.com/djeorsh5d/image/upload/v1758593351/SnapInsta.to_498179954_18500554801055684_2637817766615636582_n_eahbpc.jpg",
-      "type": "image",
-      "alt": ""
-    }
-  ]
-}
-,
+    tags: [
+      {
+        tag: [
+          { label: "Makeup", handle: "@obremsmakeover" }
+        ]
+      },
+      {
+        tag: [
+          { label: "Hair", handle: "@sk_luxefit" }
+        ]
+      },
+      {
+        tag: [
+          { label: "photo_credit", handle: "@dkshotit_photography" }
+        ]
+      },
+      
+    ],
+    media: [
+     
+      {
+        src: "https://res.cloudinary.com/djeorsh5d/image/upload/v1759712500/SnapInsta.to_468464118_18467589271055684_5232992332891053927_n_l9aicb.jpg",
+        type: "image",
+        alt: "Christmas photo 2"
+      },
+      {
+        src: "https://res.cloudinary.com/djeorsh5d/image/upload/v1759712498/SnapInsta.to_468449596_18467589217055684_187304462868179642_n_sr2t22.jpg",
+        type: "image",
+        alt: "Christmas photo 3"
+      },
+      {
+        src: "https://res.cloudinary.com/djeorsh5d/image/upload/v1759712498/SnapInsta.to_468444977_18467589190055684_3218790195246034738_n_xp88br.jpg",
+        type: "image",
+        alt: "Christmas photo 4"
+      }
+    ]
+  },
+  {
+    type: "holiday_post",
+    date: "December 29,2025",
+    title: "Happy birthday Fresh Prince 🫅",
+    category: "children",
 
-{
-  "type": "single",
-  "date": "May 17, 2025",
-  "title": "BE GRATEFUL FOR LIFE AND TO THOSE WHO CALLS YOU TO ASSIST THEIR GIG…DON’T STEAL, cox Tomorrow doesn’t belongs to you. Let love lead",
-  "category": "video",
-  "tags": [
-    {
-      "title": "Photography & Videography",
-      "tag": [
-        { "label": "", "name": "", "handle": "@dkshotit_photography" },
-        { "label": "", "name": "", "handle": "@dkshotit_weddings" },
-        { "label": "", "name": "", "handle": "@dkshotit_films" }
-      ]
-    },
-    {
-      "title": "Makeup & Hair",
-      "tag": [
-        { "label": "", "name": "", "handle": "@barimah_makeup_artistry" }
-      ]
-    },
-    {
-      "title": "Dress",
-      "tag": [
-        { "label": "", "name": "", "handle": "@todayxstyle" }
-      ]
-    }
-  ],
-  "media": [
-    {
-      "src": "https://res.cloudinary.com/djeorsh5d/video/upload/v1758593366/SnapInsta.to_AQNwcJLWwEvapimO-2pTzZ0gLLFEn-1o6Cl7LFhhF5gRRZkih4ercdBKSlrKL2bE4KfvKJfom9BR3bLXrIMdISe49uqkugF8ADPELXU_oirkyt.mp4",
-      "type": "video",
-      "alt": ""
-    }
-  ]
-}
-,{
-  "type": "single",
-  "date": "May 15, 2025",
-  "title": "STILL IN THE BIRTHDAY MODE - BELATED BIRTHDAY TO YOU CEO of @shez_hairgh",
-  "category": "image",
-  "tags": [
-    {
-      "title": "Wig",
-      "tag": [
-        { "label": "", "name": "", "handle": "@shez_hairgh" },
-        { "label": "", "name": "", "handle": "@shezhair_lounge" },
-        { "label": "", "name": "", "handle": "@shez_hairgh1" }
-      ]
-    },
-    {
-      "title": "Makeup & Hairstyling",
-      "tag": [
-        { "label": "", "name": "", "handle": "@obremsmakeover" }
-      ]
-    },
-    {
-      "title": "Photography",
-      "tag": [
-        { "label": "", "name": "", "handle": "@dkshotit_photography" },
-        { "label": "", "name": "", "handle": "@dkshotit_studio" }
-      ]
-    },
-    {
-      "title": "Assistant",
-      "tag": [
-        { "label": "", "name": "", "handle": "@whamz_photography" }
-      ]
-    },
-    {
-      "title": "Dress",
-      "tag": [
-        { "label": "", "name": "", "handle": "@jessys_clothing" }
-      ]
-    },
-    {
-      "title": "Heels",
-      "tag": [
-        { "label": "", "name": "", "handle": "@mahaliakollection" }
-      ]
-    },
-    {
-      "title": "Jewelry",
-      "tag": [
-        { "label": "", "name": "", "handle": "@saharajewellerygh" }
-      ]
-    },
-    {
-      "title": "Suit",
-      "tag": [
-        { "label": "", "name": "", "handle": "@obobisuit123" }
-      ]
-    }
-  ],
-  "media": [
-    {
-      "src": "https://res.cloudinary.com/djeorsh5d/image/upload/v1758593360/SnapInsta.to_498942500_18499803961055684_741294583783171696_n_wztfjx.jpg",
-      "type": "image",
-      "alt": ""
-    },
-    {
-      "src": "https://res.cloudinary.com/djeorsh5d/image/upload/v1758593358/SnapInsta.to_497656087_18499803973055684_4503044335052575873_n_nxquwb.jpg",
-      "type": "image",
-      "alt": ""
-    }
-  ]
-}
 
-,
-{
-  "type": "video",
-  "date": "May 13, 2025",
-  "title": "Give way for the birthday girl @shez_hairgh 😍🥳🥳",
-  "category": "video",
-  "tags": [
-    {
-      "title": "Makeup & Hairstyling",
-      "tag": [
-        { "label": "", "name": "", "handle": "@obremsmakeover" }
-      ]
-    },
-    {
-      "title": "Photography",
-      "tag": [
-        { "label": "", "name": "", "handle": "@dkshotit_photography" }
-      ]
-    },
-    {
-      "title": "Wig",
-      "tag": [
-        { "label": "", "name": "", "handle": "@shez_hairgh" }
-      ]
-    },
-    {
-      "title": "Lashes",
-      "tag": [
-        { "label": "", "name": "", "handle": "@lash4dolls" }
-      ]
-    },
-    {
-      "title": "Products",
-      "tag": [
-        { "label": "", "name": "", "handle": "@anniesbeautygh" },
-        { "label": "", "name": "", "handle": "@tm.essentials" },
-        { "label": "", "name": "", "handle": "@nubanbeauty" },
-        { "label": "", "name": "", "handle": "@bethmienbeauty" },
-        { "label": "", "name": "", "handle": "@nasaj_beautystore" },
-        { "label": "", "name": "", "handle": "@makeup_wavesgh" },
-        { "label": "", "name": "", "handle": "@shormiesbeautysupply" },
-        { "label": "", "name": "", "handle": "@the_general_merchant" },
-        { "label": "", "name": "", "handle": "@kumasi_makeup_store" },
-        { "label": "", "name": "", "handle": "@tekkie_beautystore" },
-        { "label": "", "name": "", "handle": "@becharm_ageless_cosmetic" },
-        { "label": "", "name": "", "handle": "@affordable_beauty_store_gh" }
-      ]
-    }
-  ],
-  "media": [
-    {
-      "src": "https://res.cloudinary.com/djeorsh5d/video/upload/v1758593418/SnapInsta.to_AQOzPeg-POLp-wRBevw7-SVvGDaNqypcMescom5oanPGMnWIsprQKx2eaXCvQSfpz1RDCRhmMffG-YeVkhfwV4qFtQ-z0KrUDQUyWXM_ldqf4i.mp4",
-      "type": "video",
-      "alt": ""
-    }
-  ]
-},
-{
-  "type": "album",
-  "date": "May 13, 2025",
-  "title": "HAPPY BIRTHDAY TO YOU CEO of @shez_hairgh",
-  "category": "image",
-  "tags": [
-    {
-      "title": "Wig",
-      "tag": [
-        { "label": "", "name": "", "handle": "@shez_hairgh" },
-        { "label": "", "name": "", "handle": "@shezhair_lounge" },
-        { "label": "", "name": "", "handle": "@shez_hairgh1" }
-      ]
-    },
-    {
-      "title": "Makeup & Hairstyling",
-      "tag": [
-        { "label": "", "name": "", "handle": "@obremsmakeover" }
-      ]
-    },
-    {
-      "title": "Photography",
-      "tag": [
-        { "label": "", "name": "", "handle": "@dkshotit_photography" },
-        { "label": "", "name": "", "handle": "@dkshotit_studio" }
-      ]
-    },
-    {
-      "title": "Assistant",
-      "tag": [
-        { "label": "", "name": "", "handle": "@whamz_photography" }
-      ]
-    },
-    {
-      "title": "Dress",
-      "tag": [
-        { "label": "", "name": "", "handle": "@jessys_clothing" }
-      ]
-    },
-    {
-      "title": "Heels",
-      "tag": [
-        { "label": "", "name": "", "handle": "@mahaliakollection" }
-      ]
-    },
-    {
-      "title": "Jewelry",
-      "tag": [
-        { "label": "", "name": "", "handle": "@saharajewellerygh" }
-      ]
-    },
-    {
-      "title": "Suit",
-      "tag": [
-        { "label": "", "name": "", "handle": "@obobisuit123" }
-      ]
-    }
-  ],
-  "media": [
-    {
-      "src": "https://res.cloudinary.com/djeorsh5d/image/upload/v1758593366/SnapInsta.to_496958547_18499403773055684_2768985621317769185_n_yq72oo.jpg",
-      "type": "image",
-      "alt": ""
-    },
-    {
-      "src": "https://res.cloudinary.com/djeorsh5d/image/upload/v1758593365/SnapInsta.to_497384154_18499403830055684_171541736507714688_n_bpqqr2.jpg",
-      "type": "image",
-      "alt": ""
-    },
-    {
-      "src": "https://res.cloudinary.com/djeorsh5d/image/upload/v1758593356/SnapInsta.to_497439448_18499403782055684_3206392025651586158_n_a6reie.jpg",
-      "type": "image",
-      "alt": ""
-    }
-  ]
-},
-{
-  "type": "single",
-  "date": "May 13, 2025",
-  "title": "HAPPY BIRTHDAY TO YOU CEO of @shez_hairgh",
-  "category": "image",
-  "tags": [
-    {
-      "title": "Wig",
-      "tag": [
-        { "label": "", "name": "", "handle": "@shez_hairgh" },
-        { "label": "", "name": "", "handle": "@shezhair_lounge" },
-        { "label": "", "name": "", "handle": "@shez_hairgh1" }
-      ]
-    },
-    {
-      "title": "Makeup & Hairstyling",
-      "tag": [
-        { "label": "", "name": "", "handle": "@obremsmakeover" }
-      ]
-    },
-    {
-      "title": "Photography",
-      "tag": [
-        { "label": "", "name": "", "handle": "@dkshotit_photography" },
-        { "label": "", "name": "", "handle": "@dkshotit_studio" }
-      ]
-    },
-    {
-      "title": "Assistant",
-      "tag": [
-        { "label": "", "name": "", "handle": "@whamz_photography" }
-      ]
-    },
-    {
-      "title": "Dress",
-      "tag": [
-        { "label": "", "name": "", "handle": "@jessys_clothing" }
-      ]
-    },
-    {
-      "title": "Heels",
-      "tag": [
-        { "label": "", "name": "", "handle": "@mahaliakollection" }
-      ]
-    },
-    {
-      "title": "Jewelry",
-      "tag": [
-        { "label": "", "name": "", "handle": "@saharajewellerygh" }
-      ]
-    },
-    {
-      "title": "Suit",
-      "tag": [
-        { "label": "", "name": "", "handle": "@obobisuit123" }
-      ]
-    }
-  ],
-  "media": [
-    {
-      "src": "https://res.cloudinary.com/djeorsh5d/image/upload/v1758593363/SnapInsta.to_497805184_18499399348055684_8760950554318651317_n_dsdkyo.jpg",
-      "type": "image",
-      "alt": ""
-    },
-    {
-      "src": "https://res.cloudinary.com/djeorsh5d/image/upload/v1758593363/SnapInsta.to_497655273_18499399375055684_2737019179220264730_n_ajcxkn.jpg",
-      "type": "image",
-      "alt": ""
-    },
-    {
-      "src": "https://res.cloudinary.com/djeorsh5d/image/upload/v1758593363/SnapInsta.to_497457857_18499399366055684_7662398607129585949_n_iaj88p.jpg",
-      "type": "image",
-      "alt": ""
-    },
-    {
-      "src": "https://res.cloudinary.com/djeorsh5d/image/upload/v1758593361/SnapInsta.to_496963095_18499399363055684_6019141094478291150_n_vgye4a.jpg",
-      "type": "image",
-      "alt": ""
-    }
-  ]
-}
-,{
-  "type": "single",
-  "date": "May 7, 2025",
-  "title": "THIS IS GOLDEN JUBILEE 🏆, Belated 50TH BIRTHDAY 🎂 LINDA NSAFOAH",
-  "category": "image",
-  "tags": [
-    {
-      "title": "Makeup",
-      "tag": [
-        { "label": "", "name": "", "handle": "@a.n.f_beautybar" }
-      ]
-    },
-    {
-      "title": "Photography",
-      "tag": [
-        { "label": "", "name": "", "handle": "@dkshotit_studio" },
-        { "label": "", "name": "", "handle": "@dkshotit_photography" }
-      ]
-    }
-  ],
-  "media": [
-    {
-      "src": "https://res.cloudinary.com/djeorsh5d/image/upload/v1758593364/SnapInsta.to_496123730_18498331042055684_7368396383890844253_n_dmwsgv.jpg",
-      "type": "image",
-      "alt": ""
-    }
-  ]
-}
-,{
-  "type": "gallery",
-  "date": "May 6, 2025",
-  "title": "BELATED BIRTHDAY TO OUR BEAUTIFUL SIS & A MOM 👩. Happy 50Th Birthday 🎉",
-  "category": "image",
-  "tags": [
-    {
-      "title": "Photography",
-      "tag": [
-        { "label": "", "name": "", "handle": "@dkshotit_photography" },
-        { "label": "", "name": "", "handle": "@dkshotit_studio" }
-      ]
-    }
-  ],
-  "media": [
-    {
-      "src": "https://res.cloudinary.com/djeorsh5d/image/upload/v1758593368/SnapInsta.to_495700631_18498125065055684_4761215927786535158_n_j3w4zv.jpg",
-      "type": "image",
-      "alt": ""
-    },
-    {
-      "src": "https://res.cloudinary.com/djeorsh5d/image/upload/v1758593367/SnapInsta.to_495651765_18498125029055684_3079869952333007559_n_xfatjp.jpg",
-      "type": "image",
-      "alt": ""
-    },
-    {
-      "src": "https://res.cloudinary.com/djeorsh5d/image/upload/v1758593367/SnapInsta.to_495692610_18498125062055684_78208564723294005_n_w8mwcu.jpg",
-      "type": "image",
-      "alt": ""
-    },
-    {
-      "src": "https://res.cloudinary.com/djeorsh5d/image/upload/v1758593366/SnapInsta.to_495564200_18498125011055684_2543678329775957249_n_apalu6.jpg",
-      "type": "image",
-      "alt": ""
-    },
-    {
-      "src": "https://res.cloudinary.com/djeorsh5d/image/upload/v1758593366/SnapInsta.to_495553327_18498125044055684_8231572460175299842_n_qqiwec.jpg",
-      "type": "image",
-      "alt": ""
-    },
-    {
-      "src": "https://res.cloudinary.com/djeorsh5d/image/upload/v1758593365/SnapInsta.to_495499320_18498125083055684_2244064161036621426_n_nrhudo.jpg",
-      "type": "image",
-      "alt": ""
-    },
-    {
-      "src": "https://res.cloudinary.com/djeorsh5d/image/upload/v1758593364/SnapInsta.to_491447697_18498125047055684_2010875345067401279_n_cd8elx.jpg",
-      "type": "image",
-      "alt": ""
-    }
-  ]
-}
-,{
-  "type": "gallery",
-  "date": "May 6, 2025",
-  "title": "HAPPY BIRTHDAY GIFTY",
-  "category": "image",
-  "tags": [
-    {
-      "title": "Photography & Styling",
-      "tag": [
-        { "label": "", "name": "", "handle": "@dkshotit_photography" },
-        { "label": "", "name": "", "handle": "@dkshotit_studio" },
-        { "label": "", "name": "", "handle": "@a.n.f_beautybar" }
-      ]
-    }
-  ],
-  "media": [
-    {
-      "src": "https://res.cloudinary.com/djeorsh5d/image/upload/v1758593371/SnapInsta.to_495712633_18498119068055684_5436287651337601700_n_eiqppj.jpg",
-      "type": "image",
-      "alt": ""
-    },
-    {
-      "src": "https://res.cloudinary.com/djeorsh5d/image/upload/v1758593371/SnapInsta.to_495857392_18498119212055684_3823151440918805314_n_dizhhd.jpg",
-      "type": "image",
-      "alt": ""
-    },
-    {
-      "src": "https://res.cloudinary.com/djeorsh5d/image/upload/v1758593369/SnapInsta.to_495601275_18498119050055684_6595719380879690934_n_btpde1.jpg",
-      "type": "image",
-      "alt": ""
-    },
-    {
-      "src": "https://res.cloudinary.com/djeorsh5d/image/upload/v1758593368/SnapInsta.to_495341267_18498119200055684_3996367609353588517_n_icqxsr.jpg",
-      "type": "image",
-      "alt": ""
-    }
-  ]
-},
-{
-  "type": "gallery",
-  "date": "May 5, 2025",
-  "title": "HAPPY BIRTHDAY IVY … MUCH LOVE 💕",
-  "category": "image",
-  "tags": [
-    {
-      "title": "Photography",
-      "tag": [
-        { "label": "", "name": "", "handle": "@dkshotit_photography" }
-      ]
-    }
-  ],
-  "media": [
-    {
-      "src": "https://res.cloudinary.com/djeorsh5d/image/upload/v1758593383/SnapInsta.to_495583082_18497919994055684_1741928930888204757_n_prqlr2.jpg",
-      "type": "image",
-      "alt": ""
-    },
-    {
-      "src": "https://res.cloudinary.com/djeorsh5d/image/upload/v1758593379/SnapInsta.to_495343898_18497919967055684_1932820387186759856_n_yvrtot.jpg",
-      "type": "image",
-      "alt": ""
-    },
-    {
-      "src": "https://res.cloudinary.com/djeorsh5d/image/upload/v1758593378/SnapInsta.to_491446432_18497920009055684_3665204723391084513_n_loxrrz.jpg",
-      "type": "image",
-      "alt": ""
-    },
-    {
-      "src": "https://res.cloudinary.com/djeorsh5d/image/upload/v1758593378/SnapInsta.to_494757802_18497919976055684_752268394656273464_n_ixbapt.jpg",
-      "type": "image",
-      "alt": ""
-    }
-  ]
-}
+     
+ 
+    tags: [
+      
+      {
+        tag: [
+          { label: "photo_credit", handle: "@dkshotit_photography" }
+        ]
+      },
+      
+    ],
+    media: [
+     
+      {
+        src: "https://res.cloudinary.com/djeorsh5d/image/upload/v1759712497/SnapInsta.to_471378863_18472594012055684_7758745658022772365_n_ow9xxh.jpg",
+        type: "image",
+        alt: "Christmas photo 2"
+      },
+      {
+        src: "https://res.cloudinary.com/djeorsh5d/image/upload/v1759712496/SnapInsta.to_471261576_18472594123055684_1072488050283828915_n_jz0mqq.jpg",
+        type: "image",
+        alt: "Christmas photo 3"
+      },
+      {
+        src: "https://res.cloudinary.com/djeorsh5d/image/upload/v1759712495/SnapInsta.to_471201589_18472594033055684_7538490376268390381_n_zx6p2w.jpg",
+        type: "image",
+        alt: "Christmas photo 4"
+      },
+      {
+        src: "https://res.cloudinary.com/djeorsh5d/image/upload/v1759712494/SnapInsta.to_471150541_18472594030055684_7305465373604066123_n_zhgfts.jpg",
+        type: "image",
+        alt: "Christmas photo 4"
+      }
+    ]
+  }
+]
+
+
 
 
 
@@ -3563,5 +3917,5 @@ export const galleryImage = [
   
 
 
-]
+
 

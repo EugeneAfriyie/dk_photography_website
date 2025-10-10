@@ -61,7 +61,7 @@ const Gallery = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   // Filter options
-  const filters = ['all', 'wedding', 'children', 'couple', 'birthday', 'graduation'];
+  const filters = ['all', 'wedding', 'children', 'couple', 'birthday', 'graduation', "pregnancy",'memory','prewedding'];
 
   // Scroll-to-top button visibility
   useEffect(() => {
