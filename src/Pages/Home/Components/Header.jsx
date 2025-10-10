@@ -202,7 +202,7 @@ const Header = ({ mobileMenuOpen, setMobileMenuOpen }) => {
             animate={{ x: 0 }}
             exit={{ x: '100%' }}
             transition={{ duration: 0.3, ease: 'easeInOut' }}
-            className="md:hidden fixed top-0 right-0 h-auto w-3/4 bg-black border-l border-gray-800 z-5000 backdrop-blur-md p-4"
+            className="md:hidden fixed top-0 right-2 h-auto w-3/4 bg-black border-l border-gray-800 z-5000 backdrop-blur-md p-4 border-5 border-amber-500"
           >
             <div className="md:hidden flex justify-between mb-2">
               <div className="flex items-center gap-2">
@@ -213,31 +213,12 @@ const Header = ({ mobileMenuOpen, setMobileMenuOpen }) => {
                     alt="LOGO"
                   />
                 </div>
-                <div className="flex flex-col justify-center leading-tight">
-                  <motion.div
-                    initial="hidden"
-                    animate="visible"
-                    variants={{
-                      hidden: { opacity: 0, y: 10 },
-                      visible: { opacity: 1, y: 0, transition: { duration: 0.8 } },
-                    }}
-                    className="text-[.6rem] font-semibold typewriter-text min-h-[1.25rem] text-white hover:text-amber-400 transition-colors duration-300"
-                  >
-                    {nameLine || <span>&nbsp;</span>}
-                  </motion.div>
-                  <motion.div
-                    initial="hidden"
-                    animate="visible"
-                    variants={{
-                      hidden: { opacity: 0, y: 10 },
-                      visible: { opacity: 1, y: 0, transition: { duration: 0.8 } },
-                    }}
-                    className="text-[.6rem] font-semibold typewriter-text min-h-[1.2rem] text-white hover:text-amber-400 transition-colors duration-300"
-                  >
-                    {mottoLine || <span>&nbsp;</span>}
-                  </motion.div>
-                </div>
+               <p className='text-[.6rem] lg:flex md:hidden font-semibold flex flex-col hover:text-amber-400 transition-colors duration-300'>
+                   <span>DKSHOTIT STUDIO &</span>
+                   <span>PHOTOGRAPHY</span>
+                 </p>
               </div>
+
               <button
                 onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
                 aria-label="Toggle mobile menu"
@@ -250,7 +231,7 @@ const Header = ({ mobileMenuOpen, setMobileMenuOpen }) => {
               </button>
             </div>
 
-            <ul className="w-full flex flex-col items-center gap-6 py-1 text-base bg-black shadow-md">
+            <ul className="w-full flex flex-col items-cente gap-6 py-1 text-base bg-black shadow-md">
               <li className="group flex items-center gap-2 p-2 rounded hover:border hover:border-amber-700 transition-all duration-300">
                 <svg
                   className="w-5 h-5 text-white group-hover:text-amber-400 transition-colors duration-300"
