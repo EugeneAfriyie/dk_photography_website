@@ -278,7 +278,7 @@ body{
     min-height: 60vh;
   }
   .carousel-dot-container { bottom: 12px; }
-  .carousel-dot { width: 26px; height: 26px; }
+  .carousel-dot { width: 2px; height: 2px; }
 }
 @media (min-width: 1024px) {
   .media-container {
@@ -310,36 +310,60 @@ body{
 }
 @media (max-width: 640px) {
   .clutter-image:nth-child(1) {
-    width: 70% !important;
-    height: 70% !important;
-    min-width: 160px !important;
+    width: 30% !important;
+    height: 40% !important;
+    min-width: 50px !important;
     min-height: 160px !important;
     top: 5% !important;
-    left: 5% !important;
+    left: -2% !important;
   }
   .clutter-image:nth-child(2) {
-    width: 70% !important;
-    height: 70% !important;
-    min-width: 160px !important;
-    min-height: 160px !important;
-    top: 15% !important;
-    right: 5% !important;
+    width: 30% !important;
+    height: 40% !important;
+    min-width: 10px !important;
+    min-height: 10px !important;
+    top: 1% !important;
+    left: 30% !important;
   }
   .clutter-image:nth-child(3) {
-    width: 60% !important;
+    width: 40% !important;
     height: 60% !important;
-    min-width: 140px !important;
+    min-width: 10px !important;
     min-height: 140px !important;
     bottom: 5% !important;
-    left: 15% !important;
+    /* left: 15% !important; */
   }
   .clutter-image:nth-child(4) {
-    width: 50% !important;
+    width: 30% !important;
     height: 50% !important;
-    min-width: 120px !important;
+    min-width: 10px !important;
     min-height: 120px !important;
-    bottom: 15% !important;
-    right: 15% !important;
+    /* bottom: 15% !important; */
+    left: 70% !important;
+  }
+  .clutter-image:nth-child(4) {
+    width: 30% !important;
+    height: 50% !important;
+    min-width: 10px !important;
+    min-height: 120px !important;
+    /* bottom: 15% !important; */
+    left: -5% !important;
+  }
+  .clutter-image:nth-child(5) {
+    width: 40% !important;
+    height: 50% !important;
+    min-width: 10px !important;
+    min-height: 120px !important;
+    top: 30% !important;
+    left: 30% !important;
+  }
+  .clutter-image:nth-child(6) {
+    width: 30% !important;
+    height: 50% !important;
+    min-width: 10px !important;
+    min-height: 120px !important;
+    bottom: -15% !important;
+    left: 30% !important;
   }
 }
 
