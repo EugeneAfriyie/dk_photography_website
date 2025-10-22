@@ -206,7 +206,7 @@ const Footer = ({ isFocused, setIsFocused }) => {
         <p className="mb-4">
           <strong>Disclaimer:</strong> DKSHOTIT Studio provides professional photography services for personal and event use. All bookings are subject to availability and our Terms & Conditions. Packages and pricing may vary based on location and specific requirements. For more details, please contact us directly.
         </p>
-        <p className="text-center mt-4">© 2025 DKSHOTIT STUDIO AND PHOTOGRAPHY, All Rights Reserved.</p>
+        <p className="text-center mt-4">© {new Date().getFullYear()} DKSHOTIT STUDIO AND PHOTOGRAPHY, All Rights Reserved.</p>
       </div>
     </footer>
   );
